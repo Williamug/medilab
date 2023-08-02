@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CatagoryRequest;
+use App\Http\Requests\CategoryRequest;
 use App\Models\Catagory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
@@ -15,7 +16,7 @@ class CatagoriesController extends Controller
         return view('pages.catagories.index');
     }
 
-    public function store(CatagoryRequest $request): RedirectResponse
+    public function store(CategoryRequest $request): RedirectResponse
     {
         Catagory::create($request->validated());
         return to_route('catagories.index')->with('success', 'Catagory has been added');
