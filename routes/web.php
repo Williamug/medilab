@@ -8,9 +8,15 @@ use App\Http\Controllers\CatagoriesController;
 
 Route::redirect('/', 'login');
 
-    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 Route::controller(CatagoriesController::class)->group(function () {
-    Route::get('/catagories', 'index')->name('catagories.index');
-    Route::post('/catagories', 'store')->name('catagories.store');
-    Route::patch('/catagories/{catagory}', 'update')->name('catagories.update');
+    Route::get('/catagories', 'index')
+        ->name('catagories.index')
+        ->middleware('auth');
+    Route::post('/catagories', 'store')
+        ->name('catagories.store')
+        ->middleware('auth');
+    Route::patch('/catagories/{catagory}', 'update')
+        ->name('catagories.update')
+        ->middleware('auth');
 });
