@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Models\Catagory;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
@@ -25,6 +26,7 @@ class CatagoryTest extends TestCase
     /** @test */
     public function a_user_can_add_catagories(): void
     {
+        $this->actingAs(User::factory()->create());
         $response = $this->post(route('catagories.store'), [
             'catagory_name' => 'Typhoid Test',
             'description' => 'lorem ipsum dor sit',
@@ -36,11 +38,28 @@ class CatagoryTest extends TestCase
     /** @test */
     public function catagory_name_is_required(): void
     {
+        $this->actingAs(User::factory()->create());
         $response = $this->post(route('catagories.store'), [
             'catagory_name' => '',
             'description' => 'lorem ipsum',
         ]);
 
         $response->assertSessionHasErrors('catagory_name');
+    }
+
+    /** @test */
+    public function a_user_can_delete_record(): void
+    {
+        $this->withoutExceptionHandling();
+        $this->actingAs(User::factory()->create());
+        $this->post(route('catagories.store'), [
+            'catagory_name' => 'Typhoid',
+            'description' => 'lorem ipsum',
+        ]);
+
+        $category = Catagory::first();
+        $response = $this->delete(route('catagories.destroy', $category->id));
+
+        $this->assertDatabaseCount('catagories', 0);
     }
 }
