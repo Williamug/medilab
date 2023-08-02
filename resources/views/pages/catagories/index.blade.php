@@ -6,6 +6,7 @@
         <x-slot name="banner">
             Catagories
         </x-slot>
+        <x-app.flash-message />
         <div>
             <livewire:catagories-list>
         </div>
