@@ -2,6 +2,8 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Catagory;
+use Illuminate\Database\Eloquent\Collection;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -14,12 +16,13 @@ class CatagoriesList extends Component
     public bool $isOpenDelete = false;
 
     public $perPage = 3;
-    public $sortField = 'title';
+    public $sortField = 'catagory_name';
     public $sortAsc = true;
     public $search = '';
     // sort by class
-    public $sortClass = 'All';
+    public $sortCategory = 'All';
 
+    // sort results based on either ascend or discend
     public function sortBy($field)
     {
         if ($this->sortField === $field) {
@@ -49,8 +52,15 @@ class CatagoriesList extends Component
     {
         // $this->reset('exam_name', 'duration', 'exam_code', 'staff_id', 'class_room_id');
     }
+
+    // render view to be displayed
     public function render()
     {
-        return view('livewire.catagories-list');
+        // order results about on either ascending or discending order
+        $categories = Catagory::search($this->search)
+            ->orderBy($this->sortField, $this->sortAsc ? 'asc' : 'desc')
+            ->paginate($this->perPage);
+
+        return view('livewire.catagories-list', compact('categories'));
     }
 }
