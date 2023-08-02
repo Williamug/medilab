@@ -162,7 +162,7 @@
                 </table>
                 <div class="flex flex-col items-center px-5 py-5 bg-white border-t xs:flex-row xs:justify-between ">
                     <div class="inline-flex mt-2 xs:mt-0">
-                        {{-- {{ $assignments->links() }} --}}
+                        {{ $categories->links() }}
                     </div>
                 </div>
             </div>
