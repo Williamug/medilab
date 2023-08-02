@@ -10,13 +10,23 @@ Route::redirect('/', 'login');
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 Route::controller(CatagoriesController::class)->group(function () {
-    Route::get('/catagories', 'index')
+    Route::get('/categories', 'index')
         ->name('catagories.index')
         ->middleware('auth');
-    Route::post('/catagories', 'store')
+    Route::get('/categories/create', 'create')
+        ->name('catagories.create')
+        ->middleware('auth');
+    Route::get('/categories/{category}', 'show')->name('catagories.show')->middleware('auth');
+    Route::post('/categories', 'store')
         ->name('catagories.store')
         ->middleware('auth');
-    Route::patch('/catagories/{catagory}', 'update')
+    Route::get('/categories/{category}/edit', 'edit')
+        ->name('catagories.edit')
+        ->middleware('auth');
+    Route::put('/categories/{category}', 'update')
         ->name('catagories.update')
+        ->middleware('auth');
+    Route::delete('/categories/{category}', 'destroy')
+        ->name('catagories.destroy')
         ->middleware('auth');
 });
