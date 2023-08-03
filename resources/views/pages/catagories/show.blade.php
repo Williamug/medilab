@@ -7,7 +7,14 @@
 
     <x-app.card>
         <x-slot name="banner">
-            Catagories
+            <div class="flex">
+                <div class="flex-1">
+                    Category
+                </div>
+                <div>
+                    <x-app.back href="{{ route('catagories.index') }}" />
+                </div>
+            </div>
         </x-slot>
         <div>
             <div class="grid grid-cols-2 mb-4">

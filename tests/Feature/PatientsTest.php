@@ -96,7 +96,7 @@ class PatientsTest extends TestCase
 
         $this->assertEquals('Allan Muntu Junior', Patient::first()->full_name);
         $this->assertEquals('kasangati', Patient::first()->residence);
-        $response->assertRedirect(route('patients.update', $patient->id));
+        $response->assertRedirect(route('patients.show', $patient->id));
     }
 
     /** @test */
