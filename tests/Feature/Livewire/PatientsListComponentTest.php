@@ -10,6 +10,7 @@ use Tests\TestCase;
 
 class PatientsListComponentTest extends TestCase
 {
+    use RefreshDatabase;
     /** @test */
     public function the_component_can_render()
     {
