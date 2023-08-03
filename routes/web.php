@@ -37,4 +37,22 @@ Route::controller(PatientsController::class)->group(function () {
     Route::get('/patients', 'index')
         ->name('patients.index')
         ->middleware('auth');
+    Route::get('/patients/create', 'create')
+        ->name('patients.create')
+        ->middleware('auth');
+    Route::post('/patients', 'store')
+        ->name('patients.store')
+        ->middleware('auth');
+    Route::get('/patients/{patient}', 'show')
+        ->name('patients.show')
+        ->middleware('auth');
+    Route::get('/patients/{patient}/edit', 'edit')
+        ->name('patients.edit')
+        ->middleware('auth');
+    Route::put('/patients/{patient}', 'update')
+        ->name('patients.update')
+        ->middleware('auth');
+    Route::delete('/patients/{patient}', 'destroy')
+        ->name('patients.destroy')
+        ->middleware('auth');
 });
