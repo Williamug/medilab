@@ -5,6 +5,7 @@ use App\Http\Controllers\DataFeedController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\CatagoriesController;
 use App\Http\Controllers\PatientsController;
+use App\Http\Controllers\SpacemensController;
 use App\Http\Controllers\TestServicesController;
 
 Route::redirect('/', 'login');
@@ -30,6 +31,7 @@ Route::middleware('auth')->group(function () {
 
     Route::resources([
         'patients' => PatientsController::class,
-        'test-services' => TestServicesController::class
+        'test-services' => TestServicesController::class,
+        'spacemens' => SpacemensController::class,
     ]);
 });
