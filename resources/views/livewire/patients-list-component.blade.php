@@ -32,7 +32,7 @@
                     class="block w-full py-2 pl-8 pr-6 text-sm text-gray-700 placeholder-gray-400 bg-white border border-b border-gray-400 rounded-l rounded-r appearance-none sm:rounded-l-none focus:bg-white focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none" />
             </div>
             {{-- @can('Add assignment') --}}
-            <a href="{{ route('catagories.create') }}"
+            <a href="{{ route('patients.create') }}"
                 class="mt-2 flex pl-3 text-gray-500 hover:text-gray-900 hover:underline">
                 <span class="mr-1">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="w-6 h-6 bi bi-plus"
@@ -41,7 +41,7 @@
                             d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
                     </svg>
                 </span>
-                Add Catagory
+                Add Patient
             </a>
             {{-- @endcan --}}
         </div>
@@ -52,19 +52,33 @@
                         <tr>
                             <th
                                 class="px-5 py-3 text-xs font-semibold tracking-wider text-left text-gray-600 uppercase bg-gray-100 border-b-2 border-gray-200">
-                                <a wire:click.prevent="sortBy('catagory_name')" role="button" href="#"
+                                <a wire:click.prevent="sortBy('full_name')" role="button" href="#"
                                     class="flex">
-                                    Category
-                                    @include('partials.sort_icons', ['field' => 'catagory_name'])
+                                    Full Name
+                                    @include('partials.sort_icons', ['field' => 'full_name'])
                                 </a>
                             </th>
+
                             <th
                                 class="px-5 py-3 text-xs font-semibold tracking-wider text-left text-gray-600 uppercase bg-gray-100 border-b-2 border-gray-200">
-                                <a wire:click.prevent="sortBy('description')" role="button" href="#"
-                                    class="flex">
-                                    Description
-                                    @include('partials.sort_icons', ['field' => 'description'])
+                                <a wire:click.prevent="sortBy('gender')" role="button" href="#" class="flex">
+                                    Gender
+                                    @include('partials.sort_icons', ['field' => 'gender'])
                                 </a>
+                            </th>
+
+                            <th
+                                class="px-5 py-3 text-xs font-semibold tracking-wider text-left text-gray-600 uppercase bg-gray-100 border-b-2 border-gray-200">
+                                <a wire:click.prevent="sortBy('birth_date')" role="button" href="#"
+                                    class="flex">
+                                    Date of Birth
+                                    @include('partials.sort_icons', ['field' => 'birth_date'])
+                                </a>
+                            </th>
+
+                            <th
+                                class="px-5 py-3 text-xs font-semibold tracking-wider text-left text-gray-600 uppercase bg-gray-100 border-b-2 border-gray-200">
+                                Phone Number
                             </th>
                             {{-- @can('View assignment') --}}
                             <th
@@ -75,26 +89,38 @@
                         </tr>
                     </thead>
                     <tbody>
-                        {{-- @foreach ($categories as $category) --}}
-                        <tr>
-                            <td class="px-5 py-5 text-sm bg-white border-b border-gray-200">
-                                <p class="text-gray-900 whitespace-no-wrap">
-                                    {{-- {{ $category->catagory_name }} --}}
-                                </p>
-                            </td>
+                        @foreach ($patients as $patient)
+                            <tr>
+                                <td class="px-5 py-5 text-sm bg-white border-b border-gray-200">
+                                    <p class="text-gray-900 whitespace-no-wrap">
+                                        {{ $patient->full_name }}
+                                    </p>
+                                </td>
 
-                            <td class="px-5 py-5 text-sm bg-white border-b border-gray-200">
-                                <p class="text-gray-900 whitespace-no-wrap">
-                                    {{-- {{ $category->description }} --}}
-                                </p>
-                            </td>
+                                <td class="px-5 py-5 text-sm bg-white border-b border-gray-200">
+                                    <p class="text-gray-900 whitespace-no-wrap">
+                                        {{ $patient->gender }}
+                                    </p>
+                                </td>
 
-                            {{-- @can('View assignment') --}}
-                            {{-- <td class="px-5 py-5 text-sm bg-white border-b border-gray-200">
+                                <td class="px-5 py-5 text-sm bg-white border-b border-gray-200">
+                                    <p class="text-gray-900 whitespace-no-wrap">
+                                        {{ $patient->birth_date->format('d/m/Y') }}
+                                    </p>
+                                </td>
+
+                                <td class="px-5 py-5 text-sm bg-white border-b border-gray-200">
+                                    <p class="text-gray-900 whitespace-no-wrap">
+                                        {{ $patient->phone_number }}
+                                    </p>
+                                </td>
+
+                                {{-- @can('View assignment') --}}
+                                <td class="px-5 py-5 text-sm bg-white border-b border-gray-200">
                                     <p class="text-gray-900 whitespace-no-wrap">
                                     <div class="flex">
                                         <div class="flex">
-                                            <a href="{{ route('catagories.show', $category) }}"
+                                            <a href="{{ route('patients.show', $patient) }}"
                                                 class="text-green-700 hover:underline hover:text-green-900"
                                                 title="View">
                                                 <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor"
@@ -107,7 +133,7 @@
                                                 </svg>
                                             </a>
 
-                                            <a href="{{ route('catagories.edit', $category) }}"
+                                            <a href="{{ route('patients.edit', $patient) }}"
                                                 class="text-blue-700 hover:underline hover:text-blue-900"
                                                 title="Edit">
                                                 <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor"
@@ -121,13 +147,13 @@
                                             </a>
                                         </div>
                                         <div>
-                                            <form action="{{ route('catagories.destroy', $category) }}" method="POST">
+                                            <form action="{{ route('patients.destroy', $patient) }}" method="POST">
                                                 @csrf
                                                 @method('DELETE')
 
                                                 <button
                                                     class="text-red-700 hover:underline hover:text-red-900 focus:outline-none dark:text-red-800 dark:hover:text-red-900"
-                                                    onclick="javascript:return confirm('You are about to delete this Category. Are you sure you want to continue?')">
+                                                    onclick="javascript:return confirm('You are about to delete this Patient. Are you sure you want to continue?')">
                                                     <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor"
                                                         class="w-4 h-4 mr-3 text-red-600 bi bi-trash hover:text-red-800"
                                                         viewBox="0 0 16 16">
@@ -141,15 +167,15 @@
                                         </div>
                                     </div>
                                     </p>
-                                </td> --}}
-                            {{-- @endcan --}}
-                        </tr>
-                        {{-- @endforeach --}}
+                                </td>
+                                {{-- @endcan --}}
+                            </tr>
+                        @endforeach
                     </tbody>
                 </table>
                 <div class="flex flex-col items-center px-5 py-5 bg-white border-t xs:flex-row xs:justify-between ">
                     <div class="inline-flex mt-2 xs:mt-0">
-                        {{-- {{ $patients->links() }} --}}
+                        {{ $patients->links() }}
                     </div>
                 </div>
             </div>
