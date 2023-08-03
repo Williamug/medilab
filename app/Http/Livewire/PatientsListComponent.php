@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Patient;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -14,7 +15,7 @@ class PatientsListComponent extends Component
     public bool $isOpenDelete = false;
 
     public $perPage = 3;
-    public $sortField = 'catagory_name';
+    public $sortField = 'full_name';
     public $sortAsc = true;
     public $search = '';
     // sort by class
@@ -33,6 +34,9 @@ class PatientsListComponent extends Component
 
     public function render()
     {
-        return view('livewire.patients-list-component');
+        $patients = Patient::search($this->search)
+            ->orderBy($this->sortField, $this->sortAsc ? 'asc' : 'desc')
+            ->paginate($this->perPage);
+        return view('livewire.patients-list-component', compact('patients'));
     }
 }
