@@ -34,12 +34,11 @@ class ResultsTest extends TestCase
             'result' => 'Negative',
             'code' => 'NEGATIVE',
             'symbol' => '-',
-            'test_service_id' => 1,
             'user_id' => $user->id
         ]);
 
         $this->assertDatabaseCount('results', 1);
-        $response->assertRedirect(route('results.index'));
+        $response->assertRedirect(route('results.create'));
     }
 
     /** @test */
@@ -50,7 +49,6 @@ class ResultsTest extends TestCase
             'result' => '',
             'code' => 'NEGATIVE',
             'symbol' => '-',
-            'test_service_id' => 1,
             'user_id' => $user->id
         ]);
 
@@ -65,7 +63,6 @@ class ResultsTest extends TestCase
             'result' => 'Negative',
             'code' => '',
             'symbol' => '-',
-            'test_service_id' => 1,
             'user_id' => $user->id
         ]);
 
@@ -79,7 +76,6 @@ class ResultsTest extends TestCase
             'result' => 'Negative',
             'code' => 'NEGATIVE',
             'symbol' => '',
-            'test_service_id' => 1,
             'user_id' => $user->id
         ]);
 
@@ -94,7 +90,6 @@ class ResultsTest extends TestCase
             'result' => 'Negative',
             'code' => 'NEGATIVE',
             'symbol' => '-',
-            'test_service_id' => 1,
             'user_id' => $user->id
         ]);
 
@@ -104,7 +99,6 @@ class ResultsTest extends TestCase
             'result' => 'Positive',
             'code' => 'POSITIVE',
             'symbol' => '+',
-            'test_service_id' => 1,
             'user_id' => $user->id
         ]);
 
@@ -124,7 +118,6 @@ class ResultsTest extends TestCase
             'result' => 'Positive',
             'code' => 'POSITIVE',
             'symbol' => '+',
-            'test_service_id' => 1,
             'user_id' => $user->id
         ]);
         $result = Result::first();
