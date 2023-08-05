@@ -1,5 +1,4 @@
 <div>
-    {{-- <x-flash-message /> --}}
     <div class="py-8">
         <div class="flex flex-col my-2 sm:flex-row">
             <div class="flex flex-row mb-1 sm:mb-0">
