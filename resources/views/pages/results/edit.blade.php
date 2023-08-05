@@ -12,73 +12,48 @@
                     Results
                 </div>
                 <div>
-                    <x-app.back href="{{ route('patients.show', $patient) }}" />
+                    <x-app.back href="{{ route('results.show', $result) }}" />
                 </div>
             </div>
         </x-slot>
+
+        <x-app.flash-message />
+
         <div>
             <!-- Form -->
-            <form method="POST" action="{{ route('patients.update', $patient) }}">
+            <form method="POST" action="{{ route('results.update', $result) }}">
                 @csrf
                 @method('put')
 
-                <!-- full name -->
+                <!-- result -->
                 <div class="space-y-4">
                     <div class="mb-4">
-                        <x-jet-label for="full_name" value="{{ __('Full Name *') }}" />
-                        <x-jet-input class="md:w-2/3" id="full_name" type="text" name="full_name" :value="old('full_name') ?? $patient->full_name"
+                        <x-jet-label for="result" value="{{ __('Result *') }}" />
+                        <x-jet-input class="md:w-2/3" id="result" type="text" name="result" :value="old('result') ?? $result->result"
                             autofocus />
                     </div>
                 </div>
-                <!-- /.full name -->
+                <!-- /.result -->
 
-                <!-- gender -->
-                <div class="mt-4">
-                    <span class="text-gray-700">Gender *</span>
-                    <div class="mt-2">
-                        <label class="inline-flex items-center">
-                            <input type="radio" class="form-radio" name="gender" value="Male"
-                                @checked(old('gender', $patient->gender) == 'Male')>
-                            <span class="ml-2">Male</span>
-                        </label>
-                        <label class="inline-flex items-center ml-6">
-                            <input type="radio" class="form-radio" name="gender" value="Female"
-                                @checked(old('gender', $patient->gender) == 'Female')>
-                            <span class="ml-2">Female</span>
-                        </label>
-                    </div>
-                    <x-jet-input-error for="gender" />
-                </div>
-                <!-- /.gender -->
-
-                <!-- date of birth -->
+                <!-- code -->
                 <div class="space-y-4">
                     <div class="mb-4">
-                        <x-jet-label for="birth_date" value="{{ __('Date of Birth') }}" />
-                        <x-jet-input class="md:w-2/3" id="birth_date" type="date" name="birth_date" :value="old('birth_date') ?? $patient->birth_date->format('Y-m-d')"
+                        <x-jet-label for="code" value="{{ __('Code*') }}" />
+                        <x-jet-input class="md:w-2/3" id="code" type="text" name="code" :value="old('code') ?? $result->code"
                             autofocus />
                     </div>
                 </div>
-                <!-- /.date of birth -->
+                <!-- /.code -->
 
-                <!-- phone number -->
+                <!-- symbol -->
                 <div class="space-y-4">
                     <div class="mb-4">
-                        <x-jet-label for="phone_number" value="{{ __('Phone Number') }}" />
-                        <x-jet-input class="md:w-2/3" id="phone_number" type="text" name="phone_number"
-                            :value="old('phone_number') ?? $patient->phone_number" autofocus />
+                        <x-jet-label for="symbol" value="{{ __('Symbol *') }}" />
+                        <x-jet-input class="md:w-2/3" id="symbol" type="text" name="symbol" :value="old('symbol') ?? $result->symbol"
+                            autofocus />
                     </div>
                 </div>
-                <!-- /.phone number -->
-
-                <!-- residence -->
-                <div>
-                    <x-jet-label for="residence" value="{{ __('Residence') }}" />
-                    <x-app.text id="residence" class="block w-full mt-1 md:w-2/3" :value="old('residence')" name="residence">
-                        {{ old('residence') ?? $patient->residence }}
-                    </x-app.text>
-                </div>
-                <!-- /.residence -->
+                <!-- /.symbol -->
 
                 <div class="flex items-center justify-between mt-6">
                     <x-jet-button class="ml-3">
