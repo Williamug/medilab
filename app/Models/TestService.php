@@ -9,7 +9,12 @@ class TestService extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['test_name', 'price', 'user_id'];
+    protected $fillable = [
+        'test_name',
+        'price',
+        'user_id',
+        'result_id'
+    ];
 
     public static function search($query)
     {

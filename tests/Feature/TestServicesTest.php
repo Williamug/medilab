@@ -32,6 +32,7 @@ class TestServicesTest extends TestCase
             'test_name' => 'HIV test',
             'price' => 5000,
             'user_id' => $user->id,
+            'result_id' => 1
         ]);
 
         $this->assertDatabaseCount('test_services', 1);
@@ -46,6 +47,7 @@ class TestServicesTest extends TestCase
             'test_name' => '',
             'price' => 5000,
             'user_id' => $user->id,
+            'result' => 1,
         ]);
 
         $response->assertSessionHasErrors('test_name');
@@ -59,6 +61,7 @@ class TestServicesTest extends TestCase
             'test_name' => 'HIV',
             'price' => '',
             'user_id' => $user->id,
+            'result' => 1,
         ]);
 
         $response->assertSessionHasErrors('price');
@@ -72,6 +75,7 @@ class TestServicesTest extends TestCase
             'test_name' => 'HIV test',
             'price' => 5000,
             'user_id' => $user->id,
+            'result_id' => 1,
         ]);
 
         $test_service = TestService::first();
@@ -80,6 +84,7 @@ class TestServicesTest extends TestCase
             'test_name' => 'Brusella',
             'price' => 10000,
             'user_id' => $user->id,
+            'result_id' => 1,
         ]);
 
         $this->assertEquals('Brusella', TestService::first()->test_name);
@@ -97,6 +102,7 @@ class TestServicesTest extends TestCase
             'test_name' => 'Brusella',
             'price' => 10000,
             'user_id' => $user->id,
+            'result_id' => 1,
         ]);
         $test_service = TestService::first();
         $response = $this->delete(route('test-services.destroy', $test_service->id));
