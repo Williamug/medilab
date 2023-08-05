@@ -27,7 +27,7 @@ class ResultsController extends Controller
     public function store(StoreResultRequest $request): RedirectResponse
     {
         Result::create($request->validated());
-        return to_route('results.index')->with('success', 'Results has been save');
+        return to_route('results.create')->with('success', 'Results has been save');
     }
 
     // display single record
@@ -39,7 +39,7 @@ class ResultsController extends Controller
     // show edit view
     public function edit(Result $result): View
     {
-        return view('pages.$results.edit', compact('$result'));
+        return view('pages.results.edit', compact('result'));
     }
 
     // update records in the database
