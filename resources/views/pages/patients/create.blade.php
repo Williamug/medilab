@@ -13,6 +13,7 @@
                 </div>
             </div>
         </x-slot>
+        <x-app.flash-message />
         <div>
             <div class="space-y-4">
                 <div class="mb-4">

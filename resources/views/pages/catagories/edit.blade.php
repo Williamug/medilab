@@ -16,6 +16,7 @@
                 </div>
             </div>
         </x-slot>
+        <x-app.flash-message />
         <div>
             <!-- Form -->
             <form method="POST" action="{{ route('catagories.update', $category) }}">
