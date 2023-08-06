@@ -1,6 +1,6 @@
 <x-app-layout>
     <x-slot name="title">
-        Catagories
+        Patients
     </x-slot>
     <x-app.card>
         <x-slot name="banner">
