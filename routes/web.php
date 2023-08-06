@@ -6,6 +6,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\CatagoriesController;
 use App\Http\Controllers\PatientsController;
 use App\Http\Controllers\ResultsController;
+use App\Http\Controllers\SampleResultsCotroller;
 use App\Http\Controllers\SpacemensController;
 use App\Http\Controllers\TestServicesController;
 
@@ -30,10 +31,12 @@ Route::middleware('auth')->group(function () {
             ->name('catagories.destroy');
     });
 
+    // resource controller [index, create, store, show, edit, update, delete]
     Route::resources([
         'patients' => PatientsController::class,
         'test-services' => TestServicesController::class,
         'spacemens' => SpacemensController::class,
         'results' => ResultsController::class,
+        'sample-results' => SampleResultsCotroller::class,
     ]);
 });
