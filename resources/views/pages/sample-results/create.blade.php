@@ -24,7 +24,7 @@
                 </div>
             </div>
             <!-- Form -->
-            <form method="POST" action="{{ route('patients.store') }}">
+            <form method="POST" action="{{ route('sample-results.store') }}">
                 @csrf
                 <!-- full name -->
                 <div class="space-y-4">
@@ -56,7 +56,7 @@
 
                 <!-- spacemen used -->
                 <div class="mt-3 mb-3">
-                    <x-jet-label for="class" value="{{ __('Test carried out') }}" />
+                    <x-jet-label for="class" value="{{ __('Spacemen used to carryout test') }}" />
                     <select
                         class="w-2/3 border-gray-300 rounded-md shadow-sm dark:border-gray-900 dark:text-gray-400 dark:bg-gray-700 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 form-select"
                         name="test_service_id">
@@ -73,7 +73,7 @@
 
                 <!-- Results obtained -->
                 <div class="mt-3 mb-3">
-                    <x-jet-label for="class" value="{{ __('Test carried out') }}" />
+                    <x-jet-label for="class" value="{{ __('Results obtained') }}" />
                     <select
                         class="w-2/3 border-gray-300 rounded-md shadow-sm dark:border-gray-900 dark:text-gray-400 dark:bg-gray-700 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 form-select"
                         name="test_service_id">
@@ -87,6 +87,12 @@
                     <x-jet-input-error for="class_id" />
                 </div>
                 <!-- /.Results obtained -->
+
+                <div class="flex items-center justify-between mt-6">
+                    <x-jet-button class="ml-3">
+                        {{ __('Submit') }}
+                    </x-jet-button>
+                </div>
             </form>
             <x-jet-validation-errors class="mt-4" />
         </div>
