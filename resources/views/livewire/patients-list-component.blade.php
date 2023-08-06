@@ -31,8 +31,8 @@
                     class="block w-full py-2 pl-8 pr-6 text-sm text-gray-700 placeholder-gray-400 bg-white border border-b border-gray-400 rounded-l rounded-r appearance-none sm:rounded-l-none focus:bg-white focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none" />
             </div>
             {{-- @can('Add assignment') --}}
-            <a href="{{ route('patients.create') }}"
-                class="mt-2 flex pl-3 text-gray-500 hover:text-gray-900 hover:underline">
+            <a href="{{ route('sample-results.create') }}"
+                class="flex pl-3 mt-2 text-gray-500 hover:text-gray-900 hover:underline">
                 <span class="mr-1">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="w-6 h-6 bi bi-plus"
                         viewBox="0 0 16 16">
@@ -40,7 +40,7 @@
                             d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
                     </svg>
                 </span>
-                Add Patient
+                Add Patient's Results
             </a>
             {{-- @endcan --}}
         </div>
@@ -77,7 +77,11 @@
 
                             <th
                                 class="px-5 py-3 text-xs font-semibold tracking-wider text-left text-gray-600 uppercase bg-gray-100 border-b-2 border-gray-200">
-                                Phone Number
+                                Results
+                            </th>
+                            <th
+                                class="px-5 py-3 text-xs font-semibold tracking-wider text-left text-gray-600 uppercase bg-gray-100 border-b-2 border-gray-200">
+                                Symbol
                             </th>
                             {{-- @can('View assignment') --}}
                             <th
