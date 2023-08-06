@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Patient;
+use App\Models\Result;
+use App\Models\Spacemen;
+use App\Models\TestService;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 
@@ -17,8 +20,12 @@ class SampleResultsCotroller extends Controller
     // display page for adding a new patient
     public function create(): View
     {
-        $patients = Patient::get();
-        return view('pages.sample-results.create');
+        $patients = Patient::all();
+        $test_services = TestService::all();
+        $spacemens = Spacemen::all();
+        $results = Result::all();
+
+        return view('pages.sample-results.create', compact('patients', 'test_services', 'spacemens', 'results'));
     }
 
     // display single record
