@@ -12,12 +12,17 @@ class PatientsTest extends TestCase
 {
     use RefreshDatabase;
 
+    private User $user;
+    public function setUP(): void
+    {
+        parent::setUp();
+        $this->user = User::factory()->create();
+    }
+
     /** @test */
     public function test_that_patient_returns_a_successfull_response(): void
     {
-        $this->actingAs(User::factory()->create());
-
-        $response = $this->get(route('patients.index'));
+        $response = $this->actingAs($this->user)->get(route('patients.index'));
         $view = $this->view('pages.patients.index');
 
         $response->assertOk();
@@ -27,10 +32,8 @@ class PatientsTest extends TestCase
     /** @test */
     public function test_that_a_user_can_add_a_patients_record(): void
     {
-        // $this->withoutExceptionHandling();
-        $user = User::factory()->create();
 
-        $response = $this->actingAs($user)->post(route('patients.store'), [
+        $response = $this->actingAs($this->user)->post(route('patients.store'), [
             'full_name' => 'Allan Muntu',
             'phone_number' => '0700000123',
             'gender' => 'male',
@@ -45,8 +48,7 @@ class PatientsTest extends TestCase
     /** @test */
     public function full_name_is_required(): void
     {
-        $user = User::factory()->create();
-        $response = $this->actingAs($user)->post(route('patients.store'), [
+        $response = $this->actingAs($this->user)->post(route('patients.store'), [
             'full_name' => '',
             'phone_number' => '0700000123',
             'gender' => 'male',
@@ -60,8 +62,7 @@ class PatientsTest extends TestCase
     /** @test */
     public function gender_is_required(): void
     {
-        $user = User::factory()->create();
-        $response = $this->actingAs($user)->post(route('patients.store'), [
+        $response = $this->actingAs($this->user)->post(route('patients.store'), [
             'full_name' => 'Allan Muntu',
             'phone_number' => '0700000123',
             'gender' => '',
@@ -75,8 +76,7 @@ class PatientsTest extends TestCase
     /** @test */
     public function patient_info_can_be_updated(): void
     {
-        $user = User::factory()->create();
-        $this->actingAs($user)->post(route('patients.store'), [
+        $this->actingAs($this->user)->post(route('patients.store'), [
             'full_name' => 'Allan Muntu',
             'phone_number' => '0700000123',
             'gender' => 'male',
@@ -86,7 +86,7 @@ class PatientsTest extends TestCase
 
         $patient = Patient::first();
 
-        $response = $this->actingAs($user)->put(route('patients.update', $patient->id), [
+        $response = $this->actingAs($this->user)->put(route('patients.update', $patient->id), [
             'full_name' => 'Allan Muntu Junior',
             'phone_number' => '',
             'gender' => 'male',
@@ -102,10 +102,8 @@ class PatientsTest extends TestCase
     /** @test */
     public function patient_can_be_deleted(): void
     {
-        $this->withoutExceptionHandling();
-        $user = User::factory()->create();
 
-        $this->actingAs($user)->post(route('patients.store'), [
+        $this->actingAs($this->user)->post(route('patients.store'), [
             'full_name' => 'Allan Muntu',
             'phone_number' => '0700000123',
             'gender' => 'male',

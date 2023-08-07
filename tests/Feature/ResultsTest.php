@@ -12,12 +12,17 @@ class ResultsTest extends TestCase
 {
     use RefreshDatabase;
 
+    private User $user;
+    public function setUP(): void
+    {
+        parent::setUp();
+        $this->user = User::factory()->create();
+    }
+
     /** @test */
     public function test_that_results_returns_a_successfull_response(): void
     {
-        $this->actingAs(User::factory()->create());
-
-        $response = $this->get(route('results.index'));
+        $response = $this->actingAs($this->user)->get(route('results.index'));
         $view = $this->view('pages.results.index');
 
         $response->assertOk();
@@ -27,14 +32,12 @@ class ResultsTest extends TestCase
     /** @test */
     public function test_that_a_user_can_add_a_results_record(): void
     {
-        // $this->withoutExceptionHandling();
-        $user = User::factory()->create();
 
-        $response = $this->actingAs($user)->post(route('results.store'), [
+        $response = $this->actingAs($this->user)->post(route('results.store'), [
             'result' => 'Negative',
             'code' => 'NEGATIVE',
             'symbol' => '-',
-            'user_id' => $user->id
+            'user_id' => $this->user->id
         ]);
 
         $this->assertDatabaseCount('results', 1);
@@ -44,12 +47,11 @@ class ResultsTest extends TestCase
     /** @test */
     public function result_is_required(): void
     {
-        $user = User::factory()->create();
-        $response = $this->actingAs($user)->post(route('results.store'), [
+        $response = $this->actingAs($this->user)->post(route('results.store'), [
             'result' => '',
             'code' => 'NEGATIVE',
             'symbol' => '-',
-            'user_id' => $user->id
+            'user_id' => $this->user->id
         ]);
 
         $response->assertSessionHasErrors('result');
@@ -58,12 +60,11 @@ class ResultsTest extends TestCase
     /** @test */
     public function code_is_required(): void
     {
-        $user = User::factory()->create();
-        $response = $this->actingAs($user)->post(route('results.store'), [
+        $response = $this->actingAs($this->user)->post(route('results.store'), [
             'result' => 'Negative',
             'code' => '',
             'symbol' => '-',
-            'user_id' => $user->id
+            'user_id' => $this->user->id
         ]);
 
         $response->assertSessionHasErrors('code');
@@ -71,12 +72,11 @@ class ResultsTest extends TestCase
     /** @test */
     public function symbol_is_required(): void
     {
-        $user = User::factory()->create();
-        $response = $this->actingAs($user)->post(route('results.store'), [
+        $response = $this->actingAs($this->user)->post(route('results.store'), [
             'result' => 'Negative',
             'code' => 'NEGATIVE',
             'symbol' => '',
-            'user_id' => $user->id
+            'user_id' => $this->user->id
         ]);
 
         $response->assertSessionHasErrors('symbol');
@@ -85,21 +85,21 @@ class ResultsTest extends TestCase
     /** @test */
     public function result_info_can_be_updated(): void
     {
-        $user = User::factory()->create();
-        $this->actingAs($user)->post(route('results.store'), [
+
+
+        $this->actingAs($this->user)->post(route('results.store'), [
             'result' => 'Negative',
             'code' => 'NEGATIVE',
             'symbol' => '-',
-            'user_id' => $user->id
+            'user_id' => $this->user->id
         ]);
 
         $result = Result::first();
-
-        $response = $this->actingAs($user)->put(route('results.update', $result->id), [
+        $response = $this->actingAs($this->user)->put(route('results.update', $result->id), [
             'result' => 'Positive',
             'code' => 'POSITIVE',
             'symbol' => '+',
-            'user_id' => $user->id
+            'user_id' => $this->user->id
         ]);
 
         $this->assertEquals('Positive', Result::first()->result);
@@ -111,14 +111,12 @@ class ResultsTest extends TestCase
     /** @test */
     public function result_can_be_deleted(): void
     {
-        $this->withoutExceptionHandling();
-        $user = User::factory()->create();
 
-        $this->actingAs($user)->post(route('results.store'), [
+        $this->actingAs($this->user)->post(route('results.store'), [
             'result' => 'Positive',
             'code' => 'POSITIVE',
             'symbol' => '+',
-            'user_id' => $user->id
+            'user_id' => $this->user->id
         ]);
         $result = Result::first();
         $response = $this->delete(route('results.destroy', $result->id));
