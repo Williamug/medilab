@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Catagory;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +18,9 @@ class TestServiceFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'catagory_id' => 1,
+            'test_name' => $this->faker->sentence(6),
+            'price' => rand(5000, 15000),
         ];
     }
 }
