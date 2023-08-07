@@ -8,6 +8,7 @@ use App\Http\Controllers\PatientsController;
 use App\Http\Controllers\ResultsController;
 use App\Http\Controllers\SampleResultsCotroller;
 use App\Http\Controllers\SpacemensController;
+use App\Http\Controllers\SubmitTestRequestsController;
 use App\Http\Controllers\TestServicesController;
 
 Route::redirect('/', 'login');
@@ -37,6 +38,7 @@ Route::middleware('auth')->group(function () {
         'test-services' => TestServicesController::class,
         'spacemens' => SpacemensController::class,
         'results' => ResultsController::class,
+        'requests' => SubmitTestRequestsController::class,
         'sample-results' => SampleResultsCotroller::class,
     ]);
 });
