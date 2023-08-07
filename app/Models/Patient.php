@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Patient extends Model
 {
@@ -29,5 +30,11 @@ class Patient extends Model
             : static::where('full_name', 'like', '%' . $query . '%')
             ->orWhere('gender', 'like', '%' . $query . '%')
             ->orWhere('birth_date', 'like', '%' . $query . '%');
+    }
+
+    // Get all of the test_requsets for the Patient
+    public function test_requsets(): HasMany
+    {
+        return $this->hasMany(TestRequst::class);
     }
 }

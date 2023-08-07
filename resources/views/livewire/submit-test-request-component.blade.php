@@ -31,7 +31,7 @@
                     class="block w-full py-2 pl-8 pr-6 text-sm text-gray-700 placeholder-gray-400 bg-white border border-b border-gray-400 rounded-l rounded-r appearance-none sm:rounded-l-none focus:bg-white focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none" />
             </div>
             {{-- @can('Add assignment') --}}
-            <a href="{{ route('test-services.create') }}"
+            <a href="{{ route('requests.create') }}"
                 class="flex pl-3 mt-2 text-gray-500 hover:text-gray-900 hover:underline">
                 <span class="mr-1">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="w-6 h-6 bi bi-plus"
@@ -40,7 +40,7 @@
                             d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
                     </svg>
                 </span>
-                Add New Test
+                Submit test request
             </a>
             {{-- @endcan --}}
         </div>
@@ -61,6 +61,11 @@
 
                             <th
                                 class="px-5 py-3 text-xs font-semibold tracking-wider text-left text-gray-600 uppercase bg-gray-100 border-b-2 border-gray-200">
+                                Category
+                            </th>
+
+                            <th
+                                class="px-5 py-3 text-xs font-semibold tracking-wider text-left text-gray-600 uppercase bg-gray-100 border-b-2 border-gray-200">
                                 Test
                             </th>
 
@@ -77,28 +82,40 @@
                         </tr>
                     </thead>
                     <tbody>
-                        {{-- @foreach ($test_services as $test_service) --}}
-                        <tr>
-                            <td class="px-5 py-5 text-sm bg-white border-b border-gray-200">
-                                <p class="text-gray-900 whitespace-no-wrap">
-                                    {{-- {{ $test_service->catagory->catagory_name }} --}}
-                                </p>
-                            </td>
+                        @foreach ($test_requests as $test_request)
+                            <tr>
+                                <td class="px-5 py-5 text-sm bg-white border-b border-gray-200">
+                                    <p class="text-gray-900 whitespace-no-wrap">
+                                        {{ $test_request->patient->full_name }}
+                                    </p>
+                                </td>
 
-                            <td class="px-5 py-5 text-sm bg-white border-b border-gray-200">
-                                <p class="text-gray-900 whitespace-no-wrap">
-                                    {{-- {{ $test_service->test_name }} --}}
-                                </p>
-                            </td>
+                                <td class="px-5 py-5 text-sm bg-white border-b border-gray-200">
+                                    <p class="text-gray-900 whitespace-no-wrap">
+                                        {{ $test_request->patient->gender }}
+                                    </p>
+                                </td>
 
-                            <td class="px-5 py-5 text-sm bg-white border-b border-gray-200">
-                                <p class="text-gray-900 whitespace-no-wrap">
-                                    {{-- {{ $test_service->price }} --}}
-                                </p>
-                            </td>
+                                <td class="px-5 py-5 text-sm bg-white border-b border-gray-200">
+                                    <p class="text-gray-900 whitespace-no-wrap">
+                                        {{ $test_request->test_service->catagory->catagory_name ?? 'No test' }}
+                                    </p>
+                                </td>
 
-                            {{-- @can('View assignment') --}}
-                            {{-- <td class="px-5 py-5 text-sm bg-white border-b border-gray-200">
+                                <td class="px-5 py-5 text-sm bg-white border-b border-gray-200">
+                                    <p class="text-gray-900 whitespace-no-wrap">
+                                        {{ $test_request->test_service->test_name ?? 'No test' }}
+                                    </p>
+                                </td>
+
+                                <td class="px-5 py-5 text-sm bg-white border-b border-gray-200">
+                                    <p class="text-gray-900 whitespace-no-wrap">
+                                        {{ $test_request->spacemen->spacemen ?? 'No spacemen' }}
+                                    </p>
+                                </td>
+
+                                {{-- @can('View assignment') --}}
+                                {{-- <td class="px-5 py-5 text-sm bg-white border-b border-gray-200">
                                     <p class="text-gray-900 whitespace-no-wrap">
                                     <div class="flex">
                                         <div class="flex">
@@ -151,9 +168,9 @@
                                     </div>
                                     </p>
                                 </td> --}}
-                            {{-- @endcan --}}
-                        </tr>
-                        {{-- @endforeach --}}
+                                {{-- @endcan --}}
+                            </tr>
+                        @endforeach
                     </tbody>
                 </table>
                 <div class="flex flex-col items-center px-5 py-5 bg-white border-t xs:flex-row xs:justify-between ">
