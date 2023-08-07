@@ -32,7 +32,7 @@
             </div>
             {{-- @can('Add assignment') --}}
             <a href="{{ route('test-services.create') }}"
-                class="mt-2 flex pl-3 text-gray-500 hover:text-gray-900 hover:underline">
+                class="flex pl-3 mt-2 text-gray-500 hover:text-gray-900 hover:underline">
                 <span class="mr-1">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="w-6 h-6 bi bi-plus"
                         viewBox="0 0 16 16">
@@ -60,7 +60,7 @@
                             <th
                                 class="px-5 py-3 text-xs font-semibold tracking-wider text-left text-gray-600 uppercase bg-gray-100 border-b-2 border-gray-200">
                                 {{-- <a wire:click.prevent="sortBy('price')" role="button" href="#" class="flex"> --}}
-                                Price
+                                Price (UGX.)
                                 {{-- @include('partials.sort_icons', ['field' => 'price'])
                                 </a> --}}
                             </th>
