@@ -12,6 +12,10 @@ use Illuminate\Http\Request;
 
 class SubmitTestRequestsController extends Controller
 {
+    public function index(): View
+    {
+        return view('pages.submit-test-requests.index');
+    }
 
     public function create(): View
     {
