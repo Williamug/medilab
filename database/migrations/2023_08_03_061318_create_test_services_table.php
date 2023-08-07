@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('test_services', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->nullable()->constrained()->cascadeOnDelete();
-            $table->foreignId('result_id');
+            $table->foreignId('catagory_id');
             $table->string('test_name');
             $table->integer('price');
             $table->timestamps();

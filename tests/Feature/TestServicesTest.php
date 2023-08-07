@@ -16,11 +16,15 @@ class TestServicesTest extends TestCase
     public function test_services_can_be_rendered_with_success(): void
     {
         $user = User::factory()->create();
+
         $response = $this->actingAs($user)->get(route('test-services.index'));
         $view = $this->view('pages.test-services.index');
 
         $response->assertOk();
         $view->assertSeeText('Test Service');
+        // $response->assertViewHas('test_service', function ($collection) use ($test_service) {
+        //     return $collection->contains($test_service);
+        // });
     }
 
     /** @test */
@@ -32,7 +36,7 @@ class TestServicesTest extends TestCase
             'test_name' => 'HIV test',
             'price' => 5000,
             'user_id' => $user->id,
-            'result_id' => 1
+            'catagory_id' => 1
         ]);
 
         $this->assertDatabaseCount('test_services', 1);
@@ -47,7 +51,7 @@ class TestServicesTest extends TestCase
             'test_name' => '',
             'price' => 5000,
             'user_id' => $user->id,
-            'result' => 1,
+            'catagory_id' => 1,
         ]);
 
         $response->assertSessionHasErrors('test_name');
@@ -61,7 +65,7 @@ class TestServicesTest extends TestCase
             'test_name' => 'HIV',
             'price' => '',
             'user_id' => $user->id,
-            'result' => 1,
+            'catagory_id' => 1,
         ]);
 
         $response->assertSessionHasErrors('price');
@@ -75,7 +79,7 @@ class TestServicesTest extends TestCase
             'test_name' => 'HIV test',
             'price' => 5000,
             'user_id' => $user->id,
-            'result_id' => 1,
+            'catagory_id' => 1,
         ]);
 
         $test_service = TestService::first();
@@ -84,7 +88,7 @@ class TestServicesTest extends TestCase
             'test_name' => 'Brusella',
             'price' => 10000,
             'user_id' => $user->id,
-            'result_id' => 1,
+            'catagory_id' => 1,
         ]);
 
         $this->assertEquals('Brusella', TestService::first()->test_name);
@@ -102,7 +106,7 @@ class TestServicesTest extends TestCase
             'test_name' => 'Brusella',
             'price' => 10000,
             'user_id' => $user->id,
-            'result_id' => 1,
+            'catagory_id' => 1,
         ]);
         $test_service = TestService::first();
         $response = $this->delete(route('test-services.destroy', $test_service->id));

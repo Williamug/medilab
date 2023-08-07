@@ -25,7 +25,7 @@ class UpdateTestServiceRequest extends FormRequest
             'test_name' => 'required',
             'price' => 'required',
             'user_id' => '',
-            'result_id' => 'required',
+            'catagory_id' => 'required',
         ];
     }
 }
