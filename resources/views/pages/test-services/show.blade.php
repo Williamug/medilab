@@ -19,6 +19,15 @@
         <div>
             <div class="grid grid-cols-2 mb-4">
                 <div class="px-4 py-2 text-base font-bold dark:text-gray-400">
+                    Category:
+                </div>
+                <div class="px-2 py-2 dark:text-gray-400">
+                    {{ $test_service->catagory->catagory_name }}
+                </div>
+            </div>
+
+            <div class="grid grid-cols-2 mb-4">
+                <div class="px-4 py-2 text-base font-bold dark:text-gray-400">
                     Test Name:
                 </div>
                 <div class="px-2 py-2 dark:text-gray-400">

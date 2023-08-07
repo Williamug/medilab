@@ -1,5 +1,4 @@
 <div>
-    {{-- <x-flash-message /> --}}
     <div class="py-8">
         <div class="flex flex-col my-2 sm:flex-row">
             <div class="flex flex-row mb-1 sm:mb-0">
@@ -52,18 +51,18 @@
                         <tr>
                             <th
                                 class="px-5 py-3 text-xs font-semibold tracking-wider text-left text-gray-600 uppercase bg-gray-100 border-b-2 border-gray-200">
-                                <a wire:click.prevent="sortBy('test_name')" role="button" href="#"
-                                    class="flex">
-                                    Test
-                                    @include('partials.sort_icons', ['field' => 'test_name'])
-                                </a>
+                                Category
                             </th>
                             <th
                                 class="px-5 py-3 text-xs font-semibold tracking-wider text-left text-gray-600 uppercase bg-gray-100 border-b-2 border-gray-200">
-                                <a wire:click.prevent="sortBy('price')" role="button" href="#" class="flex">
-                                    Price
-                                    @include('partials.sort_icons', ['field' => 'price'])
-                                </a>
+                                Test
+                            </th>
+                            <th
+                                class="px-5 py-3 text-xs font-semibold tracking-wider text-left text-gray-600 uppercase bg-gray-100 border-b-2 border-gray-200">
+                                {{-- <a wire:click.prevent="sortBy('price')" role="button" href="#" class="flex"> --}}
+                                Price
+                                {{-- @include('partials.sort_icons', ['field' => 'price'])
+                                </a> --}}
                             </th>
                             {{-- @can('View assignment') --}}
                             <th
@@ -76,6 +75,12 @@
                     <tbody>
                         @foreach ($test_services as $test_service)
                             <tr>
+                                <td class="px-5 py-5 text-sm bg-white border-b border-gray-200">
+                                    <p class="text-gray-900 whitespace-no-wrap">
+                                        {{ $test_service->catagory->catagory_name }}
+                                    </p>
+                                </td>
+
                                 <td class="px-5 py-5 text-sm bg-white border-b border-gray-200">
                                     <p class="text-gray-900 whitespace-no-wrap">
                                         {{ $test_service->test_name }}
