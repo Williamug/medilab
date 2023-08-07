@@ -36,10 +36,10 @@ class SubmitTestRequestComponent extends Component
     public function render()
     {
         // order results about on either ascending or discending order
-        $test_request = TestRequst::search($this->search)
+        $test_requests = TestRequst::search($this->search)
             ->orderBy($this->sortField, $this->sortAsc ? 'asc' : 'desc')
             ->paginate($this->perPage);
 
-        return view('livewire.submit-test-request-component', compact('test_request'));
+        return view('livewire.submit-test-request-component', compact('test_requests'));
     }
 }
