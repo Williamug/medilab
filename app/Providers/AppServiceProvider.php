@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -24,6 +25,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        // Model::preventLazyLoading(!$this->app->isProduction());
+        Blade::directive('money', fn ($money) => "<?php echo number_format($money, 2); ?>");
     }
 }
