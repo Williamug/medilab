@@ -20,6 +20,7 @@ class Catagory extends Model
             : static::where('catagory_name', 'like', '%' . $query . '%');
     }
 
+    // Get all of the test_services for the category
     public function test_services(): HasMany
     {
         return $this->hasMany(TestService::class);
