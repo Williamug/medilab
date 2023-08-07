@@ -44,7 +44,8 @@ class TestServicesController extends Controller
 
     public function edit(TestService $test_service): View
     {
-        return view('pages.test-services.edit', compact('test_service'));
+        $categories = Catagory::all();
+        return view('pages.test-services.edit', compact('test_service', 'categories'));
     }
 
     public function update(UpdateTestServiceRequest $request, TestService $test_service): RedirectResponse
