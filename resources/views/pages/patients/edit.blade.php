@@ -1,6 +1,6 @@
 <x-app-layout>
     <x-slot name="title">
-        Patient
+        Patient's Results
     </x-slot>
 
     <x-app.flash-message />
@@ -9,7 +9,7 @@
         <x-slot name="banner">
             <div class="flex">
                 <div class="flex-1">
-                    Patient
+                    Patient's Results
                 </div>
                 <div>
                     <x-app.back href="{{ route('patients.show', $patient) }}" />

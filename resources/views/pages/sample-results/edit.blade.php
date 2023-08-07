@@ -1,6 +1,6 @@
 <x-app-layout>
     <x-slot name="title">
-        Patient's Results
+        Enter Test Results
     </x-slot>
 
     <x-app.flash-message />
@@ -9,76 +9,122 @@
         <x-slot name="banner">
             <div class="flex">
                 <div class="flex-1">
-                    Patient's Results
+                    Enter Test Results
                 </div>
                 <div>
-                    <x-app.back href="{{ route('patients.show', $patient) }}" />
+                    <x-app.back href="{{ route('sample-results.show', $sample_result) }}" />
                 </div>
             </div>
         </x-slot>
         <div>
             <!-- Form -->
-            <form method="POST" action="{{ route('patients.update', $patient) }}">
+            <form method="POST" action="{{ route('sample-results.update', $sample_result) }}">
                 @csrf
                 @method('put')
 
-                <!-- full name -->
-                <div class="space-y-4">
-                    <div class="mb-4">
-                        <x-jet-label for="full_name" value="{{ __('Full Name *') }}" />
-                        <x-jet-input class="md:w-2/3" id="full_name" type="text" name="full_name" :value="old('full_name') ?? $patient->full_name"
-                            autofocus />
-                    </div>
-                </div>
-                <!-- /.full name -->
+                <div class="my-10">
 
-                <!-- gender -->
-                <div class="mt-4">
-                    <span class="text-gray-700">Gender *</span>
-                    <div class="mt-2">
-                        <label class="inline-flex items-center">
-                            <input type="radio" class="form-radio" name="gender" value="Male"
-                                @checked(old('gender', $patient->gender) == 'Male')>
-                            <span class="ml-2">Male</span>
-                        </label>
-                        <label class="inline-flex items-center ml-6">
-                            <input type="radio" class="form-radio" name="gender" value="Female"
-                                @checked(old('gender', $patient->gender) == 'Female')>
-                            <span class="ml-2">Female</span>
-                        </label>
+                    <!-- full name -->
+                    <div class="space-y-4">
+                        <div class="mb-4">
+                            <x-jet-label for="full_name" value="{{ __('Full Name *') }}" />
+                            <x-jet-input class="md:w-2/3" id="full_name" type="text" name="full_name"
+                                :value="old('full_name') ?? $sample_result->patient->full_name" />
+                        </div>
                     </div>
-                    <x-jet-input-error for="gender" />
-                </div>
-                <!-- /.gender -->
+                    <!-- /.full name -->
 
-                <!-- date of birth -->
-                <div class="space-y-4">
-                    <div class="mb-4">
-                        <x-jet-label for="birth_date" value="{{ __('Date of Birth') }}" />
-                        <x-jet-input class="md:w-2/3" id="birth_date" type="date" name="birth_date" :value="old('birth_date') ?? $patient->birth_date->format('Y-m-d')"
-                            autofocus />
+                    <!-- date of birth -->
+                    <div class="space-y-4">
+                        <div class="mb-4">
+                            <x-jet-label for="birth_date" value="{{ __('Age') }}" />
+                            <x-jet-input class="md:w-2/3" id="birth_date" type="text" name="birth_date"
+                                :value="old('birth_date') ?? $sample_result->patient->age" />
+                        </div>
                     </div>
+                    <!-- /.date of birth -->
                 </div>
-                <!-- /.date of birth -->
+                <hr />
 
-                <!-- phone number -->
-                <div class="space-y-4">
-                    <div class="mb-4">
-                        <x-jet-label for="phone_number" value="{{ __('Phone Number') }}" />
-                        <x-jet-input class="md:w-2/3" id="phone_number" type="text" name="phone_number"
-                            :value="old('phone_number') ?? $patient->phone_number" autofocus />
+                <div class="my-10">
+                    <!-- temperature -->
+                    <div class="space-y-4">
+                        <div class="mb-4">
+                            <x-jet-label for="temperature" value="{{ __('Temperature') }}" />
+                            <x-jet-input class="md:w-2/3" id="temperature" type="text" name="temperature"
+                                :value="old('temperature')" autofocus />
+                        </div>
                     </div>
-                </div>
-                <!-- /.phone number -->
+                    <!-- /.temperature -->
 
-                <!-- residence -->
-                <div>
-                    <x-jet-label for="residence" value="{{ __('Residence') }}" />
-                    <x-app.text id="residence" class="block w-full mt-1 md:w-2/3" :value="old('residence')" name="residence">
-                        {{ old('residence') ?? $patient->residence }}
-                    </x-app.text>
+                    <!-- weight -->
+                    <div class="space-y-4">
+                        <div class="mb-4">
+                            <x-jet-label for="weight" value="{{ __('Weight') }}" />
+                            <x-jet-input class="md:w-2/3" id="weight" type="text" name="weight"
+                                :value="old('weight')" />
+                        </div>
+                    </div>
+                    <!-- /.weight -->
+
+                    <!-- height -->
+                    <div class="space-y-4">
+                        <div class="mb-4">
+                            <x-jet-label for="height" value="{{ __('height') }}" />
+                            <x-jet-input class="md:w-2/3" id="height" type="text" name="height" :value="old('height')"
+                                autofocus />
+                        </div>
+                    </div>
+                    <!-- /.height -->
                 </div>
-                <!-- /.residence -->
+
+                <hr />
+
+                <div class="my-10">
+                    <!-- test carried out -->
+                    <div class="space-y-4">
+                        <div class="mb-4">
+                            <x-jet-label for="test_name" value="{{ __('Test carried out') }}" />
+                            <x-jet-input class="md:w-2/3" id="test_name" type="text" name="test_name"
+                                :value="old('test_name') ?? $sample_result->test_service->test_name" autofocus />
+                        </div>
+                    </div>
+                    <!-- /.test carried -->
+
+                    <!-- spacemen used -->
+                    <div class="mt-3 mb-3">
+                        <x-jet-label for="spacemen_id" value="{{ __('Spacemen used to carryout test') }}" />
+                        <select
+                            class="w-2/3 border'sample-results.create'-gray-300 rounded-md shadow-sm dark:border-gray-900 dark:text-gray-400 dark:bg-gray-700 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 form-select"
+                            name="spacemen_id">
+                            <option value="">-- select spacemen --</option>
+                            @foreach ($spacemens as $spacemen)
+                                <option value="{{ $spacemen->id }}" {{ old('spacemen_id') ? 'selected' : '' }}>
+                                    {{ $spacemen->spacemen }}
+                                </option>
+                            @endforeach
+                        </select>
+                        <x-jet-input-error for="spacemen_id" />
+                    </div>
+                    <!-- /.spacemen used -->
+
+                    <!-- Results obtained -->
+                    <div class="mt-3 mb-3">
+                        <x-jet-label for="result_id" value="{{ __('Results obtained') }}" />
+                        <select
+                            class="w-2/3 border-gray-300 rounded-md shadow-sm dark:border-gray-900 dark:text-gray-400 dark:bg-gray-700 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 form-select"
+                            name="result_id">
+                            <option value="">-- select result --</option>
+                            @foreach ($results as $result)
+                                <option value="{{ $result->id }}" {{ old('result_id') ? 'selected' : '' }}>
+                                    {{ $result->result }} ({{ $result->symbol }})
+                                </option>
+                            @endforeach
+                        </select>
+                        <x-jet-input-error for="result_id" />
+                    </div>
+                    <!-- /.Results obtained -->
+                </div>
 
                 <div class="flex items-center justify-between mt-6">
                     <x-jet-button class="ml-3">

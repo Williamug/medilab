@@ -22,6 +22,23 @@
                 @csrf
                 @method('put')
 
+                <!-- category -->
+                <div class="mt-3 mb-3">
+                    <x-jet-label for="catagory_id" value="{{ __('Category') }}" />
+                    <select
+                        class="w-2/3 border-gray-300 rounded-md shadow-sm dark:border-gray-900 dark:text-gray-400 dark:bg-gray-700 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 form-select"
+                        name="catagory_id">
+                        <option value="">-- select category --</option>
+                        @foreach ($categories as $category)
+                            <option value="{{ $category->id }}" @selected(old('catagory_id', $category->id) == $test_service->catagory->id)>
+                                {{ $category->catagory_name }}
+                            </option>
+                        @endforeach
+                    </select>
+                    <x-jet-input-error for="catagory_id" />
+                </div>
+                <!-- /.category -->
+
                 <div class="space-y-4">
                     <div class="mb-4">
                         <x-jet-label for="test_name" value="{{ __('Test Name') }}" />

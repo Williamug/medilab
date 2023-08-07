@@ -22,7 +22,7 @@
                 @csrf
                 <!-- category -->
                 <div class="mt-3 mb-3">
-                    <x-jet-label for="class" value="{{ __('Test carried out') }}" />
+                    <x-jet-label for="catagory_id" value="{{ __('Category') }}" />
                     <select
                         class="w-2/3 border-gray-300 rounded-md shadow-sm dark:border-gray-900 dark:text-gray-400 dark:bg-gray-700 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 form-select"
                         name="catagory_id">

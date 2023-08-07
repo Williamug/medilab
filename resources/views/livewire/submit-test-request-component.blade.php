@@ -40,7 +40,7 @@
                             d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
                     </svg>
                 </span>
-                Submit test request
+                Submit Test Request
             </a>
             {{-- @endcan --}}
         </div>
@@ -71,8 +71,9 @@
 
                             <th
                                 class="px-5 py-3 text-xs font-semibold tracking-wider text-left text-gray-600 uppercase bg-gray-100 border-b-2 border-gray-200">
-                                Spacemen
+                                Results
                             </th>
+
                             {{-- @can('View assignment') --}}
                             <th
                                 class="px-5 py-3 text-xs font-semibold tracking-wider text-left text-gray-600 uppercase bg-gray-100 border-b-2 border-gray-200">
@@ -110,16 +111,16 @@
 
                                 <td class="px-5 py-5 text-sm bg-white border-b border-gray-200">
                                     <p class="text-gray-900 whitespace-no-wrap">
-                                        {{ $test_request->spacemen->spacemen ?? 'No spacemen' }}
+                                        {{ $test_request->result->result ?? 'No result' }}
                                     </p>
                                 </td>
 
                                 {{-- @can('View assignment') --}}
-                                {{-- <td class="px-5 py-5 text-sm bg-white border-b border-gray-200">
+                                <td class="px-5 py-5 text-sm bg-white border-b border-gray-200">
                                     <p class="text-gray-900 whitespace-no-wrap">
                                     <div class="flex">
                                         <div class="flex">
-                                            <a href="{{ route('test-services.show', $test_service) }}"
+                                            <a href="{{ route('sample-results.show', $test_request) }}"
                                                 class="text-green-700 hover:underline hover:text-green-900"
                                                 title="View">
                                                 <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor"
@@ -132,9 +133,9 @@
                                                 </svg>
                                             </a>
 
-                                            <a href="{{ route('test-services.edit', $test_service) }}"
+                                            <a href="{{ route('sample-results.edit', $test_request) }}"
                                                 class="text-blue-700 hover:underline hover:text-blue-900"
-                                                title="Edit">
+                                                title="Add/Edit">
                                                 <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor"
                                                     class="w-4 h-4 mr-3 text-green-600 bi bi-pencil-square hover:text-green-800"
                                                     viewBox="0 0 16 16">
@@ -145,8 +146,9 @@
                                                 </svg>
                                             </a>
                                         </div>
-                                        <div>
-                                            <form action="{{ route('test-services.destroy', $test_service) }}"
+
+                                        {{-- <div>
+                                            <form action="{{ route('test-services.destroy', $test_request) }}"
                                                 method="POST">
                                                 @csrf
                                                 @method('DELETE')
@@ -164,10 +166,10 @@
                                                     </svg>
                                                 </button>
                                             </form>
-                                        </div>
+                                        </div> --}}
                                     </div>
                                     </p>
-                                </td> --}}
+                                </td>
                                 {{-- @endcan --}}
                             </tr>
                         @endforeach

@@ -27,13 +27,19 @@
             <form method="POST" action="{{ route('sample-results.store') }}">
                 @csrf
                 <!-- full name -->
-                <div class="space-y-4">
-                    <div class="mb-4">
-                        <x-jet-label for="full_name" value="{{ __('Full Name *') }}" />
-                        <x-jet-input class="md:w-2/3" id="full_name" type="text" name="full_name" :value="old('full_name')"
-                            autofocus />
-                        <x-jet-input-error for="class_id" />
-                    </div>
+                <div class="mt-8">
+                    <x-jet-label for="patient_id" value="{{ __('Full Name *') }}" />
+                    <select
+                        class="w-2/3 border-gray-300 rounded-md shadow-sm dark:border-gray-900 dark:text-gray-400 dark:bg-gray-700 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 form-select"
+                        name="patient_id">
+                        <option value="">-- select patient --</option>
+                        @foreach ($patients as $patient)
+                            <option value="{{ $patient->id }}" {{ old('patient_id') ? 'selected' : '' }}>
+                                {{ $patient->full_name }}
+                            </option>
+                        @endforeach
+                    </select>
+                    <x-jet-input-error for="patient_id" />
                 </div>
                 <!-- /.full name -->
 
@@ -77,7 +83,7 @@
                     <select
                         class="w-2/3 border-gray-300 rounded-md shadow-sm dark:border-gray-900 dark:text-gray-400 dark:bg-gray-700 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 form-select"
                         name="test_service_id">
-                        <option value="">-- select class --</option>
+                        <option value="">-- select test --</option>
                         {{-- @foreach ($classrooms as $classroom)
                                         <option value="{{ $classroom->id }}" {{ old('class_id') ? 'selected' : '' }}>
                                             {{ $classroom->class_room }}

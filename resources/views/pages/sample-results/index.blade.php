@@ -8,7 +8,7 @@
         </x-slot>
         <x-app.flash-message />
         <div>
-            {{-- <livewire:patients-list-component /> --}}
+            <livewire:test-results-list-component />
         </div>
     </x-app.card>
 </x-app-layout>

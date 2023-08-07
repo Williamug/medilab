@@ -50,11 +50,11 @@
         <div class="space-y-8">
             <!-- Pages group -->
             <div>
-                <h3 class="pl-3 text-xs font-semibold uppercase text-slate-500">
+                {{-- <h3 class="pl-3 text-xs font-semibold uppercase text-slate-500">
                     <span class="hidden w-6 text-center lg:block lg:sidebar-expanded:hidden 2xl:hidden"
                         aria-hidden="true">•••</span>
                     <span class="lg:hidden lg:sidebar-expanded:block 2xl:block">Pages</span>
-                </h3>
+                </h3> --}}
                 <ul class="mt-3">
                     <!-- Dashboard -->
                     <li
@@ -88,13 +88,14 @@
                             href="{{ route('patients.index') }}">
                             <div class="flex items-center justify-between">
                                 <div class="flex items-center grow">
-                                    <svg class="w-6 h-6 shrink-0" viewBox="0 0 24 24">
+                                    <svg class="w-6 h-6 shrink-0" fill="none" stroke="currentColor"
+                                        stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"
+                                        aria-hidden="true">
                                         <path
-                                            class="fill-current @if (in_array(Request::segment(1), ['patients'])) {{ 'text-indigo-500' }}@else{{ 'text-slate-600' }} @endif"
-                                            d="M14.5 7c4.695 0 8.5 3.184 8.5 7.111 0 1.597-.638 3.067-1.7 4.253V23l-4.108-2.148a10 10 0 01-2.692.37c-4.695 0-8.5-3.184-8.5-7.11C6 10.183 9.805 7 14.5 7z" />
-                                        <path
-                                            class="fill-current @if (in_array(Request::segment(1), ['patients'])) {{ 'text-indigo-300' }}@else{{ 'text-slate-400' }} @endif"
-                                            d="M11 1C5.477 1 1 4.582 1 9c0 1.797.75 3.45 2 4.785V19l4.833-2.416C8.829 16.85 9.892 17 11 17c5.523 0 10-3.582 10-8s-4.477-8-10-8z" />
+                                            class="fill-current @if (in_array(Request::segment(1), ['patients'])) {{ 'text-indigo-300' }}@else{{ 'text-slate-400' }} @endif"stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z">
+                                        </path>
                                     </svg>
                                     <span
                                         class="ml-3 text-sm font-medium duration-200 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100">Patients</span>
@@ -203,6 +204,29 @@
                                 <span
                                     class="ml-3 text-sm font-medium duration-200 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100">Test
                                     Request</span>
+                            </div>
+                        </a>
+                    </li>
+
+                    <!-- sample results -->
+                    <li
+                        class="px-3 py-2 rounded-sm mb-0.5 last:mb-0 @if (in_array(Request::segment(1), ['sample-results'])) {{ 'bg-slate-900' }} @endif">
+                        <a class="block text-slate-200 hover:text-white truncate transition duration-150 @if (in_array(Request::segment(1), ['sample-results'])) {{ 'hover:text-slate-200' }} @endif"
+                            href="{{ route('sample-results.index') }}">
+                            <div class="flex items-center">
+                                <svg class="w-6 h-6 shrink-0" fill="none" stroke="currentColor"
+                                    stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"
+                                    aria-hidden="true">
+                                    <path
+                                        class="fill-current @if (in_array(Request::segment(1), ['sample-results'])) {{ 'text-indigo-500' }}@else{{ 'text-slate-600' }} @endif"
+                                        stroke-linecap="round" stroke-linejoin="round"
+                                        d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z">
+                                    </path>
+                                </svg>
+                                <span
+                                    class="ml-3 text-sm font-medium duration-200 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100">
+                                    Testing Results
+                                </span>
                             </div>
                         </a>
                     </li>
