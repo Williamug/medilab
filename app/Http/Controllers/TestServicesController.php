@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreTestServiceRequest;
 use App\Http\Requests\UpdateTestServiceRequest;
+use App\Models\Catagory;
 use App\Models\TestService;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
@@ -18,7 +19,8 @@ class TestServicesController extends Controller
 
     public function create(): View
     {
-        return view('pages.test-services.create');
+        $categories = Catagory::all();
+        return view('pages.test-services.create', compact('categories'));
     }
 
     // store record in the database
@@ -29,7 +31,7 @@ class TestServicesController extends Controller
             'test_name' => $request['test_name'],
             'price' => $request['price'],
             'user_id' => auth()->id(),
-            'result_id' => $request['result_id'],
+            'catagory_id' => $request['catagory_id'],
         ]);
         return to_route('test-services.index')->with('success', 'A new test has been add!');
     }
@@ -52,7 +54,7 @@ class TestServicesController extends Controller
             'test_name' => $request['test_name'],
             'price' => $request['price'],
             'user_id' => auth()->id(),
-            'result_id' => $request['result_id'],
+            'catagory_id' => $request['catagory_id'],
         ]);
 
         return to_route('test-services.show', $test_service);
