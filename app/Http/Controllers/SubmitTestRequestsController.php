@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreTestRequestRequest;
+use App\Models\Catagory;
 use App\Models\Patient;
 use App\Models\TestRequst;
 use App\Models\TestService;
