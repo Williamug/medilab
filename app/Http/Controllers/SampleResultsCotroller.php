@@ -33,10 +33,10 @@ class SampleResultsCotroller extends Controller
     }
 
     // display single record
-    // public function show(Patient $patient): View
-    // {
-    //     return view('pages.patients.show', compact('patient'));
-    // }
+    public function show(TestRequst $sample_result): View
+    {
+        return view('pages.sample-results.show', compact('sample_result'));
+    }
 
     // store patient info in database
     // public function store(StorePatientRequest $request): RedirectResponse
