@@ -40,6 +40,6 @@ class TestResultsListComponent extends Component
             ->orderBy($this->sortField, $this->sortAsc ? 'asc' : 'desc')
             ->paginate($this->perPage);
 
-        return view('livewire.submit-test-request-component', compact('test_requests'));
+        return view('livewire.test-results-list-component', compact('test_requests'));
     }
 }
