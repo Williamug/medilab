@@ -13,7 +13,7 @@ class GivePermissionsToRoleController extends Controller
 {
     public function create(): View
     {
-        return view('panel.super.roles-permissions.give-permissions.create');
+        return view('pages.roles-permissions.give-permissions.create');
     }
 
     public function store(Request $request): RedirectResponse

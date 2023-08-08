@@ -14,7 +14,7 @@ class AssignRolesController extends Controller
     public function index(): View
     {
         $users = User::all();
-        return view('panel.super.roles-permissions.assign-roles.index', compact('users'));
+        return view('pages.roles-permissions.assign-roles.index', compact('users'));
     }
 
     public function create(): View
@@ -22,7 +22,7 @@ class AssignRolesController extends Controller
         $users = User::all();
         $roles = Role::all();
 
-        return view('panel.super.roles-permissions.assign-roles.create', compact('users', 'roles'));
+        return view('pages.roles-permissions.assign-roles.create', compact('users', 'roles'));
     }
 
     public function store(Request $request): RedirectResponse

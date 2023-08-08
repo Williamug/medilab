@@ -12,12 +12,12 @@ class RolesController extends Controller
     public function index(): View
     {
         $roles = Role::all();
-        return view('panel.super.roles-permissions.roles.index', compact('roles'));
+        return view('pages.roles-permissions.roles.index', compact('roles'));
     }
 
     public function create(): View
     {
-        return view('panel.super.roles-permissions.roles.create');
+        return view('pages.roles-permissions.roles.create');
     }
 
     public function store(Request $request): RedirectResponse
