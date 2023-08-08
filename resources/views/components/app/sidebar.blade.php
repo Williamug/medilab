@@ -57,7 +57,7 @@
                 </h3> --}}
                 <ul class="mt-3">
                     <!-- Dashboard -->
-                    @can('View dashbaord module')
+                    @can('View dashboard module')
                         <li
                             class="px-3 py-2 rounded-sm mb-0.5 last:mb-0 @if (in_array(Request::segment(1), ['dashboard'])) {{ 'bg-slate-900' }} @endif">
                             <a class="block text-slate-400 hover:text-slate-200 transition duration-150 truncate @if (Route::is('dashboard')) {{ '!text-indigo-500' }} @endif"
@@ -84,7 +84,7 @@
                     @endcan
 
                     <!-- patients -->
-                    @can('View patient module')
+                    @can('view patient module')
                         <li
                             class="px-3 py-2 rounded-sm mb-0.5 last:mb-0 @if (in_array(Request::segment(1), ['patients'])) {{ 'bg-slate-900' }} @endif">
                             <a class="block text-slate-200 hover:text-white truncate transition duration-150 @if (in_array(Request::segment(1), ['patients'])) {{ 'hover:text-slate-200' }} @endif"
@@ -109,7 +109,7 @@
                     @endcan
 
                     <!-- Categories -->
-                    @can('View category module')
+                    @can('view category module')
                         <li
                             class="px-3 py-2 rounded-sm mb-0.5 last:mb-0 @if (in_array(Request::segment(1), ['categories'])) {{ 'bg-slate-900' }} @endif">
                             <a class="block text-slate-200 hover:text-white truncate transition duration-150 @if (in_array(Request::segment(1), ['categories'])) {{ 'hover:text-slate-200' }} @endif"
@@ -131,7 +131,7 @@
                     @endcan
 
                     <!-- test services -->
-                    @can('View test service module')
+                    @can('view test service module')
                         <li
                             class="px-3 py-2 rounded-sm mb-0.5 last:mb-0 @if (in_array(Request::segment(1), ['test-services'])) {{ 'bg-slate-900' }} @endif">
                             <a class="block text-slate-200 hover:text-white truncate transition duration-150 @if (in_array(Request::segment(1), ['test-services'])) {{ 'hover:text-slate-200' }} @endif"
@@ -146,7 +146,7 @@
                                             d="M21 3h2v4H1V3h2V1h4v2h10V1h4v2Z" />
                                     </svg>
                                     <span
-                                        class="ml-3 text-sm font-medium duration-200 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100">Test
+                                        class="ml-3 text-sm font-medium duration-200 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100">Lab
                                         Services</span>
                                 </div>
                             </a>
@@ -154,7 +154,7 @@
                     @endcan
 
                     <!-- spacemen -->
-                    @can('View spacemen module')
+                    @can('view spacemen module')
                         <li
                             class="px-3 py-2 rounded-sm mb-0.5 last:mb-0 @if (in_array(Request::segment(1), ['spacemens'])) {{ 'bg-slate-900' }} @endif">
                             <a class="block text-slate-200 hover:text-white truncate transition duration-150 @if (in_array(Request::segment(1), ['spacemens'])) {{ 'hover:text-slate-200' }} @endif"
@@ -176,7 +176,7 @@
                     @endcan
 
                     <!-- results -->
-                    @can('View expected result module')
+                    @can('view outcome module')
                         <li
                             class="px-3 py-2 rounded-sm mb-0.5 last:mb-0 @if (in_array(Request::segment(1), ['results'])) {{ 'bg-slate-900' }} @endif">
                             <a class="block text-slate-200 hover:text-white truncate transition duration-150 @if (in_array(Request::segment(1), ['results'])) {{ 'hover:text-slate-200' }} @endif"
@@ -191,15 +191,15 @@
                                         </path>
                                     </svg>
                                     <span
-                                        class="ml-3 text-sm font-medium duration-200 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100">Expected
-                                        Results</span>
+                                        class="ml-3 text-sm font-medium duration-200 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100">Result
+                                        Options</span>
                                 </div>
                             </a>
                         </li>
                     @endcan
 
                     <!-- Test request -->
-                    @can('View test request module')
+                    @can('view test request module')
                         <li
                             class="px-3 py-2 rounded-sm mb-0.5 last:mb-0 @if (in_array(Request::segment(1), ['requests'])) {{ 'bg-slate-900' }} @endif">
                             <a class="block text-slate-200 hover:text-white truncate transition duration-150 @if (in_array(Request::segment(1), ['requests'])) {{ 'hover:text-slate-200' }} @endif"
@@ -215,15 +215,16 @@
                                         </path>
                                     </svg>
                                     <span
-                                        class="ml-3 text-sm font-medium duration-200 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100">Test
-                                        Request</span>
+                                        class="ml-3 text-sm font-medium duration-200 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100">
+                                        Request a Test
+                                    </span>
                                 </div>
                             </a>
                         </li>
                     @endcan
 
                     <!-- sample results -->
-                    @can('View test result module')
+                    @can('view test result module')
                         <li
                             class="px-3 py-2 rounded-sm mb-0.5 last:mb-0 @if (in_array(Request::segment(1), ['sample-results'])) {{ 'bg-slate-900' }} @endif">
                             <a class="block text-slate-200 hover:text-white truncate transition duration-150 @if (in_array(Request::segment(1), ['sample-results'])) {{ 'hover:text-slate-200' }} @endif"
@@ -240,7 +241,7 @@
                                     </svg>
                                     <span
                                         class="ml-3 text-sm font-medium duration-200 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100">
-                                        Testing Results
+                                        Test Results
                                     </span>
                                 </div>
                             </a>
@@ -248,7 +249,7 @@
                     @endcan
 
                     <!-- Accounting -->
-                    @can('View accounting module')
+                    @can('view accounting module')
                         <li
                             class="px-3 py-2 rounded-sm mb-0.5 last:mb-0 @if (in_array(Request::segment(1), ['sample-results'])) {{ 'bg-slate-900' }} @endif">
                             <a class="block text-slate-200 hover:text-white truncate transition duration-150 @if (in_array(Request::segment(1), ['sample-results'])) {{ 'hover:text-slate-200' }} @endif"

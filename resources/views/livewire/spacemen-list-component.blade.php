@@ -1,5 +1,4 @@
 <div>
-    {{-- <x-flash-message /> --}}
     <div class="py-8">
         <div class="flex flex-col my-2 sm:flex-row">
             <div class="flex flex-row mb-1 sm:mb-0">
@@ -12,11 +11,7 @@
                         <option>12</option>
                     </select>
                     <div class="absolute inset-y-0 right-0 flex items-center px-2 text-gray-700 pointer-events-none">
-                        <!-- <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7">
-                            </path>
-                        </svg> -->
+
                     </div>
                 </div>
             </div>
@@ -31,19 +26,19 @@
                 <input wire:model="search" placeholder="Search"
                     class="block w-full py-2 pl-8 pr-6 text-sm text-gray-700 placeholder-gray-400 bg-white border border-b border-gray-400 rounded-l rounded-r appearance-none sm:rounded-l-none focus:bg-white focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none" />
             </div>
-            {{-- @can('Add assignment') --}}
-            <a href="{{ route('spacemens.create') }}"
-                class="mt-2 flex pl-3 text-gray-500 hover:text-gray-900 hover:underline">
-                <span class="mr-1">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="w-6 h-6 bi bi-plus"
-                        viewBox="0 0 16 16">
-                        <path
-                            d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
-                    </svg>
-                </span>
-                Add New Spacemen
-            </a>
-            {{-- @endcan --}}
+            @can('add spacemen')
+                <a href="{{ route('spacemens.create') }}"
+                    class="flex pl-3 mt-2 text-gray-500 hover:text-gray-900 hover:underline">
+                    <span class="mr-1">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="w-6 h-6 bi bi-plus"
+                            viewBox="0 0 16 16">
+                            <path
+                                d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
+                        </svg>
+                    </span>
+                    Add New Spacemen
+                </a>
+            @endcan
         </div>
         <div class="px-4 py-4 -mx-4 overflow-x-auto sm:-mx-8 sm:px-8">
             <div class="inline-block min-w-full overflow-hidden rounded shadow">
@@ -52,25 +47,15 @@
                         <tr>
                             <th
                                 class="px-5 py-3 text-xs font-semibold tracking-wider text-left text-gray-600 uppercase bg-gray-100 border-b-2 border-gray-200">
-                                {{-- <a wire:click.prevent="sortBy('test_name')" role="button" href="#"
-                                    class="flex"> --}}
                                 Test
-                                {{-- @include('partials.sort_icons', ['field' => 'test_name'])
-                                </a> --}}
                             </th>
-                            {{-- <th
-                                class="px-5 py-3 text-xs font-semibold tracking-wider text-left text-gray-600 uppercase bg-gray-100 border-b-2 border-gray-200">
-                                <a wire:click.prevent="sortBy('price')" role="button" href="#" class="flex">
-                                    Price
-                                    @include('partials.sort_icons', ['field' => 'price'])
-                                </a>
-                            </th> --}}
-                            {{-- @can('View assignment') --}}
+                            
+                            @can('view spacemen')
                             <th
                                 class="px-5 py-3 text-xs font-semibold tracking-wider text-left text-gray-600 uppercase bg-gray-100 border-b-2 border-gray-200">
                                 Actions
                             </th>
-                            {{-- @endcan --}}
+                            @endcan
                         </tr>
                     </thead>
                     <tbody>
@@ -82,13 +67,9 @@
                                     </p>
                                 </td>
 
-                                {{-- <td class="px-5 py-5 text-sm bg-white border-b border-gray-200">
-                                    <p class="text-gray-900 whitespace-no-wrap">
-                                        {{ $test_service->price }}
-                                    </p>
-                                </td> --}}
+                               
 
-                                {{-- @can('View assignment') --}}
+                                @can('view outcome')
                                 <td class="px-5 py-5 text-sm bg-white border-b border-gray-200">
                                     <p class="text-gray-900 whitespace-no-wrap">
                                     <div class="flex">
@@ -141,7 +122,7 @@
                                     </div>
                                     </p>
                                 </td>
-                                {{-- @endcan --}}
+                                @endcan
                             </tr>
                         @endforeach
                     </tbody>

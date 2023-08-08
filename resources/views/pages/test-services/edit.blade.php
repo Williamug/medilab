@@ -1,6 +1,6 @@
 <x-app-layout>
     <x-slot name="title">
-        Test Service
+        Lab Service
     </x-slot>
 
     <x-app.flash-message />
@@ -9,7 +9,7 @@
         <x-slot name="banner">
             <div class="flex">
                 <div class="flex-1">
-                    Test Service
+                    Lab Service
                 </div>
                 <div>
                     <x-app.back href="{{ route('test-services.show', $test_service) }}" />

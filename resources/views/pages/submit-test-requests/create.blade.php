@@ -52,7 +52,8 @@
                         <option value="">-- select test --</option>
                         @foreach ($test_services as $test_service)
                             <option value="{{ $test_service->id }}" {{ old('test_service_id') ? 'selected' : '' }}>
-                                {{ $test_service->test_name }}
+                                {{ $test_service->test_name }} - 
+                                ({{ $test_service->catagory->catagory_name }})
                             </option>
                         @endforeach
                     </select>
