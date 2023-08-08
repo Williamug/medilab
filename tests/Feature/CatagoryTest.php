@@ -19,7 +19,7 @@ class CatagoryTest extends TestCase
         $response = $this->get(route('catagories.index'));
         $view = $this->view('pages.catagories.index');
 
-        $response->assertOk();
+        $response->assertStatus(200);
         $view->assertSeeText('Catagories');
     }
 
@@ -32,7 +32,9 @@ class CatagoryTest extends TestCase
             'description' => 'lorem ipsum dor sit',
         ]);
 
+        $response->assertStatus(302);
         $this->assertDatabaseCount('catagories', 1);
+        $response->assertRedirect(route('catagories.index'));
     }
 
     /** @test */
@@ -61,5 +63,7 @@ class CatagoryTest extends TestCase
         $response = $this->delete(route('catagories.destroy', $category->id));
 
         $this->assertDatabaseCount('catagories', 0);
+        $response->assertStatus(302);
+        $response->assertRedirect(route('catagories.index'));
     }
 }

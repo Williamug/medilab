@@ -33,26 +33,6 @@ class CatagoriesList extends Component
         $this->sortField = $field;
     }
 
-    public function openCreateModal(): void
-    {
-        $this->openCreate();
-    }
-
-    public function openCreate(): void
-    {
-        $this->isOpenCreate = true;
-    }
-
-    public function closeCreate(): void
-    {
-        $this->isOpenCreate = false;
-    }
-
-    public function clearForm(): void
-    {
-        // $this->reset('exam_name', 'duration', 'exam_code', 'staff_id', 'class_room_id');
-    }
-
     // render view to be displayed
     public function render()
     {
