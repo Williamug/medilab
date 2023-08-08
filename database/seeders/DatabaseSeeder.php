@@ -16,6 +16,16 @@ class DatabaseSeeder extends Seeder
     {
 
         $this->call([
+            ExpectedResultPermissionsSeeder::class,
+            TestingResultPermissionsSeeder::class,
+            TestServicePermissionsSeeder::class,
+            TestRequestPermissionsSeeder::class,
+            DashboardPermissionsSeeder::class,
+            CategoryPermissionsSeeder::class,
+            SpacemenPermissionsSeeder::class,
+            AccountPermissionsSeeder::class,
+            PatientPermissionsSeeder::class,
+            SettingPermissionsSeeder::class,
             RolesSeeder::class,
         ]);
     }
