@@ -28,7 +28,7 @@ class TestingResultPermissionsSeeder extends Seeder
 
         foreach ($test_result_permissions as $permission) {
             DB::table('permissions')->insert([
-                'name'       => 'View test result module',
+                'name'       => $permission,
                 'guard_name' => 'web',
                 'module_id'  => $test_result->id,
                 'created_at' => now(),
