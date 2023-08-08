@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminSignUpController;
 use App\Http\Controllers\AssignRolesController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DataFeedController;
@@ -18,8 +19,8 @@ use App\Http\Controllers\TestServicesController;
 Route::redirect('/', 'login');
 
 // admin signup
-Route::get('some-really-cool-restricted-admin-signup', [AdminSignUpController::class, 'create'])->name('admin-signup.create');
-Route::post('some-really-cool-restricted-admin-signup', [AdminSignUpController::class, 'store'])->name('admin-singup.store');
+Route::get('/restricted-admin-signup', [AdminSignUpController::class, 'create'])->name('admin-signup.create');
+Route::post('/restricted-admin-signup', [AdminSignUpController::class, 'store'])->name('admin-singup.store');
 
 Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
