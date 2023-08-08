@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 
@@ -34,13 +35,13 @@ class AssignRolesController extends Controller
 
     public function show(User $user): View
     {
-        return view('panel.super.roles-permissions.assign-roles.show', compact('user'));
+        return view('pages.roles-permissions.assign-roles.show', compact('user'));
     }
 
     public function edit(User $user): View
     {
         $roles = Role::all();
-        return view('panel.super.roles-permissions.assign-roles.edit', compact('user', 'roles'));
+        return view('pages.roles-permissions.assign-roles.edit', compact('user', 'roles'));
     }
 
     public function update(User $user, Request $request): RedirectResponse

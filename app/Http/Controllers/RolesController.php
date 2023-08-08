@@ -31,6 +31,6 @@ class RolesController extends Controller
 
     public function show(Role $role): View
     {
-        return view('panel.super.roles-permissions.roles.show', compact('role'));
+        return view('pages.roles-permissions.roles.show', compact('role'));
     }
 }
