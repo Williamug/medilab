@@ -1,20 +1,21 @@
-<x-master>
+<x-app-layout>
     <x-slot:title>
-        <div class="flex">
-            <div class="flex-1">
-                Roles
-            </div>
-            <div>
-                <x-back href="{{ route('roles.index') }}" />
-            </div>
-        </div>
+
     </x-slot:title>
-    <x-card>
+    <x-app.card>
         <x-slot name="banner">
+            <div class="flex">
+                <div class="flex-1">
+                    Roles
+                </div>
+                <div>
+                    <x-app.back href="{{ route('roles.index') }}" />
+                </div>
+            </div>
         </x-slot>
-        <x-flash-message />
+        <x-app.flash-message />
         <div>
             <livewire:give-permissions-to-role-component>
         </div>
-    </x-card>
-</x-master>
+        </x-card>
+        </x-master>

@@ -1,21 +1,29 @@
-<x-master>
+<x-app-layout>
     <x-slot:title>
         <div class="flex">
             <div class="flex-1">
                 Roles
             </div>
             <div>
-                <x-back href="{{ route('roles.index') }}" />
+                <x-app.back href="{{ route('roles.index') }}" />
             </div>
         </div>
     </x-slot:title>
-    <x-card>
+    <x-app.card>
         <x-slot name="banner">
+            <div class="flex">
+                <div class="flex-1">
+                    Roles
+                </div>
+                <div>
+                    <x-app.back href="{{ route('roles.index') }}" />
+                </div>
+            </div>
         </x-slot>
         <div>
             @if ($errors->any())
                 <div class="p-4 bg-red-200 border border-red-400 rounded">
-                    <x-validation-errors class="mb-4" />
+                    <x-jet-validation-errors class="mb-4" />
                 </div>
             @endif
 
@@ -29,20 +37,20 @@
                 <div class="mt-8">
                     <!-- role -->
                     <div class="mt-3 mb-3">
-                        <x-label for="name" value="{{ __('Role Name *') }}" />
-                        <x-input id="name" class="block w-1/2 mt-1" type="text" name="name" :value="old('name')"
-                            autofocus autocomplete="name" />
-                        <x-input-error for="name" />
+                        <x-jet-label for="name" value="{{ __('Role Name *') }}" />
+                        <x-jet-input id="name" class="block w-1/2 mt-1" type="text" name="name"
+                            :value="old('name')" autofocus autocomplete="name" />
+                        <x-jet-input-error for="name" />
                     </div>
                     <!-- /.role -->
                 </div>
                 <div>
-                    <x-button class="mt-4">
+                    <x-jet-button class="mt-4">
                         {{ __('Add Role') }}
-                    </x-button>
+                    </x-jet-button>
                 </div>
             </form>
 
         </div>
-    </x-card>
-</x-master>
+    </x-app.card>
+</x-app-layout>

@@ -1,18 +1,18 @@
-<x-master>
+<x-app-layout>
     <x-slot name="title">
         Roles
     </x-slot>
-    <x-card>
+    <x-app.card>
         <x-slot name="banner">
             Roles List
         </x-slot>
         <div>
-            <x-flash-message />
+            <x-app.flash-message />
 
             <div class="flex flex-col my-2 sm:flex-row">
                 <div class="flex flex-row mb-1 sm:mb-0">
                     <div class="relative">
-                        @can('Add role')
+                        {{-- @can('Add role') --}}
                         <a href="{{ route('roles.create') }}"
                             class="flex pl-3 text-gray-500 hover:text-gray-900 hover:underline">
                             <span class="mr-1">
@@ -24,13 +24,13 @@
                             </span>
                             Add Role
                         </a>
-                        @endcan
+                        {{-- @endcan --}}
                     </div>
                 </div>
 
                 <div class="flex flex-row mb-1 sm:mb-0">
                     <div class="relative">
-                        @can('Add permission to a role')
+                        {{-- @can('Add permission to a role') --}}
                         <a href="{{ route('roles.give-permissions') }}"
                             class="flex pl-3 text-gray-500 hover:text-gray-900 hover:underline">
                             <span class="mr-1">
@@ -42,7 +42,7 @@
                             </span>
                             Add Permissions To A Role
                         </a>
-                        @endcan
+                        {{-- @endcan --}}
                     </div>
                 </div>
             </div>
@@ -79,5 +79,5 @@
                 @endforeach
             </div>
         </div>
-    </x-card>
-</x-master>
+    </x-app.card>
+</x-app-layout>
