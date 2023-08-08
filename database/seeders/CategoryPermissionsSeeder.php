@@ -18,12 +18,22 @@ class CategoryPermissionsSeeder extends Seeder
             'name' => 'Category',
         ]);
 
-        DB::table('permissions')->insert([
-            'name'       => 'View category module',
-            'guard_name' => 'web',
-            'module_id'  => $category->id,
-            'created_at' => now(),
-            'updated_at' => now(),
-        ]);
+        $category_permissions = [
+            'view category module',
+            'view category',
+            'add category',
+            'edit category',
+            'delete category',
+        ];
+
+        foreach ($category_permissions as $permission) {
+            DB::table('permissions')->insert([
+                'name'       => $permission,
+                'guard_name' => 'web',
+                'module_id'  => $category->id,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]);
+        }
     }
 }

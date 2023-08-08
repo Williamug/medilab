@@ -18,12 +18,22 @@ class SpacemenPermissionsSeeder extends Seeder
             'name' => 'Spacemen',
         ]);
 
-        DB::table('permissions')->insert([
-            'name'       => 'View spacemen module',
-            'guard_name' => 'web',
-            'module_id'  => $spacemen->id,
-            'created_at' => now(),
-            'updated_at' => now(),
-        ]);
+        $spacemen_permissions = [
+            'view spacemen module',
+            'view spacemen',
+            'add spacemen',
+            'edit spacemen',
+            'delete spacemen',
+        ];
+
+        foreach ($spacemen_permissions as $permission) {
+            DB::table('permissions')->insert([
+                'name'       => $permission,
+                'guard_name' => 'web',
+                'module_id'  => $spacemen->id,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]);
+        }
     }
 }

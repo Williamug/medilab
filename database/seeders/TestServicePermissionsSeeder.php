@@ -18,12 +18,22 @@ class TestServicePermissionsSeeder extends Seeder
             'name' => 'Test Service',
         ]);
 
-        DB::table('permissions')->insert([
-            'name'       => 'View test service module',
-            'guard_name' => 'web',
-            'module_id'  => $test_service->id,
-            'created_at' => now(),
-            'updated_at' => now(),
-        ]);
+        $test_service_permissions = [
+            'view test service module',
+            'view test service',
+            'add test service',
+            'edit test service',
+            'delete test service',
+        ];
+
+        foreach ($test_service_permissions as $permission) {
+            DB::table('permissions')->insert([
+                'name'       => $permission,
+                'guard_name' => 'web',
+                'module_id'  => $test_service->id,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]);
+        }
     }
 }

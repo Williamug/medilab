@@ -14,16 +14,26 @@ class ExpectedResultPermissionsSeeder extends Seeder
      */
     public function run(): void
     {
-        $expected_result = Module::create([
-            'name' => 'Expected result',
+        $outcome = Module::create([
+            'name' => 'Outcome',
         ]);
 
-        DB::table('permissions')->insert([
-            'name'       => 'View expected result module',
-            'guard_name' => 'web',
-            'module_id'  => $expected_result->id,
-            'created_at' => now(),
-            'updated_at' => now(),
-        ]);
+        $outcome_permissions = [
+            'view outcome module',
+            'view outcome',
+            'add outcome',
+            'edit outcome',
+            'delete outcome',
+        ];
+
+        foreach ($outcome_permissions as $permission) {
+            DB::table('permissions')->insert([
+                'name'       => $permission,
+                'guard_name' => 'web',
+                'module_id'  => $outcome->id,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]);
+        }
     }
 }
