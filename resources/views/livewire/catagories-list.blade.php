@@ -31,19 +31,19 @@
                 <input wire:model="search" placeholder="Search"
                     class="block w-full py-2 pl-8 pr-6 text-sm text-gray-700 placeholder-gray-400 bg-white border border-b border-gray-400 rounded-l rounded-r appearance-none sm:rounded-l-none focus:bg-white focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none" />
             </div>
-            {{-- @can('Add assignment') --}}
-            <a href="{{ route('catagories.create') }}"
-                class="mt-2 flex pl-3 text-gray-500 hover:text-gray-900 hover:underline">
-                <span class="mr-1">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="w-6 h-6 bi bi-plus"
-                        viewBox="0 0 16 16">
-                        <path
-                            d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
-                    </svg>
-                </span>
-                Add Catagory
-            </a>
-            {{-- @endcan --}}
+            @can('View category module')
+                <a href="{{ route('catagories.create') }}"
+                    class="flex pl-3 mt-2 text-gray-500 hover:text-gray-900 hover:underline">
+                    <span class="mr-1">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="w-6 h-6 bi bi-plus"
+                            viewBox="0 0 16 16">
+                            <path
+                                d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
+                        </svg>
+                    </span>
+                    Add Catagory
+                </a>
+            @endcan
         </div>
         <div class="px-4 py-4 -mx-4 overflow-x-auto sm:-mx-8 sm:px-8">
             <div class="inline-block min-w-full overflow-hidden rounded shadow">
