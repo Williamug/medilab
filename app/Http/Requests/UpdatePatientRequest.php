@@ -12,7 +12,7 @@ class UpdatePatientRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return Gate::allow('edit patient');
+        return Gate::allows('edit patient');
     }
 
     /**

@@ -6,6 +6,7 @@ use App\Models\Patient;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
+use Spatie\Permission\Models\Role;
 use Tests\TestCase;
 
 class PatientsTest extends TestCase
@@ -17,6 +18,8 @@ class PatientsTest extends TestCase
     {
         parent::setUp();
         $this->user = User::factory()->create();
+        $admin = Role::create(['name' => 'Admin']);
+        $this->user->assignRole($admin);
     }
 
     /** @test */
@@ -76,6 +79,7 @@ class PatientsTest extends TestCase
     /** @test */
     public function patient_info_can_be_updated(): void
     {
+        $this->withoutExceptionHandling();
         $this->actingAs($this->user)->post(route('patients.store'), [
             'full_name' => 'Allan Muntu',
             'phone_number' => '0700000123',
