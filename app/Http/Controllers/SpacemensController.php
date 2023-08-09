@@ -13,12 +13,14 @@ class SpacemensController extends Controller
 {
     public function index(): View
     {
+        $this->authorize('view spacemen module');
         return view('pages.spacemens.index');
     }
 
     // render page for add spacemens
     public function create(): View
     {
+        $this->authorize('add spacemen');
         return view('pages.spacemens.create');
     }
 
@@ -36,11 +38,13 @@ class SpacemensController extends Controller
     // show single record
     public function show(Spacemen $spacemen): View
     {
+        $this->authorize('view spacemen');
         return view('pages.spacemens.show', compact('spacemen'));
     }
 
     public function edit(Spacemen $spacemen): View
     {
+        $this->authorize('edit spacemen');
         return view('pages.spacemens.edit', compact('spacemen'));
     }
 
@@ -57,6 +61,7 @@ class SpacemensController extends Controller
 
     public function destroy(Spacemen $spacemen): RedirectResponse
     {
+        $this->authorize('delete spacemen');
         $spacemen->delete();
         return to_route('spacemens.index');
     }

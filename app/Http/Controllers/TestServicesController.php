@@ -14,11 +14,13 @@ class TestServicesController extends Controller
 {
     public function index(): View
     {
+        $this->authorize('view test service module');
         return view('pages.test-services.index');
     }
 
     public function create(): View
     {
+        $this->authorize('add test service');
         $categories = Catagory::all();
         return view('pages.test-services.create', compact('categories'));
     }
@@ -39,11 +41,13 @@ class TestServicesController extends Controller
     // show single record
     public function show(TestService $test_service): View
     {
+        $this->authorize('view test service');
         return view('pages.test-services.show', compact('test_service'));
     }
 
     public function edit(TestService $test_service): View
     {
+        $this->authorize('edit test service');
         $categories = Catagory::all();
         return view('pages.test-services.edit', compact('test_service', 'categories'));
     }
@@ -63,6 +67,7 @@ class TestServicesController extends Controller
 
     public function destroy(TestService $test_service): RedirectResponse
     {
+        $this->authorize('delete test service');
         $test_service->delete();
         return to_route('test-services.index');
     }

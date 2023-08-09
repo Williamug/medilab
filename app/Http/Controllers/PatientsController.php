@@ -14,18 +14,21 @@ class PatientsController extends Controller
     // view a list of patients
     public function index(): View
     {
+        $this->authorize('view patient module');
         return view('pages.patients.index');
     }
 
     // display page for adding a new patient
     public function create(): View
     {
+        $this->authorize('add patient');
         return view('pages.patients.create');
     }
 
     // display single record
     public function show(Patient $patient): View
     {
+        $this->authorize('view patient');
         return view('pages.patients.show', compact('patient'));
     }
 
@@ -39,6 +42,7 @@ class PatientsController extends Controller
     // show edit view
     public function edit(Patient $patient): View
     {
+        $this->authorize('edit patient');
         return view('pages.patients.edit', compact('patient'));
     }
 
@@ -52,6 +56,7 @@ class PatientsController extends Controller
     // delete record
     public function destroy(Patient $patient): RedirectResponse
     {
+        $this->authorize('delete patient');
         $patient->delete();
         return to_route('patients.index');
     }

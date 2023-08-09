@@ -15,11 +15,13 @@ class SubmitTestRequestsController extends Controller
 {
     public function index(): View
     {
+        $this->authorize('view test request module');
         return view('pages.submit-test-requests.index');
     }
 
     public function create(): View
     {
+        $this->authorize('add test request');
         $patients = Patient::all();
         $test_services = TestService::all();
 
