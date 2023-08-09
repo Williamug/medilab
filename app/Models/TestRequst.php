@@ -38,6 +38,7 @@ class TestRequst extends Model
     {
         return $this->belongsTo(Spacemen::class);
     }
+    
     //Get the result that owns the TestRequst
     public function result(): BelongsTo
     {
