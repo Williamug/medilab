@@ -21,7 +21,7 @@ class TestServicesTest extends TestCase
         $view = $this->view('pages.test-services.index');
 
         $response->assertOk();
-        $view->assertSeeText('Test Service');
+        $view->assertSeeText('Lab Service');
         // $response->assertViewHas('test_service', function ($collection) use ($test_service) {
         //     return $collection->contains($test_service);
         // });
