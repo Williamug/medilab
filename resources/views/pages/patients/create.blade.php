@@ -57,6 +57,43 @@
                 </div>
                 <!-- /.gender -->
 
+
+                <!-- birth date/age -->
+                <div class="mt-4">
+                    <div class="grid grid-cols-2 mt-2">
+                        <div x-data="{ isOpen: false }">
+                            <label class="inline-flex items-center" @click="isOpen = true">
+                                <input type="radio" class="form-radio dark:bg-gray-700" name="birth_date"
+                                    value="dob" {{ old('payment_method') === 'Cheque No.' ? 'checked' : '' }}>
+                                <span class="ml-2 dark:text-gray-500">
+                                    Cheque
+                                </span>
+                            </label>
+                            <div x-show="isOpen" @click.away="isOpen = false">
+                                <!-- cheque no. -->
+                                <div class="mt-3 mb-3">
+                                    <x-label for="class" value="{{ __('Cheque No. *') }}" />
+                                    <x-input id="cheque_no" class="mt-1 text-base" type="text" :value="old('cheque_no')"
+                                        name="cheque_no" autocomplete="cheque_no" />
+                                    <x-input-error for="cheque_no" class="ml-9" />
+                                </div>
+                                <!-- cheque no. -->
+                            </div>
+                        </div>
+                        <div>
+                            <label class="inline-flex items-center ml-6">
+                                <input type="radio" class="form-radio dark:bg-gray-700" name="payment_method"
+                                    value="Cash" {{ old('payment_method') === 'Cash' ? 'checked' : '' }}>
+                                <span class="ml-2 dark:text-gray-500">Cash</span>
+                            </label>
+                        </div>
+                    </div>
+                    <x-input-error for="payment_method" />
+                </div>
+                <!-- /.birth date/age -->
+
+
+
                 <!-- date of birth -->
                 <div class="space-y-4">
                     <div class="mb-4">
