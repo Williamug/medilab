@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AccountsController;
 use App\Http\Controllers\AdminSignUpController;
 use App\Http\Controllers\AssignRolesController;
 use Illuminate\Support\Facades\Route;
@@ -49,6 +50,7 @@ Route::middleware('auth')->group(function () {
         'results' => ResultsController::class,
         'requests' => SubmitTestRequestsController::class,
         'sample-results' => SampleResultsCotroller::class,
+        'accountings' => AccountsController::class,
     ]);
 
     // roles & permissions
@@ -69,15 +71,22 @@ Route::middleware('auth')->group(function () {
     });
 
     // permissions
-    Route::get('/permissions', [PermissionsController::class, 'index'])->name('permissions.index');
+    Route::get('/permissions', [PermissionsController::class, 'index'])
+        ->name('permissions.index');
 
     // assign role to user
     Route::controller(AssignRolesController::class)->group(function () {
-        Route::get('/assign-roles', 'index')->name('assign-roles.index');
-        Route::get('/assign-roles/create', 'create')->name('assign-roles.create');
-        Route::post('/assign-roles', 'store')->name('assign-roles.store');
-        Route::get('/assign-roles/{user}', 'show')->name('assing-roles.show');
-        Route::get('/assign-roles/{user}/edit', 'edit')->name('assing-roles.edit');
-        Route::put('/assign-roles/{user}', 'update')->name('assign-roles.update');
+        Route::get('/assign-roles', 'index')
+            ->name('assign-roles.index');
+        Route::get('/assign-roles/create', 'create')
+            ->name('assign-roles.create');
+        Route::post('/assign-roles', 'store')
+            ->name('assign-roles.store');
+        Route::get('/assign-roles/{user}', 'show')
+            ->name('assing-roles.show');
+        Route::get('/assign-roles/{user}/edit', 'edit')
+            ->name('assing-roles.edit');
+        Route::put('/assign-roles/{user}', 'update')
+            ->name('assign-roles.update');
     });
 });
