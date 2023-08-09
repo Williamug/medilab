@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Patient extends Model
 {
@@ -46,5 +47,11 @@ class Patient extends Model
     public function test_requsets(): HasMany
     {
         return $this->hasMany(TestRequst::class);
+    }
+
+    // get a corresponding visit information
+    public function visit_info(): HasOne
+    {
+        return $this->hasOne(VisitInfo::class);
     }
 }
