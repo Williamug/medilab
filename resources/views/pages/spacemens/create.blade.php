@@ -15,7 +15,7 @@
         </x-slot>
 
         <x-app.flash-message />
-        
+
         <div>
             <!-- Form -->
             <form method="POST" action="{{ route('spacemens.store') }}">
@@ -25,6 +25,7 @@
                         <x-jet-label for="spacemen" value="{{ __('Spacemen') }}" />
                         <x-jet-input class="md:w-2/3" id="spacemen" type="text" name="spacemen" :value="old('spacemen')"
                             autofocus />
+                        <x-jet-input-error for="spacemen" />
                     </div>
                 </div>
 

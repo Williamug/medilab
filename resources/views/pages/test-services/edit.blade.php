@@ -44,6 +44,7 @@
                         <x-jet-label for="test_name" value="{{ __('Test Name') }}" />
                         <x-jet-input class="md:w-2/3" id="test_name" type="text" name="test_name" :value="old('test_name') ?? $test_service->test_name"
                             autofocus />
+                        <x-jet-input-error for="residence" />
                     </div>
                 </div>
 
@@ -57,7 +58,7 @@
 
                 <div class="flex items-center justify-between mt-6">
                     <x-jet-button class="ml-3">
-                        {{ __('Save') }}
+                        {{ __('Update') }}
                     </x-jet-button>
                 </div>
             </form>

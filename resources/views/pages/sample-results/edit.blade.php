@@ -128,7 +128,7 @@
 
                 <div class="flex items-center justify-between mt-6">
                     <x-jet-button class="ml-3">
-                        {{ __('Save') }}
+                        {{ __('Update') }}
                     </x-jet-button>
                 </div>
             </form>

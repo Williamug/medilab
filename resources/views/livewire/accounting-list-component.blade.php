@@ -1,20 +1,6 @@
 <div>
-    <div class="py-8">
+    <div>
         <div class="flex flex-col my-2 sm:flex-row">
-            <div class="flex flex-row mb-1 sm:mb-0">
-                <div class="relative">
-                    <select
-                        class="block w-full h-full px-4 py-2 pr-8 leading-tight text-gray-700 bg-white border border-gray-400 rounded-l appearance-none focus:outline-none focus:bg-white focus:border-gray-500"
-                        wire:model="perPage">
-                        <option>3</option>
-                        <option>6</option>
-                        <option>12</option>
-                    </select>
-                    <div class="absolute inset-y-0 right-0 flex items-center px-2 text-gray-700 pointer-events-none">
-
-                    </div>
-                </div>
-            </div>
             <div class="relative block">
                 <span class="absolute inset-y-0 left-0 flex items-center h-full pl-2">
                     <svg viewBox="0 0 24 24" class="w-4 h-4 text-gray-500 fill-current">
@@ -23,8 +9,8 @@
                         </path>
                     </svg>
                 </span>
-                <input wire:model="search" placeholder="Search"
-                    class="block w-full py-2 pl-8 pr-6 text-sm text-gray-700 placeholder-gray-400 bg-white border border-b border-gray-400 rounded-l rounded-r appearance-none sm:rounded-l-none focus:bg-white focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none" />
+                <input wire:model.defer="search" placeholder="Search"
+                    class="block w-full py-2 pl-8 pr-6 text-sm text-gray-700 placeholder-gray-400 bg-white border border-b border-gray-400  rounded appearance-none sm:rounded-none focus:bg-white focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none" />
             </div>
         </div>
         <div class="px-4 py-4 -mx-4 overflow-x-auto sm:-mx-8 sm:px-8">

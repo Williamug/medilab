@@ -21,28 +21,35 @@
             </button>
             <!-- Logo -->
             <a class="block" href="{{ route('dashboard') }}">
-                <svg width="32" height="32" viewBox="0 0 32 32">
-                    <defs>
-                        <linearGradient x1="28.538%" y1="20.229%" x2="100%" y2="108.156%" id="logo-a">
-                            <stop stop-color="#A5B4FC" stop-opacity="0" offset="0%" />
-                            <stop stop-color="#A5B4FC" offset="100%" />
-                        </linearGradient>
-                        <linearGradient x1="88.638%" y1="29.267%" x2="22.42%" y2="100%" id="logo-b">
-                            <stop stop-color="#38BDF8" stop-opacity="0" offset="0%" />
-                            <stop stop-color="#38BDF8" offset="100%" />
-                        </linearGradient>
-                    </defs>
-                    <rect fill="#6366F1" width="32" height="32" rx="16" />
-                    <path
-                        d="M18.277.16C26.035 1.267 32 7.938 32 16c0 8.837-7.163 16-16 16a15.937 15.937 0 01-10.426-3.863L18.277.161z"
-                        fill="#4F46E5" />
-                    <path
-                        d="M7.404 2.503l18.339 26.19A15.93 15.93 0 0116 32C7.163 32 0 24.837 0 16 0 10.327 2.952 5.344 7.404 2.503z"
-                        fill="url(#logo-a)" />
-                    <path
-                        d="M2.223 24.14L29.777 7.86A15.926 15.926 0 0132 16c0 8.837-7.163 16-16 16-5.864 0-10.991-3.154-13.777-7.86z"
-                        fill="url(#logo-b)" />
-                </svg>
+                <div class="flex">
+                    <div>
+                        <svg width="32" height="32" viewBox="0 0 32 32">
+                            <defs>
+                                <linearGradient x1="28.538%" y1="20.229%" x2="100%" y2="108.156%"
+                                    id="logo-a">
+                                    <stop stop-color="#A5B4FC" stop-opacity="0" offset="0%" />
+                                    <stop stop-color="#A5B4FC" offset="100%" />
+                                </linearGradient>
+                                <linearGradient x1="88.638%" y1="29.267%" x2="22.42%" y2="100%"
+                                    id="logo-b">
+                                    <stop stop-color="#38BDF8" stop-opacity="0" offset="0%" />
+                                    <stop stop-color="#38BDF8" offset="100%" />
+                                </linearGradient>
+                            </defs>
+                            <rect fill="#6366F1" width="32" height="32" rx="16" />
+                            <path
+                                d="M18.277.16C26.035 1.267 32 7.938 32 16c0 8.837-7.163 16-16 16a15.937 15.937 0 01-10.426-3.863L18.277.161z"
+                                fill="#4F46E5" />
+                            <path
+                                d="M7.404 2.503l18.339 26.19A15.93 15.93 0 0116 32C7.163 32 0 24.837 0 16 0 10.327 2.952 5.344 7.404 2.503z"
+                                fill="url(#logo-a)" />
+                            <path
+                                d="M2.223 24.14L29.777 7.86A15.926 15.926 0 0132 16c0 8.837-7.163 16-16 16-5.864 0-10.991-3.154-13.777-7.86z"
+                                fill="url(#logo-b)" />
+                        </svg>
+                    </div>
+                    <div class="mt-1 ml-2 text-lg uppercase text-white">NugSoft Lab</div>
+                </div>
             </a>
         </div>
 
@@ -124,7 +131,8 @@
                                             d="m23.72 12 .229.686A.984.984 0 0 1 24 13v8a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1v-8c0-.107.017-.213.051-.314L.28 12H8v4h8v-4H23.72ZM13 0v7h3l-4 5-4-5h3V0h2Z" />
                                     </svg>
                                     <span
-                                        class="ml-3 text-sm font-medium duration-200 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100">Categories</span>
+                                        class="ml-3 text-sm font-medium duration-200 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100">Lab
+                                        Service Categories</span>
                                 </div>
                             </a>
                         </li>
@@ -311,7 +319,7 @@
                             <div class="lg:hidden lg:sidebar-expanded:block 2xl:block">
                                 <ul class="pl-9 mt-1 @if (!in_array(Request::segment(1), ['settings'])) {{ 'hidden' }} @endif"
                                     :class="open ? '!block' : 'hidden'">
-                                    <li class="mb-1 last:mb-0">
+                                    {{-- <li class="mb-1 last:mb-0">
                                         <a class="block text-slate-400 hover:text-slate-200 transition duration-150 truncate @if (Route::is('permissions.index')) {{ '!text-indigo-500' }} @endif"
                                             href="{{ route('permissions.index') }}">
                                             <span
@@ -319,7 +327,7 @@
                                                 Permissions
                                             </span>
                                         </a>
-                                    </li>
+                                    </li> --}}
 
                                     <li class="mb-1 last:mb-0">
                                         <a class="block text-slate-400 hover:text-slate-200 transition duration-150 truncate @if (Route::is('roles.index')) {{ '!text-indigo-500' }} @endif"

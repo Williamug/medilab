@@ -42,6 +42,7 @@
                         <x-jet-label for="test_name" value="{{ __('Test Name') }}" />
                         <x-jet-input class="md:w-2/3" id="test_name" type="text" name="test_name" :value="old('test_name')"
                             autofocus />
+                        <x-jet-input-error for="test_name" />
                     </div>
                 </div>
 

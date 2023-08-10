@@ -1,10 +1,10 @@
 <x-app-layout>
     <x-slot name="title">
-        Catagories
+        Categories
     </x-slot>
     <x-app.card>
         <x-slot name="banner">
-            Catagories
+            Categories
         </x-slot>
         <x-app.flash-message />
         <div>

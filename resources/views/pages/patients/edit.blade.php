@@ -28,6 +28,7 @@
                         <x-jet-label for="full_name" value="{{ __('Full Name *') }}" />
                         <x-jet-input class="md:w-2/3" id="full_name" type="text" name="full_name" :value="old('full_name') ?? $patient->full_name"
                             autofocus />
+                        <x-jet-input-error for="full_name" />
                     </div>
                 </div>
                 <!-- /.full name -->
@@ -70,6 +71,7 @@
                         <x-jet-label for="phone_number" value="{{ __('Phone Number') }}" />
                         <x-jet-input class="md:w-2/3" id="phone_number" type="text" name="phone_number"
                             :value="old('phone_number') ?? $patient->phone_number" autofocus />
+                        <x-jet-input-error for="phone_number" />
                     </div>
                 </div>
                 <!-- /.phone number -->
@@ -80,12 +82,13 @@
                     <x-app.text id="residence" class="block w-full mt-1 md:w-2/3" :value="old('residence')" name="residence">
                         {{ old('residence') ?? $patient->residence }}
                     </x-app.text>
+                    <x-jet-input-error for="residence" />
                 </div>
                 <!-- /.residence -->
 
                 <div class="flex items-center justify-between mt-6">
                     <x-jet-button class="ml-3">
-                        {{ __('Save') }}
+                        {{ __('Update') }}
                     </x-jet-button>
                 </div>
             </form>

@@ -16,6 +16,7 @@
                 </div>
             </div>
         </x-slot>
+        <hr />
         <div>
             <div class="grid grid-cols-2 mb-4">
                 <div class="px-4 py-2 text-base font-bold dark:text-gray-400">

@@ -23,6 +23,7 @@
                     </div>
                 </div>
             </div>
+            <x-jet-validation-errors class="mt-4" />
             <!-- Form -->
             <form method="POST" action="{{ route('patients.store') }}">
                 @csrf
@@ -32,6 +33,7 @@
                         <x-jet-label for="full_name" value="{{ __('Full Name *') }}" />
                         <x-jet-input class="md:w-2/3" id="full_name" type="text" name="full_name" :value="old('full_name')"
                             autofocus />
+                        <x-jet-input-error for="full_name" />
                     </div>
                 </div>
                 <!-- /.full name -->
@@ -108,6 +110,7 @@
                             <x-jet-label for="phone_number" value="{{ __('Phone Number') }}" />
                             <x-jet-input class="md:w-2/3" id="phone_number" type="text" name="phone_number"
                                 :value="old('phone_number')" autofocus />
+                            <x-jet-input-error for="phone_number" />
                         </div>
                     </div>
                     <!-- /.phone number -->
@@ -119,6 +122,7 @@
                             name="residence">
                             {{ old('residence') }}
                         </x-app.text>
+                        <x-jet-input-error for="residence" />
                     </div>
                     <!-- /.residence -->
 
@@ -128,7 +132,7 @@
                         </x-jet-button>
                     </div>
             </form>
-            <x-jet-validation-errors class="mt-4" />
+
         </div>
     </x-app.card>
 </x-app-layout>
