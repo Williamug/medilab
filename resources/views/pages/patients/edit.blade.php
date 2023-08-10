@@ -54,9 +54,12 @@
                 <!-- date of birth -->
                 <div class="space-y-4">
                     <div class="mb-4">
-                        <x-jet-label for="birth_date" value="{{ __('Date of Birth') }}" />
-                        <x-jet-input class="md:w-2/3" id="birth_date" type="date" name="birth_date" :value="old('birth_date') ?? $patient->birth_date->format('Y-m-d')"
-                            autofocus />
+
+
+                        <x-jet-input-error for="age" class="ml-9" />
+
+                        <x-jet-label for="age" value="{{ __('Date of Birth') }}" />
+                        <x-jet-input class="md:w-2/3" id="age" type="text" name="age" :value="!is_null($patient->birth_date) ? $patient->age : $patient->visit_info->age" />
                     </div>
                 </div>
                 <!-- /.date of birth -->

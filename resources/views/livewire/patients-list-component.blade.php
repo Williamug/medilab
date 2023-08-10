@@ -100,7 +100,11 @@
 
                                 <td class="px-5 py-5 text-sm bg-white border-b border-gray-200">
                                     <p class="text-gray-900 whitespace-no-wrap">
-                                        {{ $patient->birth_date->format('d/m/Y') }}
+                                        @if (!is_null($patient->birth_date))
+                                            {{ $patient->age }}
+                                        @else
+                                            {{ $patient->visit_info->age }}
+                                        @endif
                                     </p>
                                 </td>
 

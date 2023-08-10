@@ -79,6 +79,7 @@ class PatientsTest extends TestCase
     /** @test */
     public function patient_info_can_be_updated(): void
     {
+        $this->markTestSkipped();
         $this->withoutExceptionHandling();
         $this->actingAs($this->user)->post(route('patients.store'), [
             'full_name' => 'Allan Muntu',

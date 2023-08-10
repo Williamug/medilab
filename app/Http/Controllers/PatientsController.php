@@ -5,9 +5,12 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StorePatientRequest;
 use App\Http\Requests\UpdatePatientRequest;
 use App\Models\Patient;
+use App\Models\VisitInfo;
 use Illuminate\Contracts\View\View;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class PatientsController extends Controller
 {
@@ -25,18 +28,47 @@ class PatientsController extends Controller
         return view('pages.patients.create');
     }
 
+    // store patient info in database
+    public function store(Request $request): RedirectResponse
+    {
+        $this->validate($request, [
+            'full_name' => ['required', 'min:3'],
+            'phone_number' => ['numeric', 'min:10'],
+            'gender' => 'required',
+            'birth_date' => 'sometimes',
+            'residence' => '',
+        ]);
+
+        DB::transaction(function () use ($request) {
+            if ($request['birth_date'] == 'dob') {
+                Patient::create([
+                    'full_name' => $request['full_name'],
+                    'phone_number' => $request['phone_number'],
+                    'gender' => $request['gender'],
+                    'birth_date' => $request['dob'],
+                    'residence' => $request['residence'],
+                ]);
+            } else {
+                $patient = Patient::create([
+                    'full_name' => $request['full_name'],
+                    'phone_number' => $request['phone_number'],
+                    'gender' => $request['gender'],
+                    'residence' => $request['residence'],
+                ]);
+                VisitInfo::create([
+                    'patient_id' => $patient->id,
+                    'age' => $request['age'],
+                ]);
+            }
+        });
+        return to_route('patients.index')->with('success', 'New patient has been added!');
+    }
+
     // display single record
     public function show(Patient $patient): View
     {
         $this->authorize('view patient');
         return view('pages.patients.show', compact('patient'));
-    }
-
-    // store patient info in database
-    public function store(StorePatientRequest $request): RedirectResponse
-    {
-        Patient::create($request->validated());
-        return to_route('patients.index')->with('success', 'New patient has been added!');
     }
 
     // show edit view
@@ -47,9 +79,37 @@ class PatientsController extends Controller
     }
 
     // update records in the database
-    public function update(UpdatePatientRequest $request, Patient $patient): RedirectResponse
+    public function update(Request $request, Patient $patient): RedirectResponse
     {
-        $patient->update($request->validated());
+        $this->validate($request, [
+            'full_name' => ['required', 'min:3'],
+            'phone_number' => ['numeric', 'min:10'],
+            'gender' => 'required',
+            'birth_date' => 'sometimes',
+            'residence' => '',
+        ]);
+
+        DB::transaction(function () use ($request, $patient) {
+            $patient->update([
+                'full_name' => $request['full_name'],
+                'phone_number' => $request['phone_number'],
+                'gender' => $request['gender'],
+                'residence' => $request['residence'],
+            ]);
+            $new_patient = Patient::find($patient)->first();
+            if ($patient->birth_date != null) {
+                VisitInfo::create([
+                    'patient_id' => $new_patient->id,
+                    'age' => $request['age'],
+                ]);
+            } else {
+                $new_patient->visit_info->update([
+                    'age' => $request['age'],
+                ]);
+            }
+        });
+
+
         return to_route('patients.update', $patient);
     }
 

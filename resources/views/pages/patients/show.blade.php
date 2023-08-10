@@ -40,7 +40,11 @@
                     Date of birth:
                 </div>
                 <div class="px-2 py-2 dark:text-gray-400">
-                    {{ $patient->birth_date->format('d/M/Y') }}
+                    @if (!is_null($patient->birth_date))
+                        {{ $patient->age }}
+                    @else
+                        {{ $patient->visit_info->age }}
+                    @endif
                 </div>
             </div>
 

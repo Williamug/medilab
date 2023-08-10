@@ -57,77 +57,76 @@
                 </div>
                 <!-- /.gender -->
 
-
                 <!-- birth date/age -->
-                <div class="mt-4">
-                    <div class="grid grid-cols-2 mt-2">
-                        <div x-data="{ isOpen: false }">
+                <div class="space-y-6 mt-4">
+                    <x-jet-label for="birth_date"
+                        value="{{ __('Select Age if you do not know your date of birth') }}" />
+                    <div class="grid grid-cols-2">
+                        <div x-data="{ isOpen: true }">
                             <label class="inline-flex items-center" @click="isOpen = true">
                                 <input type="radio" class="form-radio dark:bg-gray-700" name="birth_date"
-                                    value="dob" {{ old('payment_method') === 'Cheque No.' ? 'checked' : '' }}>
+                                    value="dob" checked="checked">
                                 <span class="ml-2 dark:text-gray-500">
-                                    Cheque
+                                    Birth date
                                 </span>
                             </label>
                             <div x-show="isOpen" @click.away="isOpen = false">
-                                <!-- cheque no. -->
-                                <div class="mt-3 mb-3">
-                                    <x-label for="class" value="{{ __('Cheque No. *') }}" />
-                                    <x-input id="cheque_no" class="mt-1 text-base" type="text" :value="old('cheque_no')"
-                                        name="cheque_no" autocomplete="cheque_no" />
-                                    <x-input-error for="cheque_no" class="ml-9" />
+                                <!-- birth date. -->
+                                <div class="mb-3">
+                                    <x-jet-input id="dob" class="mt-1 text-base" type="date" name="dob"
+                                        autocomplete="dob" checked />
+                                    <x-jet-input-error for="dob" class="ml-9" />
                                 </div>
-                                <!-- cheque no. -->
+                                <!-- birth date. -->
                             </div>
                         </div>
-                        <div>
-                            <label class="inline-flex items-center ml-6">
-                                <input type="radio" class="form-radio dark:bg-gray-700" name="payment_method"
-                                    value="Cash" {{ old('payment_method') === 'Cash' ? 'checked' : '' }}>
-                                <span class="ml-2 dark:text-gray-500">Cash</span>
+
+                        <div x-data="{ isOpen: false }">
+                            <label class="inline-flex items-center" @click="isOpen = true">
+                                <input type="radio" class="form-radio dark:bg-gray-700" name="birth_date">
+                                <span class="ml-2 dark:text-gray-500">
+                                    Age
+                                </span>
                             </label>
+                            <div x-show="isOpen" @click.away="isOpen = false">
+                                <!-- age. -->
+                                <div class="mb-3">
+                                    <input id="age" class="mt-1 text-base form-input w-full" type="text"
+                                        name="age" value="age" autocomplete="age" />
+                                    <x-jet-input-error for="age" class="ml-9" />
+                                </div>
+                                <!-- age. -->
+                            </div>
+                        </div>
+                        <x-jet-input-error for="birth_date" />
+                    </div>
+                    <!-- /.birth date/age -->
+
+                    <!-- phone number -->
+                    <div class="space-y-4">
+                        <div class="mb-4">
+                            <x-jet-label for="phone_number" value="{{ __('Phone Number') }}" />
+                            <x-jet-input class="md:w-2/3" id="phone_number" type="text" name="phone_number"
+                                :value="old('phone_number')" autofocus />
                         </div>
                     </div>
-                    <x-input-error for="payment_method" />
-                </div>
-                <!-- /.birth date/age -->
+                    <!-- /.phone number -->
 
-
-
-                <!-- date of birth -->
-                <div class="space-y-4">
-                    <div class="mb-4">
-                        <x-jet-label for="birth_date" value="{{ __('Date of Birth') }}" />
-                        <x-jet-input class="md:w-2/3" id="birth_date" type="date" name="birth_date" :value="old('birth_date')"
-                            autofocus />
+                    <!-- residence -->
+                    <div>
+                        <x-jet-label for="residence" value="{{ __('Residence') }}" />
+                        <x-app.text id="residence" class="block w-full mt-1 md:w-2/3" :value="old('residence')"
+                            name="residence">
+                            {{ old('residence') }}
+                        </x-app.text>
                     </div>
-                </div>
-                <!-- /.date of birth -->
+                    <!-- /.residence -->
 
-                <!-- phone number -->
-                <div class="space-y-4">
-                    <div class="mb-4">
-                        <x-jet-label for="phone_number" value="{{ __('Phone Number') }}" />
-                        <x-jet-input class="md:w-2/3" id="phone_number" type="text" name="phone_number"
-                            :value="old('phone_number')" autofocus />
+                    <div class="flex items-center justify-between mt-6">
+                        <x-jet-button class="ml-3">
+                            {{ __('Save') }}
+                        </x-jet-button>
                     </div>
-                </div>
-                <!-- /.phone number -->
-
-                <!-- residence -->
-                <div>
-                    <x-jet-label for="residence" value="{{ __('Residence') }}" />
-                    <x-app.text id="residence" class="block w-full mt-1 md:w-2/3" :value="old('residence')" name="residence">
-                        {{ old('residence') }}
-                    </x-app.text>
-                </div>
-                <!-- /.residence -->
-
-                <div class="flex items-center justify-between mt-6">
-                    <x-jet-button class="ml-3">
-                        {{ __('Save') }}
-                    </x-jet-button>
-                </div>
             </form>
             <x-jet-validation-errors class="mt-4" />
         </div>
