@@ -14,7 +14,7 @@ class AccountingListComponent extends Component
     public bool $isOpenEdit = false;
     public bool $isOpenDelete = false;
 
-    public $perPage = 3;
+    public $perPage = 15;
     public $sortField = 'id';
     public $sortAsc = true;
     public $search = '';

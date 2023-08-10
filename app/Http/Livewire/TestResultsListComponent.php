@@ -14,7 +14,7 @@ class TestResultsListComponent extends Component
     public bool $isOpenEdit = false;
     public bool $isOpenDelete = false;
 
-    public $perPage = 3;
+    public $perPage = 15;
     public $sortField = 'patient_id';
     public $sortAsc = true;
     public $search = '';
