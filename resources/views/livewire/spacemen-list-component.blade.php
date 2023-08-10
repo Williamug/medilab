@@ -76,7 +76,7 @@
                                                     class="text-blue-700 hover:underline hover:text-blue-900"
                                                     title="Edit">
                                                     <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor"
-                                                        class="w-4 h-4 mr-3 text-green-600 bi bi-pencil-square hover:text-green-800"
+                                                        class="w-6 h-6 mr-3 text-green-600 bi bi-pencil-square hover:text-green-800"
                                                         viewBox="0 0 16 16">
                                                         <path
                                                             d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
@@ -94,7 +94,7 @@
                                                         class="text-red-700 hover:underline hover:text-red-900 focus:outline-none dark:text-red-800 dark:hover:text-red-900"
                                                         onclick="javascript:return confirm('You are about to delete this. Are you sure you want to continue?')">
                                                         <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor"
-                                                            class="w-4 h-4 mr-3 text-red-600 bi bi-trash hover:text-red-800"
+                                                            class="w-6 h-6 mr-3 text-red-600 bi bi-trash hover:text-red-800"
                                                             viewBox="0 0 16 16">
                                                             <path
                                                                 d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />

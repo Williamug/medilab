@@ -105,7 +105,7 @@
                                                     class="text-green-700 hover:underline hover:text-green-900"
                                                     title="View">
                                                     <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor"
-                                                        class="w-4 h-4 mr-3 text-blue-500 hover:text-blue-800 bi bi-layout-text-window-reverse"
+                                                        class="w-6 h-6 mr-3 text-blue-500 hover:text-blue-800 bi bi-layout-text-window-reverse"
                                                         viewBox="0 0 16 16">
                                                         <path
                                                             d="M13 6.5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h5a.5.5 0 0 0 .5-.5zm0 3a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h5a.5.5 0 0 0 .5-.5zm-.5 2.5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1 0-1h5z" />
