@@ -13,11 +13,13 @@ return new class extends Migration
     {
         Schema::create('test_requsts', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->nullable()->constrained()->cascadeOnDelete();
             $table->foreignId('patient_id')->constrained()->cascadeOnDelete();
             $table->foreignId('test_service_id')->constrained()->cascadeOnDelete();
             $table->foreignId('spacemen_id')->nullable()->constrained()->cascadeOnDelete();
             $table->foreignId('result_id')->nullable()->constrained()->cascadeOnDelete();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
