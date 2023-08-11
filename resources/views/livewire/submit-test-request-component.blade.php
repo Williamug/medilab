@@ -1,7 +1,7 @@
 <div>
     <div>
         <div class="flex flex-col my-2 sm:flex-row">
-            <div class="relative block">
+            <div class="relative block flex-1">
                 <span class="absolute inset-y-0 left-0 flex items-center h-full pl-2">
                     <svg viewBox="0 0 24 24" class="w-4 h-4 text-gray-500 fill-current">
                         <path
@@ -10,10 +10,11 @@
                     </svg>
                 </span>
                 <input wire:model.defer="search" placeholder="Search"
-                    class="block w-full py-2 pl-8 pr-6 text-sm text-gray-700 placeholder-gray-400 bg-white border border-b border-gray-400  rounded appearance-none sm:rounded-none focus:bg-white focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none" />
+                    class="block w-1/2 py-2 pl-8 pr-6 text-sm text-gray-700 placeholder-gray-400 bg-white border border-b border-gray-400  rounded appearance-none sm:rounded-none focus:bg-white focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none" />
             </div>
+            <div>
             @can('add test request')
-<x-app.a href="{{ route('requests.create') }}">
+                <x-app.a href="{{ route('requests.create') }}">
                     <span class="mr-1">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="w-6 h-6 bi bi-plus"
                             viewBox="0 0 16 16">
@@ -24,6 +25,7 @@
                     Submit Test Request
                 </x-app.a>
             @endcan
+            </div>
         </div>
         <div class="px-4 py-4 -mx-4 overflow-x-auto sm:-mx-8 sm:px-8">
             <div class="inline-block min-w-full overflow-hidden rounded shadow">

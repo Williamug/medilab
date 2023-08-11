@@ -41,11 +41,11 @@
                     Date of birth:
                 </div>
                 <div class="px-2 py-2 dark:text-gray-400">
-                    @if (!is_null($patient->birth_date))
-                        {{ $patient->age }}
+                    {{ $patient->age }}
+                    {{-- @if (!is_null($patient->birth_date))
                     @else
-                        {{ $patient->visit_info->age }}
-                    @endif
+                        {{ $patient->age }}
+                    @endif --}}
                 </div>
             </div>
 
