@@ -12,17 +12,17 @@
                 @endif
                 <form>
                     <div>
-                        <label for="category_name" class="text-gray-800 text-sm font-bold leading-tight tracking-normal">
+                        <label for="category_name" class="text-sm font-bold leading-tight tracking-normal text-gray-800">
                             Service Category
                         </label>
                         <input id="catagory_name"
-                            class="mb-1 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border"
+                            class="flex items-center w-full h-10 pl-3 mt-2 mb-1 text-sm font-normal text-gray-600 border border-gray-300 rounded focus:outline-none focus:border focus:border-indigo-700"
                             wire:model.lazy="catagory_name" />
                         <x-jet-input-error for="catagory_name" />
                     </div>
 
                     <div class="mb-4">
-                        <label for="email2" class="text-gray-800 text-sm font-bold leading-tight tracking-normal">
+                        <label for="email2" class="text-sm font-bold leading-tight tracking-normal text-gray-800">
                             Description
                         </label>
                         <x-app.text id="description" class="block mt-1 " :value="old('description')" wire:model.lazy="description"
@@ -64,17 +64,17 @@
                     <!-- category name-->
                     <div>
                         <label for="category_name"
-                            class="text-gray-800 text-sm font-bold leading-tight tracking-normal">
+                            class="text-sm font-bold leading-tight tracking-normal text-gray-800">
                             Service Category
                         </label>
                         <input id="catagory_name"
-                            class="mb-1 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border"
+                            class="flex items-center w-full h-10 pl-3 mt-2 mb-1 text-sm font-normal text-gray-600 border border-gray-300 rounded focus:outline-none focus:border focus:border-indigo-700"
                             wire:model.lazy="catagory_name" />
                         <x-jet-input-error for="catagory_name" />
                     </div>
 
                     <div class="mb-4">
-                        <label for="email2" class="text-gray-800 text-sm font-bold leading-tight tracking-normal">
+                        <label for="email2" class="text-sm font-bold leading-tight tracking-normal text-gray-800">
                             Description
                         </label>
                         <x-app.text id="description" class="block mt-1 " :value="old('description')" wire:model.lazy="description"
@@ -111,11 +111,11 @@
         <x-slot name="content">
             <div class="mb-4">
                 <div class="mb-2">
-                    Are you sure you want to delete this category. Are you sure you want to continue?
+                    You are about to delete this category. Are you sure you want to continue?
                 </div>
                 <small><span class="font-bold">Note: </span> All deleted categories are stored in trash and you can
                     restore
-                    them later when you what</small>
+                    them later when you need them.</small>
             </div>
         </x-slot>
 
