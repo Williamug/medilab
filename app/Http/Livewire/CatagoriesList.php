@@ -3,7 +3,6 @@
 namespace App\Http\Livewire;
 
 use App\Models\Catagory;
-use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Livewire\WithPagination;
