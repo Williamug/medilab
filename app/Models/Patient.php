@@ -14,11 +14,14 @@ class Patient extends Model
     use HasFactory;
 
     protected $fillable = [
+        'user_id',
         'full_name',
-        'phone_number',
         'gender',
-        'birth_date',
-        'residence'
+        'date_of_birth',
+        'age',
+        'phone_number',
+        'email',
+        'residence',
     ];
 
     protected $casts = [
@@ -29,7 +32,7 @@ class Patient extends Model
     public function age(): Attribute
     {
         return new Attribute(
-            get: fn () => Carbon::parse($this->attributes['birth_date'])->age
+            get: fn () => Carbon::parse($this->attributes['date_of_birth'])->age
         );
     }
 

@@ -10,7 +10,7 @@ class Catagory extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['catagory_name', 'description'];
+    protected $fillable = ['user_id', 'catagory_name', 'description'];
 
     public static function search($query)
     {
