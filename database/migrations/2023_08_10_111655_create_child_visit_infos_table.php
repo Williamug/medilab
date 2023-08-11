@@ -20,8 +20,8 @@ return new class extends Migration
             $table->double('temperature')->nullable();
             $table->double('weight')->nullable();
             $table->double('height')->nullable();
-            $table->softDeletes();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
