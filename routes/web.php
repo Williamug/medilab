@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DataFeedController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\CatagoriesController;
+use App\Http\Controllers\CategoryExportController;
+use App\Http\Controllers\DeletedCategoriesController;
 use App\Http\Controllers\GivePermissionsToRoleController;
 use App\Http\Controllers\PatientsController;
 use App\Http\Controllers\PermissionsController;
@@ -89,4 +91,10 @@ Route::middleware('auth')->group(function () {
         Route::put('/assign-roles/{user}', 'update')
             ->name('assign-roles.update');
     });
+
+    Route::get('/deleted-categories', [DeletedCategoriesController::class, 'index'])
+        ->name('deleted-categories.index');
 });
+
+// exports
+Route::get('/export-categories', [CategoryExportController::class, 'index'])->name('export-categories.index');
