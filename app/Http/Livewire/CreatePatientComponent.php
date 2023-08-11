@@ -2,63 +2,48 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\NextOfKin;
+use App\Models\Patient;
+use App\Models\VisitInfo;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
 class CreatePatientComponent extends Component
 {
-    public $patient_type;
-    // adult
-    public $adult_full_name;
-    public $adult_gender;
-    public $adult_birth_date;
-    public $adult_age;
-    public $adult_dob;
-    public $adult_phone_number;
-    public $adult_email;
-    public $adult_residence;
-    public $adult_temperature;
-    public $adult_weight;
-    public $adult_height;
-    // child
-    public $child_full_name;
-    public $child_gender;
-    public $child_birth_date;
-    public $child_age;
-    public $child_dob;
-    public $child_phone_number;
-    public $child_email;
-    public $child_residence;
-    public $child_temperature;
-    public $child_weight;
-    public $child_height;
-    // guardian/next of kin
-    public $guardian_full_name;
-    public $guardian_gender;
-    public $guardian_birth_date;
-    public $guardian_age;
-    public $guardian_dob;
-    public $guardian_phone_number;
-    public $guardian_email;
-    public $guardian_residence;
+    // patient
+    public $full_name;
+    public $gender;
+    public $birth_date = 'dob';
+    public $age;
+    public $dob;
+    public $phone_number;
+    public $email;
+    public $residence;
+    public $temperature;
+    public $weight;
+    public $height;
+
+    // next of kin
+    public $kin_full_name;
+    public $kin_gender;
+    public $patient_relation;
+    public $kin_phone_number;
+    public $kin_email;
+    public $kin_residence;
 
     protected $rules = [
-        'adult_full_name' => 'required|min:3|string',
-        'adult_gender' => 'required|min:3|string',
-        'adult_age' => 'numeric',
-        'adult_dob' => 'date',
-        'adult_phone_number' => 'numeric|min:10',
-        'adult_email' => 'email',
-        'adult_residence' => 'string|max:255',
-        'child_full_name' => 'required|min:3|string',
-        'child_gender' => 'required|min:3|string',
-        'child_age' => 'numeric',
-        'child_dob' => 'date',
-        'guardian_full_name' => 'required|min:3|string',
-        'guardian_gender' => 'required|min:3|string',
-        'guardian_phone_number' => 'numeric|min:10',
-        'guardian_email' => 'email',
-        'guardian_residence' => 'string|max:255',
-
+        'full_name' => 'required|min:3|string',
+        'gender' => 'required|min:3|string',
+        'age' => 'sometimes|nullable|numeric',
+        'dob' => 'sometimes|nullable|date',
+        'phone_number' => 'numeric|min:10',
+        'email' => 'email',
+        'residence' => 'string|max:255',
+        'kin_full_name' => 'sometimes|nullable|min:3|string',
+        'kin_gender' => 'sometimes|nullable|min:3|string',
+        'kin_phone_number' => 'sometimes|nullable|numeric|min:10',
+        'kin_email' => 'sometimes|nullable|email',
+        'kin_residence' => 'sometimes|nullable|string|max:255',
     ];
 
     public function updated($propertyName)
@@ -66,14 +51,42 @@ class CreatePatientComponent extends Component
         $this->validateOnly($propertyName);
     }
 
-    public function storeAdultPatient()
+    public function storePatient()
     {
         $this->validate();
-    }
 
-    public function storeChildPatient()
-    {
-        $this->validate();
+        $patient = Patient::create([
+            'user_id' => Auth::user()->id,
+            'full_name' => $this->full_name,
+            'gender' => $this->gender,
+            'date_of_birth' => $this->dob,
+            'age' => $this->age,
+            'phone_number' => $this->phone_number,
+            'email' => $this->email,
+            'residence' => $this->residence,
+        ]);
+
+
+        VisitInfo::create([
+            'user_id' => Auth::user()->id,
+            'patient_id' => $patient->id,
+            'temperature' => $this->temperature,
+            'weight' => $this->weight,
+            'height' => $this->height,
+        ]);
+
+        NextOfKin::create([
+            'user_id' => Auth::user()->id,
+            'patient_id' => $patient->id,
+            'name' => $this->kin_full_name,
+            'gender' => $this->kin_gender,
+            'phone_number' => $this->kin_phone_number,
+            'email' => $this->kin_email,
+            'residence' => $this->kin_residence,
+            'relationship_to_patient' => $this->patient_relation,
+        ]);
+
+        return redirect()->to(route('patients.index'));
     }
 
     public function render()
