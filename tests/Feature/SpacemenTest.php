@@ -6,17 +6,26 @@ use App\Models\Spacemen;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
+use Spatie\Permission\Models\Role;
 use Tests\TestCase;
 
 class SpacemenTest extends TestCase
 {
     use RefreshDatabase;
 
+    private User $user;
+    public function setUP(): void
+    {
+        parent::setUp();
+        $this->user = User::factory()->create();
+        $admin = Role::create(['name' => 'Admin']);
+        $this->user->assignRole($admin);
+    }
+
     /** @test */
     public function test_spacemen_page_can_be_rendered_with_success(): void
     {
-        $user = User::factory()->create();
-        $response = $this->actingAs($user)->get(route('spacemens.index'));
+        $response = $this->actingAs($this->user)->get(route('spacemens.index'));
         $view = $this->view('pages.spacemens.index');
 
         $response->assertOk();
@@ -26,11 +35,9 @@ class SpacemenTest extends TestCase
     /** @test */
     public function a_spacemen_can_be_added(): void
     {
-        $this->withoutExceptionHandling();
-        $user = User::factory()->create();
-        $response = $this->actingAs($user)->post(route('spacemens.store'), [
+        $response = $this->actingAs($this->user)->post(route('spacemens.store'), [
             'spacemen' => 'blood',
-            'user_id' => $user->id,
+            'user_id' => $this->user->id,
         ]);
 
         $this->assertDatabaseCount('spacemens', 1);
@@ -40,10 +47,9 @@ class SpacemenTest extends TestCase
     /** @test */
     public function spacemen_is_required(): void
     {
-        $user = User::factory()->create();
-        $response = $this->actingAs($user)->post(route('spacemens.store'), [
+        $response = $this->actingAs($this->user)->post(route('spacemens.store'), [
             'spacemen' => '',
-            'user_id' => $user->id,
+            'user_id' => $this->user->id,
         ]);
 
         $response->assertSessionHasErrors('spacemen');
@@ -52,17 +58,16 @@ class SpacemenTest extends TestCase
     /** @test */
     public function spacemen_can_be_updated(): void
     {
-        $user = User::factory()->create();
-        $data = $this->actingAs($user)->post(route('spacemens.store'), [
+        $data = $this->actingAs($this->user)->post(route('spacemens.store'), [
             'spacemen' => 'blood',
-            'user_id' => $user->id,
+            'user_id' => $this->user->id,
         ]);
 
         $spacemen = Spacemen::first();
 
-        $response = $this->actingAs($user)->put(route('spacemens.update', $spacemen->id), [
+        $response = $this->actingAs($this->user)->put(route('spacemens.update', $spacemen->id), [
             'spacemen' => 'urine',
-            'user_id' => $user->id,
+            'user_id' => $this->user->id,
         ]);
 
         $this->assertEquals('urine', Spacemen::first()->spacemen);
@@ -75,9 +80,9 @@ class SpacemenTest extends TestCase
         $this->withoutExceptionHandling();
         $user = User::factory()->create();
 
-        $this->actingAs($user)->post(route('spacemens.store'), [
+        $this->actingAs($this->user)->post(route('spacemens.store'), [
             'spacemen' => 'blood',
-            'user_id' => $user->id,
+            'user_id' => $this->user->id,
         ]);
         $spacemen = Spacemen::first();
         $response = $this->delete(route('spacemens.destroy', $spacemen->id));

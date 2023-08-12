@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'NUGSOFT LAB') }}</title>
 
     <!-- Fonts -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
@@ -35,6 +35,40 @@
             document.querySelector('body').classList.add('sidebar-expanded');
         } else {
             document.querySelector('body').classList.remove('sidebar-expanded');
+        }
+    </script>
+    <script>
+        let modal = document.getElementById("modal");
+
+        function modalHandler(val) {
+            if (val) {
+                fadeIn(modal);
+            } else {
+                fadeOut(modal);
+            }
+        }
+
+        function fadeOut(el) {
+            el.style.opacity = 1;
+            (function fade() {
+                if ((el.style.opacity -= 0.1) < 0) {
+                    el.style.display = "none";
+                } else {
+                    requestAnimationFrame(fade);
+                }
+            })();
+        }
+
+        function fadeIn(el, display) {
+            el.style.opacity = 0;
+            el.style.display = display || "flex";
+            (function fade() {
+                let val = parseFloat(el.style.opacity);
+                if (!((val += 0.2) > 1)) {
+                    el.style.opacity = val;
+                    requestAnimationFrame(fade);
+                }
+            })();
         }
     </script>
 

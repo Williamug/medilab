@@ -13,11 +13,12 @@ return new class extends Migration
     {
         Schema::create('results', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->nullable();
+            $table->foreignId('user_id')->nullable()->constrained()->cascadeOnDelete();
             $table->string('result');
             $table->string('code');
             $table->string('symbol');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

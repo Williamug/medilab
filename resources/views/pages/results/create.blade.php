@@ -1,12 +1,12 @@
 <x-app-layout>
     <x-slot name="title">
-        Results
+        Result Options
     </x-slot>
     <x-app.card>
         <x-slot name="banner">
             <div class="flex">
                 <div class="flex-1">
-                    Results
+                    Result Options
                 </div>
                 <div>
                     <x-app.back href="{{ route('results.index') }}" />
@@ -15,7 +15,7 @@
         </x-slot>
 
         <x-app.flash-message />
-        
+
         <div>
             <div class="space-y-4">
                 <div class="mb-4">
@@ -35,6 +35,7 @@
                         <x-jet-label for="result" value="{{ __('Result *') }}" />
                         <x-jet-input class="md:w-2/3" id="result" type="text" name="result" :value="old('result')"
                             autofocus />
+                        <x-jet-input-error for="result" />
                     </div>
                 </div>
                 <!-- /.result -->
@@ -45,6 +46,7 @@
                         <x-jet-label for="code" value="{{ __('Code*') }}" />
                         <x-jet-input class="md:w-2/3" id="code" type="text" name="code" :value="old('code')"
                             autofocus />
+                        <x-jet-input-error for="code" />
                     </div>
                 </div>
                 <!-- /.code -->
@@ -55,6 +57,7 @@
                         <x-jet-label for="symbol" value="{{ __('Symbol *') }}" />
                         <x-jet-input class="md:w-2/3" id="symbol" type="text" name="symbol" :value="old('symbol')"
                             autofocus />
+                        <x-jet-input-error for="symbol" />
                     </div>
                 </div>
                 <!-- /.symbol -->

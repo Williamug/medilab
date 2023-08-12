@@ -18,12 +18,22 @@ class PatientPermissionsSeeder extends Seeder
             'name' => 'Patient',
         ]);
 
-        DB::table('permissions')->insert([
-            'name'       => 'View patient module',
-            'guard_name' => 'web',
-            'module_id'  => $patient->id,
-            'created_at' => now(),
-            'updated_at' => now(),
-        ]);
+        $patient_permissions = [
+            'view patient module',
+            'view patient',
+            'add patient',
+            'edit patient',
+            'delete patient',
+        ];
+
+        foreach ($patient_permissions as $permission) {
+            DB::table('permissions')->insert([
+                'name'       => $permission,
+                'guard_name' => 'web',
+                'module_id'  => $patient->id,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]);
+        }
     }
 }

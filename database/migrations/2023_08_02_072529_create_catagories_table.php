@@ -13,9 +13,11 @@ return new class extends Migration
     {
         Schema::create('catagories', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->nullable()->constrained()->cascadeOnDelete();
             $table->string('catagory_name');
             $table->text('description')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

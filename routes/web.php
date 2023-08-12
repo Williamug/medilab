@@ -1,11 +1,17 @@
 <?php
 
+use App\Http\Controllers\AccountsController;
 use App\Http\Controllers\AdminSignUpController;
 use App\Http\Controllers\AssignRolesController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DataFeedController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\CatagoriesController;
+use App\Http\Controllers\CategoryExportController;
+use App\Http\Controllers\DeletedCategoriesController;
+use App\Http\Controllers\DeletedResultOptionsController;
+use App\Http\Controllers\DeletedSpacemenController;
+use App\Http\Controllers\DeletedTestServiceController;
 use App\Http\Controllers\GivePermissionsToRoleController;
 use App\Http\Controllers\PatientsController;
 use App\Http\Controllers\PermissionsController;
@@ -49,6 +55,7 @@ Route::middleware('auth')->group(function () {
         'results' => ResultsController::class,
         'requests' => SubmitTestRequestsController::class,
         'sample-results' => SampleResultsCotroller::class,
+        'accountings' => AccountsController::class,
     ]);
 
     // roles & permissions
@@ -69,15 +76,38 @@ Route::middleware('auth')->group(function () {
     });
 
     // permissions
-    Route::get('/permissions', [PermissionsController::class, 'index'])->name('permissions.index');
+    Route::get('/permissions', [PermissionsController::class, 'index'])
+        ->name('permissions.index');
 
     // assign role to user
     Route::controller(AssignRolesController::class)->group(function () {
-        Route::get('/assign-roles', 'index')->name('assign-roles.index');
-        Route::get('/assign-roles/create', 'create')->name('assign-roles.create');
-        Route::post('/assign-roles', 'store')->name('assign-roles.store');
-        Route::get('/assign-roles/{user}', 'show')->name('assing-roles.show');
-        Route::get('/assign-roles/{user}/edit', 'edit')->name('assing-roles.edit');
-        Route::put('/assign-roles/{user}', 'update')->name('assign-roles.update');
+        Route::get('/assign-roles', 'index')
+            ->name('assign-roles.index');
+        Route::get('/assign-roles/create', 'create')
+            ->name('assign-roles.create');
+        Route::post('/assign-roles', 'store')
+            ->name('assign-roles.store');
+        Route::get('/assign-roles/{user}', 'show')
+            ->name('assing-roles.show');
+        Route::get('/assign-roles/{user}/edit', 'edit')
+            ->name('assing-roles.edit');
+        Route::put('/assign-roles/{user}', 'update')
+            ->name('assign-roles.update');
     });
+
+    // restore routes
+    Route::get('/deleted-categories', [DeletedCategoriesController::class, 'index'])
+        ->name('deleted-categories.index');
+
+    Route::get('/deleted-test-services', [DeletedTestServiceController::class, 'index'])
+        ->name('deleted-test-service.index');
+
+    Route::get('/deleted-spacemen', [DeletedSpacemenController::class, 'index'])
+        ->name('deleted-spacemen.index');
+
+    Route::get('/deleted-result-options', [DeletedResultOptionsController::class, 'index'])
+        ->name('deleted-result-options.index');
+
+    // exports
+    Route::get('/export-categories', [CategoryExportController::class, 'index'])->name('export-categories.index');
 });

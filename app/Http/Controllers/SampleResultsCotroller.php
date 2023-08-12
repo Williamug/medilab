@@ -18,12 +18,14 @@ class SampleResultsCotroller extends Controller
     // view a list of patients
     public function index(): View
     {
+        $this->authorize('view test result module');
         return view('pages.sample-results.index');
     }
 
     // display page for adding a new patient
     public function create(): View
     {
+        $this->authorize('add test result');
         $patients = Patient::all();
         $test_services = TestService::all();
         $spacemens = Spacemen::all();
@@ -33,10 +35,11 @@ class SampleResultsCotroller extends Controller
     }
 
     // display single record
-    // public function show(Patient $patient): View
-    // {
-    //     return view('pages.patients.show', compact('patient'));
-    // }
+    public function show(TestRequst $sample_result): View
+    {
+        $this->authorize('view test result');
+        return view('pages.sample-results.show', compact('sample_result'));
+    }
 
     // store patient info in database
     // public function store(StorePatientRequest $request): RedirectResponse
@@ -48,6 +51,7 @@ class SampleResultsCotroller extends Controller
     // show edit view
     public function edit(TestRequst $sample_result): View
     {
+        $this->authorize('edit test result');
         $spacemens = Spacemen::all();
         $results = Result::all();
 

@@ -73,13 +73,13 @@
                                             </option>
                                     @endforeach --}}
                     </select>
-                    <x-jet-input-error for="class_id" />
+                    <x-jet-input-error for="test_service_id" />
                 </div>
                 <!-- /.spacemen used -->
 
                 <!-- Results obtained -->
                 <div class="mt-3 mb-3">
-                    <x-jet-label for="class" value="{{ __('Results obtained') }}" />
+                    <x-jet-label for="test_service_id" value="{{ __('Results obtained') }}" />
                     <select
                         class="w-2/3 border-gray-300 rounded-md shadow-sm dark:border-gray-900 dark:text-gray-400 dark:bg-gray-700 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 form-select"
                         name="test_service_id">
@@ -90,7 +90,7 @@
                                             </option>
                                     @endforeach --}}
                     </select>
-                    <x-jet-input-error for="class_id" />
+                    <x-jet-input-error for="test_service_id" />
                 </div>
                 <!-- /.Results obtained -->
 

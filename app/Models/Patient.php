@@ -7,17 +7,22 @@ use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Patient extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
     protected $fillable = [
+        'user_id',
         'full_name',
-        'phone_number',
         'gender',
-        'birth_date',
-        'residence'
+        'date_of_birth',
+        'age',
+        'phone_number',
+        'email',
+        'residence',
     ];
 
     protected $casts = [
@@ -28,7 +33,7 @@ class Patient extends Model
     public function age(): Attribute
     {
         return new Attribute(
-            get: fn () => Carbon::parse($this->attributes['birth_date'])->age
+            get: fn () => Carbon::parse($this->attributes['date_of_birth'])->age
         );
     }
 
@@ -46,5 +51,11 @@ class Patient extends Model
     public function test_requsets(): HasMany
     {
         return $this->hasMany(TestRequst::class);
+    }
+
+    // get a corresponding visit information
+    public function visit_info(): HasOne
+    {
+        return $this->hasOne(VisitInfo::class);
     }
 }

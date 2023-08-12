@@ -13,7 +13,9 @@ return new class extends Migration
     {
         Schema::create('sample_results', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->nullable()->constrained()->cascadeOnDelete();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

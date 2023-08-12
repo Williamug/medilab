@@ -16,6 +16,7 @@
                 </div>
             </div>
         </x-slot>
+        <hr />
         <div>
             <div class="grid grid-cols-2 mb-4">
                 <div class="px-4 py-2 text-base font-bold dark:text-gray-400">
@@ -40,7 +41,11 @@
                     Date of birth:
                 </div>
                 <div class="px-2 py-2 dark:text-gray-400">
-                    {{ $patient->birth_date->format('d/M/Y') }}
+                    {{ $patient->age }}
+                    {{-- @if (!is_null($patient->birth_date))
+                    @else
+                        {{ $patient->age }}
+                    @endif --}}
                 </div>
             </div>
 

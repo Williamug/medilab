@@ -18,12 +18,22 @@ class TestRequestPermissionsSeeder extends Seeder
             'name' => 'Test Request',
         ]);
 
-        DB::table('permissions')->insert([
-            'name'       => 'View test request module',
-            'guard_name' => 'web',
-            'module_id'  => $test_request->id,
-            'created_at' => now(),
-            'updated_at' => now(),
-        ]);
+        $test_request_permission = [
+            'view test request module',
+            'view test request',
+            'add test request',
+            'edit test request',
+            'delete test request',
+        ];
+
+        foreach ($test_request_permission as $permission) {
+            DB::table('permissions')->insert([
+                'name'       => $permission,
+                'guard_name' => 'web',
+                'module_id'  => $test_request->id,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]);
+        }
     }
 }

@@ -18,12 +18,22 @@ class AccountPermissionsSeeder extends Seeder
             'name' => 'Accounting',
         ]);
 
-        DB::table('permissions')->insert([
-            'name'       => 'View accounting module',
-            'guard_name' => 'web',
-            'module_id'  => $accounting->id,
-            'created_at' => now(),
-            'updated_at' => now(),
-        ]);
+        $accounting_permission = [
+            'view accounting module',
+            'view accounting',
+            'add accounting',
+            'edit accounting',
+            'delete accounting',
+        ];
+
+        foreach ($accounting_permission as $permission) {
+            DB::table('permissions')->insert([
+                'name'       => $permission,
+                'guard_name' => 'web',
+                'module_id'  => $accounting->id,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]);
+        }
     }
 }

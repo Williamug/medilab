@@ -14,7 +14,7 @@ class TestResultsListComponent extends Component
     public bool $isOpenEdit = false;
     public bool $isOpenDelete = false;
 
-    public $perPage = 3;
+    public $perPage = 15;
     public $sortField = 'patient_id';
     public $sortAsc = true;
     public $search = '';
@@ -40,6 +40,6 @@ class TestResultsListComponent extends Component
             ->orderBy($this->sortField, $this->sortAsc ? 'asc' : 'desc')
             ->paginate($this->perPage);
 
-        return view('livewire.submit-test-request-component', compact('test_requests'));
+        return view('livewire.test-results-list-component', compact('test_requests'));
     }
 }

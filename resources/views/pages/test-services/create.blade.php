@@ -1,12 +1,12 @@
 <x-app-layout>
     <x-slot name="title">
-        Test Service
+        Lab Service
     </x-slot>
     <x-app.card>
         <x-slot name="banner">
             <div class="flex">
                 <div class="flex-1">
-                    Test Service
+                    Lab Service
                 </div>
                 <div>
                     <x-app.back href="{{ route('test-services.index') }}" />
@@ -42,6 +42,7 @@
                         <x-jet-label for="test_name" value="{{ __('Test Name') }}" />
                         <x-jet-input class="md:w-2/3" id="test_name" type="text" name="test_name" :value="old('test_name')"
                             autofocus />
+                        <x-jet-input-error for="test_name" />
                     </div>
                 </div>
 

@@ -27,12 +27,13 @@
                         <x-jet-label for="spacemen" value="{{ __('Test Name') }}" />
                         <x-jet-input class="md:w-2/3" id="spacemen" type="text" name="spacemen" :value="old('spacemen') ?? $spacemen->spacemen"
                             autofocus />
+                        <x-jet-input-error for="spacemen" />
                     </div>
                 </div>
 
                 <div class="flex items-center justify-between mt-6">
                     <x-jet-button class="ml-3">
-                        {{ __('Save') }}
+                        {{ __('Update') }}
                     </x-jet-button>
                 </div>
             </form>

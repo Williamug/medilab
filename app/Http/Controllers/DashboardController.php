@@ -17,6 +17,7 @@ class DashboardController extends Controller
      */
     public function index()
     {
+        // $this->authorize('view  dashboard module');
         return view('pages/dashboard/dashboard');
     }
 }

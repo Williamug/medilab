@@ -6,6 +6,7 @@ use App\Models\Catagory;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
+use Spatie\Permission\Models\Role;
 use Tests\TestCase;
 
 class CatagoryTest extends TestCase
@@ -15,8 +16,11 @@ class CatagoryTest extends TestCase
     /** @test */
     public function test_that_catagory_returns_a_successfull_response(): void
     {
-        $this->actingAs(User::factory()->create());
-        $response = $this->get(route('catagories.index'));
+        $user = User::factory()->create();
+        $admin = Role::create(['name' => 'Admin']);
+        $user->assignRole($admin);
+
+        $response = $this->actingAs($user)->get(route('catagories.index'));
         $view = $this->view('pages.catagories.index');
 
         $response->assertStatus(200);
@@ -26,8 +30,11 @@ class CatagoryTest extends TestCase
     /** @test */
     public function a_user_can_add_catagories(): void
     {
-        $this->actingAs(User::factory()->create());
-        $response = $this->post(route('catagories.store'), [
+        $user = User::factory()->create();
+        $admin = Role::create(['name' => 'Admin']);
+        $user->assignRole($admin);
+
+        $response = $this->actingAs($user)->post(route('catagories.store'), [
             'catagory_name' => 'Typhoid Test',
             'description' => 'lorem ipsum dor sit',
         ]);
@@ -40,8 +47,11 @@ class CatagoryTest extends TestCase
     /** @test */
     public function catagory_name_is_required(): void
     {
-        $this->actingAs(User::factory()->create());
-        $response = $this->post(route('catagories.store'), [
+        $user = User::factory()->create();
+        $admin = Role::create(['name' => 'Admin']);
+        $user->assignRole($admin);
+
+        $response = $this->actingAs($user)->post(route('catagories.store'), [
             'catagory_name' => '',
             'description' => 'lorem ipsum',
         ]);
@@ -53,8 +63,11 @@ class CatagoryTest extends TestCase
     public function a_user_can_delete_record(): void
     {
         $this->withoutExceptionHandling();
-        $this->actingAs(User::factory()->create());
-        $this->post(route('catagories.store'), [
+        $user = User::factory()->create();
+        $admin = Role::create(['name' => 'Admin']);
+        $user->assignRole($admin);
+
+        $response = $this->actingAs($user)->post(route('catagories.store'), [
             'catagory_name' => 'Typhoid',
             'description' => 'lorem ipsum',
         ]);

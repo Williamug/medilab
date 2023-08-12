@@ -5,10 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class TestRequst extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
     protected $fillable = ['patient_id', 'test_service_id', 'spacemen_id', 'result_id'];
 
@@ -38,6 +39,7 @@ class TestRequst extends Model
     {
         return $this->belongsTo(Spacemen::class);
     }
+
     //Get the result that owns the TestRequst
     public function result(): BelongsTo
     {

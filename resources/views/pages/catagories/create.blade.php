@@ -21,8 +21,9 @@
                 <div class="space-y-4">
                     <div class="mb-4">
                         <x-jet-label for="category" value="{{ __('Category') }}" />
-                        <x-jet-input class="md:w-2/3" id="category" type="category" name="catagory_name" :value="old('category')"
-                            autofocus />
+                        <x-jet-input class="md:w-2/3" id="category" type="category" name="catagory_name"
+                            :value="old('category')" autofocus />
+                        <x-jet-input-error for="catagory_name" />
                     </div>
                 </div>
 

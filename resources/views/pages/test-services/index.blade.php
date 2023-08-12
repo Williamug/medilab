@@ -1,10 +1,10 @@
 <x-app-layout>
     <x-slot name="title">
-        Test Services
+        Lab Services
     </x-slot>
     <x-app.card>
         <x-slot name="banner">
-            Test Services
+            Lab Services
         </x-slot>
         <x-app.flash-message />
         <div>

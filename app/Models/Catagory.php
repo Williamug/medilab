@@ -5,12 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Catagory extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
-    protected $fillable = ['catagory_name', 'description'];
+
+    protected $fillable = ['user_id', 'catagory_name', 'description'];
 
     public static function search($query)
     {

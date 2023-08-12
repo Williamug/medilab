@@ -14,12 +14,14 @@ class ResultsController extends Controller
     // view a list of patients
     public function index(): View
     {
+        $this->authorize('view outcome module');
         return view('pages.results.index');
     }
 
     // display page for adding a new patient
     public function create(): View
     {
+        $this->authorize('add outcome');
         return view('pages.results.create');
     }
 
@@ -33,12 +35,14 @@ class ResultsController extends Controller
     // display single record
     public function show(Result $result): View
     {
+        $this->authorize('view outcome');
         return view('pages.results.show', compact('result'));
     }
 
     // show edit view
     public function edit(Result $result): View
     {
+        $this->authorize('edit outcome');
         return view('pages.results.edit', compact('result'));
     }
 
@@ -52,6 +56,7 @@ class ResultsController extends Controller
     // delete record
     public function destroy(Result $result): RedirectResponse
     {
+        $this->authorize('delete outcome');
         $result->delete();
         return to_route('results.index');
     }
