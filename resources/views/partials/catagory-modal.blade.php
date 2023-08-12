@@ -35,7 +35,7 @@
             </x-slot>
 
             <x-slot name="footer">
-                <x-jet-button class="mr-4" wire:click="storePatient" wire:loading.attr="disabled">
+                <x-jet-button class="mr-4" wire:click="store" wire:loading.attr="disabled">
                     {{ __('Save') }}
                 </x-jet-button>
 
