@@ -9,6 +9,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\CatagoriesController;
 use App\Http\Controllers\CategoryExportController;
 use App\Http\Controllers\DeletedCategoriesController;
+use App\Http\Controllers\DeletedTestServiceController;
 use App\Http\Controllers\GivePermissionsToRoleController;
 use App\Http\Controllers\PatientsController;
 use App\Http\Controllers\PermissionsController;
@@ -92,9 +93,13 @@ Route::middleware('auth')->group(function () {
             ->name('assign-roles.update');
     });
 
+    // restore routes
     Route::get('/deleted-categories', [DeletedCategoriesController::class, 'index'])
         ->name('deleted-categories.index');
-});
 
-// exports
-Route::get('/export-categories', [CategoryExportController::class, 'index'])->name('export-categories.index');
+    Route::get('/deleted-test-services', [DeletedTestServiceController::class, 'index'])
+        ->name('deleted-categories.index');
+
+    // exports
+    Route::get('/export-categories', [CategoryExportController::class, 'index'])->name('export-categories.index');
+});
