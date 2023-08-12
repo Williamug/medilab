@@ -9,6 +9,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\CatagoriesController;
 use App\Http\Controllers\CategoryExportController;
 use App\Http\Controllers\DeletedCategoriesController;
+use App\Http\Controllers\DeletedSpacemenController;
 use App\Http\Controllers\DeletedTestServiceController;
 use App\Http\Controllers\GivePermissionsToRoleController;
 use App\Http\Controllers\PatientsController;
@@ -98,7 +99,10 @@ Route::middleware('auth')->group(function () {
         ->name('deleted-categories.index');
 
     Route::get('/deleted-test-services', [DeletedTestServiceController::class, 'index'])
-        ->name('deleted-categories.index');
+        ->name('deleted-test-service.index');
+
+    Route::get('/deleted-spacemen', [DeletedSpacemenController::class, 'index'])
+        ->name('deleted-spacemen.index');
 
     // exports
     Route::get('/export-categories', [CategoryExportController::class, 'index'])->name('export-categories.index');
