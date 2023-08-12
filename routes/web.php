@@ -9,6 +9,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\CatagoriesController;
 use App\Http\Controllers\CategoryExportController;
 use App\Http\Controllers\DeletedCategoriesController;
+use App\Http\Controllers\DeletedResultOptionsController;
 use App\Http\Controllers\DeletedSpacemenController;
 use App\Http\Controllers\DeletedTestServiceController;
 use App\Http\Controllers\GivePermissionsToRoleController;
@@ -103,6 +104,9 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/deleted-spacemen', [DeletedSpacemenController::class, 'index'])
         ->name('deleted-spacemen.index');
+
+    Route::get('/deleted-result-options', [DeletedResultOptionsController::class, 'index'])
+        ->name('deleted-result-options.index');
 
     // exports
     Route::get('/export-categories', [CategoryExportController::class, 'index'])->name('export-categories.index');
