@@ -26,7 +26,7 @@
                     </span>Excel
                 </x-app.a>
 
-                <x-app.a href="{{ route('deleted-categories.index') }}"
+                <x-app.a href="{{ route('deleted-test-service.index') }}"
                     class="bg-red-500 hover:bg-red-700 active:bg-red-900 focus:outline-none focus:border-red-900 focus:shadow-outline-red">
                     <span class="mr-1">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"
@@ -38,7 +38,7 @@
                     </span>
                     Trash
                 </x-app.a>
-                @can('add category')
+                @can('add test service')
                     <x-app.a href="#" wire:click="openCreateModal">
                         <span>
                             <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="w-4 h-4 bi bi-plus"
