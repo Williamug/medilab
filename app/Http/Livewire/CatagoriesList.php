@@ -57,7 +57,7 @@ class CatagoriesList extends Component
         $this->validateOnly($propertyName);
     }
 
-    public function storePatient()
+    public function store()
     {
         $this->validate();
         Catagory::create([
