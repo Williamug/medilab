@@ -2,7 +2,7 @@
 @if ($isOpenRestore)
     <x-modal>
         <x-slot name="title">
-            Restore {{ $test_service->test_name }}
+            Restore {{ $result_option->result }}
         </x-slot>
 
         <x-slot name="content">
@@ -14,9 +14,9 @@
         </x-slot>
 
         <x-slot name="footer">
-            <x-jet-danger-button class="mr-2" wire:click.prevent="restore({{ $test_service }})"
+            <x-jet-danger-button class="mr-2" wire:click.prevent="restore({{ $result_options }})"
                 wire:loading.attr="disabled">
-                Restore service
+                Restore
             </x-jet-danger-button>
 
             <x-jet-secondary-button wire:click.prevent="closeRestore" wire:loading.attr="disabled">

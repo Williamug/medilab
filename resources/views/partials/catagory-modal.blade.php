@@ -113,9 +113,9 @@
                 <div class="mb-2">
                     You are about to delete this category. Are you sure you want to continue?
                 </div>
-                <small><span class="font-bold">Note: </span> All deleted categories are stored in trash and you can
-                    restore
-                    them later when you need them.</small>
+                <small><span class="font-bold">Note: </span> All deleted categories are stored in trash and can be
+                    restored
+                    later when you need them..</small>
             </div>
         </x-slot>
 

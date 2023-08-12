@@ -13,7 +13,7 @@
                     class="block w-1/2 py-2 pl-8 pr-6 text-sm text-gray-700 placeholder-gray-400 bg-white border border-b border-gray-400 rounded appearance-none sm:rounded-none focus:bg-white focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none" />
             </div>
             <div>
-                <x-app.a href="{{ route('export-categories.index') }}"
+                {{-- <x-app.a href="{{ route('export-categories.index') }}"
                     class="bg-green-500 hover:bg-green-700 active:bg-green-900 focus:outline-none focus:border-green-900 focus:shadow-outline-green">
                     <span class="mr-1">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor"
@@ -24,7 +24,7 @@
                                 d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z" />
                         </svg>
                     </span>Excel
-                </x-app.a>
+                </x-app.a> --}}
 
                 <x-app.a href="{{ route('deleted-test-service.index') }}"
                     class="bg-red-500 hover:bg-red-700 active:bg-red-900 focus:outline-none focus:border-red-900 focus:shadow-outline-red">

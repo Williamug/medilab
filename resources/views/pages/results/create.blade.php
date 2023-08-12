@@ -1,12 +1,12 @@
 <x-app-layout>
     <x-slot name="title">
-        Results
+        Result Options
     </x-slot>
     <x-app.card>
         <x-slot name="banner">
             <div class="flex">
                 <div class="flex-1">
-                    Results
+                    Result Options
                 </div>
                 <div>
                     <x-app.back href="{{ route('results.index') }}" />

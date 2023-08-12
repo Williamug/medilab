@@ -144,9 +144,9 @@
                 <div class="mb-2">
                     You are about to delete this lab service. Are you sure you want to continue?
                 </div>
-                <small><span class="font-bold">Note: </span> All deleted lab services are stored in a trash and you can
-                    restore
-                    them later when you need them.</small>
+                <small><span class="font-bold">Note: </span> All deleted lab services are stored in a trash and can be
+                    restored
+                    later when you need them.</small>
             </div>
         </x-slot>
 

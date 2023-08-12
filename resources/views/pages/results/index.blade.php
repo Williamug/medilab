@@ -1,10 +1,10 @@
 <x-app-layout>
     <x-slot name="title">
-        Results
+        Results Options
     </x-slot>
     <x-app.card>
         <x-slot name="banner">
-            Results
+            Results Options
         </x-slot>
         <x-app.flash-message />
         <div>
