@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Models\Catagory;
+use App\Models\ServiceCategory;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -141,7 +142,7 @@ class CatagoriesList extends Component
     public function render()
     {
         // order results about on either ascending or discending order
-        $categories = Catagory::search($this->search)
+        $categories = ServiceCategory::search($this->search)
             ->orderBy($this->sortField, $this->sortAsc ? 'asc' : 'desc')
             ->paginate($this->perPage);
 
