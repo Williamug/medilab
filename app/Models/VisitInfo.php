@@ -13,6 +13,7 @@ class VisitInfo extends Model
     protected $fillable = [
         'user_id',
         'patient_id',
+        'age',
         'temperature',
         'weight',
         'height',
