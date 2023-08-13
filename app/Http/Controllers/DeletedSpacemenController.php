@@ -9,6 +9,6 @@ class DeletedSpacemenController extends Controller
 {
     public function index(): View
     {
-        return view('pages.catagories.deleted-categories.index');
+        return view('deleted-resources.spacemen');
     }
 }
