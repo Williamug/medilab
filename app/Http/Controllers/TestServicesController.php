@@ -12,11 +12,7 @@ use Illuminate\Http\Request;
 
 class TestServicesController extends Controller
 {
-    public function index(): View
-    {
-        $this->authorize('view test service module');
-        return view('pages.test-services.index');
-    }
+
 
     public function create(): View
     {
