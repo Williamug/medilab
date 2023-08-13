@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Models\Catagory;
+use App\Models\ServiceCategory;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -12,11 +13,11 @@ class DeletedCategoriesComponent extends Component
 
     public bool $isOpenRestore = false;
     public $categories;
-    public $catagory_id;
+    public $category_id;
 
     public function openRestoreModal(int $id): void
     {
-        $this->catagory_id = $id;
+        $this->category_id = $id;
         $this->openRestore();
     }
 
@@ -32,15 +33,15 @@ class DeletedCategoriesComponent extends Component
 
     public function restore()
     {
-        Catagory::onlyTrashed()->where('id', $this->catagory_id)->restore();
+        ServiceCategory::onlyTrashed()->where('id', $this->category_id)->restore();
         $this->closeRestore();
-        session()->flash('success', "Lab service category has been restored.");
-        return redirect()->to(route('catagories.index'));
+        session()->flash('success', "Service category has been restored.");
+        return redirect()->to(route('service-categories.index'));
     }
 
     public function mount()
     {
-        $this->categories = Catagory::onlyTrashed()->get();
+        $this->categories = ServiceCategory::onlyTrashed()->get();
     }
     public function render()
     {

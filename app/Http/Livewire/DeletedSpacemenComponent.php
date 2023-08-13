@@ -32,7 +32,7 @@ class DeletedSpacemenComponent extends Component
         Spacemen::onlyTrashed()->where('id', $this->spacemen_id)->restore();
         $this->closeRestore();
         session()->flash('success', "Spacemen has been restored.");
-        return redirect()->to(route('test-services.index'));
+        return redirect()->to(route('spacemen.index'));
     }
 
     public function mount()
