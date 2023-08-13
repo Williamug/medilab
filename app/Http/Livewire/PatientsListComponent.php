@@ -15,7 +15,7 @@ class PatientsListComponent extends Component
     public bool $isOpenDelete = false;
 
     public $perPage = 15;
-    public $sortField = 'full_name';
+    public $sortField = 'registration_number';
     public $sortAsc = true;
     public $search = '';
     // sort by class
