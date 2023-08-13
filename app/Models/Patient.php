@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -14,8 +15,12 @@ class Patient extends Model
 {
     use HasFactory, SoftDeletes;
 
+    protected $with = ['next_of_kin'];
+
     protected $fillable = [
         'user_id',
+        'next_of_kin_id',
+        'registration_number',
         'full_name',
         'gender',
         'date_of_birth',
@@ -57,5 +62,10 @@ class Patient extends Model
     public function visit_info(): HasOne
     {
         return $this->hasOne(VisitInfo::class);
+    }
+
+    public function next_of_kin(): BelongsTo
+    {
+        return $this->belongsTo(NextOfKin::class);
     }
 }
