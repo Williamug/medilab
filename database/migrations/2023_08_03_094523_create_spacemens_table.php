@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('spacemens', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->nullable()->constrained()->cascadeOnDelete();
+            $table->foreignId('user_id')->nullable();
             $table->string('spacemen');
             $table->timestamps();
             $table->softDeletes();
