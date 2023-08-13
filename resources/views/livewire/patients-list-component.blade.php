@@ -1,7 +1,7 @@
 <div>
     <div>
         <div class="flex my-2 sm:flex-row">
-            <div class="relative block flex-1">
+            <div class="relative flex-1 block">
                 <span class="absolute inset-y-0 left-0 flex items-center h-full pl-2">
                     <svg viewBox="0 0 24 24" class="w-4 h-4 text-gray-500 fill-current">
                         <path
@@ -27,11 +27,20 @@
                 @endcan
             </div>
         </div>
-        <div class="px-4 py-4 -mx-4 overflow-x-auto sm:-mx-8 sm:px-8">
+        <div class="px-4 -mx-4 overflow-x-auto sm:-mx-8 sm:px-8">
             <div class="inline-block min-w-full overflow-hidden rounded shadow">
                 <table class="min-w-full leading-normal">
                     <thead>
                         <tr>
+                            <th
+                                class="px-5 py-3 text-xs font-semibold tracking-wider text-left text-gray-600 uppercase bg-gray-100 border-b-2 border-gray-200">
+                                <a wire:click.prevent="sortBy('registration_number')" role="button" href="#"
+                                    class="flex">
+                                    Reg. No.
+                                    @include('partials.sort_icons', ['field' => 'registration_number'])
+                                </a>
+                            </th>
+
                             <th
                                 class="px-5 py-3 text-xs font-semibold tracking-wider text-left text-gray-600 uppercase bg-gray-100 border-b-2 border-gray-200">
                                 <a wire:click.prevent="sortBy('full_name')" role="button" href="#"
@@ -53,7 +62,7 @@
                                 class="px-5 py-3 text-xs font-semibold tracking-wider text-left text-gray-600 uppercase bg-gray-100 border-b-2 border-gray-200">
                                 <a wire:click.prevent="sortBy('birth_date')" role="button" href="#"
                                     class="flex">
-                                    Date of Birth
+                                    Age
                                     @include('partials.sort_icons', ['field' => 'birth_date'])
                                 </a>
                             </th>
@@ -74,6 +83,12 @@
                     <tbody>
                         @foreach ($patients as $patient)
                             <tr>
+                                <td class="px-5 py-5 text-sm bg-white border-b border-gray-200">
+                                    <p class="text-gray-900 whitespace-no-wrap">
+                                        {{ $patient->registration_number }}
+                                    </p>
+                                </td>
+
                                 <td class="px-5 py-5 text-sm bg-white border-b border-gray-200">
                                     <p class="text-gray-900 whitespace-no-wrap">
                                         {{ $patient->full_name }}
@@ -112,7 +127,7 @@
                                                         class="text-green-700 hover:underline hover:text-green-900"
                                                         title="View">
                                                         <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor"
-                                                            class="w-6 h-6 mr-3 text-blue-500 hover:text-blue-800 bi bi-layout-text-window-reverse"
+                                                            class="w-4 h-4 mr-3 text-blue-500 hover:text-blue-800 bi bi-layout-text-window-reverse"
                                                             viewBox="0 0 16 16">
                                                             <path
                                                                 d="M13 6.5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h5a.5.5 0 0 0 .5-.5zm0 3a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h5a.5.5 0 0 0 .5-.5zm-.5 2.5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1 0-1h5z" />
@@ -127,7 +142,7 @@
                                                         class="text-blue-700 hover:underline hover:text-blue-900"
                                                         title="Edit">
                                                         <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor"
-                                                            class="w-6 h-6 mr-3 text-green-600 bi bi-pencil-square hover:text-green-800"
+                                                            class="w-4 h-4 mr-3 text-green-600 bi bi-pencil-square hover:text-green-800"
                                                             viewBox="0 0 16 16">
                                                             <path
                                                                 d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
@@ -147,7 +162,7 @@
                                                             class="text-red-700 hover:underline hover:text-red-900 focus:outline-none dark:text-red-800 dark:hover:text-red-900"
                                                             onclick="javascript:return confirm('You are about to delete this Patient. Are you sure you want to continue?')">
                                                             <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor"
-                                                                class="w-6 h-6 mr-3 text-red-600 bi bi-trash hover:text-red-800"
+                                                                class="w-4 h-4 mr-3 text-red-600 bi bi-trash hover:text-red-800"
                                                                 viewBox="0 0 16 16">
                                                                 <path
                                                                     d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />
