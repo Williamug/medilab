@@ -51,12 +51,32 @@ class CreatePatientComponent extends Component
         $this->validateOnly($propertyName);
     }
 
+    public function unique_registration_number(): int
+    {
+        do {
+            $number = random_int(100000, 999999);
+        } while (Patient::where('registration_number', '=', $number)->first());
+        return $number;
+    }
+
     public function storePatient()
     {
         $this->validate();
 
+        $next_of_kin = NextOfKin::create([
+            'user_id' => Auth::user()->id,
+            'name' => $this->kin_full_name,
+            'gender' => $this->kin_gender,
+            'phone_number' => $this->kin_phone_number,
+            'email' => $this->kin_email,
+            'residence' => $this->kin_residence,
+            'relationship_to_patient' => $this->patient_relation,
+        ]);
+
         $patient = Patient::create([
             'user_id' => Auth::user()->id,
+            'next_of_kin_id' => $next_of_kin->id,
+            'registration_number' => $this->unique_registration_number(),
             'full_name' => $this->full_name,
             'gender' => $this->gender,
             'date_of_birth' => $this->dob,
@@ -73,17 +93,6 @@ class CreatePatientComponent extends Component
             'temperature' => $this->temperature,
             'weight' => $this->weight,
             'height' => $this->height,
-        ]);
-
-        NextOfKin::create([
-            'user_id' => Auth::user()->id,
-            'patient_id' => $patient->id,
-            'name' => $this->kin_full_name,
-            'gender' => $this->kin_gender,
-            'phone_number' => $this->kin_phone_number,
-            'email' => $this->kin_email,
-            'residence' => $this->kin_residence,
-            'relationship_to_patient' => $this->patient_relation,
         ]);
 
         return redirect()->to(route('patients.index'));
