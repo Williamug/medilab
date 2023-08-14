@@ -11,6 +11,6 @@ class TestResultscontroller extends Controller
     public function index(): View
     {
         $this->authorize('view test result module');
-        return view('pages.sample-results.index');
+        return view('pages.test-results.results.index');
     }
 }
