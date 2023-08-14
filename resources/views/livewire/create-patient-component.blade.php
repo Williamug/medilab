@@ -273,6 +273,75 @@
                             <!-- /.next of kin/next_of_kin info-->
                         </div>
 
+                        <!-- service tests to be done -->
+                        <div class="mt-5"></div>
+                        <hr />
+                        <div class="p-1 mt-1 text-lg font-bold uppercase bg-gray-200">
+                            Tests to be carried out
+                        </div>
+
+                        <div class="grid grid-cols-2 gap-8">
+                            <!-- lab service -->
+                            <div>
+                                <x-jet-label for="lab_service_id" value="{{ __('Lab Service') }}" />
+                                <div class="flex">
+                                    <select
+                                        class="w-full border-gray-300 rounded-md shadow-sm dark:border-gray-900 dark:text-gray-400 dark:bg-gray-700 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 form-select"
+                                        wire:model.lazy="lab_service_id.0">
+                                        <option value="">-- select service --</option>
+                                        @foreach ($lab_services as $lab_service)
+                                            <option value="{{ $lab_service->id }}"
+                                                {{ old('lab_service_id') ? 'selected' : '' }}>
+                                                {{ $lab_service->service_name }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+
+                                    <x-jet-button class="block ml-2" wire:click.prevent="add({{ $i }})">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+                                            class="w-4 h-4 bi bi-plus" viewBox="0 0 16 16">
+                                            <path
+                                                d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
+                                        </svg>
+                                    </x-jet-button>
+                                </div>
+                                <x-jet-input-error for="lab_service_id.0" />
+                            </div>
+                            <!-- /.lab service -->
+                        </div>
+                        @foreach ($inputs as $key => $value)
+                            <div class="grid grid-cols-2 gap-8">
+                                <!-- lab service -->
+                                <div>
+                                    <div class="flex">
+                                        <select
+                                            class="w-full border-gray-300 rounded-md shadow-sm dark:border-gray-900 dark:text-gray-400 dark:bg-gray-700 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 form-select"
+                                            wire:model.lazy="lab_service_id.{{ $value }}">
+                                            <option value="">-- select category --</option>
+                                            @foreach ($lab_services as $lab_service)
+                                                <option value="{{ $lab_service->id }}"
+                                                    {{ old('lab_service_id') ? 'selected' : '' }}>
+                                                    {{ $lab_service->service_name }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+
+                                        <x-jet-secondary-button class="block ml-2"
+                                            wire:click.prevent="remove({{ $key }})">
+                                            <svg class="w-4 h-4" fill="none" stroke="currentColor"
+                                                viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16">
+                                                </path>
+                                            </svg>
+                                        </x-jet-secondary-button>
+                                    </div>
+                                    <x-jet-input-error for="lab_service_id.0" />
+                                </div>
+                                <!-- /.lab service -->
+                            </div>
+                        @endforeach
+
                         <div class="flex items-center justify-between mt-6">
                             <x-jet-button class="ml-3">
                                 {{ __('Save') }}
@@ -281,6 +350,4 @@
                     </div>
                 </form>
             </div>
-
-
             <!--/. seletect patient type -->
