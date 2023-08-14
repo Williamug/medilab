@@ -52,12 +52,6 @@ class Patient extends Model
             ->orWhere('birth_date', 'like', '%' . $query . '%');
     }
 
-    // Get all of the test_requsets for the Patient
-    public function test_requsets(): HasMany
-    {
-        return $this->hasMany(TestRequst::class);
-    }
-
     // get a corresponding visit information
     public function visit_info(): HasOne
     {
@@ -67,5 +61,10 @@ class Patient extends Model
     public function next_of_kin(): BelongsTo
     {
         return $this->belongsTo(NextOfKin::class);
+    }
+
+    public function test_results(): HasMany
+    {
+        return $this->hasMany(TestResult::class);
     }
 }
