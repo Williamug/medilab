@@ -72,7 +72,8 @@
                 </div>
             </div>
         </div>
-        @if (!is_null($patient->next_of_kin_id))
+
+        @if (!is_null($patient->next_of_kin->name))
             <div>
                 <div class="mt-8 text-2xl font-bold">
                     Next of Kin Info
