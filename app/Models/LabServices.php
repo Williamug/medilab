@@ -40,4 +40,9 @@ class LabServices extends Model
     {
         return $this->hasMany(TestRequst::class);
     }
+
+    public function test_results(): HasMany
+    {
+        return $this->hasMany(TestResult::class);
+    }
 }
