@@ -14,11 +14,11 @@ return new class extends Migration
         Schema::create('test_results', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->nullable();
-            $table->foreignId('patient_id');
-            $table->foreignId('lab_service_id');
+            $table->foreignId('patient_id')->nullable();
+            $table->foreignId('lab_service_id')->nullable();
             $table->foreignId('spacemen_id')->nullable();
             $table->foreignId('result_option_id')->nullable();
-            $table->string('test_identity');
+            $table->string('test_identity')->nullable();
             $table->text('comment')->nullable();
             $table->timestamps();
             $table->softDeletes();
