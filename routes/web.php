@@ -4,9 +4,7 @@ use App\Http\Controllers\AccountsController;
 use App\Http\Controllers\AdminSignUpController;
 use App\Http\Controllers\AssignRolesController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\DataFeedController;
 use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\CatagoriesController;
 use App\Http\Controllers\CategoryExportController;
 use App\Http\Controllers\DeletedCategoriesController;
 use App\Http\Controllers\DeletedResultOptionsController;
@@ -17,13 +15,13 @@ use App\Http\Controllers\LabServicesController;
 use App\Http\Controllers\PatientsController;
 use App\Http\Controllers\PermissionsController;
 use App\Http\Controllers\ResultOptionsController;
-use App\Http\Controllers\ResultsController;
 use App\Http\Controllers\RolesController;
 use App\Http\Controllers\SampleResultsCotroller;
 use App\Http\Controllers\ServiceCategoriesController;
 use App\Http\Controllers\SpacemensController;
 use App\Http\Controllers\SubmitTestRequestsController;
-use App\Http\Controllers\TestServicesController;
+use App\Http\Controllers\TestResultscontroller;
+use App\Http\Controllers\WaitingListsController;
 
 Route::redirect('/', 'login');
 
@@ -42,7 +40,8 @@ Route::middleware('auth')->group(function () {
         'spacemens' => SpacemensController::class,
         'result-options' => ResultOptionsController::class,
         'requests' => SubmitTestRequestsController::class,
-        'sample-results' => SampleResultsCotroller::class,
+        'waiting-lists' => WaitingListsController::class,
+        'test-results' => TestResultscontroller::class,
         'accountings' => AccountsController::class,
     ]);
 
