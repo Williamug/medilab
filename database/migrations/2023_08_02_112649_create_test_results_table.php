@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreignId('user_id')->nullable();
             $table->foreignId('patient_id')->nullable();
             $table->foreignId('lab_service_id')->nullable();
-            $table->foreignId('spacemen_id')->nullable();
+            $table->text('spacemen')->nullable();
             $table->foreignId('result_option_id')->nullable();
             $table->string('test_identity')->nullable();
             $table->text('comment')->nullable();
