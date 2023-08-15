@@ -29,23 +29,23 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($test_services as $test_service)
+                        @foreach ($lab_services as $lab_service)
                             <tr>
                                 <td class="px-5 py-5 text-sm bg-white border-b border-gray-200">
                                     <p class="text-gray-900 whitespace-no-wrap">
-                                        {{ $test_service->catagory->catagory_name }}
+                                        {{ $lab_service->service_category->category_name }}
                                     </p>
                                 </td>
 
                                 <td class="px-5 py-5 text-sm bg-white border-b border-gray-200">
                                     <p class="text-gray-900 whitespace-no-wrap">
-                                        {{ $test_service->test_name }}
+                                        {{ $lab_service->service_name }}
                                     </p>
                                 </td>
 
                                 <td class="px-5 py-5 text-sm bg-white border-b border-gray-200">
                                     <p class="text-gray-900 whitespace-no-wrap">
-                                        {{ $test_service->price }}
+                                        {{ $lab_service->price }}
                                     </p>
                                 </td>
 
@@ -54,7 +54,7 @@
                                     <p class="text-gray-900 whitespace-no-wrap">
                                     <div class="flex">
                                         <div class="flex">
-                                            <button wire:click.prevent="openRestoreModal({{ $test_service->id }})"
+                                            <button wire:click.prevent="openRestoreModal({{ $lab_service->id }})"
                                                 class="inline-flex items-center px-1 py-1 mb-2 text-xs font-semibold tracking-widest text-white uppercase transition duration-150 ease-in-out bg-indigo-500 border border-transparent rounded-md hover:bg-indigo-700 active:bg-indigo-900 focus:outline-none focus:border-indigo-900 focus:shadow-outline-indigo disabled:opacity-25'"
                                                 title="Restore">
 

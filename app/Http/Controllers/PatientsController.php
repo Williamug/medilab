@@ -33,6 +33,7 @@ class PatientsController extends Controller
     {
         $this->validate($request, [
             'full_name' => ['required', 'min:3'],
+            'registration_number' => ['required', 'unique:patients'],
             'phone_number' => ['numeric', 'min:10'],
             'gender' => 'required',
             'birth_date' => 'sometimes',
@@ -43,6 +44,7 @@ class PatientsController extends Controller
             if ($request['birth_date'] == 'dob') {
                 Patient::create([
                     'full_name' => $request['full_name'],
+                    'registration_number' => $request['registration_number'],
                     'phone_number' => $request['phone_number'],
                     'gender' => $request['gender'],
                     'birth_date' => $request['dob'],
@@ -51,6 +53,7 @@ class PatientsController extends Controller
             } else {
                 $patient = Patient::create([
                     'full_name' => $request['full_name'],
+                    'registration_number' => $request['registration_number'],
                     'phone_number' => $request['phone_number'],
                     'gender' => $request['gender'],
                     'residence' => $request['residence'],

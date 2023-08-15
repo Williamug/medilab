@@ -10,12 +10,6 @@ class DeletedCategoriesController extends Controller
 {
     public function index(): View
     {
-        return view('pages.catagories.deleted-categories.index');
-    }
-
-    public function destroy()
-    {
-        // restore previously deleted models
-        return to_route('catagories.index');
+        return view('pages.categories.deleted-categories.index');
     }
 }

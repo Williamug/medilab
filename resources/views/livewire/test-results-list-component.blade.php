@@ -52,40 +52,40 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($test_requests as $test_request)
+                        @foreach ($test_results as $test_result)
                             <tr>
                                 <td class="px-5 py-5 text-sm bg-white border-b border-gray-200">
                                     <p class="text-gray-900 whitespace-no-wrap">
-                                        {{ $test_request->patient->full_name }}
+                                        {{ $test_result->patient->full_name }}
                                     </p>
                                 </td>
 
                                 <td class="px-5 py-5 text-sm bg-white border-b border-gray-200">
                                     <p class="text-gray-900 whitespace-no-wrap">
-                                        {{ $test_request->patient->gender }}
+                                        {{ $test_result->lab_service->service_name }}
                                     </p>
                                 </td>
 
                                 <td class="px-5 py-5 text-sm bg-white border-b border-gray-200">
-                                    <p class="text-gray-900 whitespace-no-wrap">
+                                    {{-- <p class="text-gray-900 whitespace-no-wrap">
                                         {{ $test_request->test_service->catagory->catagory_name ?? '' }}
+                                    </p> --}}
+                                </td>
+
+                                <td class="px-5 py-5 text-sm bg-white border-b border-gray-200">
+                                    <p class="text-gray-900 whitespace-no-wrap">
+                                        {{-- {{ $test_request->test_service->test_name ?? 'No test' }} --}}
                                     </p>
                                 </td>
 
                                 <td class="px-5 py-5 text-sm bg-white border-b border-gray-200">
                                     <p class="text-gray-900 whitespace-no-wrap">
-                                        {{ $test_request->test_service->test_name ?? 'No test' }}
-                                    </p>
-                                </td>
-
-                                <td class="px-5 py-5 text-sm bg-white border-b border-gray-200">
-                                    <p class="text-gray-900 whitespace-no-wrap">
-                                        {{ $test_request->result->result ?? 'No results yet' }}
+                                        {{-- {{ $test_request->result->result ?? 'No results yet' }} --}}
                                     </p>
                                 </td>
 
                                 {{-- @can('View assignment') --}}
-                                <td class="px-5 py-5 text-sm bg-white border-b border-gray-200">
+                                {{-- <td class="px-5 py-5 text-sm bg-white border-b border-gray-200">
                                     <p class="text-gray-900 whitespace-no-wrap">
                                     <div class="flex">
                                         <div class="flex">
@@ -137,7 +137,7 @@
                                         </div>
                                     </div>
                                     </p>
-                                </td>
+                                </td> --}}
                                 {{-- @endcan --}}
                             </tr>
                         @endforeach

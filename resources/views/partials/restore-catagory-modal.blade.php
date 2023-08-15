@@ -16,7 +16,7 @@
         <x-slot name="footer">
             <x-jet-danger-button class="mr-2" wire:click.prevent="restore({{ $category }})"
                 wire:loading.attr="disabled">
-                Restore category
+                Restore
             </x-jet-danger-button>
 
             <x-jet-secondary-button wire:click.prevent="closeRestore" wire:loading.attr="disabled">

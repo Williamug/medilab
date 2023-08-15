@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreTestRequestRequest;
 use App\Models\Catagory;
+use App\Models\LabServices;
 use App\Models\Patient;
 use App\Models\TestRequst;
+use App\Models\TestResult;
 use App\Models\TestService;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
@@ -23,14 +25,14 @@ class SubmitTestRequestsController extends Controller
     {
         $this->authorize('add test request');
         $patients = Patient::all();
-        $test_services = TestService::all();
+        $test_services = LabServices::all();
 
         return view('pages.submit-test-requests.create', compact('patients', 'test_services'));
     }
 
     public function store(StoreTestRequestRequest $request): RedirectResponse
     {
-        TestRequst::create($request->validated());
+        TestResult::create($request->validated());
         return to_route('requests.index')->with('success', 'Test request has been submitted!');
     }
 }

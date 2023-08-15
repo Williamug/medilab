@@ -72,5 +72,5 @@
             </div>
         </div>
     </div>
-    @include('partials.restore-test-service-modal')
+    @include('partials.restore-spacemen-modal')
 </div>

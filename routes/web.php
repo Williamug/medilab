@@ -4,23 +4,24 @@ use App\Http\Controllers\AccountsController;
 use App\Http\Controllers\AdminSignUpController;
 use App\Http\Controllers\AssignRolesController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\DataFeedController;
 use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\CatagoriesController;
 use App\Http\Controllers\CategoryExportController;
 use App\Http\Controllers\DeletedCategoriesController;
 use App\Http\Controllers\DeletedResultOptionsController;
 use App\Http\Controllers\DeletedSpacemenController;
 use App\Http\Controllers\DeletedTestServiceController;
 use App\Http\Controllers\GivePermissionsToRoleController;
+use App\Http\Controllers\LabServicesController;
 use App\Http\Controllers\PatientsController;
 use App\Http\Controllers\PermissionsController;
-use App\Http\Controllers\ResultsController;
+use App\Http\Controllers\ResultOptionsController;
 use App\Http\Controllers\RolesController;
 use App\Http\Controllers\SampleResultsCotroller;
+use App\Http\Controllers\ServiceCategoriesController;
 use App\Http\Controllers\SpacemensController;
 use App\Http\Controllers\SubmitTestRequestsController;
-use App\Http\Controllers\TestServicesController;
+use App\Http\Controllers\TestResultscontroller;
+use App\Http\Controllers\WaitingListsController;
 
 Route::redirect('/', 'login');
 
@@ -30,31 +31,17 @@ Route::post('/restricted-admin-signup', [AdminSignUpController::class, 'store'])
 
 Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-    Route::controller(CatagoriesController::class)->group(function () {
-        Route::get('/categories', 'index')
-            ->name('catagories.index');
-        Route::get('/categories/create', 'create')
-            ->name('catagories.create');
-        Route::get('/categories/{category}', 'show')
-            ->name('catagories.show');
-        Route::post('/categories', 'store')
-            ->name('catagories.store');
-        Route::get('/categories/{category}/edit', 'edit')
-            ->name('catagories.edit');
-        Route::put('/categories/{category}', 'update')
-            ->name('catagories.update');
-        Route::delete('/categories/{category}', 'destroy')
-            ->name('catagories.destroy');
-    });
+    Route::get('/service-categories', [ServiceCategoriesController::class, 'index'])->name('service-categories.index');
 
     // resource controller [index, create, store, show, edit, update, delete]
     Route::resources([
         'patients' => PatientsController::class,
-        'test-services' => TestServicesController::class,
+        'lab-services' => LabServicesController::class,
         'spacemens' => SpacemensController::class,
-        'results' => ResultsController::class,
+        'result-options' => ResultOptionsController::class,
         'requests' => SubmitTestRequestsController::class,
-        'sample-results' => SampleResultsCotroller::class,
+        'waiting-lists' => WaitingListsController::class,
+        'test-results' => TestResultscontroller::class,
         'accountings' => AccountsController::class,
     ]);
 

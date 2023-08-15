@@ -3,6 +3,8 @@
 namespace App\Http\Livewire;
 
 use App\Models\Catagory;
+use App\Models\LabServices;
+use App\Models\ServiceCategory;
 use App\Models\TestService;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
@@ -17,22 +19,22 @@ class TestServiceListComponent extends Component
     public bool $isOpenDelete = false;
 
     public $perPage = 15;
-    public $sortField = 'test_name';
+    public $sortField = 'service_name';
     public $sortAsc = true;
     public $search = '';
     // sort by class
     public $sortCategory = 'All';
 
-    public $catagory_id;
-    public $test_name;
+    public $service_category_id;
+    public $service_name;
     public $price;
-    public $test_service_id;
+    public $lab_service_id;
     public $categories;
 
     // validation
     protected $rules = [
-        'catagory_id' => 'required',
-        'test_name' => 'required|string|min:1|unique:test_services',
+        'service_category_id' => 'required',
+        'service_name' => 'required|string|min:1|unique:test_services',
         'price' => 'required|numeric',
     ];
 
@@ -48,7 +50,7 @@ class TestServiceListComponent extends Component
     }
     public function resetData()
     {
-        $this->reset('catagory_id', 'test_name', 'price');
+        $this->reset('service_category_id', 'service_name', 'price');
     }
 
     public function openCreateModal()
@@ -70,10 +72,10 @@ class TestServiceListComponent extends Component
     public function store()
     {
         $this->validate();
-        TestService::create([
+        LabServices::create([
             'user_id' => Auth::user()->id,
-            'catagory_id' => $this->catagory_id,
-            'test_name' => $this->test_name,
+            'service_category_id' => $this->service_category_id,
+            'service_name' => $this->service_name,
             'price' => $this->price,
         ]);
 
@@ -83,12 +85,12 @@ class TestServiceListComponent extends Component
 
     public function openEditModal(int $id): void
     {
-        $test_service = TestService::where('id', $id)->first();
+        $lab_service = LabServices::where('id', $id)->first();
 
-        $this->test_service_id   = $id;
-        $this->catagory_id = $test_service->catagory_id;
-        $this->test_name = $test_service->test_name;
-        $this->price = $test_service->price;
+        $this->lab_service_id   = $id;
+        $this->service_category_id = $lab_service->service_category_id;
+        $this->service_name = $lab_service->service_name;
+        $this->price = $lab_service->price;
 
         $this->openEdit();
     }
@@ -107,18 +109,18 @@ class TestServiceListComponent extends Component
     public function update(): void
     {
         $this->validate([
-            'catagory_id' => 'required',
-            'test_name' => 'required|string|min:1',
+            'service_category_id' => 'required',
+            'service_name' => 'required|string|min:1',
             'price' => 'required|integer',
         ]);
 
-        if ($this->test_service_id) {
-            $test_service = TestService::find($this->test_service_id);
+        if ($this->lab_service_id) {
+            $lab_service = LabServices::find($this->lab_service_id);
 
-            $test_service->update([
+            $lab_service->update([
                 'user_id' => Auth::user()->id,
-                'catagory_id' => $this->catagory_id,
-                'test_name' => $this->test_name,
+                'service_category_id' => $this->service_category_id,
+                'service_name' => $this->service_name,
                 'price' => $this->price,
             ]);
 
@@ -126,12 +128,12 @@ class TestServiceListComponent extends Component
             $this->closeEdit();
         }
 
-        session()->flash('success', "{$test_service->test_mame} has been updated.");
+        session()->flash('success', "{$lab_service->service_name} has been updated.");
     }
 
     public function openDeleteModal(int $id): void
     {
-        $this->test_service_id = $id;
+        $this->lab_service_id = $id;
         $this->openDelete();
     }
 
@@ -147,21 +149,21 @@ class TestServiceListComponent extends Component
 
     public function delete(): void
     {
-        TestService::find($this->test_service_id)->delete();
+        LabServices::find($this->lab_service_id)->delete();
         $this->closeDelete();
         session()->flash('success', 'Lab Service has been deleted.');
     }
 
     public function mount(): void
     {
-        $this->categories = Catagory::all();
+        $this->categories = ServiceCategory::all();
     }
 
     // render view to be displayed
     public function render()
     {
         // order results about on either ascending or discending order
-        $test_services = TestService::search($this->search)
+        $test_services = LabServices::search($this->search)
             ->orderBy($this->sortField, $this->sortAsc ? 'asc' : 'desc')
             ->paginate($this->perPage);
 

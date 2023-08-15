@@ -11,16 +11,16 @@
                     <x-jet-validation-errors class="mb-4" />
                 @endif
                 <form>
-                    <!-- result -->
+                    <!-- option -->
                     <div class="space-y-4">
                         <div class="mb-4">
-                            <x-jet-label for="result" value="{{ __('Result Option') }}" />
-                            <x-jet-input class="md:w-2/3" id="result" type="text" wire:model.lazy="result"
-                                :value="old('result')" placeholder="(Ex. Positive)" autofocus />
-                            <x-jet-input-error for="result" />
+                            <x-jet-label for="option" value="{{ __('Result Option') }}" />
+                            <x-jet-input class="md:w-2/3" id="option" type="text" wire:model.lazy="option"
+                                :value="old('option')" placeholder="(Ex. Positive)" autofocus />
+                            <x-jet-input-error for="option" />
                         </div>
                     </div>
-                    <!-- result -->
+                    <!-- option -->
 
                     <!-- code -->
                     <div class="space-y-4">
@@ -73,16 +73,16 @@
                     <!-- hidden field-->
                     <input type="hidden" wire:model="spacemen_id">
 
-                    <!-- result -->
+                    <!-- option -->
                     <div class="space-y-4">
                         <div class="mb-4">
-                            <x-jet-label for="result" value="{{ __('Result Option') }}" />
-                            <x-jet-input class="md:w-2/3" id="result" type="text" wire:model.lazy="result"
-                                :value="old('result')" placeholder="(Ex. Positive)" autofocus />
-                            <x-jet-input-error for="result" />
+                            <x-jet-label for="option" value="{{ __('Result Option') }}" />
+                            <x-jet-input class="md:w-2/3" id="option" type="text" wire:model.lazy="option"
+                                :value="old('option')" placeholder="(Ex. Positive)" autofocus />
+                            <x-jet-input-error for="option" />
                         </div>
                     </div>
-                    <!-- result -->
+                    <!-- option -->
 
                     <!-- code -->
                     <div class="space-y-4">
@@ -127,7 +127,7 @@
 @if ($isOpenDelete)
     <x-modal>
         <x-slot name="title">
-            Delete {{ $result->result }}
+            Delete {{ $result_option->option }}
         </x-slot>
 
         <x-slot name="content">
@@ -142,9 +142,9 @@
         </x-slot>
 
         <x-slot name="footer">
-            <x-jet-danger-button class="mr-2" wire:click.prevent="delete({{ $result }})"
+            <x-jet-danger-button class="mr-2" wire:click.prevent="delete({{ $result_option }})"
                 wire:loading.attr="disabled">
-                Delete Result Option
+                Delete 
             </x-jet-danger-button>
 
             <x-jet-secondary-button wire:click.prevent="closeDelete" wire:loading.attr="disabled">

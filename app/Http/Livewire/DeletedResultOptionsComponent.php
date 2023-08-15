@@ -2,7 +2,7 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\Result;
+use App\Models\ResultOption;
 use Livewire\Component;
 
 class DeletedResultOptionsComponent extends Component
@@ -29,15 +29,15 @@ class DeletedResultOptionsComponent extends Component
 
     public function restore()
     {
-        Result::onlyTrashed()->where('id', $this->result_option_id)->restore();
+        ResultOption::onlyTrashed()->where('id', $this->result_option_id)->restore();
         $this->closeRestore();
         session()->flash('success', "Result option has been restored.");
-        return redirect()->to(route('test-services.index'));
+        return redirect()->to(route('result-options.index'));
     }
 
     public function mount()
     {
-        $this->result_options = Result::onlyTrashed()->get();
+        $this->result_options = ResultOption::onlyTrashed()->get();
     }
     public function render()
     {

@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Models\TestRequst;
+use App\Models\TestResult;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -21,6 +22,8 @@ class TestResultsListComponent extends Component
     // sort by class
     public $sortCategory = 'All';
 
+    public $test_results;
+
     // sort results based on either ascend or discend
     public function sortBy($field)
     {
@@ -32,14 +35,14 @@ class TestResultsListComponent extends Component
         $this->sortField = $field;
     }
 
+    public function mount(): void
+    {
+        $this->test_results = TestResult::all();
+    }
+
     // render view to be displayed
     public function render()
     {
-        // order results about on either ascending or discending order
-        $test_requests = TestRequst::search($this->search)
-            ->orderBy($this->sortField, $this->sortAsc ? 'asc' : 'desc')
-            ->paginate($this->perPage);
-
-        return view('livewire.test-results-list-component', compact('test_requests'));
+        return view('livewire.test-results-list-component');
     }
 }

@@ -2,18 +2,19 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\LabServices;
 use App\Models\TestService;
 use Livewire\Component;
 
 class DeletedTestServices extends Component
 {
     public bool $isOpenRestore = false;
-    public $test_services;
-    public $test_service_id;
+    public $lab_services;
+    public $lab_service_id;
 
     public function openRestoreModal(int $id): void
     {
-        $this->test_service_id = $id;
+        $this->lab_service_id = $id;
         $this->openRestore();
     }
 
@@ -29,15 +30,15 @@ class DeletedTestServices extends Component
 
     public function restore()
     {
-        TestService::onlyTrashed()->where('id', $this->test_service_id)->restore();
+        LabServices::onlyTrashed()->where('id', $this->lab_service_id)->restore();
         $this->closeRestore();
         session()->flash('success', "Lab service has been restored.");
-        return redirect()->to(route('test-services.index'));
+        return redirect()->to(route('lab-services.index'));
     }
 
     public function mount()
     {
-        $this->test_services = TestService::onlyTrashed()->get();
+        $this->lab_services = LabServices::onlyTrashed()->get();
     }
     public function render()
     {
