@@ -1,4 +1,4 @@
-<form wire:submit.prevent="storePatient">
+<form wire:submit.prevent="updatePatient">
     <x-jet-validation-errors class="mt-4" />
     <div class="grid grid-cols-2 gap-8">
         <div>
