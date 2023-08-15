@@ -1,10 +1,13 @@
 <x-app-layout>
     <x-slot name="title">
-        Patient Waiting List
+        Patient to be tested
     </x-slot>
     <x-app.card>
         <x-slot name="banner">
-            Patient Waiting List
+            <div>Patient to be tested</div>
+            <div class="mt-4"></div>
+            <hr />
+            <div class="mt-8"></div>
         </x-slot>
         <x-app.flash-message />
         <div>

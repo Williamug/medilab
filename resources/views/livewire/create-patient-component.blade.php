@@ -37,7 +37,7 @@
                                     <div class="mt-2">
                                         <label class="inline-flex items-center">
                                             <input type="radio" class="form-radio dark:bg-gray-700"
-                                                wire:model.lazy="gender" name="gender" value="male">
+                                                wire:model.lazy="gender" name="gender" value="Male">
                                             <span class="ml-2 dark:text-gray-500">Male</span>
                                         </label>
                                         <label class="inline-flex items-center ml-6">
@@ -343,7 +343,7 @@
                         @endforeach
 
                         <div class="flex items-center justify-between mt-6">
-                            <x-jet-button class="ml-3">
+                            <x-jet-button class="ml-3" wire:loading.attr="disabled">
                                 {{ __('Save') }}
                             </x-jet-button>
                         </div>

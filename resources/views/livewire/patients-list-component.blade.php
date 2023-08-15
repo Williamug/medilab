@@ -58,14 +58,14 @@
                                 </a>
                             </th>
 
-                            <th
+                            {{-- <th
                                 class="px-5 py-3 text-xs font-semibold tracking-wider text-left text-gray-600 uppercase bg-gray-100 border-b-2 border-gray-200">
                                 <a wire:click.prevent="sortBy('birth_date')" role="button" href="#"
                                     class="flex">
                                     Age
                                     @include('partials.sort_icons', ['field' => 'birth_date'])
                                 </a>
-                            </th>
+                            </th> --}}
 
                             <th
                                 class="px-5 py-3 text-xs font-semibold tracking-wider text-left text-gray-600 uppercase bg-gray-100 border-b-2 border-gray-200">
@@ -101,15 +101,15 @@
                                     </p>
                                 </td>
 
-                                <td class="px-5 py-5 text-sm bg-white border-b border-gray-200">
+                                {{-- <td class="px-5 py-5 text-sm bg-white border-b border-gray-200">
                                     <p class="text-gray-900 whitespace-no-wrap">
                                         @if (!is_null($patient->birth_date))
-                                            {{ $patient->age }}
-                                        @else
+                                            {{ $patient->ageFromDob }}
+                                        @elseif(!is_null($patient->age))
                                             {{ $patient->age }}
                                         @endif
                                     </p>
-                                </td>
+                                </td> --}}
 
                                 <td class="px-5 py-5 text-sm bg-white border-b border-gray-200">
                                     <p class="text-gray-900 whitespace-no-wrap">

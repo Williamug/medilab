@@ -50,7 +50,11 @@
                     Age:
                 </div>
                 <div class="px-2 py-2 dark:text-gray-400">
-                    {{ $patient->age }}
+                    @if (!is_null($patient->date_of_birth))
+                        {{ $patient->ageFromDob }}
+                    @else
+                        {{ $patient->age }}
+                    @endif
                 </div>
             </div>
 
@@ -73,7 +77,7 @@
             </div>
         </div>
 
-        @if (!is_null($patient->next_of_kin->name))
+        @if (!is_null($patient->next_of_kin_id))
             <div>
                 <div class="mt-8 text-2xl font-bold">
                     Next of Kin Info
