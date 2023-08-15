@@ -34,7 +34,7 @@ class EditPatientComponent extends Component
         'full_name' => 'required|min:3|string',
         'gender' => 'required|min:3|string',
         'age' => 'sometimes|nullable|numeric',
-        'dob' => 'sometimes|nullable|date',
+        // 'dob' => 'sometimes|nullable|date',
         'phone_number' => 'numeric|min:10',
         'email' => 'sometimes|nullable|email',
         'residence' => 'string|max:255',
