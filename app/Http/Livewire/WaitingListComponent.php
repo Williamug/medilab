@@ -20,6 +20,21 @@ class WaitingListComponent extends Component
     public $inputs = [];
     public $i = 1;
 
+    // validation
+    protected $rules = [
+        'spacemen.0' => 'required',
+        'spacemen.*' => 'required',
+    ];
+
+    protected $listeners = [
+        'addSpacemen' => '$refresh',
+    ];
+
+    public function updated($propertyName)
+    {
+        $this->validateOnly($propertyName);
+    }
+
     public function add($i)
     {
         $i = $i + 1;
@@ -62,22 +77,22 @@ class WaitingListComponent extends Component
         $this->isOpenAddSpacemen = false;
     }
 
-    public function addSpacemen(): void
+    public function addSpacemen()
     {
+        $this->validate();
         if ($this->test_result_id) {
             $test_result = TestResult::find($this->test_result_id);
 
-            foreach ($this->spacemen as $key => $value) {
-                $spacemen = implode(',', $this->spacemen[$key]);
-                $test_result->update([
-                    'result_status' => 'pending',
-                    'test_identity' => $this->unique_random_string(),
-                    'spacemen' => $spacemen
-                ]);
-            }
-            $this->reset('spacemen');
-            $this->closeAddSpacemen();
+            $spacemen = implode(',', $this->spacemen);
+            $test_result->update([
+                'result_status' => 'pending',
+                'test_identity' => $this->unique_random_string(),
+                'spacemen' => $spacemen
+            ]);
         }
+        $this->emitSelf('addSpacemen');
+        $this->reset('spacemen');
+        $this->closeAddSpacemen();
         session()->flash('success', 'Spacemen(s) added');
     }
 
