@@ -137,7 +137,7 @@
                                                     </a>
                                                 @endcan
 
-                                                @can('edit patient')
+                                                {{-- @can('edit patient')
                                                     <a href="{{ route('patients.edit', $patient) }}"
                                                         class="text-blue-700 hover:underline hover:text-blue-900"
                                                         title="Edit">
@@ -150,7 +150,7 @@
                                                                 d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
                                                         </svg>
                                                     </a>
-                                                @endcan
+                                                @endcan --}}
                                             </div>
                                             @can('delete patient')
                                                 <div>
