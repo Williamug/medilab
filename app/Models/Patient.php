@@ -35,7 +35,7 @@ class Patient extends Model
     ];
 
     //Accessor for Age.
-    public function age(): Attribute
+    public function ageFromDob(): Attribute
     {
         return new Attribute(
             get: fn () => Carbon::parse($this->attributes['date_of_birth'])->age
