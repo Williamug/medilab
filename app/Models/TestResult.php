@@ -11,7 +11,7 @@ class TestResult extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $fillable = ['user_id', 'patient_id', 'lab_service_id', 'spacemen_id', 'result_option_id', 'test_identity', 'comment'];
+    protected $fillable = ['user_id', 'patient_id', 'lab_service_id', 'spacemen', 'result_status', 'result_option_id', 'test_identity', 'comment'];
 
     public function patient(): BelongsTo
     {
