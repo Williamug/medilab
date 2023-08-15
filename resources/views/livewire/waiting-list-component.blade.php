@@ -93,10 +93,12 @@
 
                                         <td class="px-5 py-5 text-sm bg-white border-b border-gray-200">
                                             <p class="text-gray-900 whitespace-no-wrap">
-                                                <x-app.a wire:click.prevent="openEditModal({{ $test_result->id }})"
-                                                    href="#" title="Add Results">
-                                                    Results
-                                                </x-app.a>
+                                                @if (!is_null($test_result->test_identity))
+                                                    <x-app.a wire:click.prevent="openEditModal({{ $test_result->id }})"
+                                                        href="#" title="Add Results">
+                                                        Results
+                                                    </x-app.a>
+                                                @endif
                                             </p>
                                         </td>
                                     </tr>

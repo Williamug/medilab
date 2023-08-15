@@ -13,16 +13,18 @@
                     <!-- spacemen -->
                     <div>
                         <div class="flex mb-1">
-                            <select
-                                class="border-gray-300 rounded-md shadow-sm dark:border-gray-900 dark:text-gray-400 dark:bg-gray-700 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 form-select"
-                                wire:model.defer="spacemen.0">
-                                <option value="">-- select spacemen --</option>
-                                @foreach ($spacemens as $spacemen)
-                                    <option value="{{ $spacemen->spacemen }}">
-                                        {{ $spacemen->spacemen }}
-                                    </option>
-                                @endforeach
-                            </select>
+                            <div>
+                                <select
+                                    class="border-gray-300 rounded-md shadow-sm dark:border-gray-900 dark:text-gray-400 dark:bg-gray-700 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 form-select"
+                                    wire:model.defer="spacemen.0">
+                                    <option value="">-- select spacemen --</option>
+                                    @foreach ($spacemens as $spacemen)
+                                        <option value="{{ $spacemen->spacemen }}">
+                                            {{ $spacemen->spacemen }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
 
                             <x-jet-button class="block ml-2" wire:click.prevent="add({{ $i }})">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="w-4 h-4 bi bi-plus"
@@ -60,7 +62,7 @@
                                     </svg>
                                 </x-jet-secondary-button>
                             </div>
-                            <x-jet-input-error for="spacemen.0" />
+                            <x-jet-input-error for="spacemen.*" />
                         </div>
                     @endforeach
                     <!-- /.lab service -->
