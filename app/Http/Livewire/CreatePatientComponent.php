@@ -45,7 +45,7 @@ class CreatePatientComponent extends Component
         'age' => 'sometimes|nullable|numeric',
         'dob' => 'sometimes|nullable|date',
         'phone_number' => 'numeric|min:10',
-        'email' => 'email',
+        'email' => 'sometimes|nullable|email',
         'residence' => 'string|max:255',
         'kin_full_name' => 'sometimes|nullable|min:3|string',
         'kin_gender' => 'sometimes|nullable|min:3|string',
