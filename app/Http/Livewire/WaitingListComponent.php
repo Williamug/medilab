@@ -3,46 +3,82 @@
 namespace App\Http\Livewire;
 
 use App\Models\Patient;
+use App\Models\Spacemen;
 use App\Models\TestResult;
 use Livewire\Component;
+use Illuminate\Support\Str;
 
 class WaitingListComponent extends Component
 {
-    public bool $isOpenReceive = false;
+    public bool $isOpenAddSpacemen = false;
     public $waiting_patients;
-    public $patient_id;
+    public $test_result_id;
+    public $spacemen_id;
+
+    public $spacemens;
+    public $spacemen;
+    public $inputs = [];
+    public $i = 1;
+
+    public function add($i)
+    {
+        $i = $i + 1;
+        $this->i = $i;
+        array_push($this->inputs, $i);
+    }
+
+    public function remove($i)
+    {
+        unset($this->inputs[$i]);
+    }
 
     public function mount(): void
     {
-        $this->waiting_patients = Patient::all();
+        $this->spacemens = Spacemen::all();
+        $this->waiting_patients = Patient::latest()->get();
     }
 
-    public function openReceiveModal(int $id): void
+    public function unique_random_string(): string
     {
-        $this->patient_id = $id;
-        $this->openReceive();
+        do {
+            $text = Str::upper(Str::random(6));
+        } while (TestResult::where('test_identity', '=', $text)->first());
+        return $text;
     }
 
-    public function openReceive(): void
+    public function openAddSpacemenModal(int $id): void
     {
-        $this->isOpenReceive = true;
+        $this->test_result_id = $id;
+        $this->openAddSpacemen();
     }
 
-    public function closeReceive(): void
+    public function openAddSpacemen(): void
     {
-        $this->isOpenReceive = false;
+        $this->isOpenAddSpacemen = true;
     }
 
-    public function receivePatient(): void
+    public function closeAddSpacemen(): void
     {
-        if ($this->patient_id) {
-            $test_result = TestResult::find($this->patient_id);
-            $test_result->update([
-                'result_status' => 'invite',
-            ]);
-            $this->closeReceive();
+        $this->isOpenAddSpacemen = false;
+    }
+
+    public function addSpacemen(): void
+    {
+        if ($this->test_result_id) {
+            $test_result = TestResult::find($this->test_result_id);
+
+            foreach ($this->spacemen as $key => $value) {
+                $spacemen = implode(',', $this->spacemen[$key]);
+                $test_result->update([
+                    'result_status' => 'pending',
+                    'test_identity' => $this->unique_random_string(),
+                    'spacemen' => $spacemen
+                ]);
+            }
+            $this->reset('spacemen');
+            $this->closeAddSpacemen();
         }
-        session()->flash('success', 'Patient invited');
+        session()->flash('success', 'Spacemen(s) added');
     }
 
     public function render()
