@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Models\TestRequst;
+use App\Models\TestResult;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -36,9 +37,7 @@ class AccountingListComponent extends Component
     public function render()
     {
         // order results about on either ascending or discending order
-        $accounts = TestRequst::search($this->search)
-            ->orderBy($this->sortField, $this->sortAsc ? 'asc' : 'desc')
-            ->paginate($this->perPage);
+        $accounts = TestResult::all();
 
         return view('livewire.accounting-list-component', compact('accounts'));
     }
