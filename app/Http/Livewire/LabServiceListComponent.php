@@ -69,7 +69,7 @@ class LabServiceListComponent extends Component
     }
     public function resetData()
     {
-        $this->reset('service_category_id', 'service_name', 'price');
+        $this->reset('service_category_id', 'service_name', 'result_options_id', 'price');
     }
 
     public function openCreateModal()
@@ -90,16 +90,16 @@ class LabServiceListComponent extends Component
 
     public function store()
     {
-        dd($this->result_option_id);
         $this->validate();
-        LabServices::create([
+        $lab_service = LabServices::create([
             'user_id' => Auth::user()->id,
             'service_category_id' => $this->service_category_id,
             'service_name' => $this->service_name,
             'price' => $this->price,
         ]);
+        $lab_service->result_options()->attach($this->result_option_id);
 
-        $this->resetData();
+        $$this->resetData();
         $this->closeModal();
     }
 
