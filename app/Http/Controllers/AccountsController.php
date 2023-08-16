@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 
 class AccountsController extends Controller
 {
+    // 
     public function index(): View
     {
         return view('pages.accountings.index');
