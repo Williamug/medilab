@@ -7,6 +7,9 @@
             </x-slot>
 
             <x-slot name="content">
+                <div class="mb-2">
+                    <span class="font-semibold">Note: </span><span class="mr-1 text-lg"> *</span> Denotes Mandatory.
+                </div>
                 @if ($errors->any())
                     <x-jet-validation-errors class="mb-4" />
                 @endif
@@ -14,7 +17,7 @@
                     <!-- option -->
                     <div class="space-y-4">
                         <div class="mb-4">
-                            <x-jet-label for="option" value="{{ __('Result Option') }}" />
+                            <x-jet-label for="option" value="{{ __('Result Option *') }}" />
                             <x-jet-input class="md:w-2/3" id="option" type="text" wire:model.lazy="option"
                                 :value="old('option')" placeholder="(Ex. Positive)" autofocus />
                             <x-jet-input-error for="option" />
@@ -25,7 +28,7 @@
                     <!-- code -->
                     <div class="space-y-4">
                         <div class="mb-4">
-                            <x-jet-label for="code" value="{{ __('Code') }}" />
+                            <x-jet-label for="code" value="{{ __('Code *') }}" />
                             <x-jet-input class="md:w-2/3" id="code" type="text" wire:model.lazy="code"
                                 :value="old('code')" placeholder="(Ex. POSITIVE)" autofocus />
                             <x-jet-input-error for="code" />
@@ -36,7 +39,7 @@
                     <!-- symbol -->
                     <div class="space-y-4">
                         <div class="mb-4">
-                            <x-jet-label for="symbol" value="{{ __('Symbol') }}" />
+                            <x-jet-label for="symbol" value="{{ __('Symbol *') }}" />
                             <x-jet-input class="md:w-2/3" id="symbol" type="text" wire:model.lazy="symbol"
                                 :value="old('symbol')" placeholder="(Ex. +)" autofocus />
                             <x-jet-input-error for="symbol" />
@@ -69,6 +72,9 @@
             </x-slot>
 
             <x-slot name="content">
+                <div class="mb-2">
+                    <span class="font-semibold">Note: </span><span class="mr-1 text-lg"> *</span> Denotes Mandatory.
+                </div>
                 <form>
                     <!-- hidden field-->
                     <input type="hidden" wire:model="spacemen_id">
@@ -76,7 +82,7 @@
                     <!-- option -->
                     <div class="space-y-4">
                         <div class="mb-4">
-                            <x-jet-label for="option" value="{{ __('Result Option') }}" />
+                            <x-jet-label for="option" value="{{ __('Result Option *') }}" />
                             <x-jet-input class="md:w-2/3" id="option" type="text" wire:model.lazy="option"
                                 :value="old('option')" placeholder="(Ex. Positive)" autofocus />
                             <x-jet-input-error for="option" />
@@ -87,7 +93,7 @@
                     <!-- code -->
                     <div class="space-y-4">
                         <div class="mb-4">
-                            <x-jet-label for="code" value="{{ __('Code') }}" />
+                            <x-jet-label for="code" value="{{ __('Code *') }}" />
                             <x-jet-input class="md:w-2/3" id="code" type="text" wire:model.lazy="code"
                                 :value="old('code')" placeholder="(Ex. POSITIVE)" autofocus />
                             <x-jet-input-error for="code" />
@@ -98,7 +104,7 @@
                     <!-- symbol -->
                     <div class="space-y-4">
                         <div class="mb-4">
-                            <x-jet-label for="symbol" value="{{ __('Symbol') }}" />
+                            <x-jet-label for="symbol" value="{{ __('Symbol *') }}" />
                             <x-jet-input class="md:w-2/3" id="symbol" type="text" wire:model.lazy="symbol"
                                 :value="old('symbol')" placeholder="(Ex. +)" autofocus />
                             <x-jet-input-error for="symbol" />
@@ -144,7 +150,7 @@
         <x-slot name="footer">
             <x-jet-danger-button class="mr-2" wire:click.prevent="delete({{ $result_option }})"
                 wire:loading.attr="disabled">
-                Delete 
+                Delete
             </x-jet-danger-button>
 
             <x-jet-secondary-button wire:click.prevent="closeDelete" wire:loading.attr="disabled">

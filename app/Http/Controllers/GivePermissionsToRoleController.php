@@ -24,7 +24,8 @@ class GivePermissionsToRoleController extends Controller
         // validatation
         Validator::make($request->all(), [
             'role_id' => 'required',
-        ])->validated();
+        ])
+            ->validated();
 
         // Fetch the role id from the database.
         $role = Role::where('id', $request->role_id)->first();
@@ -42,6 +43,7 @@ class GivePermissionsToRoleController extends Controller
 
     public function edit(Role $role): View
     {
+        // fetch models
         $roles = Role::all();
         $modules = Module::all();
         $permissions = Permission::get();

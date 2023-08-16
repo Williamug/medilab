@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 
 class DeletedSpacemenController extends Controller
 {
+    // display index page
     public function index(): View
     {
         return view('deleted-resources.spacemen');

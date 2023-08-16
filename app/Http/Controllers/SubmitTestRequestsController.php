@@ -23,8 +23,11 @@ class SubmitTestRequestsController extends Controller
 
     public function create(): View
     {
+        // restrict create page
         $this->authorize('add test request');
+        // fetch all patient data
         $patients = Patient::all();
+        // fetch all data
         $test_services = LabServices::all();
 
         return view('pages.submit-test-requests.create', compact('patients', 'test_services'));

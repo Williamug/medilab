@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 
 class DeletedCategoriesController extends Controller
 {
+    // display index page
     public function index(): View
     {
         return view('pages.categories.deleted-categories.index');

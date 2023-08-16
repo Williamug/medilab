@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -35,14 +36,13 @@ class LabServices extends Model
         return $this->belongsTo(ServiceCategory::class);
     }
 
-    // Get all of the test_requsets for the Patient
-    public function test_requsets(): HasMany
-    {
-        return $this->hasMany(TestRequst::class);
-    }
-
     public function test_results(): HasMany
     {
         return $this->hasMany(TestResult::class);
+    }
+
+    public function result_options(): BelongsToMany
+    {
+        return $this->belongsToMany(ResultOption::class);
     }
 }

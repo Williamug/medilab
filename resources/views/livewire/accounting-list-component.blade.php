@@ -10,7 +10,7 @@
                     </svg>
                 </span>
                 <input wire:model.defer="search" placeholder="Search"
-                    class="block w-full py-2 pl-8 pr-6 text-sm text-gray-700 placeholder-gray-400 bg-white border border-b border-gray-400  rounded appearance-none sm:rounded-none focus:bg-white focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none" />
+                    class="block w-full py-2 pl-8 pr-6 text-sm text-gray-700 placeholder-gray-400 bg-white border border-b border-gray-400 rounded appearance-none sm:rounded-none focus:bg-white focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none" />
             </div>
         </div>
         <div class="px-4 py-4 -mx-4 overflow-x-auto sm:-mx-8 sm:px-8">
@@ -52,17 +52,18 @@
 
                                 <td class="px-5 py-5 text-sm bg-white border-b border-gray-200">
                                     <p class="text-gray-900 whitespace-no-wrap">
-                                        {{ $account->test_service->catagory->catagory_name }}
+                                        {{-- @foreach ($account->patient as $key => $value)
+                                        
+                                    @endforeach --}}
+                                        {{ $account->lab_service->service_name }}
                                     </p>
                                 </td>
 
                                 <td class="px-5 py-5 text-sm bg-white border-b border-gray-200">
                                     <p class="text-gray-900 whitespace-no-wrap">
-                                        {{ $account->test_service->price }}
+                                        {{ $account->lab_service->price }}
                                     </p>
                                 </td>
-
-
 
                                 @can('view accounting')
                                     <td class="px-5 py-5 text-sm bg-white border-b border-gray-200">

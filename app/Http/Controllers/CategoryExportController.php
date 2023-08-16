@@ -11,6 +11,7 @@ class CategoryExportController extends Controller
 
     public function index()
     {
+        // download data into excel 
         return Excel::download(new CatagoryExport, 'service_category.xlsx');
     }
 }
