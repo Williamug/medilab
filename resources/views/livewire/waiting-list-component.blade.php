@@ -1,4 +1,7 @@
 <div>
+    <div>
+        <x-app.flash-message />
+    </div>
     @foreach ($waiting_patients as $patient)
         <div class="mb-8">
             <div class="flex mt-8 mb-4 ml-4">
@@ -93,11 +96,18 @@
 
                                         <td class="px-5 py-5 text-sm bg-white border-b border-gray-200">
                                             <p class="text-gray-900 whitespace-no-wrap">
-                                                @if (!is_null($test_result->test_identity))
-                                                    <x-app.a wire:click.prevent="openEditModal({{ $test_result->id }})"
+                                                @if (!is_null($test_result->spacemen) && !is_null($test_result->result_option_id))
+                                                    <x-app.a
+                                                        wire:click.prevent="addTestResultModal({{ $test_result->id }})"
                                                         href="#" title="Add Results">
-                                                        Results
+                                                        View Results
                                                     </x-app.a>
+                                                @elseif(!is_null($test_result->spacemen))
+                                                    <x-app.a href="#" title="View Results">
+                                                        Add Results
+                                                    </x-app.a>
+                                                @else
+                                                    No results
                                                 @endif
                                             </p>
                                         </td>
@@ -112,4 +122,5 @@
         <hr />
     @endforeach
     @include('partials.add-spacemen-modal')
+    @include('partials.add-test-result-modal')
 </div>

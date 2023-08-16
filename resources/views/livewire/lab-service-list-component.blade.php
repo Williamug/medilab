@@ -92,7 +92,14 @@
 
                                 <td class="px-5 py-5 text-sm bg-white border-b border-gray-200">
                                     <p class="text-gray-900 whitespace-no-wrap">
-                                        {{ $lab_service->service_name }}
+                                    <ul>
+                                        @foreach ($lab_service->result_options as $result_option)
+                                            <li class="list-disc">
+                                                {{ $result_option->option }}
+                                                <hr />
+                                            </li>
+                                        @endforeach
+                                    </ul>
                                     </p>
                                 </td>
 
