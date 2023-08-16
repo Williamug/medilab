@@ -13,6 +13,10 @@ class Spacemen extends Model
 
     protected $fillable = ['spacemen', 'user_id'];
 
+    protected $casts = [
+        'created_at' => 'date',
+    ];
+
     public static function search($query)
     {
         // filter results based on test name
