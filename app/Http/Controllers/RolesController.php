@@ -11,6 +11,7 @@ class RolesController extends Controller
 {
     public function index(): View
     {
+        // fetch all the roles
         $roles = Role::all();
         return view('pages.roles-permissions.roles.index', compact('roles'));
     }
@@ -22,6 +23,7 @@ class RolesController extends Controller
 
     public function store(Request $request): RedirectResponse
     {
+        // create role
         Role::create([
             'name' => $request->name,
         ]);

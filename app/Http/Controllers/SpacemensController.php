@@ -27,7 +27,9 @@ class SpacemensController extends Controller
     // store record in the database
     public function store(CreateSpacemenRequest $request): RedirectResponse
     {
+        // validate inputs
         $request->validated();
+        // create spacemen in the database
         Spacemen::create([
             'spacemen' => $request['spacemen'],
             'user_id' => auth()->id()
@@ -50,7 +52,9 @@ class SpacemensController extends Controller
 
     public function update(UpdateSpacemenRequest $request, Spacemen $spacemen): RedirectResponse
     {
+        // validate inputs
         $request->validated();
+        // update records
         $spacemen->update([
             'spacemen' => $request['spacemen'],
             'user_id' => auth()->id()

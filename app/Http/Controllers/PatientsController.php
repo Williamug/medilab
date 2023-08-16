@@ -17,6 +17,7 @@ class PatientsController extends Controller
     // view a list of patients
     public function index(): View
     {
+        // allow authorization
         $this->authorize('view patient module');
         return view('pages.patients.index');
     }
@@ -31,6 +32,7 @@ class PatientsController extends Controller
     // store patient info in database
     public function store(Request $request): RedirectResponse
     {
+        // validate inputs
         $this->validate($request, [
             'full_name' => ['required', 'min:3'],
             'registration_number' => ['required', 'unique:patients'],
@@ -41,6 +43,8 @@ class PatientsController extends Controller
         ]);
 
         DB::transaction(function () use ($request) {
+            // check if date of birth is present and proccess the
+            // data based on that or base on age
             if ($request['birth_date'] == 'dob') {
                 Patient::create([
                     'full_name' => $request['full_name'],
@@ -58,6 +62,7 @@ class PatientsController extends Controller
                     'gender' => $request['gender'],
                     'residence' => $request['residence'],
                 ]);
+                // create a visit data
                 VisitInfo::create([
                     'patient_id' => $patient->id,
                     'age' => $request['age'],
@@ -84,6 +89,7 @@ class PatientsController extends Controller
     // update records in the database
     public function update(Request $request, Patient $patient): RedirectResponse
     {
+        // validate
         $this->validate($request, [
             'full_name' => ['required', 'min:3'],
             'phone_number' => ['numeric', 'min:10'],
@@ -92,6 +98,7 @@ class PatientsController extends Controller
             'residence' => '',
         ]);
 
+        // update resource
         DB::transaction(function () use ($request, $patient) {
             $patient->update([
                 'full_name' => $request['full_name'],

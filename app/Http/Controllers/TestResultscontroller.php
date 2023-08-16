@@ -10,6 +10,7 @@ class TestResultscontroller extends Controller
     // view a list of patients
     public function index(): View
     {
+        // restrict access
         $this->authorize('view test result module');
         return view('pages.test-results.results.index');
     }
