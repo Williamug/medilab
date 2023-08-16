@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Models\LabServices;
+use App\Models\ResultOption;
 use App\Models\ServiceCategory;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
@@ -24,17 +25,37 @@ class LabServiceListComponent extends Component
     public $sortCategory = 'All';
 
     public $service_category_id;
+    public $result_option_id;
     public $service_name;
     public $price;
     public $lab_service_id;
+
     public $categories;
+    public $result_options;
+
+    public $inputs = [];
+    public $i = 1;
 
     // validation
     protected $rules = [
         'service_category_id' => 'required',
         'service_name' => 'required|string|min:1|unique:lab_services',
         'price' => 'required|numeric',
+        'result_option_id.0' => 'required',
+        'result_option_id.*' => 'required',
     ];
+
+    public function add($i)
+    {
+        $i = $i + 1;
+        $this->i = $i;
+        array_push($this->inputs, $i);
+    }
+
+    public function remove($i)
+    {
+        unset($this->inputs[$i]);
+    }
 
     // sort results based on either ascend or discend
     public function sortBy($field)
@@ -69,6 +90,7 @@ class LabServiceListComponent extends Component
 
     public function store()
     {
+        dd($this->result_option_id);
         $this->validate();
         LabServices::create([
             'user_id' => Auth::user()->id,
@@ -154,6 +176,7 @@ class LabServiceListComponent extends Component
 
     public function mount(): void
     {
+        $this->result_options = ResultOption::all();
         $this->categories = ServiceCategory::all();
     }
 
