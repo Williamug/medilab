@@ -69,7 +69,7 @@ class LabServiceListComponent extends Component
     }
     public function resetData()
     {
-        $this->reset('service_category_id', 'service_name', 'result_options_id', 'price');
+        $this->reset('service_category_id', 'service_name', 'result_option_id', 'price');
     }
 
     public function openCreateModal()
@@ -99,7 +99,7 @@ class LabServiceListComponent extends Component
         ]);
         $lab_service->result_options()->attach($this->result_option_id);
 
-        $$this->resetData();
+        $this->resetData();
         $this->closeModal();
     }
 
