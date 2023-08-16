@@ -3,20 +3,31 @@
 namespace App\Http\Livewire;
 
 use App\Models\Patient;
+use App\Models\ResultOption;
 use App\Models\Spacemen;
 use App\Models\TestResult;
+use App\Models\User;
 use Livewire\Component;
 use Illuminate\Support\Str;
+use Spatie\Permission\Models\Role;
 
 class WaitingListComponent extends Component
 {
     public bool $isOpenAddSpacemen = false;
+    public bool $isOpenAddTestResult = false;
+
     public $waiting_patients;
     public $test_result_id;
     public $spacemen_id;
-
+    public $result_option_id;
+    public $lab_technician_id;
+    public $comment;
     public $spacemens;
     public $spacemen;
+    public $result_options;
+    public $users;
+    public $role;
+
     public $inputs = [];
     public $i = 1;
 
@@ -28,6 +39,7 @@ class WaitingListComponent extends Component
 
     protected $listeners = [
         'addSpacemen' => '$refresh',
+        'addTestResult' => '$refresh',
     ];
 
     public function updated($propertyName)
@@ -51,6 +63,9 @@ class WaitingListComponent extends Component
     {
         $this->spacemens = Spacemen::all();
         $this->waiting_patients = Patient::latest()->get();
+        $this->result_options = ResultOption::all();
+        $this->users = User::all();
+        $this->role = Role::where('name', 'Lab Attendant ')->first();
     }
 
     public function unique_random_string(): string
@@ -94,6 +109,47 @@ class WaitingListComponent extends Component
         $this->reset('spacemen');
         $this->closeAddSpacemen();
         session()->flash('success', 'Spacemen(s) added');
+    }
+
+    public function addTestResultModal($id): void
+    {
+        $this->test_result_id = $id;
+        $this->openAddTestResult();
+    }
+
+    public function openAddTestResult(): void
+    {
+        $this->isOpenAddTestResult = true;
+    }
+
+    public function openCloseTestResult(): void
+    {
+        $this->isOpenAddTestResult = false;
+    }
+
+    public function addTestResult()
+    {
+        $this->validate([
+            'result_option_id' => 'required',
+            'lab_technician_id' => 'required',
+        ], [
+            'result_option_id.required' => 'Result option is required.',
+            'lab_technician_id.required' => 'Lab technician is required.'
+        ]);
+
+        if ($this->test_result_id) {
+            $test_result = TestResult::find($this->test_result_id);
+
+            $test_result->update([
+                'result_option_id' => $this->result_option_id,
+                'lab_technician_id' => $this->lab_technician_id,
+                'comment' => $this->comment
+            ]);
+        }
+        $this->emitSelf('addTestResult');
+        $this->reset('result_option_id', 'lab_technician_id', 'comment');
+        $this->openCloseTestResult();
+        session()->flash('success', 'Results have been added.');
     }
 
     public function render()
