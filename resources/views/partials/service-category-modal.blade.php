@@ -7,13 +7,16 @@
             </x-slot>
 
             <x-slot name="content">
+                <div class="mb-2">
+                    <span class="font-semibold">Note: </span><span class="mr-1 text-lg"> *</span> Denotes Mandatory.
+                </div>
                 @if ($errors->any())
                     <x-jet-validation-errors class="mb-4" />
                 @endif
                 <form>
                     <div>
                         <label for="category_name" class="text-sm font-bold leading-tight tracking-normal text-gray-800">
-                            Service Category
+                            Service Category *
                         </label>
                         <input id="category_name "
                             class="flex items-center w-full h-10 pl-3 mt-2 mb-1 text-sm font-normal text-gray-600 border border-gray-300 rounded focus:outline-none focus:border focus:border-indigo-700"
@@ -57,6 +60,9 @@
             </x-slot>
 
             <x-slot name="content">
+                <div class="mb-2">
+                    <span class="font-semibold">Note: </span><span class="mr-1 text-lg"> *</span> Denotes Mandatory.
+                </div>
                 <form>
                     <!-- hidden field-->
                     <input type="hidden" wire:model="category_id">
@@ -65,7 +71,7 @@
                     <div>
                         <label for="category_name"
                             class="text-sm font-bold leading-tight tracking-normal text-gray-800">
-                            Service Category
+                            Service Category *
                         </label>
                         <input id="category_name"
                             class="flex items-center w-full h-10 pl-3 mt-2 mb-1 text-sm font-normal text-gray-600 border border-gray-300 rounded focus:outline-none focus:border focus:border-indigo-700"
