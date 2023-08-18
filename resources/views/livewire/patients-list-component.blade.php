@@ -123,18 +123,19 @@
                                         <div class="flex">
                                             <div class="flex">
                                                 @can('view patient')
-                                                    <a href="{{ route('patients.show', $patient) }}"
-                                                        class="text-green-700 hover:underline hover:text-green-900"
+                                                    <x-app.a href="{{ route('patients.show', $patient) }}"
+                                                        class="text-blue-700 hover:underline hover:text-blue-900"
                                                         title="View">
                                                         <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor"
-                                                            class="w-4 h-4 mr-3 text-blue-500 hover:text-blue-800 bi bi-layout-text-window-reverse"
+                                                            class="w-4 h-4 mr-3 text-white hover:text-white bi bi-layout-text-window-reverse"
                                                             viewBox="0 0 16 16">
                                                             <path
                                                                 d="M13 6.5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h5a.5.5 0 0 0 .5-.5zm0 3a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h5a.5.5 0 0 0 .5-.5zm-.5 2.5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1 0-1h5z" />
                                                             <path
                                                                 d="M14 0a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h12zM2 1a1 1 0 0 0-1 1v1h14V2a1 1 0 0 0-1-1H2zM1 4v10a1 1 0 0 0 1 1h2V4H1zm4 0v11h9a1 1 0 0 0 1-1V4H5z" />
                                                         </svg>
-                                                    </a>
+                                                        View
+                                                    </x-app.a>
                                                 @endcan
 
                                                 {{-- @can('edit patient')
@@ -159,10 +160,10 @@
                                                         @method('DELETE')
 
                                                         <button title="Delete"
-                                                            class="text-red-700 hover:underline hover:text-red-900 focus:outline-none dark:text-red-800 dark:hover:text-red-900"
+                                                            class="px-2 py-1 ml-2 text-white uppercase bg-red-700 rounded hover:bg-red-900"
                                                             onclick="javascript:return confirm('You are about to delete this Patient. Are you sure you want to continue?')">
                                                             <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor"
-                                                                class="w-4 h-4 mr-3 text-red-600 bi bi-trash hover:text-red-800"
+                                                                class="w-4 h-4 mr-3 text-white bi bi-trash hover:text-white"
                                                                 viewBox="0 0 16 16">
                                                                 <path
                                                                     d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />

@@ -36,15 +36,6 @@ class LabServiceListComponent extends Component
     public $inputs = [];
     public $i = 1;
 
-    // validation
-    protected $rules = [
-        'service_category_id' => 'required',
-        'service_name' => 'required|string|min:1|unique:lab_services',
-        'price' => 'required|numeric',
-        'result_option_id.0' => 'required',
-        'result_option_id.*' => 'required',
-    ];
-
     public function add($i)
     {
         $i = $i + 1;
@@ -83,14 +74,19 @@ class LabServiceListComponent extends Component
         $this->isOpenCreate = false;
     }
 
-    public function updated($propertyName)
-    {
-        $this->validateOnly($propertyName);
-    }
-
     public function store()
     {
-        $this->validate();
+        $this->validate([
+            'service_category_id' => 'required',
+            'service_name' => 'required|string|min:1|unique:lab_services',
+            'price' => 'required|numeric',
+            'result_option_id.0' => 'required|unique:lab_services',
+            'result_option_id.*' => 'required|unique:lab_services',
+        ], [
+            'result_option_id.0.required' => 'Result option is required.',
+            'result_option_id.*.required' => 'Result option is required.'
+        ]);
+
         $lab_service = LabServices::create([
             'user_id' => Auth::user()->id,
             'service_category_id' => $this->service_category_id,
