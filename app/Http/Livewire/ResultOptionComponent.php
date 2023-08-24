@@ -60,11 +60,6 @@ class ResultOptionComponent extends Component
         $this->isOpenCreate = false;
     }
 
-    public function updated($propertyName)
-    {
-        $this->validateOnly($propertyName);
-    }
-
     public function store()
     {
         $this->validate();
