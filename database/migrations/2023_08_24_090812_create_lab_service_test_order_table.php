@@ -11,8 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('test_results', function (Blueprint $table) {
-            $table->string('result_status')->default('submitted')->after('lab_service_id');
+        Schema::create('lab_service_test_order', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('test_order_id')->nullable();
+            $table->foreignId('lab_service_id')->nullable();
+            $table->timestamps();
+            $table->softDeletes();
         });
     }
 
@@ -21,8 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('test_results', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('lab_service_test_order');
     }
 };

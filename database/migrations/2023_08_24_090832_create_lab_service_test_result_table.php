@@ -11,12 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('lab_services_result_option', function (Blueprint $table) {
+        Schema::create('lab_service_test_result', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('result_option_id');
-            $table->unsignedBigInteger('lab_services_id');
-
+            $table->foreignId('test_result_id');
+            $table->foreignId('lab_service_id');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
@@ -25,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('lab_services_result_option');
+        Schema::dropIfExists('lab_service_test_result');
     }
 };

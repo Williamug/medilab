@@ -11,8 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('test_results', function (Blueprint $table) {
-            $table->foreignId('lab_technician_id')->nullable()->after('comment');
+        Schema::create('lab_service_categories', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('user_id')->nullable();
+            $table->string('category_name');
+            $table->timestamps();
+            $table->softDeletes();
         });
     }
 
@@ -21,8 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('test_results', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('lab_service_categories');
     }
 };

@@ -11,15 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('next_of_kin', function (Blueprint $table) {
+        Schema::create('lab_services', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->nullable();
-            $table->string('name')->nullable();
-            $table->string('gender')->nullable();
-            $table->string('relationship_to_patient')->nullable();
-            $table->string('phone_number')->nullable();
-            $table->text('email')->nullable();
-            $table->text('residence')->nullable();
+            $table->foreignId('lab_service_category_id');
+            $table->string('service_name');
+            $table->integer('price');
             $table->timestamps();
             $table->softDeletes();
         });
@@ -30,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('next_of_kin');
+        Schema::dropIfExists('lab_services');
     }
 };
