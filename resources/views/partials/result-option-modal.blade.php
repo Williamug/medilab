@@ -134,10 +134,6 @@
 <!-- /delete modal -->
 @if ($isOpenDelete)
     <x-delete-modal>
-        <x-slot name="title">
-
-        </x-slot>
-
         <x-slot name="content">
             <div class="mb-4">
                 <div class="mb-2 text-lg font-bold text-center">
