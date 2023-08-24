@@ -3,9 +3,10 @@
 namespace App\Http\Livewire;
 
 use Illuminate\Database\Eloquent\Collection;
+use Livewire\Component;
 use LivewireUI\Modal\ModalComponent;
 
-class CreateCatagory extends ModalComponent
+class CreateCatagory extends Component
 {
     // public Collection $category_name;
     // public Collection $description;
