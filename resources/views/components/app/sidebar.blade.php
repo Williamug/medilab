@@ -48,7 +48,7 @@
                                 fill="url(#logo-b)" />
                         </svg>
                     </div>
-                    <div class="mt-1 ml-2 text-lg text-white uppercase">NugSoft Lab</div>
+                    <div class="mt-1 ml-2 text-lg font-bold text-white">{{ config('app.name') }}</div>
                 </div>
             </a>
         </div>
