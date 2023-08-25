@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class PatientVisit extends Model
@@ -18,5 +19,10 @@ class PatientVisit extends Model
         return empty($query)
             ? static::query()
             : static::where('next_of_kin_name', 'like', '%' . $query . '%');
+    }
+
+    public function patient(): BelongsTo
+    {
+        return $this->belongsTo(Patient::class);
     }
 }
