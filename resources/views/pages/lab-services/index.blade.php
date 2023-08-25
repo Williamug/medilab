@@ -8,7 +8,7 @@
         </x-slot>
         <x-app.flash-message />
         <div>
-            <livewire:lab-service-list-component />
+            <livewire:lab-service-component />
         </div>
     </x-app.card>
 </x-app-layout>
