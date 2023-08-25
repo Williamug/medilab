@@ -23,7 +23,7 @@
                             d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
 
-                    <span>Add Spacemen</span>
+                    <span>Specimen</span>
                 </button>
             </div>
 
@@ -38,7 +38,7 @@
                                             class="py-3.5 px-4 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
                                             <a wire:click.prevent="sortBy('spacemen')" role="button" href="#"
                                                 class="flex">
-                                                Spacemen Name
+                                                Specimen Name
                                                 @include('partials.sort_icons', [
                                                     'field' => 'spacemen',
                                                 ])
