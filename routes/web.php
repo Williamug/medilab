@@ -31,6 +31,7 @@ Route::post('/restricted-admin-signup', [AdminSignUpController::class, 'store'])
 
 Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('result-options', [ResultOptionsController::class, 'index'])->name('result-options.index');
     Route::get('/service-categories', [ServiceCategoriesController::class, 'index'])->name('service-categories.index');
 
     // resource controller [index, create, store, show, edit, update, delete]
