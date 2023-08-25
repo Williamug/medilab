@@ -53,55 +53,85 @@
 
                             <!-- birth date/age -->
                             <div>
-                                <x-jet-label for="birth_date"
-                                    value="{{ __('Select Age if the patient has forgotten his/her birth date *') }}" />
-                                <div class="block mt-1">
-                                    <div x-data="{ isOpen: true }">
-
-                                        <!-- date of birth radio -->
-                                        <label class="inline-flex items-center" @click="isOpen = true">
-                                            <input type="radio" class="form-radio dark:bg-gray-700"
-                                                wire:model="birth_date" value="dob">
-                                            <span class="ml-2 dark:text-gray-500">
-                                                Birth date
-                                            </span>
-                                        </label>
-                                        <!-- date of birth radio -->
-
-                                        <div x-show="isOpen" @click.away="isOpen = false">
-                                            <!-- birth date. -->
-                                            <div class="mb-3">
-                                                <x-jet-input id="dob" class="mt-1 text-base" type="date"
-                                                    wire:model.lazy="date_of_birth" autocomplete="dob" />
-                                                <x-jet-input-error for="dob" />
-                                            </div>
-                                            <!-- birth date. -->
-                                        </div>
+                                <div class="mb-4">
+                                    <x-jet-label for="lab_service_id"
+                                        value="{{ __('Select Age if date of birth is unknown') }}" />
+                                    <div>
+                                        <select
+                                            class="w-full border-gray-300 rounded-md shadow-sm dark:border-gray-900 dark:text-gray-400 dark:bg-gray-700 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 form-select"
+                                            wire:model.lazy="selectedBirthDate">
+                                            <option value="">-- select --</option>
+                                            @foreach ($birth_dates as $birth_date)
+                                                <option value="{{ $birth_date }}">{{ $birth_date }}</option>
+                                            @endforeach
+                                        </select>
+                                        <x-jet-input-error for="selectedBirthDate" />
                                     </div>
-
-                                    <div x-data="{ isOpen: false }">
-                                        <label class="inline-flex items-center" @click="isOpen = true">
-                                            <input type="radio" class="form-radio dark:bg-gray-700"
-                                                wire:model="birth_date" value="age">
-                                            <span class="ml-2 dark:text-gray-500">
-                                                Age
-                                            </span>
-                                        </label>
-                                        <div x-show="isOpen" @click.away="isOpen = false">
-                                            <!-- age. -->
-                                            <div class="mb-3">
-                                                <input id="age" class="w-full mt-1 text-base form-input"
-                                                    type="number" wire:model.lazy="age" value=""
-                                                    placeholder="Enter age" autocomplete="age" />
-                                                <x-jet-input-error for="age" />
-                                            </div>
-                                            <!-- age. -->
-                                        </div>
-                                    </div>
-                                    <x-jet-input-error for="birth_date" />
                                 </div>
+
+                                @if ($selectedBirthDate === 'Date of birth')
+                                    <!-- birth date. -->
+                                    <div class="mb-3">
+                                        <x-jet-input id="dob" class="mt-1 text-base" type="date"
+                                            wire:model.lazy="date_of_birth" />
+                                        <x-jet-input-error for="date_of_birth" />
+                                    </div>
+                                    <!-- birth date. -->
+                                @elseif ($selectedBirthDate === 'Age')
+                                    <div class="mb-4">
+                                        <x-jet-label for="lab_service_id"
+                                            value="{{ __('Select Period [Weeks, Months or Years]') }}" />
+                                        <div class="flex">
+                                            <select
+                                                class="w-full border-gray-300 rounded-md shadow-sm dark:border-gray-900 dark:text-gray-400 dark:bg-gray-700 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 form-select"
+                                                wire:model.lazy="selectedPeriod">
+                                                <option value="">-- select --</option>
+                                                @foreach ($periods as $period)
+                                                    <option value="{{ $period }}">{{ $period }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    @if ($selectedPeriod === 'weeks')
+                                        <!-- weeks -->
+                                        <div
+                                            class="relative flex items-center border border-gray-200 rounded focus:ring">
+                                            <input wire:model.defer="weeks"
+                                                class="w-full px-3 rounded outline-none form-input focus:outline-none active:outline-none input"
+                                                type="number" />
+                                            <span
+                                                class="px-2 py-1 mr-1 text-sm font-bold leading-normal rounded-full">Week(s)</span>
+                                            <x-jet-input-error for="weeks" />
+                                        </div>
+                                        <!-- weeks -->
+                                    @elseif($selectedPeriod === 'months')
+                                        <!-- months -->
+                                        <div
+                                            class="relative flex items-center border border-gray-200 rounded focus:ring">
+                                            <input wire:model.defer="months"
+                                                class="w-full px-3 rounded outline-none form-input focus:outline-none active:outline-none input"
+                                                type="number" />
+                                            <span
+                                                class="px-2 py-1 mr-1 text-sm font-bold leading-normal rounded-full">Month(s)</span>
+                                            <x-jet-input-error for="months" />
+                                        </div>
+                                        <!-- month -->
+                                    @elseif($selectedPeriod === 'years')
+                                        <!-- years -->
+                                        <div
+                                            class="relative flex items-center border border-gray-200 rounded focus:ring">
+                                            <input wire:model.defer="years"
+                                                class="w-full px-3 rounded outline-none form-input focus:outline-none active:outline-none input"
+                                                type="number" />
+                                            <span
+                                                class="px-2 py-1 mr-1 text-sm font-bold leading-normal rounded-full">Year(s)</span>
+                                            <x-jet-input-error for="years" />
+                                        </div>
+                                        <!-- years -->
+                                    @endif
+                                @endif
                             </div>
-                            <!-- /.birth date/age -->
                         </div>
                         <div>
                             <!-- phone number -->
@@ -305,7 +335,7 @@
                                         </svg>
                                     </x-jet-button>
                                 </div>
-                                <x-jet-input-error for="lab_service_id.0" />
+                                <x-jet-input-error for="lab_service_id" />
                             </div>
                             <!-- /.lab service -->
                         </div>
@@ -336,7 +366,7 @@
                                             </svg>
                                         </x-jet-secondary-button>
                                     </div>
-                                    <x-jet-input-error for="lab_service_id.0" />
+                                    <x-jet-input-error for="lab_service_id" />
                                 </div>
                                 <!-- /.lab service -->
                             </div>
