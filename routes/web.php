@@ -33,13 +33,12 @@ Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('result-options', [ResultOptionsController::class, 'index'])->name('result-options.index');
     Route::get('/service-categories', [ServiceCategoriesController::class, 'index'])->name('service-categories.index');
+    Route::get('/lab-services', [LabServicesController::class, 'index'])->name('lab-services.index');
+    Route::get('/spacemens', [SpacemensController::class, 'index'])->name('spacemens.index');
 
     // resource controller [index, create, store, show, edit, update, delete]
     Route::resources([
         'patients' => PatientsController::class,
-        'lab-services' => LabServicesController::class,
-        'spacemens' => SpacemensController::class,
-        'result-options' => ResultOptionsController::class,
         'requests' => SubmitTestRequestsController::class,
         'waiting-lists' => WaitingListsController::class,
         'test-results' => TestResultscontroller::class,
@@ -69,18 +68,12 @@ Route::middleware('auth')->group(function () {
 
     // assign role to user
     Route::controller(AssignRolesController::class)->group(function () {
-        Route::get('/assign-roles', 'index')
-            ->name('assign-roles.index');
-        Route::get('/assign-roles/create', 'create')
-            ->name('assign-roles.create');
-        Route::post('/assign-roles', 'store')
-            ->name('assign-roles.store');
-        Route::get('/assign-roles/{user}', 'show')
-            ->name('assing-roles.show');
-        Route::get('/assign-roles/{user}/edit', 'edit')
-            ->name('assing-roles.edit');
-        Route::put('/assign-roles/{user}', 'update')
-            ->name('assign-roles.update');
+        Route::get('/assign-roles', 'index')->name('assign-roles.index');
+        Route::get('/assign-roles/create', 'create')->name('assign-roles.create');
+        Route::post('/assign-roles', 'store')->name('assign-roles.store');
+        Route::get('/assign-roles/{user}', 'show')->name('assing-roles.show');
+        Route::get('/assign-roles/{user}/edit', 'edit')->name('assing-roles.edit');
+        Route::put('/assign-roles/{user}', 'update')->name('assign-roles.update');
     });
 
     // restore routes
