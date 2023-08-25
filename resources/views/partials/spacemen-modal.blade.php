@@ -3,7 +3,7 @@
     <x-modal>
         <div>
             <x-slot name="title">
-                Create Spacemen
+                Create Specimen
             </x-slot>
 
             <x-slot name="content">
@@ -14,7 +14,7 @@
                     <!-- spacemen -->
                     <div class="space-y-4">
                         <div class="mb-4">
-                            <x-jet-label for="spacemen" value="{{ __('Spacemen') }}" />
+                            <x-jet-label for="spacemen" value="{{ __('Specimen') }}" />
                             <x-jet-input class="md:w-full" id="spacemen" type="text" wire:model.lazy="spacemen"
                                 autofocus />
                             <x-jet-input-error for="spacemen" />
@@ -43,7 +43,7 @@
     <x-modal>
         <div>
             <x-slot name="title">
-                Edit Spacemen
+                Edit Specimen
             </x-slot>
 
             <x-slot name="content">
@@ -54,7 +54,7 @@
                     <!-- spacemen -->
                     <div class="space-y-4">
                         <div class="mb-4">
-                            <x-jet-label for="spacemen" value="{{ __('Spacemen') }}" />
+                            <x-jet-label for="spacemen" value="{{ __('Specimen') }}" />
                             <x-jet-input class="md:w-full" id="spacemen" type="text" wire:model.lazy="spacemen"
                                 :value="old('spacemen')" autofocus />
                             <x-jet-input-error for="spacemen" />
