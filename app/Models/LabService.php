@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class LabService extends Model
@@ -32,5 +33,10 @@ class LabService extends Model
     public function lab_service_category(): BelongsTo
     {
         return $this->belongsTo(LabServiceCategory::class);
+    }
+
+    public function test_orders(): HasMany
+    {
+        return $this->hasMany(TestOrder::class);
     }
 }
