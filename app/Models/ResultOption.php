@@ -27,4 +27,10 @@ class ResultOption extends Model
     {
         return $this->hasMany(TestRequst::class);
     }
+
+
+    public function lab_services(): BelongsToMany
+    {
+        return $this->belongsToMany(LabService::class);
+    }
 }
