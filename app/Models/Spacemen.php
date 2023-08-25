@@ -10,7 +10,9 @@ class Spacemen extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $guarded = [];
+    protected $fillable = ['user_id', 'spacemen'];
+
+    protected $casts = ['created_at' => 'datetime'];
 
     public static function search($query)
     {
