@@ -3,7 +3,7 @@
     <x-modal>
         <div>
             <x-slot name="title">
-                Enter Spacemen
+                Create Spacemen
             </x-slot>
 
             <x-slot name="content">
@@ -15,8 +15,8 @@
                     <div class="space-y-4">
                         <div class="mb-4">
                             <x-jet-label for="spacemen" value="{{ __('Spacemen') }}" />
-                            <x-jet-input class="md:w-2/3" id="spacemen" type="text" wire:model.lazy="spacemen"
-                                :value="old('spacemen')" autofocus />
+                            <x-jet-input class="md:w-full" id="spacemen" type="text" wire:model.lazy="spacemen"
+                                autofocus />
                             <x-jet-input-error for="spacemen" />
                         </div>
                     </div>
@@ -55,7 +55,7 @@
                     <div class="space-y-4">
                         <div class="mb-4">
                             <x-jet-label for="spacemen" value="{{ __('Spacemen') }}" />
-                            <x-jet-input class="md:w-2/3" id="spacemen" type="text" wire:model.lazy="spacemen"
+                            <x-jet-input class="md:w-full" id="spacemen" type="text" wire:model.lazy="spacemen"
                                 :value="old('spacemen')" autofocus />
                             <x-jet-input-error for="spacemen" />
                         </div>
@@ -81,19 +81,15 @@
 
 <!-- /delete modal -->
 @if ($isOpenDelete)
-    <x-modal>
-        <x-slot name="title">
-            Delete {{ $spacemen->spacemen }}
-        </x-slot>
-
+    <x-delete-modal>
         <x-slot name="content">
             <div class="mb-4">
-                <div class="mb-2">
-                    You are about to delete this spacemen. Are you sure you want to continue?
+                <div class="mb-2 text-lg font-bold text-center">
+                    Delete Spacemen
                 </div>
-                <small><span class="font-bold">Note: </span> All deleted spacemen are stored in a trash and can be
-                    restored
-                    later when you need them.</small>
+                <div class="text-center">
+                    Are you sure you want to do this?
+                </div>
             </div>
         </x-slot>
 
@@ -107,6 +103,6 @@
                 Cancel
             </x-jet-secondary-button>
         </x-slot>
-    </x-modal>
+    </x-delete-modal>
 @endif
 <!-- /.delete modal -->
