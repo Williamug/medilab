@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\LabServiceCategory;
 use App\Models\LabServices;
 use App\Models\ResultOption;
 use App\Models\ServiceCategory;
@@ -173,7 +174,7 @@ class LabServiceListComponent extends Component
     public function mount(): void
     {
         $this->result_options = ResultOption::all();
-        $this->categories = ServiceCategory::all();
+        $this->categories = LabServiceCategory::all();
     }
 
     public function render()
