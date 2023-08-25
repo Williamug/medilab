@@ -19,11 +19,11 @@ return new class extends Migration
             $table->double('temperature')->nullable();
             $table->double('weight')->nullable();
             $table->double('height')->nullable();
-            $table->string('next_of_kin_name')->nullable();
-            $table->string('next_of_kin_gender')->nullable();
-            $table->string('relation_to_patient')->nullable();
-            $table->string('next_of_kin_phone_number')->nullable();
-            $table->text('next_of_kin_residence');
+            $table->string('kin_full_name')->nullable();
+            $table->string('kin_gender')->nullable();
+            $table->string('patient_relation')->nullable();
+            $table->string('kin_phone_number')->nullable();
+            $table->text('kin_residence');
             $table->timestamps();
             $table->softDeletes();
         });
