@@ -13,6 +13,14 @@ class TestOrder extends Model
 
     protected $guarded = [];
 
+    // eager load models 
+    protected $with = ['lab_service'];
+
+    // cast date
+    protected $casts = [
+        'created_at' => 'datetime',
+    ];
+
     public static function search($query)
     {
         // filter results
