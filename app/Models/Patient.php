@@ -15,6 +15,7 @@ class Patient extends Model
 
     protected $guarded = [];
 
+    // eager load models
     protected $with = ['patient_visits', 'test_orders'];
 
     //Accessor for Age.
@@ -31,6 +32,7 @@ class Patient extends Model
             : static::where('full_name', 'like', '%' . $query . '%');
     }
 
+    // create relationships
     public function patient_visits(): HasMany
     {
         return $this->hasMany(PatientVisit::class);
