@@ -15,7 +15,7 @@ class Patient extends Model
 
     protected $guarded = [];
 
-    protected $with = ['patient_visits'];
+    protected $with = ['patient_visits', 'test_orders'];
 
     //Accessor for Age.
     public function ageFromDob()
