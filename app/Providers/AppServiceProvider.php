@@ -26,5 +26,6 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Blade::directive('money', fn ($money) => "<?php echo number_format($money, 2); ?>");
+        Model::preventLazyLoading(!$this->app->isProduction());
     }
 }
