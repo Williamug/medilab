@@ -22,6 +22,13 @@ class PatientComponent extends Component
     // sort by class
     public $sortPatient = 'All';
 
+    public $patient_id;
+    public $full_name;
+    public $gender;
+    public $phone_number;
+    public $residence;
+    public $email;
+
     // sort results based on either ascend or discend
     public function sortBy($field)
     {
@@ -31,6 +38,98 @@ class PatientComponent extends Component
             $this->sortAsc = true;
         }
         $this->sortField = $field;
+    }
+
+    public function resetData()
+    {
+        $this->reset('full_name', 'gender', 'phone_number', 'email', 'residence');
+    }
+
+    public function openCreateModal()
+    {
+        $this->isOpenCreate = true;
+    }
+
+    public function closeModal()
+    {
+        $this->resetData();
+        $this->isOpenCreate = false;
+    }
+
+
+    public function openEditModal(int $id): void
+    {
+        $patient = Patient::where('id', $id)->first();
+
+        $this->patient_id   = $id;
+        $this->full_name    = $patient->full_name;
+        $this->gender       = $patient->gender;
+        $this->phone_number = $patient->phone_number;
+        $this->email        = $patient->email;
+        $this->residence    = $patient->residence;
+
+        $this->openEdit();
+    }
+
+    public function openEdit(): void
+    {
+        $this->isOpenEdit = true;
+    }
+
+    public function closeEdit(): void
+    {
+        $this->resetData();
+        $this->isOpenEdit = false;
+    }
+
+    public function update(): void
+    {
+        $this->validate([
+            'full_name'    => 'required|string',
+            'gender'       => 'required|string',
+            'phone_number' => 'required',
+            'residence'    => 'required|string',
+        ]);
+
+        if ($this->patient_id) {
+            $patient = Patient::find($this->patient_id);
+
+            $patient->update([
+                'full_name'    => $this->full_name,
+                'gender'       => $this->gender,
+                'phone_number' => $this->phone_number,
+                'email'        => $this->email,
+                'residence'    => $this->residence,
+            ]);
+
+            $this->resetData();
+            $this->closeEdit();
+        }
+
+        // session()->flash('success', "{$patient->spacemen} has been updated.");
+    }
+
+    public function openDeleteModal(int $id): void
+    {
+        $this->patient_id = $id;
+        $this->openDelete();
+    }
+
+    public function openDelete(): void
+    {
+        $this->isOpenDelete = true;
+    }
+
+    public function closeDelete(): void
+    {
+        $this->isOpenDelete = false;
+    }
+
+    public function delete(): void
+    {
+        Patient::find($this->patient_id)->delete();
+        $this->closeDelete();
+        session()->flash('success', 'Patient has been deleted.');
     }
 
     public function render()
