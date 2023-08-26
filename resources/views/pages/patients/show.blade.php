@@ -520,7 +520,7 @@
                                             </td>
                                             <td class="px-4 py-4 text-sm font-medium whitespace-nowrap">
                                                 <div>
-                                                    {{ $test_order->lab_service->price }}
+                                                    @money($test_order->lab_service->price)
                                                 </div>
                                             </td>
                                             <td class="px-4 py-4 text-sm font-medium whitespace-nowrap">
