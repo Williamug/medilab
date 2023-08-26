@@ -267,7 +267,7 @@
                                             href="{{ route('waiting-lists.index') }}">
                                             <span
                                                 class="text-sm font-medium duration-200 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100">
-                                                Results
+                                                Test Orders
                                             </span>
                                         </a>
                                     </li>
