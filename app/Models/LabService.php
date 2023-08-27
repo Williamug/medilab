@@ -17,6 +17,8 @@ class LabService extends Model
 
     protected $casts = ['created_at' => 'datetime'];
 
+    protected $with = ['lab_service_category', 'result_options'];
+
     public static function search($query)
     {
         // filter results
