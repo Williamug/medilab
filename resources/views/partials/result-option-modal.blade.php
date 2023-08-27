@@ -18,7 +18,7 @@
                     <div class="space-y-4">
                         <div class="mb-4">
                             <x-jet-label for="option" value="{{ __('Result Option *') }}" />
-                            <x-jet-input class="md:w-2/3" id="option" type="text" wire:model.lazy="option"
+                            <x-jet-input class="md:w-full" id="option" type="text" wire:model.lazy="option"
                                 :value="old('option')" placeholder="(Ex. Positive)" autofocus />
                             <x-jet-input-error for="option" />
                         </div>
@@ -29,7 +29,7 @@
                     <div class="space-y-4">
                         <div class="mb-4">
                             <x-jet-label for="code" value="{{ __('Code *') }}" />
-                            <x-jet-input class="md:w-2/3" id="code" type="text" wire:model.lazy="code"
+                            <x-jet-input class="md:w-full" id="code" type="text" wire:model.lazy="code"
                                 :value="old('code')" placeholder="(Ex. POSITIVE)" autofocus />
                             <x-jet-input-error for="code" />
                         </div>
@@ -40,7 +40,7 @@
                     <div class="space-y-4">
                         <div class="mb-4">
                             <x-jet-label for="symbol" value="{{ __('Symbol *') }}" />
-                            <x-jet-input class="md:w-2/3" id="symbol" type="text" wire:model.lazy="symbol"
+                            <x-jet-input class="md:w-full" id="symbol" type="text" wire:model.lazy="symbol"
                                 :value="old('symbol')" placeholder="(Ex. +)" autofocus />
                             <x-jet-input-error for="symbol" />
                         </div>
@@ -84,7 +84,7 @@
                         <div class="space-y-4">
                             <div class="mb-4">
                                 <x-jet-label for="option" value="{{ __('Result Option *') }}" />
-                                <x-jet-input class="md:w-2/3" id="option" type="text" wire:model.lazy="option"
+                                <x-jet-input class="md:w-full" id="option" type="text" wire:model.lazy="option"
                                     :value="old('option')" placeholder="(Ex. Positive)" autofocus />
                                 <x-jet-input-error for="option" />
                             </div>
@@ -95,7 +95,7 @@
                         <div class="space-y-4">
                             <div class="mb-4">
                                 <x-jet-label for="code" value="{{ __('Code *') }}" />
-                                <x-jet-input class="md:w-2/3" id="code" type="text" wire:model.lazy="code"
+                                <x-jet-input class="md:w-full" id="code" type="text" wire:model.lazy="code"
                                     :value="old('code')" placeholder="(Ex. POSITIVE)" autofocus />
                                 <x-jet-input-error for="code" />
                             </div>
