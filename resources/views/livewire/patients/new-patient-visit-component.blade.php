@@ -111,7 +111,7 @@
 
                                         <td class="px-4 py-4 text-sm font-medium whitespace-nowrap">
                                             <div class="px-2 py-1 text-sm font-medium whitespace-nowrap">
-                                                {{ $test_order->created_at->format('D, d M Y | H:i:s') }}
+                                                {{ $test_order->created_at->format('D, d M Y | h:ia') }}
                                             </div>
                                         </td>
                                         <td class="px-4 py-4 text-sm font-medium whitespace-nowrap">
