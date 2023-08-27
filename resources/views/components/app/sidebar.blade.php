@@ -322,7 +322,7 @@
                                             href="{{ route('accountings.index') }}">
                                             <span
                                                 class="text-sm font-medium duration-200 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100">
-                                                Unpaid
+                                                Unpaid Orders
                                             </span>
                                         </a>
                                     </li>
