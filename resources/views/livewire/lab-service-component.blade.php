@@ -54,6 +54,11 @@
                                         </th>
 
                                         <th scope="col"
+                                            class="py-3.5 px-4 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                                            Price (UGX.)
+                                        </th>
+
+                                        <th scope="col"
                                             class="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
                                             <a wire:click.prevent="sortBy('created_at')" role="button" href="#"
                                                 class="flex">
@@ -91,6 +96,13 @@
                                                     </ul>
                                                 </div>
                                             </td>
+
+                                            <td class="px-4 py-4 text-sm font-medium whitespace-nowrap">
+                                                <div>
+                                                    @money($lab_service->price)
+                                                </div>
+                                            </td>
+
                                             <td class="px-4 py-4 text-sm font-medium whitespace-nowrap">
                                                 <div>
                                                     {{ $lab_service->created_at->format('D, d M Y | H:i:s') }}
