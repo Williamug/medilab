@@ -51,7 +51,13 @@
 
             <x-slot name="footer">
                 <x-jet-button class="mr-4" wire:click="store" wire:loading.attr="disabled">
-                    {{ __('Save') }}
+                    <span wire:loading.remove>{{ __('Save') }}</span>
+                    <span wire:loading>{{ __('Saving...') }}</span>
+                </x-jet-button>
+
+                <x-jet-button class="mr-4" wire:click="storeCreateAnother" wire:loading.attr="disabled">
+                    <span wire:loading.remove>{{ __('Save & Create another') }}</span>
+                    <span wire:loading>{{ __('Saving...') }}</span>
                 </x-jet-button>
 
                 <x-jet-secondary-button wire:click="closeModal" wire:loading.attr="disabled">
@@ -118,7 +124,8 @@
 
             <x-slot name="footer">
                 <x-jet-button class="mr-4" wire:click="update" wire:loading.attr="disabled">
-                    {{ __('Update') }}
+                    <span wire:loading.remove>{{ __('Update') }}</span>
+                    <span wire:loading>{{ __('Updating...') }}</span>
                 </x-jet-button>
 
                 <x-jet-secondary-button wire:click="closeEdit" wire:loading.attr="disabled">
