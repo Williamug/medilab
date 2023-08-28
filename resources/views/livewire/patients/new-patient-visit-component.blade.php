@@ -102,7 +102,7 @@
                                                 </div>
                                             @elseif($test_order->order_status === 'received')
                                                 <div
-                                                    class="inline px-1 text-xs font-normal text-green-500 border border-green-300 rounded gap-x-2 bg-green-100/60 dark:bg-gray-800">
+                                                    class="inline px-1 text-xs font-normal text-blue-500 border border-blue-300 rounded gap-x-2 bg-blue-100/60 dark:bg-gray-800">
                                                     {{ $test_order->order_status }}
                                                 </div>
                                             @endif
