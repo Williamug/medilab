@@ -20,9 +20,10 @@ class CreatePatientComponent extends Component
     public $full_name;
 
     public $gender;
-    public $weeks;
-    public $months;
-    public $years;
+    public $patient_days;
+    public $patient_weeks;
+    public $patient_months;
+    public $patient_years;
 
     public $date_of_birth;
     public $phone_number;
@@ -54,6 +55,7 @@ class CreatePatientComponent extends Component
     public $i      = 1;
 
 
+    // add new field
     public function add($i)
     {
         $i = $i + 1;
@@ -61,20 +63,23 @@ class CreatePatientComponent extends Component
         array_push($this->inputs, $i);
     }
 
+    // remove the field
     public function remove($i)
     {
         unset($this->inputs[$i]);
     }
 
+    // run construct
     public function mount()
     {
         $this->birth_dates =  collect(['Date of birth', 'Age']);
 
-        $this->periods = collect(['weeks', 'months', 'years']);
+        $this->periods = collect(['days', 'weeks', 'months', 'years']);
 
         $this->lab_services = LabService::all();
     }
 
+    // generate unique patient number
     public function patient_number(): int
     {
         do {
@@ -83,6 +88,7 @@ class CreatePatientComponent extends Component
         return $number;
     }
 
+    // generate unique order number
     public function order_number(): int
     {
         do {
@@ -91,10 +97,9 @@ class CreatePatientComponent extends Component
         return $number;
     }
 
+    // store data
     public function storePatient()
     {
-        // dd($this->lab_service_id);
-        // dd(in_array(2, $this->lab_service_id));
         $this->validate([
             // patient
             // 'lab_service_id' =>
@@ -114,6 +119,10 @@ class CreatePatientComponent extends Component
             'residence'         => 'string|max:255',
 
             // patient visit
+            'patient_days'     => 'sometimes|nullable|numeric',
+            'patient_weeks'    => 'sometimes|nullable|numeric',
+            'patient_months'   => 'sometimes|nullable|numeric',
+            'patient_years'    => 'sometimes|nullable|numeric',
             'temperature'      => 'sometimes|nullable|numeric',
             'weight'           => 'sometimes|nullable|numeric',
             'height'           => 'sometimes|nullable|numeric',
@@ -124,7 +133,7 @@ class CreatePatientComponent extends Component
         ], ['selectedBirthDate.required' => 'This field can not be empty. Select date of birth or age']);
 
         DB::transaction(function () {
-
+            // create new patient
             $patient = Patient::create([
                 'user_id'        => auth()->id(),
                 'patient_number' => $this->patient_number(),
@@ -135,6 +144,7 @@ class CreatePatientComponent extends Component
                 'residence'      => $this->residence,
             ]);
 
+            // create new patient visit
             $patient_visit = PatientVisit::create([
                 'user_id'          => auth()->id(),
                 'patient_id'       => $patient->id,
@@ -149,23 +159,39 @@ class CreatePatientComponent extends Component
                 'kin_residence'    => $this->kin_residence,
             ]);
 
+            // create an array of test order
             foreach ($this->lab_service_id as $key => $value) {
+                $lab_service = LabService::where('id', $this->lab_service_id[$key])->first();
                 TestOrder::create([
                     'user_id'        => auth()->id(),
                     'patient_id'     => $patient->id,
                     'lab_service_id' => $this->lab_service_id[$key],
-                    'order_number'   => $this->order_number()
+                    'order_number'   => $this->order_number(),
+                    'lab_service_price' => $lab_service->price,
                 ]);
 
-                // if ($this->date_of_birth !== null && $this->age === null) {
-                //     $patient->update([
-                //         'date_of_birth' => $this->date_of_birth,
-                //     ]);
-                // } elseif ($this->date_of_birth === null && $this->age !== null) {
-                //     $patient_visit->update([
-                //         'patient_age' => $this->age,
-                //     ]);
-                // }
+                // store date of birth, weeks, months or years
+                if (!is_null($this->date_of_birth)) {
+                    $patient->update([
+                        'date_of_birth' => $this->date_of_birth,
+                    ]);
+                } elseif (!is_null($this->patient_days)) {
+                    $patient_visit->update([
+                        'patient_days' => $this->patient_days,
+                    ]);
+                } elseif (!is_null($this->patient_weeks)) {
+                    $patient_visit->update([
+                        'patient_weeks' => $this->patient_weeks,
+                    ]);
+                } elseif (!is_null($this->patient_months)) {
+                    $patient_visit->update([
+                        'patient_months' => $this->patient_months,
+                    ]);
+                } elseif (!is_null($this->patient_years)) {
+                    $patient_visit->update([
+                        'patient_years' => $this->patient_years,
+                    ]);
+                }
             }
         });
         return redirect()->to(route('patients.index'));
