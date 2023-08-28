@@ -20,8 +20,8 @@ class TestOrderComponent extends Component
     public $specimens;
 
     public $patient;
-    public $test_order;
-    public $test_order_id;
+    public $test_result;
+    public $test_result_id;
     public $patient_id;
     public $spacemen_id;
 
@@ -54,8 +54,8 @@ class TestOrderComponent extends Component
 
     public function openReceiveTestOrder(int $id): void
     {
-        $test_order = TestOrder::where('id', $id)->first();
-        $this->test_order_id   = $id;
+        $test_result = TestResult::where('id', $id)->first();
+        $this->test_result_id   = $id;
 
         $this->isOpenReceiveTestOrder = true;
     }
@@ -68,21 +68,16 @@ class TestOrderComponent extends Component
 
     public function receiveOrder(): void
     {
-        if ($this->test_order_id) {
-            $test_order = TestOrder::find($this->test_order_id);
+        if ($this->test_result_id) {
+            $test_result = TestResult::find($this->test_result_id);
 
-            $result = $test_order->update([
-                'user_id' => auth()->id(),
-                'order_status' => 'received',
+            $result = $test_result->update([
+                'user_id'             => auth()->id(),
+                'order_status'        => 'received',
+                'order_received_date' => now(),
             ]);
-            $test_order = TestOrder::find($this->test_order_id);
+            $test_result = TestResult::find($this->test_result_id);
 
-
-
-            TestResult::create([
-                'test_order_id' => $test_order->id,
-                'patient_id' => $test_order->patient->id,
-            ]);
 
             $this->emitSelf('receiveOrder');
             toastr()->success('Test order has been received.');
