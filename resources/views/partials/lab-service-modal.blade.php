@@ -18,16 +18,23 @@
                     <!-- category -->
                     <div class="mt-3 mb-3">
                         <x-jet-label for="service_category_id" value="{{ __('Service Category *') }}" />
-                        <select
-                            class="w-full border-gray-300 rounded-md shadow-sm dark:border-gray-900 dark:text-gray-400 dark:bg-gray-700 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 form-select"
-                            wire:model.defer="lab_service_category_id" autofocus>
-                            <option value="">-- select category --</option>
-                            @foreach ($categories as $category)
-                                <option value="{{ $category->id }}" {{ old('service_category_id') ? 'selected' : '' }}>
-                                    {{ $category->category_name }}
-                                </option>
-                            @endforeach
-                        </select>
+                        <div class="flex">
+                            <select
+                                class="w-full mb-4 border-gray-300 rounded-md shadow-sm dark:border-gray-900 dark:text-gray-400 dark:bg-gray-700 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 form-select"
+                                wire:model.defer="lab_service_category_id">
+                                <option value="">-- select category --</option>
+                                @foreach ($categories as $category)
+                                    <option value="{{ $category->id }}"
+                                        {{ old('service_category_id') ? 'selected' : '' }}>
+                                        {{ $category->category_name }}
+                                    </option>
+                                @endforeach
+                            </select>
+
+                            {{-- <x-jet-button class="block mb-4 ml-2" wire:click.prevent="newCategoryModal">
+                                <span>New category</span>
+                            </x-jet-button> --}}
+                        </div>
                         <x-jet-input-error for="lab_service_category_id" />
                     </div>
                     <!-- /.category -->
@@ -117,6 +124,11 @@
             <x-slot name="footer">
                 <x-jet-button class="mr-4" wire:click="store" wire:loading.attr="disabled">
                     <span wire:loading.remove>{{ __('Save') }}</span>
+                    <span wire:loading>{{ __('Saving...') }}</span>
+                </x-jet-button>
+
+                <x-jet-button class="mr-4" wire:click="storeCreateAnother" wire:loading.attr="disabled">
+                    <span wire:loading.remove>{{ __('Save & Create another') }}</span>
                     <span wire:loading>{{ __('Saving...') }}</span>
                 </x-jet-button>
 
@@ -225,3 +237,47 @@
     </x-delete-modal>
 @endif
 <!-- /.delete modal -->
+
+
+<!-- create new category -->
+@if ($isOpenNewCategory)
+    <x-modal>
+        <div>
+            <x-slot name="title">
+                Enter Service Category
+            </x-slot>
+
+            <x-slot name="content">
+                <div class="mb-2">
+                    <span class="font-semibold">Note: </span><span class="mr-1 text-lg"> *</span> Denotes Mandatory.
+                </div>
+                @if ($errors->any())
+                    <x-jet-validation-errors class="mb-4" />
+                @endif
+                <form>
+                    <div>
+                        <label for="category_name"
+                            class="text-sm font-bold leading-tight tracking-normal text-gray-800">
+                            Service Category *
+                        </label>
+                        <input id="category_name "
+                            class="flex items-center w-full h-10 pl-3 mt-2 mb-1 text-sm font-normal text-gray-600 border border-gray-300 rounded focus:outline-none focus:border focus:border-indigo-700"
+                            wire:model.defer="category_name" />
+                        <x-jet-input-error for="category_name" />
+                    </div>
+                </form>
+            </x-slot>
+
+            <x-slot name="footer">
+                <x-jet-button class="mr-4" wire:click="storeServiceCategory" wire:loading.attr="disabled">
+                    {{ __('Save') }}
+                </x-jet-button>
+
+                <x-jet-secondary-button wire:click="closeNewCategoryModal" wire:loading.attr="disabled">
+                    {{ __('Cancel') }}
+                </x-jet-secondary-button>
+            </x-slot>
+        </div>
+    </x-modal>
+@endif
+<!-- create new category -->
