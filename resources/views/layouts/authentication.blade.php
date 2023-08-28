@@ -24,7 +24,7 @@
     </script>
 </head>
 
-<body class="font-inter antialiased bg-slate-100 dark:bg-slate-900 text-slate-600 dark:text-slate-400">
+<body class="antialiased font-inter bg-slate-100 dark:bg-slate-900 text-slate-600 dark:text-slate-400">
 
     <main class="bg-white">
 
@@ -33,7 +33,7 @@
             <!-- Content -->
             <div class="w-full md:w-1/2">
 
-                <div class="min-h-screen h-full flex flex-col after:flex-1">
+                <div class="flex flex-col h-full min-h-screen after:flex-1">
 
                     <!-- Header -->
                     <div class="flex-1">
@@ -67,13 +67,14 @@
                                                 fill="url(#logo-b)" />
                                         </svg>
                                     </div>
-                                    <div class="mt-1 ml-2 text-lg uppercase text-black font-bold">NugSoft Lab</div>
+                                    <div class="mt-1 ml-2 text-lg font-bold text-black uppercase">
+                                        {{ config('app.name', 'MediLab') }}</div>
                                 </div>
                             </a>
                         </div>
                     </div>
 
-                    <div class="w-full max-w-sm mx-auto px-4 py-8">
+                    <div class="w-full max-w-sm px-4 py-8 mx-auto">
                         {{ $slot }}
                     </div>
 
@@ -82,10 +83,10 @@
             </div>
 
             <!-- Image -->
-            <div class="hidden md:block absolute top-0 bottom-0 right-0 md:w-1/2" aria-hidden="true">
+            <div class="absolute top-0 bottom-0 right-0 hidden md:block md:w-1/2" aria-hidden="true">
                 <img class="object-cover object-center w-full h-full" src="{{ asset('images/auth-image.jpg') }}"
                     width="760" height="1024" alt="Authentication image" />
-                <img class="absolute top-1/4 left-0 -translate-x-1/2 ml-8 hidden lg:block"
+                <img class="absolute left-0 hidden ml-8 -translate-x-1/2 top-1/4 lg:block"
                     src="{{ asset('images/auth-decoration.png') }}" width="218" height="224"
                     alt="Authentication decoration" />
             </div>

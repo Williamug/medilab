@@ -1,14 +1,14 @@
 <x-app-layout>
     <x-slot name="title">
-        Spacemens
+        Specimen
     </x-slot>
     <x-app.card>
         <x-slot name="banner">
-            Spacemens
+            Specimen
         </x-slot>
         <x-app.flash-message />
         <div>
-            <livewire:spacemen-list-component>
+            <livewire:spacemen-component />
         </div>
     </x-app.card>
 </x-app-layout>

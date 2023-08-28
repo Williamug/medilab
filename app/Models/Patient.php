@@ -2,44 +2,26 @@
 
 namespace App\Models;
 
+use Attribute;
 use Carbon\Carbon;
-use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Patient extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $with = ['next_of_kin'];
+    protected $guarded = [];
 
-    protected $fillable = [
-        'user_id',
-        'next_of_kin_id',
-        'registration_number',
-        'full_name',
-        'gender',
-        'date_of_birth',
-        'age',
-        'phone_number',
-        'email',
-        'residence',
-    ];
-
-    protected $casts = [
-        'birth_date' => 'date',
-    ];
+    // eager load models
+    protected $with = ['patient_visits', 'test_orders'];
 
     //Accessor for Age.
-    public function ageFromDob(): Attribute
+    public function ageFromDob()
     {
-        return new Attribute(
-            get: fn () => Carbon::parse($this->attributes['date_of_birth'])->age
-        );
+        return Carbon::parse($this->attributes['date_of_birth'])->age;
     }
 
     public static function search($query)
@@ -47,24 +29,17 @@ class Patient extends Model
         // filter results
         return empty($query)
             ? static::query()
-            : static::where('full_name', 'like', '%' . $query . '%')
-            ->orWhere('gender', 'like', '%' . $query . '%')
-            ->orWhere('birth_date', 'like', '%' . $query . '%');
+            : static::where('full_name', 'like', '%' . $query . '%');
     }
 
-    // get a corresponding visit information
-    public function visit_info(): HasOne
+    // create relationships
+    public function patient_visits(): HasMany
     {
-        return $this->hasOne(VisitInfo::class);
+        return $this->hasMany(PatientVisit::class);
     }
 
-    public function next_of_kin(): BelongsTo
+    public function test_orders(): HasMany
     {
-        return $this->belongsTo(NextOfKin::class);
-    }
-
-    public function test_results(): HasMany
-    {
-        return $this->hasMany(TestResult::class);
+        return $this->hasMany(TestOrder::class);
     }
 }

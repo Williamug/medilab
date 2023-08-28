@@ -4,22 +4,19 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class TestResult extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $fillable = ['user_id', 'patient_id', 'lab_service_id', 'spacemen', 'result_status', 'result_option_id', 'test_identity', 'comment'];
+    protected $guarded = [];
 
-    public function patient(): BelongsTo
+    public static function search($query)
     {
-        return $this->belongsTo(Patient::class);
-    }
-
-    public function lab_service(): BelongsTo
-    {
-        return $this->belongsTo(LabServices::class);
+        // filter results
+        return empty($query)
+            ? static::query()
+            : static::where('test_identity', 'like', '%' . $query . '%');
     }
 }

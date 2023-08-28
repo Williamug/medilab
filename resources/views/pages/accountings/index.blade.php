@@ -1,14 +1,14 @@
 <x-app-layout>
     <x-slot name="title">
-        Accounts
+        Accounting
     </x-slot>
     <x-app.card>
         <x-slot name="banner">
-            Accounts
+            Accounting
         </x-slot>
         <x-app.flash-message />
         <div>
-            <livewire:accounting-list-component />
+            <livewire:accountings.accounting-component />
         </div>
     </x-app.card>
 </x-app-layout>

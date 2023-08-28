@@ -48,7 +48,7 @@
                                 fill="url(#logo-b)" />
                         </svg>
                     </div>
-                    <div class="mt-1 ml-2 text-lg text-white uppercase">NugSoft Lab</div>
+                    <div class="mt-1 ml-2 text-lg font-bold text-white">{{ config('app.name') }}</div>
                 </div>
             </a>
         </div>
@@ -71,16 +71,11 @@
                                 href="{{ route('dashboard') }}">
                                 <div class="flex items-center justify-between">
                                     <div class="flex items-center grow">
-                                        <svg class="w-6 h-6 shrink-0" viewBox="0 0 24 24">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+                                            class="w-6 h-6 bi bi-house shrink-0" viewBox="0 0 16 16">
                                             <path
                                                 class="fill-current @if (in_array(Request::segment(1), ['dashboard'])) {{ 'text-indigo-500' }}@else{{ 'text-slate-400' }} @endif"
-                                                d="M12 0C5.383 0 0 5.383 0 12s5.383 12 12 12 12-5.383 12-12S18.617 0 12 0z" />
-                                            <path
-                                                class="fill-current @if (in_array(Request::segment(1), ['dashboard'])) {{ 'text-indigo-600' }}@else{{ 'text-slate-600' }} @endif"
-                                                d="M12 3c-4.963 0-9 4.037-9 9s4.037 9 9 9 9-4.037 9-9-4.037-9-9-9z" />
-                                            <path
-                                                class="fill-current @if (in_array(Request::segment(1), ['dashboard'])) {{ 'text-indigo-200' }}@else{{ 'text-slate-400' }} @endif"
-                                                d="M12 15c-1.654 0-3-1.346-3-3 0-.462.113-.894.3-1.285L6 6l4.714 3.301A2.973 2.973 0 0112 9c1.654 0 3 1.346 3 3s-1.346 3-3 3z" />
+                                                d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L2 8.207V13.5A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V8.207l.646.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.707 1.5ZM13 7.207V13.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V7.207l5-5 5 5Z" />
                                         </svg>
                                         <span
                                             class="ml-3 text-sm font-medium duration-200 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100">Dashboard</span>
@@ -94,15 +89,22 @@
                     @can('view outcome module')
                         <li
                             class="px-3 py-2 rounded-sm mb-0.5 last:mb-0 @if (in_array(Request::segment(1), ['result-options'])) {{ 'bg-slate-900' }} @endif">
-                            <a class="block text-slate-200 hover:text-white truncate transition duration-150 @if (in_array(Request::segment(1), ['result-options'])) {{ 'hover:text-slate-200' }} @endif"
+                            <a class="block text-slate-200 hover:text-white truncate transition duration-150 @if (in_array(Request::segment(1), ['result-options'])) {{ '!text-indigo-500' }} @endif"
                                 href="{{ route('result-options.index') }}">
                                 <div class="flex items-center">
-                                    <svg fill="none" stroke="currentColor" class="w-6 h-6 shrink-0" stroke-width="1.5"
-                                        viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                                        <path stroke-linecap="round" stroke-linejoin="round"
-                                            class="fill-current @if (in_array(Request::segment(1), ['result-options'])) {{ 'text-indigo-300' }}@else{{ 'text-slate-400' }} @endif"
-                                            d="M9 12h3.75M9 15h3.75M9 18h3.75m3 .75H18a2.25 2.25 0 002.25-2.25V6.108c0-1.135-.845-2.098-1.976-2.192a48.424 48.424 0 00-1.123-.08m-5.801 0c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 00.75-.75 2.25 2.25 0 00-.1-.664m-5.8 0A2.251 2.251 0 0113.5 2.25H15c1.012 0 1.867.668 2.15 1.586m-5.8 0c-.376.023-.75.05-1.124.08C9.095 4.01 8.25 4.973 8.25 6.108V8.25m0 0H4.875c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V9.375c0-.621-.504-1.125-1.125-1.125H8.25zM6.75 12h.008v.008H6.75V12zm0 3h.008v.008H6.75V15zm0 3h.008v.008H6.75V18z">
-                                        </path>
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+                                        class="w-6 h-6 bi bi-list-task shrink-0" viewBox="0 0 16 16">
+                                        <path
+                                            class="fill-current @if (in_array(Request::segment(1), ['result-options'])) {{ 'text-indigo-500' }}@else{{ 'text-slate-400' }} @endif"
+                                            fill-rule="evenodd"
+                                            d="M2 2.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5V3a.5.5 0 0 0-.5-.5H2zM3 3H2v1h1V3z" />
+                                        <path
+                                            class="fill-current @if (in_array(Request::segment(1), ['result-options'])) {{ 'text-indigo-500' }}@else{{ 'text-slate-400' }} @endif"
+                                            d="M5 3.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zM5.5 7a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1h-9zm0 4a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1h-9z" />
+                                        <path
+                                            class="fill-current @if (in_array(Request::segment(1), ['result-options'])) {{ 'text-indigo-500' }}@else{{ 'text-slate-400' }} @endif"
+                                            fill-rule="evenodd"
+                                            d="M1.5 7a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5H2a.5.5 0 0 1-.5-.5V7zM2 7h1v1H2V7zm0 3.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5H2zm1 .5H2v1h1v-1z" />
                                     </svg>
                                     <span
                                         class="ml-3 text-sm font-medium duration-200 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100">Result
@@ -116,16 +118,14 @@
                     @can('view category module')
                         <li
                             class="px-3 py-2 rounded-sm mb-0.5 last:mb-0 @if (in_array(Request::segment(1), ['service-categories'])) {{ 'bg-slate-900' }} @endif">
-                            <a class="block text-slate-200 hover:text-white truncate transition duration-150 @if (in_array(Request::segment(1), ['service-categories'])) {{ 'hover:text-slate-200' }} @endif"
+                            <a class="block text-slate-200 hover:text-white truncate transition duration-150 @if (in_array(Request::segment(1), ['service-categories'])) {{ '!text-indigo-500' }} @endif"
                                 href="{{ route('service-categories.index') }}">
                                 <div class="flex items-center">
-                                    <svg class="w-6 h-6 shrink-0" viewBox="0 0 24 24">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+                                        class="w-6 h-6 bi bi-collection shrink-0" viewBox="0 0 16 16">
                                         <path
-                                            class="fill-current @if (in_array(Request::segment(1), ['service-categories'])) {{ 'text-indigo-500' }}@else{{ 'text-slate-600' }} @endif"
-                                            d="M16 13v4H8v-4H0l3-9h18l3 9h-8Z" />
-                                        <path
-                                            class="fill-current @if (in_array(Request::segment(1), ['service-categories'])) {{ 'text-indigo-300' }}@else{{ 'text-slate-400' }} @endif"
-                                            d="m23.72 12 .229.686A.984.984 0 0 1 24 13v8a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1v-8c0-.107.017-.213.051-.314L.28 12H8v4h8v-4H23.72ZM13 0v7h3l-4 5-4-5h3V0h2Z" />
+                                            class="fill-current @if (in_array(Request::segment(1), ['service-categories'])) {{ 'text-indigo-500' }}@else{{ 'text-slate-400' }} @endif"
+                                            d="M2.5 3.5a.5.5 0 0 1 0-1h11a.5.5 0 0 1 0 1h-11zm2-2a.5.5 0 0 1 0-1h7a.5.5 0 0 1 0 1h-7zM0 13a1.5 1.5 0 0 0 1.5 1.5h13A1.5 1.5 0 0 0 16 13V6a1.5 1.5 0 0 0-1.5-1.5h-13A1.5 1.5 0 0 0 0 6v7zm1.5.5A.5.5 0 0 1 1 13V6a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-.5.5h-13z" />
                                     </svg>
                                     <span
                                         class="ml-3 text-sm font-medium duration-200 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100">Lab
@@ -135,20 +135,19 @@
                         </li>
                     @endcan
 
-                    <!-- test services -->
+                    <!-- teb services -->
                     @can('view test service module')
                         <li
                             class="px-3 py-2 rounded-sm mb-0.5 last:mb-0 @if (in_array(Request::segment(1), ['lab-services'])) {{ 'bg-slate-900' }} @endif">
-                            <a class="block text-slate-200 hover:text-white truncate transition duration-150 @if (in_array(Request::segment(1), ['lab-services'])) {{ 'hover:text-slate-200' }} @endif"
+                            <a class="block text-slate-200 hover:text-white truncate transition duration-150 @if (in_array(Request::segment(1), ['lab-services'])) {{ '!text-indigo-500' }} @endif"
                                 href="{{ route('lab-services.index') }}">
                                 <div class="flex items-center">
-                                    <svg class="w-6 h-6 shrink-0" viewBox="0 0 24 24">
+
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+                                        class="w-6 h-6 bi bi-inboxes shrink-0" viewBox="0 0 16 16">
                                         <path
-                                            class="fill-current @if (in_array(Request::segment(1), ['lab-services'])) {{ 'text-indigo-500' }}@else{{ 'text-slate-600' }} @endif"
-                                            d="M1 3h22v20H1z" />
-                                        <path
-                                            class="fill-current @if (in_array(Request::segment(1), ['lab-services'])) {{ 'text-indigo-300' }}@else{{ 'text-slate-400' }} @endif"
-                                            d="M21 3h2v4H1V3h2V1h4v2h10V1h4v2Z" />
+                                            class="fill-current @if (in_array(Request::segment(1), ['lab-services'])) {{ 'text-indigo-500' }}@else{{ 'text-slate-400' }} @endif"
+                                            d="M4.98 1a.5.5 0 0 0-.39.188L1.54 5H6a.5.5 0 0 1 .5.5 1.5 1.5 0 0 0 3 0A.5.5 0 0 1 10 5h4.46l-3.05-3.812A.5.5 0 0 0 11.02 1H4.98zm9.954 5H10.45a2.5 2.5 0 0 1-4.9 0H1.066l.32 2.562A.5.5 0 0 0 1.884 9h12.234a.5.5 0 0 0 .496-.438L14.933 6zM3.809.563A1.5 1.5 0 0 1 4.981 0h6.038a1.5 1.5 0 0 1 1.172.563l3.7 4.625a.5.5 0 0 1 .105.374l-.39 3.124A1.5 1.5 0 0 1 14.117 10H1.883A1.5 1.5 0 0 1 .394 8.686l-.39-3.124a.5.5 0 0 1 .106-.374L3.81.563zM.125 11.17A.5.5 0 0 1 .5 11H6a.5.5 0 0 1 .5.5 1.5 1.5 0 0 0 3 0 .5.5 0 0 1 .5-.5h5.5a.5.5 0 0 1 .496.562l-.39 3.124A1.5 1.5 0 0 1 14.117 16H1.883a1.5 1.5 0 0 1-1.489-1.314l-.39-3.124a.5.5 0 0 1 .121-.393zm.941.83.32 2.562a.5.5 0 0 0 .497.438h12.234a.5.5 0 0 0 .496-.438l.32-2.562H10.45a2.5 2.5 0 0 1-4.9 0H1.066z" />
                                     </svg>
                                     <span
                                         class="ml-3 text-sm font-medium duration-200 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100">Lab
@@ -162,19 +161,18 @@
                     @can('view spacemen module')
                         <li
                             class="px-3 py-2 rounded-sm mb-0.5 last:mb-0 @if (in_array(Request::segment(1), ['spacemens'])) {{ 'bg-slate-900' }} @endif">
-                            <a class="block text-slate-200 hover:text-white truncate transition duration-150 @if (in_array(Request::segment(1), ['spacemens'])) {{ 'hover:text-slate-200' }} @endif"
+                            <a class="block text-slate-200 hover:text-white truncate transition duration-150 @if (in_array(Request::segment(1), ['spacemens'])) {{ '!text-indigo-500' }} @endif""
                                 href="{{ route('spacemens.index') }}">
                                 <div class="flex items-center">
-                                    <svg class="w-6 h-6 shrink-0" viewBox="0 0 24 24">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                        stroke-width="1.5" stroke="currentColor" class="w-6 h-6 shrink-0">
                                         <path
-                                            class="fill-current @if (in_array(Request::segment(1), ['spacemens'])) {{ 'text-indigo-500' }}@else{{ 'text-slate-600' }} @endif"
-                                            d="M20 7a.75.75 0 01-.75-.75 1.5 1.5 0 00-1.5-1.5.75.75 0 110-1.5 1.5 1.5 0 001.5-1.5.75.75 0 111.5 0 1.5 1.5 0 001.5 1.5.75.75 0 110 1.5 1.5 1.5 0 00-1.5 1.5A.75.75 0 0120 7zM4 23a.75.75 0 01-.75-.75 1.5 1.5 0 00-1.5-1.5.75.75 0 110-1.5 1.5 1.5 0 001.5-1.5.75.75 0 111.5 0 1.5 1.5 0 001.5 1.5.75.75 0 110 1.5 1.5 1.5 0 00-1.5 1.5A.75.75 0 014 23z" />
-                                        <path
-                                            class="fill-current @if (in_array(Request::segment(1), ['spacemens'])) {{ 'text-indigo-300' }}@else{{ 'text-slate-400' }} @endif"
-                                            d="M17 23a1 1 0 01-1-1 4 4 0 00-4-4 1 1 0 010-2 4 4 0 004-4 1 1 0 012 0 4 4 0 004 4 1 1 0 010 2 4 4 0 00-4 4 1 1 0 01-1 1zM7 13a1 1 0 01-1-1 4 4 0 00-4-4 1 1 0 110-2 4 4 0 004-4 1 1 0 112 0 4 4 0 004 4 1 1 0 010 2 4 4 0 00-4 4 1 1 0 01-1 1z" />
+                                            class="fill-current @if (in_array(Request::segment(1), ['spacemens'])) {{ 'text-indigo-500' }}@else{{ 'text-slate-400' }} @endif"
+                                            stroke-linecap="round" stroke-linejoin="round"
+                                            d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456zM16.894 20.567L16.5 21.75l-.394-1.183a2.25 2.25 0 00-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 001.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 001.423 1.423l1.183.394-1.183.394a2.25 2.25 0 00-1.423 1.423z" />
                                     </svg>
                                     <span
-                                        class="ml-3 text-sm font-medium duration-200 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100">Spacemens</span>
+                                        class="ml-3 text-sm font-medium duration-200 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100">Specimen</span>
                                 </div>
                             </a>
                         </li>
@@ -184,18 +182,16 @@
                     @can('view patient module')
                         <li
                             class="px-3 py-2 rounded-sm mb-0.5 last:mb-0 @if (in_array(Request::segment(1), ['patients'])) {{ 'bg-slate-900' }} @endif">
-                            <a class="block text-slate-200 hover:text-white truncate transition duration-150 @if (in_array(Request::segment(1), ['patients'])) {{ 'hover:text-slate-200' }} @endif"
+                            <a class="block text-slate-200 hover:text-white truncate transition duration-150 @if (in_array(Request::segment(1), ['patients'])) {{ '!text-indigo-500' }} @endif"
                                 href="{{ route('patients.index') }}">
                                 <div class="flex items-center justify-between">
                                     <div class="flex items-center grow">
-                                        <svg class="w-6 h-6 shrink-0" fill="none" stroke="currentColor"
-                                            stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"
-                                            aria-hidden="true">
+
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+                                            class="w-6 h-6 bi bi-people shrink-0" viewBox="0 0 16 16">
                                             <path
-                                                class="fill-current @if (in_array(Request::segment(1), ['patients'])) {{ 'text-indigo-300' }}@else{{ 'text-slate-400' }} @endif"stroke-linecap="round"
-                                                stroke-linejoin="round"
-                                                d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z">
-                                            </path>
+                                                class="fill-current @if (in_array(Request::segment(1), ['patients'])) {{ 'text-indigo-500' }}@else{{ 'text-slate-400' }} @endif"
+                                                d="M15 14s1 0 1-1-1-4-5-4-5 3-5 4 1 1 1 1h8Zm-7.978-1A.261.261 0 0 1 7 12.996c.001-.264.167-1.03.76-1.72C8.312 10.629 9.282 10 11 10c1.717 0 2.687.63 3.24 1.276.593.69.758 1.457.76 1.72l-.008.002a.274.274 0 0 1-.014.002H7.022ZM11 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4Zm3-2a3 3 0 1 1-6 0 3 3 0 0 1 6 0ZM6.936 9.28a5.88 5.88 0 0 0-1.23-.247A7.35 7.35 0 0 0 5 9c-4 0-5 3-5 4 0 .667.333 1 1 1h4.216A2.238 2.238 0 0 1 5 13c0-1.01.377-2.042 1.09-2.904.243-.294.526-.569.846-.816ZM4.92 10A5.493 5.493 0 0 0 4 13H1c0-.26.164-1.03.76-1.724.545-.636 1.492-1.256 3.16-1.275ZM1.5 5.5a3 3 0 1 1 6 0 3 3 0 0 1-6 0Zm3-2a2 2 0 1 0 0 4 2 2 0 0 0 0-4Z" />
                                         </svg>
                                         <span
                                             class="ml-3 text-sm font-medium duration-200 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100">Patients</span>
@@ -230,28 +226,84 @@
                         </li>
                     @endcan --}}
 
-                    <!-- test result -->
+                    <!-- laboratory -->
                     @can('view test result module')
                         <li class="px-3 py-2 rounded-sm mb-0.5 last:mb-0 @if (in_array(Request::segment(1), ['test-results'])) {{ 'bg-slate-900' }} @endif"
                             x-data="{ open: {{ in_array(Request::segment(1), ['test-results']) ? 1 : 0 }} }">
-                            <a class="block text-slate-200 hover:text-white truncate transition duration-150 @if (in_array(Request::segment(1), ['test-results'])) {{ 'hover:text-slate-200' }} @endif"
+                            <a class="block text-slate-200 hover:text-white truncate transition duration-150 @if (in_array(Request::segment(1), ['test-results'])) {{ '!text-indigo-500' }} @endif"
                                 href="#0" @click.prevent="sidebarExpanded ? open = !open : sidebarExpanded = true">
                                 <div class="flex items-center justify-between">
                                     <div class="flex items-center">
-                                        <svg class="w-6 h-6 shrink-0" fill="none" stroke="currentColor"
-                                            stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"
-                                            aria-hidden="true">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+                                            class="w-6 h-6 shrink-0 bi bi-prescription2" viewBox="0 0 16 16">
+                                            <path d="M7 6h2v2h2v2H9v2H7v-2H5V8h2V6Z" />
                                             <path
-                                                class="fill-current @if (in_array(Request::segment(1), ['test-results'])) {{ 'text-indigo-500' }}@else{{ 'text-slate-600' }} @endif"
-                                                stroke-linecap="round" stroke-linejoin="round"
-                                                d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z">
-                                            </path>
+                                                class="fill-current @if (in_array(Request::segment(1), ['test-results'])) {{ 'text-indigo-500' }}@else{{ 'text-slate-400' }} @endif"
+                                                d="M2 1a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1v10.5a1.5 1.5 0 0 1-1.5 1.5h-7A1.5 1.5 0 0 1 3 14.5V4a1 1 0 0 1-1-1V1Zm2 3v10.5a.5.5 0 0 0 .5.5h7a.5.5 0 0 0 .5-.5V4H4ZM3 3h10V1H3v2Z" />
                                         </svg>
                                         <span
-                                            class="ml-3 text-sm font-medium duration-200 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100">Test
-                                            Results</span>
+                                            class="ml-3 text-sm font-medium duration-200 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100">
+                                            Laboratory
+                                        </span>
                                     </div>
-                                    <!-- Icon -->
+
+                                    <!-- Dropdown Icon -->
+                                    <div
+                                        class="flex ml-2 duration-200 shrink-0 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100">
+                                        <svg class="w-3 h-3 shrink-0 ml-1 fill-current text-slate-400 @if (in_array(Request::segment(1), ['test-results'])) {{ 'rotate-180' }} @endif"
+                                            :class="open ? 'rotate-180' : 'rotate-0'" viewBox="0 0 12 12">
+                                            <path d="M5.9 11.4L.5 6l1.4-1.4 4 4 4-4L11.3 6z" />
+                                        </svg>
+                                    </div>
+                                </div>
+                            </a>
+                            <div class="lg:hidden lg:sidebar-expanded:block 2xl:block">
+                                <ul class="pl-9 mt-1 @if (!in_array(Request::segment(1), ['test-results'])) {{ 'hidden' }} @endif"
+                                    :class="open ? '!block' : 'hidden'">
+
+                                    {{-- <li class="mb-1 last:mb-0">
+                                        <a class="block text-slate-400 hover:text-slate-200 transition duration-150 truncate @if (Route::is('waiting-lists.index')) {{ '!text-indigo-500' }} @endif"
+                                            href="{{ route('waiting-lists.index') }}">
+                                            <span
+                                                class="text-sm font-medium duration-200 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100">
+                                                Test Orders
+                                            </span>
+                                        </a>
+                                    </li> --}}
+                                </ul>
+                            </div>
+                        </li>
+                    @endcan
+
+                    <!-- Accounting -->
+                    @can('view accounting module')
+                        <li class="px-3 py-2 rounded-sm mb-0.5 last:mb-0 @if (in_array(Request::segment(1), ['test-results'])) {{ 'bg-slate-900' }} @endif"
+                            x-data="{ open: {{ in_array(Request::segment(1), ['test-results']) ? 1 : 0 }} }">
+                            <a class="block text-slate-200 hover:text-white truncate transition duration-150 @if (in_array(Request::segment(1), ['test-results'])) {{ '!text-indigo-500' }} @endif"
+                                href="#0" @click.prevent="sidebarExpanded ? open = !open : sidebarExpanded = true">
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center">
+
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+                                            class="w-6 h-6 shrink-0 bi bi-cash-coin" viewBox="0 0 16 16">
+                                            <path fill-rule="evenodd"
+                                                d="M11 15a4 4 0 1 0 0-8 4 4 0 0 0 0 8zm5-4a5 5 0 1 1-10 0 5 5 0 0 1 10 0z" />
+                                            <path
+                                                class="fill-current @if (in_array(Request::segment(1), ['test-results'])) {{ 'text-indigo-500' }}@else{{ 'text-slate-400' }} @endif"
+                                                d="M9.438 11.944c.047.596.518 1.06 1.363 1.116v.44h.375v-.443c.875-.061 1.386-.529 1.386-1.207 0-.618-.39-.936-1.09-1.1l-.296-.07v-1.2c.376.043.614.248.671.532h.658c-.047-.575-.54-1.024-1.329-1.073V8.5h-.375v.45c-.747.073-1.255.522-1.255 1.158 0 .562.378.92 1.007 1.066l.248.061v1.272c-.384-.058-.639-.27-.696-.563h-.668zm1.36-1.354c-.369-.085-.569-.26-.569-.522 0-.294.216-.514.572-.578v1.1h-.003zm.432.746c.449.104.655.272.655.569 0 .339-.257.571-.709.614v-1.195l.054.012z" />
+                                            <path
+                                                class="fill-current @if (in_array(Request::segment(1), ['test-results'])) {{ 'text-indigo-500' }}@else{{ 'text-slate-400' }} @endif"
+                                                d="M1 0a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h4.083c.058-.344.145-.678.258-1H3a2 2 0 0 0-2-2V3a2 2 0 0 0 2-2h10a2 2 0 0 0 2 2v3.528c.38.34.717.728 1 1.154V1a1 1 0 0 0-1-1H1z" />
+                                            <path
+                                                d="M9.998 5.083 10 5a2 2 0 1 0-3.132 1.65 5.982 5.982 0 0 1 3.13-1.567z" />
+                                        </svg>
+                                        <span
+                                            class="ml-3 text-sm font-medium duration-200 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100">
+                                            Accounting
+                                        </span>
+                                    </div>
+
+                                    <!-- Dropdown Icon -->
                                     <div
                                         class="flex ml-2 duration-200 shrink-0 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100">
                                         <svg class="w-3 h-3 shrink-0 ml-1 fill-current text-slate-400 @if (in_array(Request::segment(1), ['test-results'])) {{ 'rotate-180' }} @endif"
@@ -266,53 +318,18 @@
                                     :class="open ? '!block' : 'hidden'">
 
                                     <li class="mb-1 last:mb-0">
-                                        <a class="block text-slate-400 hover:text-slate-200 transition duration-150 truncate @if (Route::is('waiting-lists.index')) {{ '!text-indigo-500' }} @endif"
-                                            href="{{ route('waiting-lists.index') }}">
+                                        <a class="block text-slate-400 hover:text-slate-200 transition duration-150 truncate @if (Route::is('accountings.index')) {{ '!text-indigo-500' }} @endif"
+                                            href="{{ route('accountings.index') }}">
                                             <span
                                                 class="text-sm font-medium duration-200 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100">
-                                                Results
+                                                Payments
                                             </span>
                                         </a>
                                     </li>
-
-                                    {{-- <li class="mb-1 last:mb-0">
-                                        <a class="block text-slate-400 hover:text-slate-200 transition duration-150 truncate @if (Route::is('assign-roles.index')) {{ '!text-indigo-500' }} @endif"
-                                            href="{{ route('waiting-lists.index') }}">
-                                            <span
-                                                class="text-sm font-medium duration-200 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100">
-                                                Results
-                                            </span>
-                                        </a>
-                                    </li> --}}
                                 </ul>
                             </div>
                         </li>
                     @endcan
-
-                    <!-- Accounting -->
-                    {{-- @can('view accounting module')
-                        <li
-                            class="px-3 py-2 rounded-sm mb-0.5 last:mb-0 @if (in_array(Request::segment(1), ['accountings'])) {{ 'bg-slate-900' }} @endif">
-                            <a class="block text-slate-200 hover:text-white truncate transition duration-150 @if (in_array(Request::segment(1), ['accountings'])) {{ 'hover:text-slate-200' }} @endif"
-                                href="{{ route('accountings.index') }}">
-                                <div class="flex items-center">
-                                    <svg class="w-6 h-6 shrink-0" fill="none" stroke="currentColor"
-                                        stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"
-                                        aria-hidden="true">
-                                        <path
-                                            class="fill-current @if (in_array(Request::segment(1), ['accountings'])) {{ 'text-indigo-500' }}@else{{ 'text-slate-600' }} @endif"
-                                            stroke-linecap="round" stroke-linejoin="round"
-                                            d="M15.75 15.75V18m-7.5-6.75h.008v.008H8.25v-.008zm0 2.25h.008v.008H8.25V13.5zm0 2.25h.008v.008H8.25v-.008zm0 2.25h.008v.008H8.25V18zm2.498-6.75h.007v.008h-.007v-.008zm0 2.25h.007v.008h-.007V13.5zm0 2.25h.007v.008h-.007v-.008zm0 2.25h.007v.008h-.007V18zm2.504-6.75h.008v.008h-.008v-.008zm0 2.25h.008v.008h-.008V13.5zm0 2.25h.008v.008h-.008v-.008zm0 2.25h.008v.008h-.008V18zm2.498-6.75h.008v.008h-.008v-.008zm0 2.25h.008v.008h-.008V13.5zM8.25 6h7.5v2.25h-7.5V6zM12 2.25c-1.892 0-3.758.11-5.593.322C5.307 2.7 4.5 3.65 4.5 4.757V19.5a2.25 2.25 0 002.25 2.25h10.5a2.25 2.25 0 002.25-2.25V4.757c0-1.108-.806-2.057-1.907-2.185A48.507 48.507 0 0012 2.25z">
-                                        </path>
-                                    </svg>
-                                    <span
-                                        class="ml-3 text-sm font-medium duration-200 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100">
-                                        Accounting
-                                    </span>
-                                </div>
-                            </a>
-                        </li>
-                    @endcan --}}
 
                     <!-- Settings -->
                     @can('View settings module')
@@ -322,22 +339,16 @@
                                 href="#0" @click.prevent="sidebarExpanded ? open = !open : sidebarExpanded = true">
                                 <div class="flex items-center justify-between">
                                     <div class="flex items-center">
-                                        <svg class="w-6 h-6 shrink-0" viewBox="0 0 24 24">
+
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+                                            class="w-7 h-7 bi bi-person-lock shrink-0" viewBox="0 0 16 16">
                                             <path
                                                 class="fill-current @if (in_array(Request::segment(1), ['settings'])) {{ 'text-indigo-500' }}@else{{ 'text-slate-600' }} @endif"
-                                                d="M19.714 14.7l-7.007 7.007-1.414-1.414 7.007-7.007c-.195-.4-.298-.84-.3-1.286a3 3 0 113 3 2.969 2.969 0 01-1.286-.3z" />
-                                            <path
-                                                class="fill-current @if (in_array(Request::segment(1), ['settings'])) {{ 'text-indigo-300' }}@else{{ 'text-slate-400' }} @endif"
-                                                d="M10.714 18.3c.4-.195.84-.298 1.286-.3a3 3 0 11-3 3c.002-.446.105-.885.3-1.286l-6.007-6.007 1.414-1.414 6.007 6.007z" />
-                                            <path
-                                                class="fill-current @if (in_array(Request::segment(1), ['settings'])) {{ 'text-indigo-500' }}@else{{ 'text-slate-600' }} @endif"
-                                                d="M5.7 10.714c.195.4.298.84.3 1.286a3 3 0 11-3-3c.446.002.885.105 1.286.3l7.007-7.007 1.414 1.414L5.7 10.714z" />
-                                            <path
-                                                class="fill-current @if (in_array(Request::segment(1), ['settings'])) {{ 'text-indigo-300' }}@else{{ 'text-slate-400' }} @endif"
-                                                d="M19.707 9.292a3.012 3.012 0 00-1.415 1.415L13.286 5.7c-.4.195-.84.298-1.286.3a3 3 0 113-3 2.969 2.969 0 01-.3 1.286l5.007 5.006z" />
+                                                d="M11 5a3 3 0 1 1-6 0 3 3 0 0 1 6 0ZM8 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4Zm0 5.996V14H3s-1 0-1-1 1-4 6-4c.564 0 1.077.038 1.544.107a4.524 4.524 0 0 0-.803.918A10.46 10.46 0 0 0 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h5ZM9 13a1 1 0 0 1 1-1v-1a2 2 0 1 1 4 0v1a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1v-2Zm3-3a1 1 0 0 0-1 1v1h2v-1a1 1 0 0 0-1-1Z" />
                                         </svg>
                                         <span
-                                            class="ml-3 text-sm font-medium duration-200 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100">Settings</span>
+                                            class="ml-3 text-sm font-medium duration-200 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100">Roles
+                                            & Permissions</span>
                                     </div>
                                     <!-- Icon -->
                                     <div
