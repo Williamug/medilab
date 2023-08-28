@@ -52,35 +52,35 @@
                                 </tr>
                             </thead>
                             <tbody class="bg-white divide-y divide-gray-200 dark:divide-gray-700 dark:bg-gray-900">
-                                @foreach ($patient->test_orders as $test_order)
+                                @foreach ($patient->test_results as $test_result)
                                     <tr>
                                         <td class="px-4 py-4 text-sm font-medium whitespace-nowrap">
                                             <div>
-                                                {{ $test_order->lab_service->service_name }}
+                                                {{ $test_result->lab_service->service_name }}
                                             </div>
                                         </td>
 
                                         <td class="px-4 py-4 text-sm font-medium whitespace-nowrap">
                                             <div>
-                                                {{ $test_order->order_number }}
+                                                {{ $test_result->order_number }}
                                             </div>
                                         </td>
 
                                         <td class="px-4 py-4 text-sm font-medium whitespace-nowrap">
-                                            @if ($test_order->order_status == 'submitted')
+                                            @if ($test_result->order_status == 'submitted')
                                                 <div
                                                     class="inline px-1 text-xs font-normal text-yellow-500 border border-yellow-300 rounded gap-x-2 bg-yellow-100/60 dark:bg-gray-800">
-                                                    {{ $test_order->order_status }}
+                                                    {{ $test_result->order_status }}
                                                 </div>
-                                            @elseif($test_order->order_status == 'received')
+                                            @elseif($test_result->order_status == 'received')
                                                 <div
                                                     class="inline px-1 text-xs font-normal text-blue-500 border border-blue-300 rounded gap-x-2 bg-blue-100/60 dark:bg-gray-800">
-                                                    {{ $test_order->order_status }}
+                                                    {{ $test_result->order_status }}
                                                 </div>
-                                            @elseif($test_order->order_status == 'done')
+                                            @elseif($test_result->order_status == 'done')
                                                 <div
                                                     class="inline px-1 text-xs font-normal text-green-500 border border-green-300 rounded gap-x-2 bg-green-100/60 dark:bg-gray-800">
-                                                    {{ $test_order->order_status }}
+                                                    {{ $test_result->order_status }}
                                                 </div>
                                             @endif
                                         </td>
@@ -88,7 +88,7 @@
 
 
                                         {{-- <td class="px-4 py-4 text-sm font-medium whitespace-nowrap">
-                                            @if (!is_null($test_order->test_result->spacemen_id))
+                                            @if (!is_null($test_result->test_result->spacemen_id))
                                                 dfadf
                                             @endif
                                         </td> --}}
@@ -96,16 +96,16 @@
 
                                         <td class="px-4 py-4 text-sm font-medium whitespace-nowrap">
                                             <div>
-                                                {{ $test_order->created_at->format('D, d M Y | H:i:s') }}
+                                                {{ $test_result->created_at->format('D, d M Y | H:i:s') }}
                                             </div>
                                         </td>
 
                                         <td>
                                             <div>
-                                                @if ($test_order->order_status == 'submitted')
+                                                @if ($test_result->order_status == 'submitted')
                                                     <!-- receive order -->
                                                     <button
-                                                        wire:click.prevent="openReceiveTestOrder({{ $test_order->id }})"
+                                                        wire:click.prevent="openReceiveTestOrder({{ $test_result->id }})"
                                                         type="button"
                                                         class="flex px-2 py-2 text-sm text-white bg-blue-500 rounded hover:bg-blue-700 focus:outline-none focus:shadow-outline">
                                                         <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor"
@@ -117,9 +117,9 @@
                                                         </svg>
                                                         <span class="pt-1 ml-1 text-xs">Receive Order</span>
                                                     </button>
-                                                @elseif($test_order->order_status == 'received')
+                                                @elseif($test_result->order_status == 'received')
                                                     <button type="button" disabled
-                                                        wire:click.prevent="openReceiveTestOrder({{ $test_order->id }})"
+                                                        wire:click.prevent="openReceiveTestOrder({{ $test_result->id }})"
                                                         type="button"
                                                         class="flex px-2 py-2 text-sm text-white bg-blue-500 rounded focus:outline-none disabled:opacity-50">
                                                         <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor"
