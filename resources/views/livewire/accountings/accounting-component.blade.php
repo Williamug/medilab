@@ -13,7 +13,7 @@
                 </div>
             </div>
 
-            <div>
+            {{-- <div>
                 <button wire:click="openCreateNewVisitModal"
                     class="flex items-center justify-center w-1/2 px-5 py-2 text-sm tracking-wide text-white transition-colors duration-200 bg-blue-500 rounded-lg shrink-0 sm:w-auto gap-x-2 hover:bg-blue-600 dark:hover:bg-blue-500 dark:bg-blue-600">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="w-4 h-4 bi bi-arrow-right-circle"
@@ -24,7 +24,7 @@
 
                     <span>Payment Details</span>
                 </button>
-            </div>
+            </div> --}}
         </div>
 
         <div class="flex flex-col mt-2">
