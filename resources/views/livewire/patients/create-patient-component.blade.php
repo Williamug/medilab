@@ -80,7 +80,7 @@
                                 @elseif ($selectedBirthDate === 'Age')
                                     <div class="mb-4">
                                         <x-jet-label for="lab_service_id"
-                                            value="{{ __('Select Period [Weeks, Months or Years]') }}" />
+                                            value="{{ __('Select Period [Days, Weeks, Months or Years]') }}" />
                                         <div class="flex">
                                             <select
                                                 class="w-full border-gray-300 rounded-md shadow-sm dark:border-gray-900 dark:text-gray-400 dark:bg-gray-700 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 form-select"
@@ -93,40 +93,52 @@
                                         </div>
                                     </div>
 
-                                    @if ($selectedPeriod === 'weeks')
+                                    @if ($selectedPeriod === 'days')
+                                        <!-- days -->
+                                        <div
+                                            class="relative flex items-center border border-gray-200 rounded focus:ring">
+                                            <input wire:model.defer="patient_days"
+                                                class="w-full px-3 rounded outline-none form-input focus:outline-none active:outline-none input"
+                                                type="number" />
+                                            <span
+                                                class="px-2 py-1 mr-1 text-sm font-bold leading-normal rounded-full">Day(s)</span>
+                                            <x-jet-input-error for="patient_days" />
+                                        </div>
+                                        <!-- days -->
+                                    @elseif ($selectedPeriod === 'weeks')
                                         <!-- weeks -->
                                         <div
                                             class="relative flex items-center border border-gray-200 rounded focus:ring">
-                                            <input wire:model.defer="weeks"
+                                            <input wire:model.defer="patient_weeks"
                                                 class="w-full px-3 rounded outline-none form-input focus:outline-none active:outline-none input"
                                                 type="number" />
                                             <span
                                                 class="px-2 py-1 mr-1 text-sm font-bold leading-normal rounded-full">Week(s)</span>
-                                            <x-jet-input-error for="weeks" />
+                                            <x-jet-input-error for="patient_weeks" />
                                         </div>
                                         <!-- weeks -->
                                     @elseif($selectedPeriod === 'months')
                                         <!-- months -->
                                         <div
                                             class="relative flex items-center border border-gray-200 rounded focus:ring">
-                                            <input wire:model.defer="months"
+                                            <input wire:model.defer="patient_months"
                                                 class="w-full px-3 rounded outline-none form-input focus:outline-none active:outline-none input"
                                                 type="number" />
                                             <span
                                                 class="px-2 py-1 mr-1 text-sm font-bold leading-normal rounded-full">Month(s)</span>
-                                            <x-jet-input-error for="months" />
+                                            <x-jet-input-error for="patient_months" />
                                         </div>
                                         <!-- month -->
                                     @elseif($selectedPeriod === 'years')
                                         <!-- years -->
                                         <div
                                             class="relative flex items-center border border-gray-200 rounded focus:ring">
-                                            <input wire:model.defer="years"
+                                            <input wire:model.defer="patient_years"
                                                 class="w-full px-3 rounded outline-none form-input focus:outline-none active:outline-none input"
                                                 type="number" />
                                             <span
                                                 class="px-2 py-1 mr-1 text-sm font-bold leading-normal rounded-full">Year(s)</span>
-                                            <x-jet-input-error for="years" />
+                                            <x-jet-input-error for="patient_years" />
                                         </div>
                                         <!-- years -->
                                     @endif
