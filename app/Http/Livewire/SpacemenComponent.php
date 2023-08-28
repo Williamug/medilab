@@ -68,6 +68,16 @@ class SpacemenComponent extends Component
         $this->closeModal();
     }
 
+    public function storeCreateAnother()
+    {
+        $this->validate();
+        Spacemen::create([
+            'user_id' => auth()->id(),
+            'spacemen' => $this->spacemen,
+        ]);
+        $this->resetData();
+    }
+
     public function openEditModal(int $id): void
     {
         $spacemen = Spacemen::where('id', $id)->first();
