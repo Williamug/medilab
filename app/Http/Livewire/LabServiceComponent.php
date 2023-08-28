@@ -15,6 +15,7 @@ class LabServiceComponent extends Component
     public bool $isOpenCreate = false;
     public bool $isOpenEdit = false;
     public bool $isOpenDelete = false;
+    public bool $isOpenNewCategory = false;
 
     public $perPage = 15;
     public $sortField = 'service_name';
@@ -28,12 +29,19 @@ class LabServiceComponent extends Component
     public $service_name;
     public $price;
     public $lab_service_id;
+    public $category_name;
 
     public $categories;
     public $result_options;
 
     public $inputs = [];
     public $i = 1;
+
+    protected $listeners = [
+        'storeServiceCategory' => '$refresh',
+        'openCreateModal'      => '$refresh',
+        'store'                => '$refresh',
+    ];
 
     public function add($i)
     {
@@ -65,6 +73,9 @@ class LabServiceComponent extends Component
     public function openCreateModal()
     {
         $this->isOpenCreate = true;
+
+        // $this->emitSelf('openCreateModal');
+        $this->emitSelf('storeServiceCategory');
     }
 
     public function closeModal()
@@ -73,12 +84,61 @@ class LabServiceComponent extends Component
         $this->isOpenCreate = false;
     }
 
+    public function newCategoryModal(): void
+    {
+        $this->isOpenNewCategory = true;
+        $this->emitSelf('storeServiceCategory');
+    }
+
+    public function closeNewCategoryModal()
+    {
+        $this->isOpenNewCategory = false;
+    }
+
+    public function storeServiceCategory(): void
+    {
+        $this->validate(['category_name' => 'required']);
+        LabServiceCategory::create([
+            'user_id'       => auth()->id(),
+            'category_name' => $this->category_name,
+        ]);
+
+        $this->reset('category_name');
+        $this->emitSelf('storeServiceCategory');
+        $this->closeNewCategoryModal();
+    }
+
     public function store()
     {
         $this->validate([
             'lab_service_category_id' => 'required',
-            'service_name' => 'required|string|min:1|unique:lab_services',
-            'price' => 'required|numeric',
+            'service_name'            => 'required|string|min:1|unique:lab_services',
+            'price'                   => 'required|numeric',
+            // 'result_option_id.0' => 'required|unique:lab_services',
+            // 'result_option_id.*' => 'required|unique:lab_services',
+        ], [
+            'lab_service_category_id.required' => 'The lab service category field is required.'
+            // 'result_option_id.0.required' => 'Result option is required.',
+            // 'result_option_id.*.required' => 'Result option is required.'
+        ]);
+
+        $lab_service = LabService::create([
+            'user_id'                 => auth()->id(),
+            'lab_service_category_id' => $this->lab_service_category_id,
+            'service_name'            => $this->service_name,
+            'price'                   => $this->price,
+        ]);
+        $lab_service->result_options()->attach($this->result_option_id);
+
+        $this->resetData();
+        $this->closeModal();
+    }
+    public function storeCreateAnother()
+    {
+        $this->validate([
+            'lab_service_category_id' => 'required',
+            'service_name'            => 'required|string|min:1|unique:lab_services',
+            'price'                   => 'required|numeric',
             // 'result_option_id.0' => 'required|unique:lab_services',
             // 'result_option_id.*' => 'required|unique:lab_services',
         ], [
@@ -87,25 +147,24 @@ class LabServiceComponent extends Component
         ]);
 
         $lab_service = LabService::create([
-            'user_id' => auth()->id(),
+            'user_id'                 => auth()->id(),
             'lab_service_category_id' => $this->lab_service_category_id,
-            'service_name' => $this->service_name,
-            'price' => $this->price,
+            'service_name'            => $this->service_name,
+            'price'                   => $this->price,
         ]);
         $lab_service->result_options()->attach($this->result_option_id);
 
         $this->resetData();
-        $this->closeModal();
     }
 
     public function openEditModal(int $id): void
     {
         $lab_service = LabService::where('id', $id)->first();
 
-        $this->lab_service_id   = $id;
+        $this->lab_service_id          = $id;
         $this->lab_service_category_id = $lab_service->lab_service_category_id;
-        $this->service_name = $lab_service->service_name;
-        $this->price = $lab_service->price;
+        $this->service_name            = $lab_service->service_name;
+        $this->price                   = $lab_service->price;
 
         $this->openEdit();
     }
@@ -125,18 +184,18 @@ class LabServiceComponent extends Component
     {
         $this->validate([
             'lab_service_category_id' => 'required',
-            'service_name' => 'required|string|min:1',
-            'price' => 'required|integer',
+            'service_name'            => 'required|string|min:1',
+            'price'                   => 'required|integer',
         ]);
 
         if ($this->lab_service_id) {
             $lab_service = LabService::find($this->lab_service_id);
 
             $lab_service->update([
-                'user_id' => auth()->id(),
+                'user_id'                 => auth()->id(),
                 'lab_service_category_id' => $this->lab_service_category_id,
-                'service_name' => $this->service_name,
-                'price' => $this->price,
+                'service_name'            => $this->service_name,
+                'price'                   => $this->price,
             ]);
 
             $this->resetData();
