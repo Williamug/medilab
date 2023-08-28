@@ -15,7 +15,11 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->nullable();
             $table->foreignId('patient_id')->nullable();
-            $table->unsignedInteger('patient_age')->nullable();
+            $table->unsignedBigInteger('patient_age')->nullable();
+            $table->unsignedBigInteger('patient_days')->nullable();
+            $table->unsignedBigInteger('patient_weeks')->nullable();
+            $table->unsignedBigInteger('patient_months')->nullable();
+            $table->unsignedBigInteger('patient_years')->nullable();
             $table->double('temperature')->nullable();
             $table->double('weight')->nullable();
             $table->double('height')->nullable();

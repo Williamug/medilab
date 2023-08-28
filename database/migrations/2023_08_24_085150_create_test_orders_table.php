@@ -17,6 +17,7 @@ return new class extends Migration
             $table->foreignId('lab_service_id');
             $table->foreignId('patient_id')->nullable();
             $table->string('order_number')->nullable();
+            $table->integer('lab_service_price')->nullable();
             $table->string('payment_status')->default('unpaid');
             $table->string('order_status')->default('submitted');
             $table->timestamps();
