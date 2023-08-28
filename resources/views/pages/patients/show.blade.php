@@ -245,10 +245,20 @@
                                                                                                                         {{ $patient->ageFromDob() }}
                                                                                                                         years
                                                                                                                     @else
-                                                                                                                        {{-- @foreach ($patient->patient_visits->where('patient_id', $patient->id)->latest()->first() ?? '' as $patient_visit)
-                                                                                                                            {{ $patient_visit->patient_age }}
-                                                                                                                            years
-                                                                                                                        @endforeach --}}
+                                                                                                                        @foreach ($patient->patient_visits as $patient_visit)
+                                                                                                                            @if (!is_null($patient_visit->patient_days))
+                                                                                                                                {{ $patient_visit->patient_days }}
+                                                                                                                                day(s)
+                                                                                                                            @elseif(!is_null($patient_visit->patient_weeks))
+                                                                                                                                {{ $patient_visit->patient_weeks }}week(s)
+                                                                                                                            @elseif(!is_null($patient_visit->patient_months))
+                                                                                                                                {{ $patient_visit->patient_months }}month(s)
+                                                                                                                            @elseif(!is_null($patient_visit->patient_years))
+                                                                                                                                {{ $patient_visit->patient_years }}year(s)
+                                                                                                                            @else
+                                                                                                                                ---
+                                                                                                                            @endif
+                                                                                                                        @endforeach
                                                                                                                     @endif
                                                                                                                 </div>
                                                                                                             </div>
