@@ -22,7 +22,7 @@ class TestResultComponent extends Component
     public $test_order;
     public $test_results;
 
-    public $test_order_id;
+    public $test_result_id;
     public $patient_id;
     public $spacemen_id;
 
@@ -30,7 +30,7 @@ class TestResultComponent extends Component
     public $i      = 1;
 
     protected $listeners = [
-        'receiveOrder' => '$refresh',
+        'addSpacemen' => '$refresh',
     ];
 
     // add new field
@@ -50,7 +50,7 @@ class TestResultComponent extends Component
     public function mount(): void
     {
 
-        $this->patients = Patient::with('test_results.test_orders')->latest()->get();
+        $this->patients = Patient::with('test_results')->latest()->get();
 
         // $this->patients = Patient::with('test_results.test_order')
         //     ->join('test_results', 'patients.id',  '=', 'test_results.patient_id')
@@ -63,8 +63,8 @@ class TestResultComponent extends Component
 
     public function openReceiveTestOrder(int $id): void
     {
-        $test_order = TestResult::where('id', $id)->first();
-        $this->test_order_id   = $id;
+        $test_result = TestResult::where('id', $id)->first();
+        $this->test_result_id   = $id;
 
         $this->isOpenReceiveTestOrder = true;
     }
@@ -81,7 +81,7 @@ class TestResultComponent extends Component
             $test_order = TestResult::find($this->test_order_id);
 
             $result = $test_order->update([
-                'user_id' => auth()->id(),
+                'user_id'      => auth()->id(),
                 'order_status' => 'received',
             ]);
             $test_order = TestResult::find($this->test_order_id);
@@ -89,13 +89,45 @@ class TestResultComponent extends Component
 
 
             TestResult::create([
-                'test_order_id' => $test_order->id,
-                'patient_id' => $test_order->patient->id,
+                'test_result_id' => $test_order->id,
+                'patient_id'     => $test_order->patient->id,
             ]);
 
             $this->emitSelf('receiveOrder');
             toastr()->success('Test order has been received.');
             $this->closeReceiveTestOrder();
+        }
+    }
+
+    public function openAddSpacemenModal(int $id): void
+    {
+        $test_result = TestResult::where('id', $id)->first();
+        $this->test_result_id   = $id;
+
+        $this->isOpenAddSpacemen = true;
+    }
+
+    public function closeAddSpacemen(): void
+    {
+        $this->isOpenAddSpacemen = false;
+    }
+
+    public function addSpacemen(): void
+    {
+        $this->validate([
+            'spacemen_id' => 'required|unique:spacemen_test_result',
+        ], [
+            'spacemen_id.required' => 'Specimen is required.',
+            'spacemen_id.unique' => 'Specimen is taken.'
+        ]);
+        if ($this->test_result_id) {
+            $test_result = TestResult::find($this->test_result_id);
+            $test_result->spacemens()->attach($this->spacemen_id);
+
+            toastr()->success('Specimen has been added.');
+            $this->emitSelf('addSpacemen');
+            $this->reset('spacemen_id');
+            $this->closeAddSpacemen();
         }
     }
 
