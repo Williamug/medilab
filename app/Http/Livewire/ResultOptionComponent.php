@@ -74,6 +74,19 @@ class ResultOptionComponent extends Component
         $this->closeModal();
     }
 
+    public function storeCreateAnother()
+    {
+        $this->validate();
+        ResultOption::create([
+            'user_id' => auth()->id(),
+            'option' => $this->option,
+            'code' => $this->code,
+            'symbol' => $this->symbol,
+        ]);
+
+        $this->resetData();
+    }
+
     public function openEditModal(int $id): void
     {
         $result_option = ResultOption::where('id', $id)->first();
