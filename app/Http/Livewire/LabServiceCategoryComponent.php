@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Models\LabServiceCategory;
+use Illuminate\Contracts\View\View;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -40,18 +41,18 @@ class LabServiceCategoryComponent extends Component
         $this->sortField = $field;
     }
 
-    public function openCreateModal()
+    public function openCreateModal(): void
     {
         $this->isOpenCreate = true;
     }
 
-    public function closeModal()
+    public function closeModal(): void
     {
         $this->reset('category_name');
         $this->isOpenCreate = false;
     }
 
-    public function store()
+    public function store(): void
     {
         $this->validate();
         LabServiceCategory::create([
@@ -60,6 +61,17 @@ class LabServiceCategoryComponent extends Component
         ]);
 
         $this->closeModal();
+        $this->reset('category_name');
+    }
+
+    public function storeCreateAnother(): void
+    {
+        $this->validate();
+        LabServiceCategory::create([
+            'user_id' => auth()->id(),
+            'category_name' => $this->category_name,
+        ]);
+
         $this->reset('category_name');
     }
 
@@ -131,7 +143,7 @@ class LabServiceCategoryComponent extends Component
 
 
 
-    public function render()
+    public function render(): View
     {
         // order results about on either ascending or discending order
         $lab_service_categories = LabServiceCategory::search($this->search)
