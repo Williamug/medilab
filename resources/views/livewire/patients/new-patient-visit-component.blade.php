@@ -77,33 +77,33 @@
                                 </tr>
                             </thead>
                             <tbody class="bg-white divide-y divide-gray-200 dark:divide-gray-700 dark:bg-gray-900">
-                                @foreach ($test_orders as $test_order)
+                                @foreach ($test_results as $test_result)
                                     <tr>
                                         <td class="px-4 py-4 text-sm font-medium whitespace-nowrap">
                                             <div>
-                                                {{ $test_order->lab_service->service_name }}
+                                                {{ $test_result->lab_service->service_name }}
                                             </div>
                                         </td>
                                         <td class="px-4 py-4 text-sm font-medium whitespace-nowrap">
                                             <div>
-                                                @money($test_order->lab_service->price)
+                                                @money($test_result->lab_service->price)
                                             </div>
                                         </td>
                                         <td class="px-4 py-4 text-sm font-medium whitespace-nowrap">
                                             <div>
-                                                {{ $test_order->order_number }}
+                                                {{ $test_result->order_number }}
                                             </div>
                                         </td>
                                         <td class="px-4 py-4 text-sm font-medium whitespace-nowrap">
-                                            @if ($test_order->order_status === 'submitted')
+                                            @if ($test_result->order_status === 'submitted')
                                                 <div
                                                     class="inline px-1 text-xs font-normal text-yellow-500 border border-yellow-300 rounded gap-x-2 bg-yellow-100/60 dark:bg-gray-800">
-                                                    {{ $test_order->order_status }}
+                                                    {{ $test_result->order_status }}
                                                 </div>
-                                            @elseif($test_order->order_status === 'received')
+                                            @elseif($test_result->order_status === 'received')
                                                 <div
                                                     class="inline px-1 text-xs font-normal text-blue-500 border border-blue-300 rounded gap-x-2 bg-blue-100/60 dark:bg-gray-800">
-                                                    {{ $test_order->order_status }}
+                                                    {{ $test_result->order_status }}
                                                 </div>
                                             @endif
                                         </td>
@@ -111,19 +111,19 @@
 
                                         <td class="px-4 py-4 text-sm font-medium whitespace-nowrap">
                                             <div class="px-2 py-1 text-sm font-medium whitespace-nowrap">
-                                                {{ $test_order->created_at->format('D, d M Y | h:ia') }}
+                                                {{ $test_result->created_at->format('D, d M Y | h:ia') }}
                                             </div>
                                         </td>
                                         <td class="px-4 py-4 text-sm font-medium whitespace-nowrap">
-                                            @if ($test_order->payment_status == 'unpaid')
+                                            @if ($test_result->payment_status == 'unpaid')
                                                 <div
                                                     class="inline px-1 text-xs font-normal text-red-500 border border-red-300 rounded gap-x-2 bg-red-100/60 dark:bg-gray-800">
-                                                    {{ $test_order->payment_status }}
+                                                    {{ $test_result->payment_status }}
                                                 </div>
-                                            @elseif($test_order->payment_status == 'paid')
+                                            @elseif($test_result->payment_status == 'paid')
                                                 <div
                                                     class="inline px-1 text-xs font-normal text-green-500 border border-green-300 rounded gap-x-2 bg-green-100/60 dark:bg-gray-800">
-                                                    {{ $test_order->payment_status }}
+                                                    {{ $test_result->payment_status }}
                                                 </div>
                                             @endif
                                         </td>
@@ -181,7 +181,7 @@
                         <div
                             class="flex flex-col items-center px-5 py-5 bg-white border-t xs:flex-row xs:justify-between ">
                             <div class="inline-flex mt-2 xs:mt-0">
-                                {{ $test_orders->links() }}
+                                {{ $test_results->links() }}
                             </div>
                         </div>
 
