@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Patients;
 use App\Models\LabService;
 use App\Models\PatientVisit;
 use App\Models\TestOrder;
+use App\Models\TestResult;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -59,7 +60,7 @@ class NewPatientVisitComponent extends Component
     {
         do {
             $number = random_int(100000, 999999);
-        } while (TestOrder::where('order_number', '=', $number)->first());
+        } while (TestResult::where('order_number', '=', $number)->first());
         return $number;
     }
 
@@ -73,7 +74,7 @@ class NewPatientVisitComponent extends Component
             'lab_service_id' => 'required',
         ], ['lab_service_id.required' => 'Lab service is required']);
 
-        TestOrder::create([
+        TestResult::create([
             'user_id'        => auth()->id(),
             'patient_id'     => $this->patient->id,
             'lab_service_id' => $this->lab_service_id,
@@ -106,7 +107,7 @@ class NewPatientVisitComponent extends Component
             ]);
 
 
-            TestOrder::create([
+            TestResult::create([
                 'user_id'        => auth()->id(),
                 'patient_id'     => $this->patient->id,
                 'lab_service_id' => $this->lab_service_id,
@@ -121,7 +122,7 @@ class NewPatientVisitComponent extends Component
 
     public function render()
     {
-        $test_orders = TestOrder::where('patient_id', $this->patient->id)->latest()->paginate(4);
-        return view('livewire.patients.new-patient-visit-component', compact('test_orders'));
+        $test_results = TestResult::where('patient_id', $this->patient->id)->latest()->paginate(4);
+        return view('livewire.patients.new-patient-visit-component', compact('test_results'));
     }
 }
