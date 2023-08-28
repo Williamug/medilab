@@ -11,6 +11,7 @@ use App\Http\Controllers\DeletedResultOptionsController;
 use App\Http\Controllers\DeletedSpacemenController;
 use App\Http\Controllers\DeletedTestServiceController;
 use App\Http\Controllers\GivePermissionsToRoleController;
+use App\Http\Controllers\Laboratory\TestOrdersController;
 use App\Http\Controllers\LabServicesController;
 use App\Http\Controllers\PatientsController;
 use App\Http\Controllers\PermissionsController;
@@ -40,8 +41,8 @@ Route::middleware('auth')->group(function () {
     Route::resources([
         'patients' => PatientsController::class,
         'requests' => SubmitTestRequestsController::class,
-        'waiting-lists' => WaitingListsController::class,
-        'test-results' => TestResultscontroller::class,
+        'laboratory/test-orders' => TestOrdersController::class,
+        'laboratory/test-results' => TestResultscontroller::class,
         'accountings' => AccountsController::class,
     ]);
 
