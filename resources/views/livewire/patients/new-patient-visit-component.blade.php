@@ -97,12 +97,12 @@
                                         <td class="px-4 py-4 text-sm font-medium whitespace-nowrap">
                                             @if ($test_order->order_status === 'submitted')
                                                 <div
-                                                    class="inline px-2 py-1 text-sm font-normal text-yellow-500 border border-yellow-300 rounded gap-x-2 bg-yellow-100/60 dark:bg-gray-800">
+                                                    class="inline px-1 text-xs font-normal text-yellow-500 border border-yellow-300 rounded gap-x-2 bg-yellow-100/60 dark:bg-gray-800">
                                                     {{ $test_order->order_status }}
                                                 </div>
                                             @elseif($test_order->order_status === 'received')
                                                 <div
-                                                    class="inline px-2 py-1 text-sm font-normal text-green-500 border border-green-300 rounded gap-x-2 bg-green-100/60 dark:bg-gray-800">
+                                                    class="inline px-1 text-xs font-normal text-green-500 border border-green-300 rounded gap-x-2 bg-green-100/60 dark:bg-gray-800">
                                                     {{ $test_order->order_status }}
                                                 </div>
                                             @endif
@@ -115,10 +115,17 @@
                                             </div>
                                         </td>
                                         <td class="px-4 py-4 text-sm font-medium whitespace-nowrap">
-                                            <div
-                                                class="inline px-2 py-1 text-sm font-normal text-red-500 border border-red-300 rounded gap-x-2 bg-red-100/60 dark:bg-gray-800">
-                                                {{ $test_order->payment_status }}
-                                            </div>
+                                            @if ($test_order->payment_status == 'unpaid')
+                                                <div
+                                                    class="inline px-1 text-xs font-normal text-red-500 border border-red-300 rounded gap-x-2 bg-red-100/60 dark:bg-gray-800">
+                                                    {{ $test_order->payment_status }}
+                                                </div>
+                                            @elseif($test_order->payment_status == 'paid')
+                                                <div
+                                                    class="inline px-1 text-xs font-normal text-green-500 border border-green-300 rounded gap-x-2 bg-green-100/60 dark:bg-gray-800">
+                                                    {{ $test_order->payment_status }}
+                                                </div>
+                                            @endif
                                         </td>
 
 
