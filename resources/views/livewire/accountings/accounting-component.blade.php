@@ -1,8 +1,32 @@
 <div class="mt-6">
+    {{-- @if ($patient->test_orders->isNotEmpty()) --}}
     @foreach ($patients as $patient)
-        <div class="mt-4">
-            {{ $patient->full_name }}
+        <div class="flex mt-12">
+            <div class="flex-1">
+                <div class="flex ml-4 text-lg font-semibold uppercase">
+                    <div class="mr-3">
+                        Patient Name:
+                    </div>
+                    <div>
+                        {{ $patient->full_name }}
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <button wire:click="openCreateNewVisitModal"
+                    class="flex items-center justify-center w-1/2 px-5 py-2 text-sm tracking-wide text-white transition-colors duration-200 bg-blue-500 rounded-lg shrink-0 sm:w-auto gap-x-2 hover:bg-blue-600 dark:hover:bg-blue-500 dark:bg-blue-600">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="w-4 h-4 bi bi-arrow-right-circle"
+                        viewBox="0 0 16 16">
+                        <path fill-rule="evenodd"
+                            d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z" />
+                    </svg>
+
+                    <span>Payment Details</span>
+                </button>
+            </div>
         </div>
+
         <div class="flex flex-col mt-2">
             <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                 <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
@@ -16,13 +40,13 @@
                                     </th>
 
                                     <th scope="col"
-                                        class="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                                        Payment Status
+                                        class="py-3.5 px-4 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                                        Lab Service
                                     </th>
 
                                     <th scope="col"
-                                        class="py-3.5 px-4 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                                        Lab Service
+                                        class="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                                        Payment Status
                                     </th>
 
                                     <th scope="col"
@@ -32,36 +56,41 @@
                                 </tr>
                             </thead>
                             <tbody class="bg-white divide-y divide-gray-200 dark:divide-gray-700 dark:bg-gray-900">
-                                @if ($patient->test_orders->isNotEmpty())
-                                    @foreach ($patient->test_orders->where('payment_status', 'unpaid') as $test_order)
-                                        {{-- {{ dd($test_order) }} --}}
-                                        <tr>
-                                            <td class="px-4 py-4 text-sm font-medium whitespace-nowrap">
-                                                <div>
-                                                    {{ $test_order->order_number }}
-                                                </div>
-                                            </td>
+                                @foreach ($patient->test_orders as $test_order)
+                                    <tr>
+                                        <td class="px-4 py-4 text-sm font-medium whitespace-nowrap">
+                                            <div>
+                                                {{ $test_order->order_number }}
+                                            </div>
+                                        </td>
 
-                                            <td class="px-4 py-4 text-sm font-medium whitespace-nowrap">
+                                        <td class="px-4 py-4 text-sm font-medium whitespace-nowrap">
+                                            <div>
+                                                {{ $test_order->lab_service->service_name }}
+                                            </div>
+                                        </td>
+
+                                        <td class="px-4 py-4 text-sm font-medium whitespace-nowrap">
+                                            @if ($test_order->payment_status == 'unpaid')
                                                 <div
-                                                    class="inline px-2 py-1 text-sm font-normal text-red-500 border border-red-300 rounded gap-x-2 bg-red-100/60 dark:bg-gray-800">
+                                                    class="inline px-1 text-xs font-normal text-red-500 border border-red-300 rounded gap-x-2 bg-red-100/60 dark:bg-gray-800">
                                                     {{ $test_order->payment_status }}
                                                 </div>
-                                            </td>
-
-                                            <td class="px-4 py-4 text-sm font-medium whitespace-nowrap">
-                                                <div>
-                                                    {{ $test_order->lab_service->service_name }}
+                                            @elseif($test_order->payment_status == 'paid')
+                                                <div
+                                                    class="inline px-1 text-xs font-normal text-green-500 border border-green-300 rounded gap-x-2 bg-green-100/60 dark:bg-gray-800">
+                                                    {{ $test_order->payment_status }}
                                                 </div>
-                                            </td>
+                                            @endif
+                                        </td>
 
-                                            <td class="px-4 py-4 text-sm font-medium whitespace-nowrap">
-                                                <div>
-                                                    @money($test_order->lab_service->price)
-                                                </div>
-                                            </td>
+                                        <td class="px-4 py-4 text-sm font-medium whitespace-nowrap">
+                                            <div>
+                                                @money($test_order->lab_service_price)
+                                            </div>
+                                        </td>
 
-                                            {{-- <td class="px-6 py-3 text-center">
+                                        {{-- <td class="px-6 py-3 text-center">
                                             <div class="flex justify-center item-center">
                                                 <!-- view-->
                                                 <a href="{{ route('patients.show', $patient) }}"
@@ -105,27 +134,23 @@
                                                 </button>
                                             </div>
                                         </td> --}}
-                                        </tr>
-                                    @endforeach
-                                    <tr>
-                                        <td>
-                                            {{-- {{ $patient->test_orders->each(fn())->lab_service->sum('price') }} --}}
-                                        </td>
                                     </tr>
-                                @endif
+                                @endforeach
+                                <tr>
+                                    <td class="px-4 py-4 text-sm font-medium whitespace-nowrap"></td>
+                                    <td class="px-4 py-4 text-sm font-medium whitespace-nowrap"></td>
+                                    <td class="px-4 py-4 text-sm font-bold uppercase whitespace-nowrap">
+                                        Total</td>
+                                    <td class="px-4 py-4 text-sm font-medium uppercase whitespace-nowrap">
+                                        @money($patient->test_orders->sum('lab_service_price'))
+                                    </td>
+                                </tr>
                             </tbody>
                         </table>
-
-                        <div
-                            class="flex flex-col items-center px-5 py-5 bg-white border-t xs:flex-row xs:justify-between ">
-                            <div class="inline-flex mt-2 xs:mt-0">
-                                {{-- {{ $test_orders->links() }} --}}
-                            </div>
-                        </div>
-
                     </div>
                 </div>
             </div>
         </div>
     @endforeach
+    {{-- @endif --}}
 </div>
