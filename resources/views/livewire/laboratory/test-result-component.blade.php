@@ -33,118 +33,100 @@
 
                                     <th scope="col"
                                         class="py-3.5 px-4 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                                        Specimen
+                                        Specimen to be used
                                     </th>
 
                                     <th scope="col"
                                         class="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                                        Test Identity
+                                        Test ID
                                     </th>
-                                    {{-- 
-                                    <th scope="col"
-                                        class="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                                        Specimen
-                                    </th> --}}
 
                                     <th scope="col"
                                         class="py-3.5 px-4 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
                                         Order Received Dated
                                     </th>
 
-                                    <th scope="col" class="relative py-3.5 px-4">
+                                    {{-- <th scope="col" class="relative py-3.5 px-4">
                                         <span class="sr-only">Action</span>
-                                    </th>
+                                    </th> --}}
                                 </tr>
                             </thead>
                             <tbody class="bg-white divide-y divide-gray-200 dark:divide-gray-700 dark:bg-gray-900">
-                                @foreach ($patient->test_results as $test_result)
+                                @foreach ($patient->test_results->where('order_status', 'received') as $test_result)
                                     <tr>
                                         <td class="px-4 py-4 text-sm font-medium whitespace-nowrap">
                                             <div>
-                                                {{ $test_result->test_order->order_number }}
+                                                {{ $test_result->order_number }}
                                             </div>
                                         </td>
 
                                         <td class="px-4 py-4 text-sm font-medium whitespace-nowrap">
                                             <div>
-                                                {{-- {{ $test_result->test_order->lab_service->service_name }} --}}
+                                                {{ $test_result->lab_service->service_name }}
+                                            </div>
+                                        </td>
+
+                                        <td class="px-4 py-4 text-sm whitespace-nowrap">
+                                            <div>
+                                                @if (!is_null($test_result->spacemens))
+                                                    <ul>
+                                                        @foreach ($test_result->spacemens as $spacemen)
+                                                            <li class="ml-8 list-disc">
+                                                                <span class="text-base">{{ $spacemen->spacemen }}</span>
+                                                                <span class="ml-2">
+                                                                    <a href="#"
+                                                                        class="text-xs text-blue-500 underline hover:no-underline">Edit</a>
+                                                                    <a href="#"
+                                                                        class="text-xs text-blue-500 underline hover:no-underline">Delete</a>
+                                                                </span>
+                                                            </li>
+                                                        @endforeach
+                                                        <a href="#"
+                                                            wire:click="openAddSpacemenModal({{ $test_result->id }})"
+                                                            class="ml-8 text-xs text-blue-500 underline hover:no-underline">Add
+                                                            specimen</a>
+                                                    </ul>
+                                                @else
+                                                    <a href="#"
+                                                        wire:click="openAddSpacemenModal({{ $test_result->id }})"
+                                                        class="text-lg text-blue-600 underline hover:no-underline">
+                                                        Add Specimen
+                                                    </a>
+                                                @endif
                                             </div>
                                         </td>
 
                                         <td class="px-4 py-4 text-sm font-medium whitespace-nowrap">
                                             <div>
-                                                {{-- {{ $test_order->order_number }} --}}
+                                                {{ $test_result->test_identity ?? '---' }}
                                             </div>
                                         </td>
 
                                         <td class="px-4 py-4 text-sm font-medium whitespace-nowrap">
-                                            {{-- @if ($test_order->order_status == 'submitted')
-                                                <div
-                                                    class="inline px-1 text-xs font-normal text-yellow-500 border border-yellow-300 rounded gap-x-2 bg-yellow-100/60 dark:bg-gray-800">
-                                                    {{ $test_order->order_status }}
-                                                </div>
-                                            @elseif($test_order->order_status == 'received')
-                                                <div
-                                                    class="inline px-1 text-xs font-normal text-blue-500 border border-blue-300 rounded gap-x-2 bg-blue-100/60 dark:bg-gray-800">
-                                                    {{ $test_order->order_status }}
-                                                </div>
-                                            @elseif($test_order->order_status == 'done')
-                                                <div
-                                                    class="inline px-1 text-xs font-normal text-green-500 border border-green-300 rounded gap-x-2 bg-green-100/60 dark:bg-gray-800">
-                                                    {{ $test_order->order_status }}
-                                                </div>
-                                            @endif --}}
+                                            <div>
+                                                @if (!is_null($test_result->order_received_date))
+                                                    {{ $test_result->order_received_date->format('D, d M Y | H:i:s') }}
+                                                @endif
+                                            </div>
                                         </td>
 
-
-
-                                        {{-- <td class="px-4 py-4 text-sm font-medium whitespace-nowrap">
-                                            @if (!is_null($test_order->test_result->spacemen_id))
-                                                dfadf
-                                            @endif
+                                        {{-- <td>
+                                            <div>
+                                                <button
+                                                    wire:click.prevent="openReceiveTestOrder({{ $test_result->id }})"
+                                                    type="button"
+                                                    class="flex px-2 py-2 text-sm text-white bg-blue-500 rounded hover:bg-blue-700 focus:outline-none focus:shadow-outline">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+                                                        class="w-6 h-6 pt-1 bi bi-arrow-repeat" viewBox="0 0 16 16">
+                                                        <path
+                                                            d="M11.534 7h3.932a.25.25 0 0 1 .192.41l-1.966 2.36a.25.25 0 0 1-.384 0l-1.966-2.36a.25.25 0 0 1 .192-.41zm-11 2h3.932a.25.25 0 0 0 .192-.41L2.692 6.23a.25.25 0 0 0-.384 0L.342 8.59A.25.25 0 0 0 .534 9z" />
+                                                        <path fill-rule="evenodd"
+                                                            d="M8 3c-1.552 0-2.94.707-3.857 1.818a.5.5 0 1 1-.771-.636A6.002 6.002 0 0 1 13.917 7H12.9A5.002 5.002 0 0 0 8 3zM3.1 9a5.002 5.002 0 0 0 8.757 2.182.5.5 0 1 1 .771.636A6.002 6.002 0 0 1 2.083 9H3.1z" />
+                                                    </svg>
+                                                    <span class="pt-1 ml-1 text-xs">A</span>
+                                                </button>
+                                            </div>
                                         </td> --}}
-
-
-                                        <td class="px-4 py-4 text-sm font-medium whitespace-nowrap">
-                                            <div>
-                                                {{-- {{ $test_order->created_at->format('D, d M Y | H:i:s') }} --}}
-                                            </div>
-                                        </td>
-
-                                        <td>
-                                            <div>
-                                                {{-- @if ($test_order->order_status == 'submitted')
-                                                    <!-- receive order -->
-                                                    <button
-                                                        wire:click.prevent="openReceiveTestOrder({{ $test_order->id }})"
-                                                        type="button"
-                                                        class="flex px-2 py-2 text-sm text-white bg-blue-500 rounded hover:bg-blue-700 focus:outline-none focus:shadow-outline">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor"
-                                                            class="w-6 h-6 pt-1 bi bi-arrow-repeat" viewBox="0 0 16 16">
-                                                            <path
-                                                                d="M11.534 7h3.932a.25.25 0 0 1 .192.41l-1.966 2.36a.25.25 0 0 1-.384 0l-1.966-2.36a.25.25 0 0 1 .192-.41zm-11 2h3.932a.25.25 0 0 0 .192-.41L2.692 6.23a.25.25 0 0 0-.384 0L.342 8.59A.25.25 0 0 0 .534 9z" />
-                                                            <path fill-rule="evenodd"
-                                                                d="M8 3c-1.552 0-2.94.707-3.857 1.818a.5.5 0 1 1-.771-.636A6.002 6.002 0 0 1 13.917 7H12.9A5.002 5.002 0 0 0 8 3zM3.1 9a5.002 5.002 0 0 0 8.757 2.182.5.5 0 1 1 .771.636A6.002 6.002 0 0 1 2.083 9H3.1z" />
-                                                        </svg>
-                                                        <span class="pt-1 ml-1 text-xs">Receive Order</span>
-                                                    </button>
-                                                @elseif($test_order->order_status == 'received')
-                                                    <button type="button" disabled
-                                                        wire:click.prevent="openReceiveTestOrder({{ $test_order->id }})"
-                                                        type="button"
-                                                        class="flex px-2 py-2 text-sm text-white bg-blue-500 rounded focus:outline-none disabled:opacity-50">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor"
-                                                            class="w-6 h-6 pt-1 bi bi-arrow-repeat" viewBox="0 0 16 16">
-                                                            <path
-                                                                d="M11.534 7h3.932a.25.25 0 0 1 .192.41l-1.966 2.36a.25.25 0 0 1-.384 0l-1.966-2.36a.25.25 0 0 1 .192-.41zm-11 2h3.932a.25.25 0 0 0 .192-.41L2.692 6.23a.25.25 0 0 0-.384 0L.342 8.59A.25.25 0 0 0 .534 9z" />
-                                                            <path fill-rule="evenodd"
-                                                                d="M8 3c-1.552 0-2.94.707-3.857 1.818a.5.5 0 1 1-.771-.636A6.002 6.002 0 0 1 13.917 7H12.9A5.002 5.002 0 0 0 8 3zM3.1 9a5.002 5.002 0 0 0 8.757 2.182.5.5 0 1 1 .771.636A6.002 6.002 0 0 1 2.083 9H3.1z" />
-                                                        </svg>
-                                                        <span class="pt-1 ml-1 text-xs">Order Received</span>
-                                                    </button>
-                                                @endif --}}
-                                            </div>
-                                        </td>
                                     </tr>
                                 @endforeach
                             </tbody>
@@ -162,7 +144,7 @@
         <x-modal>
             <div>
                 <x-slot name="title">
-                    Create Specimen
+                    Add Specimen
                 </x-slot>
 
                 <x-slot name="content">
@@ -170,11 +152,12 @@
                         <x-jet-validation-errors class="mb-4" />
                     @endif
                     <form>
+                        <input type="hidden" wire:model="test_result">
                         <!-- specimen -->
                         <div>
-                            <div class="flex">
+                            <div class="flex mb-2">
                                 <select
-                                    class="w-full border-gray-300 rounded-md shadow-sm dark:border-gray-900 dark:text-gray-400 dark:bg-gray-700 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 form-select"
+                                    class="w-full border-gray-300 rounded-md shadow-sm dark:border-gray-900 dark:text-gray-400 dark:bg-gray-700 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 form-select "
                                     wire:model.lazy="spacemen_id.0">
                                     <option value="">-- select specimen --</option>
                                     @foreach ($specimens as $specimen)
@@ -192,13 +175,13 @@
                                     </svg>
                                 </x-jet-button>
                             </div>
-                            <x-jet-input-error for="lab_service_id" />
+                            <x-jet-input-error for="spacemen_id" />
                         </div>
                         <!-- /.specimen -->
                         @foreach ($inputs as $key => $value)
                             <!-- specimen -->
                             <div>
-                                <div class="flex">
+                                <div class="flex mb-2">
                                     <select
                                         class="w-full border-gray-300 rounded-md shadow-sm dark:border-gray-900 dark:text-gray-400 dark:bg-gray-700 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 form-select"
                                         wire:model.lazy="spacemen_id.{{ $value }}">
@@ -228,17 +211,12 @@
                 </x-slot>
 
                 <x-slot name="footer">
-                    <x-jet-button class="mr-4" wire:click="store" wire:loading.attr="disabled">
+                    <x-jet-button class="mr-4" wire:click="addSpacemen" wire:loading.attr="disabled">
                         <span wire:loading.remove>{{ __('Save') }}</span>
                         <span wire:loading>{{ __('Saving...') }}</span>
                     </x-jet-button>
 
-                    <x-jet-button class="mr-4" wire:click="storeCreateAnother" wire:loading.attr="disabled">
-                        <span wire:loading.remove>{{ __('Save & Create another') }}</span>
-                        <span wire:loading>{{ __('Saving...') }}</span>
-                    </x-jet-button>
-
-                    <x-jet-secondary-button wire:click="closeModal" wire:loading.attr="disabled">
+                    <x-jet-secondary-button wire:click="closeAddSpacemen" wire:loading.attr="disabled">
                         {{ __('Cancel') }}
                     </x-jet-secondary-button>
                 </x-slot>
