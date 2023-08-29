@@ -73,12 +73,13 @@
                                                         @foreach ($test_result->spacemens as $spacemen)
                                                             <li class="ml-8 list-disc">
                                                                 <span class="text-base">{{ $spacemen->spacemen }}</span>
-                                                                <span class="ml-2">
+
+                                                                {{-- <span class="ml-2">
                                                                     <a href="#"
                                                                         class="text-xs text-blue-500 underline hover:no-underline">Edit</a>
                                                                     <a href="#"
                                                                         class="text-xs text-blue-500 underline hover:no-underline">Delete</a>
-                                                                </span>
+                                                                </span> --}}
                                                             </li>
                                                         @endforeach
                                                         <a href="#"
