@@ -6,6 +6,7 @@ use App\Models\Patient;
 use Illuminate\Contracts\View\View;
 use Livewire\Component;
 use Livewire\WithPagination;
+use Yoeunes\Toastr\Facades\Toastr;
 
 class PatientComponent extends Component
 {
@@ -106,7 +107,7 @@ class PatientComponent extends Component
             $this->closeEdit();
         }
 
-        toastr()->success('Patient information has been update.');
+        Toastr::success('Patient information has been update.');
     }
 
     public function openDeleteModal(int $id): void
@@ -129,7 +130,7 @@ class PatientComponent extends Component
     {
         $patient = Patient::find($this->patient_id)->delete();
         $this->closeDelete();
-        toastr()->success("Patient has been deleted.");
+        Toastr::success("Patient has been deleted.");
     }
 
     public function render()

@@ -12,6 +12,7 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 use Illuminate\Support\Arr;
+use Yoeunes\Toastr\Facades\Toastr;
 
 class CreatePatientComponent extends Component
 {
@@ -195,7 +196,7 @@ class CreatePatientComponent extends Component
                 }
             }
         });
-        toastr()->success('Patient has been added.');
+        Toastr::success('Patient has been added.');
         return redirect()->to(route('patients.index'));
     }
 

@@ -6,6 +6,7 @@ use App\Models\LabServiceCategory;
 use Illuminate\Contracts\View\View;
 use Livewire\Component;
 use Livewire\WithPagination;
+use Yoeunes\Toastr\Facades\Toastr;
 
 class LabServiceCategoryComponent extends Component
 {
@@ -62,7 +63,7 @@ class LabServiceCategoryComponent extends Component
 
         $this->closeModal();
         $this->reset('category_name');
-        toastr()->success('Category has been added.');
+        Toastr::success('Category has been added.');
     }
 
     public function storeCreateAnother(): void
@@ -74,7 +75,7 @@ class LabServiceCategoryComponent extends Component
         ]);
 
         $this->reset('category_name');
-        toastr()->success('Category has been added.');
+        Toastr::success('Category has been added.');
     }
 
     public function openEditModal(int $id): void
@@ -117,7 +118,7 @@ class LabServiceCategoryComponent extends Component
             $this->closeEdit();
         }
 
-        toastr()->success("{$service_category->category_name} has been updated.");
+        Toastr::success("{$service_category->category_name} has been updated.");
     }
 
     public function openDeleteModal(int $id): void
@@ -140,7 +141,7 @@ class LabServiceCategoryComponent extends Component
     {
         $service_category = LabServiceCategory::find($this->service_category_id)->delete();
         $this->closeDelete();
-        toastr()->success('Category has been deleted.');
+        Toastr::success('Category has been deleted.');
     }
 
 
