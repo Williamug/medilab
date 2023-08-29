@@ -66,6 +66,7 @@ class SpacemenComponent extends Component
 
         $this->resetData();
         $this->closeModal();
+        toastr()->success('Spacemen has been added.');
     }
 
     public function storeCreateAnother()
@@ -76,14 +77,15 @@ class SpacemenComponent extends Component
             'spacemen' => $this->spacemen,
         ]);
         $this->resetData();
+        toastr()->success('Spacemen has been added.');
     }
 
     public function openEditModal(int $id): void
     {
         $spacemen = Spacemen::where('id', $id)->first();
 
-        $this->spacemen_id   = $id;
-        $this->spacemen = $spacemen->spacemen;
+        $this->spacemen_id = $id;
+        $this->spacemen    = $spacemen->spacemen;
 
         $this->openEdit();
     }
@@ -115,9 +117,8 @@ class SpacemenComponent extends Component
 
             $this->resetData();
             $this->closeEdit();
+            toastr()->success("{$spacemen->option} has been updated.");
         }
-
-        session()->flash('success', "{$spacemen->spacemen} has been updated.");
     }
 
     public function openDeleteModal(int $id): void
@@ -140,7 +141,7 @@ class SpacemenComponent extends Component
     {
         Spacemen::find($this->spacemen_id)->delete();
         $this->closeDelete();
-        session()->flash('success', 'Lab Service has been deleted.');
+        toastr()->success("Specimen has been deleted.");
     }
 
     public function render()

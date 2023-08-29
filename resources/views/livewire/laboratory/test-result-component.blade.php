@@ -1,6 +1,6 @@
 <div class="mt-6">
-    {{-- @if ($patient->test_orders->isNotEmpty()) --}}
     @foreach ($patients as $patient)
+        {{-- @if ($patient->test_results->each()) --}}
         <div class="flex mt-12">
             <div class="flex-1">
                 <div class="flex ml-4 text-lg font-semibold uppercase">
@@ -135,8 +135,8 @@
                 </div>
             </div>
         </div>
+        {{-- @endif --}}
     @endforeach
-    {{-- @endif --}}
 
 
     <!-- add specimen -->
