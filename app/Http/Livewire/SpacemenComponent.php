@@ -5,6 +5,7 @@ namespace App\Http\Livewire;
 use App\Models\Spacemen;
 use Livewire\Component;
 use Livewire\WithPagination;
+use Yoeunes\Toastr\Facades\Toastr;
 
 class SpacemenComponent extends Component
 {
@@ -66,7 +67,7 @@ class SpacemenComponent extends Component
 
         $this->resetData();
         $this->closeModal();
-        toastr()->success('Spacemen has been added.');
+        Toastr::success('Spacemen has been added.');
     }
 
     public function storeCreateAnother()
@@ -77,7 +78,7 @@ class SpacemenComponent extends Component
             'spacemen' => $this->spacemen,
         ]);
         $this->resetData();
-        toastr()->success('Spacemen has been added.');
+        Toastr::success('Spacemen has been added.');
     }
 
     public function openEditModal(int $id): void
@@ -117,7 +118,7 @@ class SpacemenComponent extends Component
 
             $this->resetData();
             $this->closeEdit();
-            toastr()->success("{$spacemen->option} has been updated.");
+            Toastr::success("{$spacemen->option} has been updated.");
         }
     }
 
@@ -141,7 +142,7 @@ class SpacemenComponent extends Component
     {
         Spacemen::find($this->spacemen_id)->delete();
         $this->closeDelete();
-        toastr()->success("Specimen has been deleted.");
+        Toastr::success("Specimen has been deleted.");
     }
 
     public function render()

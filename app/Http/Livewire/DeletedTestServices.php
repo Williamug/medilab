@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\LabService;
 use App\Models\LabServices;
 use App\Models\TestService;
 use Livewire\Component;
@@ -30,7 +31,7 @@ class DeletedTestServices extends Component
 
     public function restore()
     {
-        LabServices::onlyTrashed()->where('id', $this->lab_service_id)->restore();
+        LabService::onlyTrashed()->where('id', $this->lab_service_id)->restore();
         $this->closeRestore();
         session()->flash('success', "Lab service has been restored.");
         return redirect()->to(route('lab-services.index'));
@@ -38,7 +39,7 @@ class DeletedTestServices extends Component
 
     public function mount()
     {
-        $this->lab_services = LabServices::onlyTrashed()->get();
+        $this->lab_services = LabService::onlyTrashed()->get();
     }
     public function render()
     {

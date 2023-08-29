@@ -7,6 +7,7 @@ use App\Models\Spacemen;
 use App\Models\TestResult;
 use Livewire\Component;
 use Livewire\WithPagination;
+use Yoeunes\Toastr\Facades\Toastr;
 
 class TestResultComponent extends Component
 {
@@ -94,7 +95,7 @@ class TestResultComponent extends Component
             ]);
 
             $this->emitSelf('receiveOrder');
-            toastr()->success('Test order has been received.');
+            Toastr::success('Test order has been received.');
             $this->closeReceiveTestOrder();
         }
     }
@@ -124,7 +125,7 @@ class TestResultComponent extends Component
             $test_result = TestResult::find($this->test_result_id);
             $test_result->spacemens()->attach($this->spacemen_id);
 
-            toastr()->success('Specimen has been added.');
+            Toastr::success('Specimen has been added.');
             $this->emitSelf('addSpacemen');
             $this->reset('spacemen_id');
             $this->closeAddSpacemen();

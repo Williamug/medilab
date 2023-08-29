@@ -5,6 +5,7 @@ namespace App\Http\Livewire;
 use App\Models\ResultOption;
 use Livewire\Component;
 use Livewire\WithPagination;
+use Yoeunes\Toastr\Facades\Toastr;
 
 class ResultOptionComponent extends Component
 {
@@ -72,7 +73,7 @@ class ResultOptionComponent extends Component
 
         $this->resetData();
         $this->closeModal();
-        toastr()->success('Result option has been added.');
+        Toastr::success('Result option has been added.');
     }
 
     public function storeCreateAnother()
@@ -86,7 +87,7 @@ class ResultOptionComponent extends Component
         ]);
 
         $this->resetData();
-        toastr()->success('Result option has been added.');
+        Toastr::success('Result option has been added.');
     }
 
     public function openEditModal(int $id): void
@@ -134,7 +135,7 @@ class ResultOptionComponent extends Component
             $this->closeEdit();
         }
 
-        toastr()->success("{$result_option->option} has been updated.");
+        Toastr::success("{$result_option->option} has been updated.");
     }
 
     public function openDeleteModal(int $id): void
@@ -157,7 +158,7 @@ class ResultOptionComponent extends Component
     {
         ResultOption::find($this->result_option_id)->delete();
         $this->closeDelete();
-        toastr()->success('Result option has been deleted.');
+        Toastr::success('Result option has been deleted.');
     }
 
     public function render()

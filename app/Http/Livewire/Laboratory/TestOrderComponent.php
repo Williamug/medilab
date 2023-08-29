@@ -8,6 +8,7 @@ use App\Models\TestOrder;
 use App\Models\TestResult;
 use Livewire\Component;
 use Livewire\WithPagination;
+use Yoeunes\Toastr\Facades\Toastr;
 
 class TestOrderComponent extends Component
 {
@@ -80,7 +81,7 @@ class TestOrderComponent extends Component
 
 
             $this->emitSelf('receiveOrder');
-            toastr()->success('Test order has been received.');
+            Toastr::success('Test order has been received.');
             $this->closeReceiveTestOrder();
         }
     }

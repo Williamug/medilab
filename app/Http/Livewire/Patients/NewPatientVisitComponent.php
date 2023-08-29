@@ -9,6 +9,7 @@ use App\Models\TestResult;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 use Livewire\WithPagination;
+use Yoeunes\Toastr\Facades\Toastr;
 
 class NewPatientVisitComponent extends Component
 {
@@ -89,7 +90,7 @@ class NewPatientVisitComponent extends Component
         $this->emitSelf('storeTestOrder');
         $this->reset('lab_service_id');
         $this->closeTestOrderModal();
-        toastr()->success('New test order added.');
+        Toastr::success('New test order added.');
     }
 
     public function storeNewVisit(): void
@@ -124,7 +125,7 @@ class NewPatientVisitComponent extends Component
         $this->emitSelf('storeTestOrder');
         $this->reset('lab_service_id');
         $this->closeNewVisitModal();
-        toastr()->success('Patient visit and test order has been added.');
+        Toastr::success('Patient visit and test order has been added.');
     }
 
     public function openEditModal(int $id): void
@@ -151,7 +152,7 @@ class NewPatientVisitComponent extends Component
             ]);
         }
         $this->closeTestResult();
-        toastr()->success("Test order has been updated.");
+        Toastr::success("Test order has been updated.");
     }
 
     public function openDeleteModal(): void
@@ -168,7 +169,7 @@ class NewPatientVisitComponent extends Component
     {
         TestResult::find($this->test_results_id)->delete();
         $this->closeTestResultDelete();
-        toastr()->success("Order has been deleted.");
+        Toastr::success("Order has been deleted.");
     }
 
     public function render()
