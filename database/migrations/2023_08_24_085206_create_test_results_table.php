@@ -21,9 +21,9 @@ return new class extends Migration
             $table->string('payment_status')->default('unpaid');
             $table->string('order_status')->default('submitted');
             $table->dateTime('order_received_date')->nullable();
-            $table->date('sample_collection_date')->nullable();
-            $table->date('sample_received_date')->nullable();
-            $table->date('sample_test_date')->nullable();
+            $table->dateTime('sample_collection_date')->nullable();
+            $table->dateTime('sample_received_date')->nullable();
+            $table->dateTime('sample_test_date')->nullable();
             $table->foreignId('result_option_id')->nullable();
             $table->string('test_identity')->nullable();
             $table->foreignId('staff_id')->nullable();
