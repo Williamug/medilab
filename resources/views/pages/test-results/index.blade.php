@@ -4,11 +4,11 @@
     </x-slot>
     <x-app.card>
         <x-slot name="banner">
-            Results from the sample taken
+            Test Results
         </x-slot>
         <x-app.flash-message />
         <div>
-            <livewire:test-results-list-component />
+            <livewire:laboratory.test-result-component />
         </div>
     </x-app.card>
 </x-app-layout>

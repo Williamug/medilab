@@ -56,37 +56,37 @@
                                 </tr>
                             </thead>
                             <tbody class="bg-white divide-y divide-gray-200 dark:divide-gray-700 dark:bg-gray-900">
-                                @foreach ($patient->test_orders as $test_order)
+                                @foreach ($patient->test_results as $test_result)
                                     <tr>
                                         <td class="px-4 py-4 text-sm font-medium whitespace-nowrap">
                                             <div>
-                                                {{ $test_order->order_number }}
+                                                {{ $test_result->order_number }}
                                             </div>
                                         </td>
 
                                         <td class="px-4 py-4 text-sm font-medium whitespace-nowrap">
                                             <div>
-                                                {{ $test_order->lab_service->service_name }}
+                                                {{ $test_result->lab_service->service_name }}
                                             </div>
                                         </td>
 
                                         <td class="px-4 py-4 text-sm font-medium whitespace-nowrap">
-                                            @if ($test_order->payment_status == 'unpaid')
+                                            @if ($test_result->payment_status == 'unpaid')
                                                 <div
                                                     class="inline px-1 text-xs font-normal text-red-500 border border-red-300 rounded gap-x-2 bg-red-100/60 dark:bg-gray-800">
-                                                    {{ $test_order->payment_status }}
+                                                    {{ $test_result->payment_status }}
                                                 </div>
-                                            @elseif($test_order->payment_status == 'paid')
+                                            @elseif($test_result->payment_status == 'paid')
                                                 <div
                                                     class="inline px-1 text-xs font-normal text-green-500 border border-green-300 rounded gap-x-2 bg-green-100/60 dark:bg-gray-800">
-                                                    {{ $test_order->payment_status }}
+                                                    {{ $test_result->payment_status }}
                                                 </div>
                                             @endif
                                         </td>
 
                                         <td class="px-4 py-4 text-sm font-medium whitespace-nowrap">
                                             <div>
-                                                @money($test_order->lab_service_price)
+                                                @money($test_result->lab_service_price)
                                             </div>
                                         </td>
 
@@ -142,7 +142,7 @@
                                     <td class="px-4 py-4 text-sm font-bold uppercase whitespace-nowrap">
                                         Total</td>
                                     <td class="px-4 py-4 text-sm font-medium uppercase whitespace-nowrap">
-                                        @money($patient->test_orders->sum('lab_service_price'))
+                                        @money($patient->test_results->sum('lab_service_price'))
                                     </td>
                                 </tr>
                             </tbody>

@@ -359,7 +359,7 @@
                                         <select
                                             class="w-full border-gray-300 rounded-md shadow-sm dark:border-gray-900 dark:text-gray-400 dark:bg-gray-700 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 form-select"
                                             wire:model.lazy="lab_service_id.{{ $value }}">
-                                            <option value="">-- select category --</option>
+                                            <option value="">-- select service --</option>
                                             @foreach ($lab_services as $lab_service)
                                                 <option value="{{ $lab_service->id }}"
                                                     {{ old('lab_service_id') ? 'selected' : '' }}>

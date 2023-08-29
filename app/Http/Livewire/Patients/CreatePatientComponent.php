@@ -6,6 +6,7 @@ use App\Models\LabService;
 use App\Models\Patient;
 use App\Models\PatientVisit;
 use App\Models\TestOrder;
+use App\Models\TestResult;
 use App\Rules\LabServiceRule;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\DB;
@@ -93,7 +94,7 @@ class CreatePatientComponent extends Component
     {
         do {
             $number = random_int(100000, 999999);
-        } while (TestOrder::where('order_number', '=', $number)->first());
+        } while (TestResult::where('order_number', '=', $number)->first());
         return $number;
     }
 
@@ -162,7 +163,7 @@ class CreatePatientComponent extends Component
             // create an array of test order
             foreach ($this->lab_service_id as $key => $value) {
                 $lab_service = LabService::where('id', $this->lab_service_id[$key])->first();
-                TestOrder::create([
+                TestResult::create([
                     'user_id'        => auth()->id(),
                     'patient_id'     => $patient->id,
                     'lab_service_id' => $this->lab_service_id[$key],
@@ -194,6 +195,7 @@ class CreatePatientComponent extends Component
                 }
             }
         });
+        toastr()->success('Patient has been added.');
         return redirect()->to(route('patients.index'));
     }
 

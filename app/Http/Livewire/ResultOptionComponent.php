@@ -29,8 +29,8 @@ class ResultOptionComponent extends Component
     // validation
     protected $rules = [
         'option' => 'required|string|unique:result_options',
-        'code' => 'required|string',
-        'symbol' => 'required|string|max:1',
+        'code'   => 'required|string',
+        'symbol' => 'required|string|min:1',
     ];
 
     // sort results based on either ascend or discend
@@ -72,6 +72,7 @@ class ResultOptionComponent extends Component
 
         $this->resetData();
         $this->closeModal();
+        toastr()->success('Result option has been added.');
     }
 
     public function storeCreateAnother()
@@ -85,6 +86,7 @@ class ResultOptionComponent extends Component
         ]);
 
         $this->resetData();
+        toastr()->success('Result option has been added.');
     }
 
     public function openEditModal(int $id): void
@@ -132,7 +134,7 @@ class ResultOptionComponent extends Component
             $this->closeEdit();
         }
 
-        session()->flash('success', "{$result_option->option} has been updated.");
+        toastr()->success("{$result_option->option} has been updated.");
     }
 
     public function openDeleteModal(int $id): void
@@ -155,7 +157,7 @@ class ResultOptionComponent extends Component
     {
         ResultOption::find($this->result_option_id)->delete();
         $this->closeDelete();
-        session()->flash('success', 'Result Option has been deleted.');
+        toastr()->success('Result option has been deleted.');
     }
 
     public function render()

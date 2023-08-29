@@ -1,14 +1,14 @@
 <x-app-layout>
     <x-slot name="title">
-        Patient's Results
+        Test Orders
     </x-slot>
     <x-app.card>
         <x-slot name="banner">
-            Results from the sample taken
+            Test Orders
         </x-slot>
         <x-app.flash-message />
         <div>
-            <livewire:test-results-list-component />
+            <livewire:laboratory.test-order-component />
         </div>
     </x-app.card>
 </x-app-layout>

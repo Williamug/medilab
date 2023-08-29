@@ -12,6 +12,6 @@ class TestResultscontroller extends Controller
     {
         // restrict access
         $this->authorize('view test result module');
-        return view('pages.test-results.results.index');
+        return view('pages.test-results.index');
     }
 }

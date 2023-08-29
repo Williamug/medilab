@@ -228,9 +228,9 @@
 
                     <!-- laboratory -->
                     @can('view test result module')
-                        <li class="px-3 py-2 rounded-sm mb-0.5 last:mb-0 @if (in_array(Request::segment(1), ['test-results'])) {{ 'bg-slate-900' }} @endif"
-                            x-data="{ open: {{ in_array(Request::segment(1), ['test-results']) ? 1 : 0 }} }">
-                            <a class="block text-slate-200 hover:text-white truncate transition duration-150 @if (in_array(Request::segment(1), ['test-results'])) {{ '!text-indigo-500' }} @endif"
+                        <li class="px-3 py-2 rounded-sm mb-0.5 last:mb-0 @if (in_array(Request::segment(1), ['laboratory'])) {{ 'bg-slate-900' }} @endif"
+                            x-data="{ open: {{ in_array(Request::segment(1), ['laboratory']) ? 1 : 0 }} }">
+                            <a class="block text-slate-200 hover:text-white truncate transition duration-150 @if (in_array(Request::segment(1), ['laboratory'])) {{ '!text-indigo-500' }} @endif"
                                 href="#0" @click.prevent="sidebarExpanded ? open = !open : sidebarExpanded = true">
                                 <div class="flex items-center justify-between">
                                     <div class="flex items-center">
@@ -238,7 +238,7 @@
                                             class="w-6 h-6 shrink-0 bi bi-prescription2" viewBox="0 0 16 16">
                                             <path d="M7 6h2v2h2v2H9v2H7v-2H5V8h2V6Z" />
                                             <path
-                                                class="fill-current @if (in_array(Request::segment(1), ['test-results'])) {{ 'text-indigo-500' }}@else{{ 'text-slate-400' }} @endif"
+                                                class="fill-current @if (in_array(Request::segment(1), ['laboratory'])) {{ 'text-indigo-500' }}@else{{ 'text-slate-400' }} @endif"
                                                 d="M2 1a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1v10.5a1.5 1.5 0 0 1-1.5 1.5h-7A1.5 1.5 0 0 1 3 14.5V4a1 1 0 0 1-1-1V1Zm2 3v10.5a.5.5 0 0 0 .5.5h7a.5.5 0 0 0 .5-.5V4H4ZM3 3h10V1H3v2Z" />
                                         </svg>
                                         <span
@@ -250,7 +250,7 @@
                                     <!-- Dropdown Icon -->
                                     <div
                                         class="flex ml-2 duration-200 shrink-0 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100">
-                                        <svg class="w-3 h-3 shrink-0 ml-1 fill-current text-slate-400 @if (in_array(Request::segment(1), ['test-results'])) {{ 'rotate-180' }} @endif"
+                                        <svg class="w-3 h-3 shrink-0 ml-1 fill-current text-slate-400 @if (in_array(Request::segment(1), ['laboratory'])) {{ 'rotate-180' }} @endif"
                                             :class="open ? 'rotate-180' : 'rotate-0'" viewBox="0 0 12 12">
                                             <path d="M5.9 11.4L.5 6l1.4-1.4 4 4 4-4L11.3 6z" />
                                         </svg>
@@ -258,18 +258,28 @@
                                 </div>
                             </a>
                             <div class="lg:hidden lg:sidebar-expanded:block 2xl:block">
-                                <ul class="pl-9 mt-1 @if (!in_array(Request::segment(1), ['test-results'])) {{ 'hidden' }} @endif"
+                                <ul class="pl-9 mt-1 @if (!in_array(Request::segment(1), ['laboratory'])) {{ 'hidden' }} @endif"
                                     :class="open ? '!block' : 'hidden'">
 
-                                    {{-- <li class="mb-1 last:mb-0">
-                                        <a class="block text-slate-400 hover:text-slate-200 transition duration-150 truncate @if (Route::is('waiting-lists.index')) {{ '!text-indigo-500' }} @endif"
-                                            href="{{ route('waiting-lists.index') }}">
+                                    <li class="mb-1 last:mb-0">
+                                        <a class="block text-slate-400 hover:text-slate-200 transition duration-150 truncate @if (Route::is('test-orders.index')) {{ '!text-indigo-500' }} @endif"
+                                            href="{{ route('test-orders.index') }}">
                                             <span
                                                 class="text-sm font-medium duration-200 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100">
                                                 Test Orders
                                             </span>
                                         </a>
-                                    </li> --}}
+                                    </li>
+
+                                    <li class="mb-1 last:mb-0">
+                                        <a class="block text-slate-400 hover:text-slate-200 transition duration-150 truncate @if (Route::is('test-results.index')) {{ '!text-indigo-500' }} @endif"
+                                            href="{{ route('test-results.index') }}">
+                                            <span
+                                                class="text-sm font-medium duration-200 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100">
+                                                Test Result
+                                            </span>
+                                        </a>
+                                    </li>
                                 </ul>
                             </div>
                         </li>
@@ -277,9 +287,9 @@
 
                     <!-- Accounting -->
                     @can('view accounting module')
-                        <li class="px-3 py-2 rounded-sm mb-0.5 last:mb-0 @if (in_array(Request::segment(1), ['test-results'])) {{ 'bg-slate-900' }} @endif"
-                            x-data="{ open: {{ in_array(Request::segment(1), ['test-results']) ? 1 : 0 }} }">
-                            <a class="block text-slate-200 hover:text-white truncate transition duration-150 @if (in_array(Request::segment(1), ['test-results'])) {{ '!text-indigo-500' }} @endif"
+                        <li class="px-3 py-2 rounded-sm mb-0.5 last:mb-0 @if (in_array(Request::segment(1), ['accountings'])) {{ 'bg-slate-900' }} @endif"
+                            x-data="{ open: {{ in_array(Request::segment(1), ['accountings']) ? 1 : 0 }} }">
+                            <a class="block text-slate-200 hover:text-white truncate transition duration-150 @if (in_array(Request::segment(1), ['accountings'])) {{ '!text-indigo-500' }} @endif"
                                 href="#0" @click.prevent="sidebarExpanded ? open = !open : sidebarExpanded = true">
                                 <div class="flex items-center justify-between">
                                     <div class="flex items-center">
@@ -289,10 +299,10 @@
                                             <path fill-rule="evenodd"
                                                 d="M11 15a4 4 0 1 0 0-8 4 4 0 0 0 0 8zm5-4a5 5 0 1 1-10 0 5 5 0 0 1 10 0z" />
                                             <path
-                                                class="fill-current @if (in_array(Request::segment(1), ['test-results'])) {{ 'text-indigo-500' }}@else{{ 'text-slate-400' }} @endif"
+                                                class="fill-current @if (in_array(Request::segment(1), ['accountings'])) {{ 'text-indigo-500' }}@else{{ 'text-slate-400' }} @endif"
                                                 d="M9.438 11.944c.047.596.518 1.06 1.363 1.116v.44h.375v-.443c.875-.061 1.386-.529 1.386-1.207 0-.618-.39-.936-1.09-1.1l-.296-.07v-1.2c.376.043.614.248.671.532h.658c-.047-.575-.54-1.024-1.329-1.073V8.5h-.375v.45c-.747.073-1.255.522-1.255 1.158 0 .562.378.92 1.007 1.066l.248.061v1.272c-.384-.058-.639-.27-.696-.563h-.668zm1.36-1.354c-.369-.085-.569-.26-.569-.522 0-.294.216-.514.572-.578v1.1h-.003zm.432.746c.449.104.655.272.655.569 0 .339-.257.571-.709.614v-1.195l.054.012z" />
                                             <path
-                                                class="fill-current @if (in_array(Request::segment(1), ['test-results'])) {{ 'text-indigo-500' }}@else{{ 'text-slate-400' }} @endif"
+                                                class="fill-current @if (in_array(Request::segment(1), ['accountings'])) {{ 'text-indigo-500' }}@else{{ 'text-slate-400' }} @endif"
                                                 d="M1 0a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h4.083c.058-.344.145-.678.258-1H3a2 2 0 0 0-2-2V3a2 2 0 0 0 2-2h10a2 2 0 0 0 2 2v3.528c.38.34.717.728 1 1.154V1a1 1 0 0 0-1-1H1z" />
                                             <path
                                                 d="M9.998 5.083 10 5a2 2 0 1 0-3.132 1.65 5.982 5.982 0 0 1 3.13-1.567z" />
@@ -306,7 +316,7 @@
                                     <!-- Dropdown Icon -->
                                     <div
                                         class="flex ml-2 duration-200 shrink-0 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100">
-                                        <svg class="w-3 h-3 shrink-0 ml-1 fill-current text-slate-400 @if (in_array(Request::segment(1), ['test-results'])) {{ 'rotate-180' }} @endif"
+                                        <svg class="w-3 h-3 shrink-0 ml-1 fill-current text-slate-400 @if (in_array(Request::segment(1), ['accountings'])) {{ 'rotate-180' }} @endif"
                                             :class="open ? 'rotate-180' : 'rotate-0'" viewBox="0 0 12 12">
                                             <path d="M5.9 11.4L.5 6l1.4-1.4 4 4 4-4L11.3 6z" />
                                         </svg>
@@ -314,7 +324,7 @@
                                 </div>
                             </a>
                             <div class="lg:hidden lg:sidebar-expanded:block 2xl:block">
-                                <ul class="pl-9 mt-1 @if (!in_array(Request::segment(1), ['test-results'])) {{ 'hidden' }} @endif"
+                                <ul class="pl-9 mt-1 @if (!in_array(Request::segment(1), ['accountings'])) {{ 'hidden' }} @endif"
                                     :class="open ? '!block' : 'hidden'">
 
                                     <li class="mb-1 last:mb-0">

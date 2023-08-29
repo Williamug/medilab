@@ -215,3 +215,73 @@
     </x-modal>
 @endif
 <!-- load patient visit modal -->
+
+@if ($isOpenEditService)
+    <x-modal>
+        <x-slot name="title">
+            Edit order
+        </x-slot>
+
+        <x-slot name="content">
+            <form>
+                <!-- hidden field-->
+                <input type="hidden" wire:model="test_result_id">
+
+                <!-- lab service -->
+                <div class="space-y-4">
+                    <div class="mb-4">
+                        <x-jet-label for="lab_service_id" value="{{ __('Lab Service') }}" />
+                        <select
+                            class="w-full border-gray-300 rounded-md shadow-sm dark:border-gray-900 dark:text-gray-400 dark:bg-gray-700 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 form-select"
+                            wire:model.lazy="lab_service_id">
+                            <option value="">-- select service --</option>
+                            @foreach ($lab_services as $lab_service)
+                                <option value="{{ $lab_service->id }}">
+                                    {{ $lab_service->service_name }}
+                                </option>
+                            @endforeach
+                        </select>
+                        <x-jet-input-error for="lab_service_id" />
+                    </div>
+                </div>
+                <!-- lab_service_id -->
+            </form>
+        </x-slot>
+
+        <x-slot name="footer">
+            <x-jet-button class="mr-4" wire:click="updateTestResult" wire:loading.attr="disabled">
+                {{ __('Save') }}
+            </x-jet-button>
+
+            <x-jet-secondary-button wire:click="closeTestResult" wire:loading.attr="disabled">
+                {{ __('Cancel') }}
+            </x-jet-secondary-button>
+        </x-slot>
+    </x-modal>
+@endif
+
+@if ($isOpenDeleteService)
+    <x-delete-modal>
+        <x-slot name="content">
+            <div class="mb-4">
+                <div class="mb-2 text-lg font-bold text-center">
+                    Delete test order
+                </div>
+                <div class="text-center">
+                    Are you sure you want to do this?
+                </div>
+            </div>
+        </x-slot>
+
+        <x-slot name="footer">
+            <x-jet-danger-button class="mr-2" wire:click.prevent="deleteTestResult({{ $test_result }})"
+                wire:loading.attr="disabled">
+                Delete order
+            </x-jet-danger-button>
+
+            <x-jet-secondary-button wire:click.prevent="closeTestResultDelete" wire:loading.attr="disabled">
+                Cancel
+            </x-jet-secondary-button>
+        </x-slot>
+    </x-delete-modal>
+@endif

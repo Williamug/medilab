@@ -106,7 +106,7 @@ class PatientComponent extends Component
             $this->closeEdit();
         }
 
-        // session()->flash('success', "{$patient->spacemen} has been updated.");
+        toastr()->success('Patient information has been update.');
     }
 
     public function openDeleteModal(int $id): void
@@ -127,9 +127,9 @@ class PatientComponent extends Component
 
     public function delete(): void
     {
-        Patient::find($this->patient_id)->delete();
+        $patient = Patient::find($this->patient_id)->delete();
         $this->closeDelete();
-        session()->flash('success', 'Patient has been deleted.');
+        toastr()->success("Patient has been deleted.");
     }
 
     public function render()

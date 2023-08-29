@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Patients;
 use App\Models\LabService;
 use App\Models\PatientVisit;
 use App\Models\TestOrder;
+use App\Models\TestResult;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -13,8 +14,10 @@ class NewPatientVisitComponent extends Component
 {
     use WithPagination;
 
-    public bool $isOpenCreateTestOrder = false;
-    public bool $isOpenCreateNewVisit = false;
+    public bool $isOpenCreateTestOrder = FALSE;
+    public bool $isOpenCreateNewVisit  = FALSE;
+    public bool $isOpenEditService     = FALSE;
+    public bool $isOpenDeleteService   = FALSE;
 
     public $lab_services;
     public $lab_service_id;
@@ -27,6 +30,7 @@ class NewPatientVisitComponent extends Component
     public $kin_phone_number;
     public $kin_residence;
     public $patient_relation;
+    public $test_results_id;
 
     protected $listeners = [
         'storeTestOrder' => '$refresh',
@@ -59,7 +63,7 @@ class NewPatientVisitComponent extends Component
     {
         do {
             $number = random_int(100000, 999999);
-        } while (TestOrder::where('order_number', '=', $number)->first());
+        } while (TestResult::where('order_number', '=', $number)->first());
         return $number;
     }
 
@@ -71,9 +75,11 @@ class NewPatientVisitComponent extends Component
     {
         $this->validate([
             'lab_service_id' => 'required',
-        ], ['lab_service_id.required' => 'Lab service is required']);
+        ], [
+            'lab_service_id.required' => 'Lab service is required'
+        ]);
 
-        TestOrder::create([
+        TestResult::create([
             'user_id'        => auth()->id(),
             'patient_id'     => $this->patient->id,
             'lab_service_id' => $this->lab_service_id,
@@ -83,6 +89,7 @@ class NewPatientVisitComponent extends Component
         $this->emitSelf('storeTestOrder');
         $this->reset('lab_service_id');
         $this->closeTestOrderModal();
+        toastr()->success('New test order added.');
     }
 
     public function storeNewVisit(): void
@@ -106,7 +113,7 @@ class NewPatientVisitComponent extends Component
             ]);
 
 
-            TestOrder::create([
+            TestResult::create([
                 'user_id'        => auth()->id(),
                 'patient_id'     => $this->patient->id,
                 'lab_service_id' => $this->lab_service_id,
@@ -117,11 +124,56 @@ class NewPatientVisitComponent extends Component
         $this->emitSelf('storeTestOrder');
         $this->reset('lab_service_id');
         $this->closeNewVisitModal();
+        toastr()->success('Patient visit and test order has been added.');
+    }
+
+    public function openEditModal(int $id): void
+    {
+        $test_result = TestResult::where('id', $id)->first();
+
+        $this->test_results_id = $id;
+        $this->lab_service_id  = $test_result->lab_service_id;
+
+        $this->isOpenEditService = TRUE;
+    }
+
+    public function closeTestResult(): void
+    {
+        $this->isOpenEditService = FALSE;
+    }
+
+    public function updateTestResult(): void
+    {
+        if ($this->test_results_id) {
+            $test_result = TestResult::find($this->test_results_id);
+            $test_result->update([
+                'lab_service_id' => $this->lab_service_id,
+            ]);
+        }
+        $this->closeTestResult();
+        toastr()->success("Test order has been updated.");
+    }
+
+    public function openDeleteModal(): void
+    {
+        $this->isOpenDeleteService = TRUE;
+    }
+
+    public function closeTestResultDelete(): void
+    {
+        $this->isOpenDeleteService = FALSE;
+    }
+
+    public function deleteTestResult(): void
+    {
+        TestResult::find($this->test_results_id)->delete();
+        $this->closeTestResultDelete();
+        toastr()->success("Order has been deleted.");
     }
 
     public function render()
     {
-        $test_orders = TestOrder::where('patient_id', $this->patient->id)->latest()->paginate(4);
-        return view('livewire.patients.new-patient-visit-component', compact('test_orders'));
+        $test_results = TestResult::where('patient_id', $this->patient->id)->latest()->paginate(4);
+        return view('livewire.patients.new-patient-visit-component', compact('test_results'));
     }
 }

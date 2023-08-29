@@ -16,7 +16,7 @@ class Patient extends Model
     protected $guarded = [];
 
     // eager load models
-    protected $with = ['patient_visits', 'test_orders'];
+    protected $with = ['patient_visits', 'test_results'];
 
     //Accessor for Age.
     public function ageFromDob()
@@ -38,8 +38,8 @@ class Patient extends Model
         return $this->hasMany(PatientVisit::class);
     }
 
-    public function test_orders(): HasMany
+    public function test_results(): HasMany
     {
-        return $this->hasMany(TestOrder::class);
+        return $this->hasMany(TestResult::class);
     }
 }
