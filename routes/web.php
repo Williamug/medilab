@@ -21,7 +21,8 @@ use App\Http\Controllers\SampleResultsCotroller;
 use App\Http\Controllers\ServiceCategoriesController;
 use App\Http\Controllers\SpacemensController;
 use App\Http\Controllers\SubmitTestRequestsController;
-use App\Http\Controllers\TestResultscontroller;
+// use App\Http\Controllers\TestResultscontroller;
+use App\Http\Controllers\TestResultsController;
 use App\Http\Controllers\WaitingListsController;
 
 Route::redirect('/', 'login');
