@@ -15,10 +15,13 @@ class TestResult extends Model
     protected $guarded = [];
 
     // eager load models 
-    protected $with = ['lab_service', 'spacemens'];
+    protected $with = ['lab_service', 'spacemens', 'staff'];
 
     protected $casts = [
-        'order_received_date' => 'datetime'
+        'order_received_date'    => 'datetime',
+        'sample_collection_date' => 'datetime',
+        'sample_received_date'   => 'datetime',
+        'sample_test_date'       => 'datetime',
     ];
 
     public static function search($query)
@@ -43,5 +46,15 @@ class TestResult extends Model
     public function spacemens(): BelongsToMany
     {
         return $this->belongsToMany(Spacemen::class);
+    }
+
+    public function result_option(): BelongsTo
+    {
+        return $this->belongsTo(ResultOption::class);
+    }
+
+    public function staff(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
     }
 }
