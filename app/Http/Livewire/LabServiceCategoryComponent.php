@@ -62,6 +62,7 @@ class LabServiceCategoryComponent extends Component
 
         $this->closeModal();
         $this->reset('category_name');
+        toastr()->success('Category has been added.');
     }
 
     public function storeCreateAnother(): void
@@ -73,6 +74,7 @@ class LabServiceCategoryComponent extends Component
         ]);
 
         $this->reset('category_name');
+        toastr()->success('Category has been added.');
     }
 
     public function openEditModal(int $id): void
@@ -115,7 +117,7 @@ class LabServiceCategoryComponent extends Component
             $this->closeEdit();
         }
 
-        session()->flash('success', "{$service_category->category_name} has been updated.");
+        toastr()->success("{$service_category->category_name} has been updated.");
     }
 
     public function openDeleteModal(int $id): void
@@ -138,7 +140,7 @@ class LabServiceCategoryComponent extends Component
     {
         $service_category = LabServiceCategory::find($this->service_category_id)->delete();
         $this->closeDelete();
-        session()->flash('success', "Category has been deleted.");
+        toastr()->success('Category has been deleted.');
     }
 
 

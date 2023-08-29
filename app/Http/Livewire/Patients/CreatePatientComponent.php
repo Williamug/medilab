@@ -195,6 +195,7 @@ class CreatePatientComponent extends Component
                 }
             }
         });
+        toastr()->success('Patient has been added.');
         return redirect()->to(route('patients.index'));
     }
 
