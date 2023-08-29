@@ -46,9 +46,9 @@
                                         Order Received Dated
                                     </th>
 
-                                    {{-- <th scope="col" class="relative py-3.5 px-4">
+                                    <th scope="col" class="relative py-3.5 px-4">
                                         <span class="sr-only">Action</span>
-                                    </th> --}}
+                                    </th>
                                 </tr>
                             </thead>
                             <tbody class="bg-white divide-y divide-gray-200 dark:divide-gray-700 dark:bg-gray-900">
@@ -111,23 +111,66 @@
                                             </div>
                                         </td>
 
-                                        {{-- <td>
-                                            <div>
-                                                <button
-                                                    wire:click.prevent="openReceiveTestOrder({{ $test_result->id }})"
-                                                    type="button"
-                                                    class="flex px-2 py-2 text-sm text-white bg-blue-500 rounded hover:bg-blue-700 focus:outline-none focus:shadow-outline">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor"
-                                                        class="w-6 h-6 pt-1 bi bi-arrow-repeat" viewBox="0 0 16 16">
-                                                        <path
-                                                            d="M11.534 7h3.932a.25.25 0 0 1 .192.41l-1.966 2.36a.25.25 0 0 1-.384 0l-1.966-2.36a.25.25 0 0 1 .192-.41zm-11 2h3.932a.25.25 0 0 0 .192-.41L2.692 6.23a.25.25 0 0 0-.384 0L.342 8.59A.25.25 0 0 0 .534 9z" />
-                                                        <path fill-rule="evenodd"
-                                                            d="M8 3c-1.552 0-2.94.707-3.857 1.818a.5.5 0 1 1-.771-.636A6.002 6.002 0 0 1 13.917 7H12.9A5.002 5.002 0 0 0 8 3zM3.1 9a5.002 5.002 0 0 0 8.757 2.182.5.5 0 1 1 .771.636A6.002 6.002 0 0 1 2.083 9H3.1z" />
-                                                    </svg>
-                                                    <span class="pt-1 ml-1 text-xs">A</span>
-                                                </button>
-                                            </div>
-                                        </td> --}}
+                                        <td>
+                                            @if (!is_null($test_result->test_identity))
+                                                <div class="mr-6">
+                                                    @if (is_null($test_result->result_option_id))
+                                                        <div class="my-1">
+                                                            <!-- add results -->
+                                                            <button
+                                                                wire:click.prevent="openAddResultModal({{ $test_result->id }})"
+                                                                type="button"
+                                                                class="flex px-2 py-1 text-sm text-white bg-blue-500 rounded hover:bg-blue-700 focus:outline-none focus:shadow-outline">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                                    viewBox="0 0 24 24" stroke-width="1.5"
+                                                                    stroke="currentColor" class="w-5 h-5">
+                                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                                        d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                                                </svg>
+                                                                <span class="pt-1 ml-1 text-xs">Add Results</span>
+                                                            </button>
+                                                        </div>
+                                                    @endif
+
+                                                    <!-- view results -->
+                                                    @if (!is_null($test_result->result_option_id))
+                                                        <div class="my-1">
+                                                            <!-- Edit  -->
+                                                            <a href="#  "
+                                                                wire:click.prevent="openEditTestResult({{ $test_result->id }})"
+                                                                type="button"
+                                                                class="flex px-2 py-1 text-sm text-white bg-red-500 rounded hover:bg-red-700 focus:outline-none focus:shadow-outline">
+                                                                <svg class="w-4" xmlns="http://www.w3.org/2000/svg"
+                                                                    fill="none" viewBox="0 0 24 24"
+                                                                    stroke="currentColor">
+                                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                                        stroke-width="2"
+                                                                        d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+                                                                </svg>
+                                                                <span class="pt-1 ml-1 text-xs">Edit Results</span>
+                                                            </a>
+                                                        </div>
+
+                                                        <div class="my-1">
+                                                            <a href="{{ route('test-results.show', $test_result) }}"
+                                                                class="flex px-2 py-1 text-sm text-white bg-green-500 rounded hover:bg-green-700 focus:outline-none focus:shadow-outline">
+                                                                <svg class="w-4" xmlns="http://www.w3.org/2000/svg"
+                                                                    fill="none" viewBox="0 0 24 24"
+                                                                    stroke="currentColor">
+                                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                                        stroke-width="2"
+                                                                        d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                                        stroke-width="2"
+                                                                        d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                                                                </svg>
+                                                                <span class="pt-1 ml-1 text-xs">View Results</span>
+                                                            </a>
+                                                        </div>
+                                                    @endif
+                                                </div>
+                                            @endif
+                                        </td>
                                     </tr>
                                 @endforeach
                             </tbody>
@@ -196,8 +239,8 @@
 
                                     <x-jet-secondary-button class="block ml-2"
                                         wire:click.prevent="remove({{ $key }})">
-                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                                            xmlns="http://www.w3.org/2000/svg">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor"
+                                            viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                                 d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16">
                                             </path>
@@ -264,4 +307,139 @@
         </x-modal>
     @endif
     <!-- receive test -->
+
+    <!-- add results -->
+    @if ($isOpenAddResult)
+        <x-modal>
+            <div>
+                <x-slot name="title">
+                    Add Results
+                </x-slot>
+
+                <x-slot name="content">
+                    <div class="space-y-4">
+                        <div class="mb-4">
+                            <div>Note: </div>
+                            <div>
+                                <span class="mr-1 text-lg">*</span> Denotes Mandatory.
+                            </div>
+                        </div>
+                    </div>
+
+                    @if ($errors->any())
+                        <x-jet-validation-errors class="mb-4" />
+                    @endif
+                    <form>
+                        <input type="hidden" wire:model="test_result">
+                        <!-- service -->
+                        <div>
+                            <x-jet-label for="result_option_id" value="{{ __('Service *') }}" />
+                            <div class="flex mb-2">
+                                <select
+                                    class="w-full border-gray-300 rounded-md shadow-sm dark:border-gray-900 dark:text-gray-400 dark:bg-gray-700 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 form-select "
+                                    wire:model="selectedService">
+                                    <option>select</option>
+                                    <option value="{{ $service_id }}" selected="selected">
+                                        {{ $service_name }}
+                                    </option>
+                                </select>
+                            </div>
+                            <x-jet-input-error for="selectedService" />
+                        </div>
+
+                        <!-- options -->
+                        @if (!is_null($selectedService))
+                            <div>
+                                <x-jet-label for="result_option_id" value="{{ __('Result *') }}" />
+                                <div class="flex mb-2">
+                                    <select
+                                        class="w-full border-gray-300 rounded-md shadow-sm dark:border-gray-900 dark:text-gray-400 dark:bg-gray-700 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 form-select "
+                                        wire:model.defer="result_option_id">
+                                        <option value="">-- select --</option>
+                                        @foreach ($test_result->lab_service->result_options as $result_option)
+                                            <option value="{{ $result_option->id }}">
+                                                {{ $result_option->option }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <x-jet-input-error for="result_option_id" />
+                            </div>
+                        @endif
+
+                        <!-- sample collection date -->
+                        <div class="space-y-4">
+                            <div class="mb-4">
+                                <x-jet-label for="sample_collection_date"
+                                    value="{{ __('Sample Collection Date *') }}" />
+                                <x-jet-input class="md:w-full" id="sample_collection_date" type="datetime-local"
+                                    wire:model.lazy="sample_collection_date" :value="old('sample_collection_date')" autofocus />
+                                <x-jet-input-error for="sample_collection_date" />
+                            </div>
+                        </div>
+
+                        <!-- sample received date -->
+                        <div class="space-y-4">
+                            <div class="mb-4">
+                                <x-jet-label for="sample_received_date" value="{{ __('Sample Received Date *') }}" />
+                                <x-jet-input class="md:w-full" id="sample_received_date" type="datetime-local"
+                                    wire:model.lazy="sample_received_date" :value="old('sample_received_date')" autofocus />
+                                <x-jet-input-error for="sample_received_date" />
+                            </div>
+                        </div>
+
+                        <!-- sample test date -->
+                        <div class="space-y-4">
+                            <div class="mb-4">
+                                <x-jet-label for="sample_test_date" value="{{ __('Sample Test Date *') }}" />
+                                <x-jet-input class="md:w-full" id="sample_test_date" type="datetime-local"
+                                    wire:model.lazy="sample_test_date" :value="old('sample_test_date')" autofocus />
+                                <x-jet-input-error for="sample_test_date" />
+                            </div>
+                        </div>
+
+                        <!-- comment -->
+                        <div>
+                            <x-jet-label for="comment" value="{{ __('Comment') }}" />
+                            <x-app.text id="comment" id="comment" class="block mt-1 " :value="old('comment')"
+                                wire:model.defer="comment" rows="6" name="comment">
+                                {{ old('comment') }}
+                            </x-app.text>
+                            <x-jet-input-error for="comment" />
+                        </div>
+                        <!-- /.comment -->
+                    </form>
+                </x-slot>
+
+                <x-slot name="footer">
+                    <x-jet-button class="mr-4" wire:click="addResult" wire:loading.attr="disabled">
+                        <span wire:loading.remove>{{ __('Add Results') }}</span>
+                        <span wire:loading>{{ __('Adding...') }}</span>
+                    </x-jet-button>
+
+                    <x-jet-secondary-button wire:click="closeAddResult" wire:loading.attr="disabled">
+                        {{ __('Cancel') }}
+                    </x-jet-secondary-button>
+                </x-slot>
+            </div>
+        </x-modal>
+    @endif
+    <!-- add results -->
+
+
+    @push('scripts')
+        <script src="https://cdn.ckeditor.com/ckeditor5/12.3.1/classic/ckeditor.js"></script>
+        <script>
+            ClassicEditor
+                .create(document.querySelector('#comment'))
+                .then(editor => {
+                    editor.model.document.on('change:data', () => {
+                        @this.set('comment', editor.getData());
+                    })
+                })
+                .catch(error => {
+                    console.error(error);
+                });
+        </script>
+    @endpush
 </div>
