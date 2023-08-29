@@ -8,6 +8,7 @@ use App\Models\TestResult;
 use Livewire\Component;
 use Livewire\WithPagination;
 use Yoeunes\Toastr\Facades\Toastr;
+use Illuminate\Support\Str;
 
 class TestResultComponent extends Component
 {
@@ -116,13 +117,16 @@ class TestResultComponent extends Component
     public function addSpacemen(): void
     {
         $this->validate([
-            'spacemen_id' => 'required|unique:spacemen_test_result',
+            'spacemen_id' => 'required',
         ], [
             'spacemen_id.required' => 'Specimen is required.',
-            'spacemen_id.unique' => 'Specimen is taken.'
         ]);
         if ($this->test_result_id) {
+            $test_identity = strtoupper(Str::random(6));
             $test_result = TestResult::find($this->test_result_id);
+            $test_result->update([
+                'test_identity' => $test_identity,
+            ]);
             $test_result->spacemens()->attach($this->spacemen_id);
 
             Toastr::success('Specimen has been added.');
