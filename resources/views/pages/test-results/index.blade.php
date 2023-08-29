@@ -11,4 +11,5 @@
             <livewire:laboratory.test-result-component />
         </div>
     </x-app.card>
+
 </x-app-layout>
