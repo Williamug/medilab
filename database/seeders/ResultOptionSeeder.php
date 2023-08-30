@@ -7,33 +7,31 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class CategoryPermissionsSeeder extends Seeder
+class ResultOptionSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        $category = Module::create([
-            'name' => 'Category',
+        $result_option = Module::create([
+            'name' => 'Result Options',
         ]);
 
-        $category_permissions = [
-            'view category module',
-            'view category',
-            'add category',
-            'edit category',
-            'delete category',
+        $result_option_permissions = [
+            'view result option module',
+            'add result option',
+            'edit result option',
+            'delete result option',
         ];
 
-        foreach ($category_permissions as $permission) {
+        foreach ($result_option_permissions as $permission)
             DB::table('permissions')->insert([
                 'name'       => $permission,
                 'guard_name' => 'web',
-                'module_id'  => $category->id,
+                'module_id'  => $result_option->id,
                 'created_at' => now(),
                 'updated_at' => now(),
             ]);
-        }
     }
 }

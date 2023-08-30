@@ -24,6 +24,10 @@ class PatientPermissionsSeeder extends Seeder
             'add patient',
             'edit patient',
             'delete patient',
+            'add new visit',
+            'add test order',
+            'edit test order',
+            'delete test order',
         ];
 
         foreach ($patient_permissions as $permission) {

@@ -20,10 +20,7 @@ class AccountPermissionsSeeder extends Seeder
 
         $accounting_permission = [
             'view accounting module',
-            'view accounting',
-            'add accounting',
-            'edit accounting',
-            'delete accounting',
+            'view payments module',
         ];
 
         foreach ($accounting_permission as $permission) {

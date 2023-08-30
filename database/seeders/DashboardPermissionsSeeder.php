@@ -18,12 +18,22 @@ class DashboardPermissionsSeeder extends Seeder
             'name' => 'Dashboard',
         ]);
 
-        DB::table('permissions')->insert([
-            'name'       => 'View dashboard module',
-            'guard_name' => 'web',
-            'module_id'  => $dashboard->id,
-            'created_at' => now(),
-            'updated_at' => now(),
-        ]);
+        $dashboard_permissions = [
+            'view total patients card',
+            'view lab services card',
+            'view total tests done card',
+            'view total income card',
+            'view patient chart',
+            'view income chart',
+        ];
+
+        foreach ($dashboard_permissions as $permission)
+            DB::table('permissions')->insert([
+                'name'       => $permission,
+                'guard_name' => 'web',
+                'module_id'  => $dashboard->id,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]);
     }
 }

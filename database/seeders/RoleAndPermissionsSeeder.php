@@ -7,30 +7,28 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class TestRequestPermissionsSeeder extends Seeder
+class RoleAndPermissionsSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        $test_request = Module::create([
-            'name' => 'Test Request',
+        $roles_permissions = Module::create([
+            'name' => 'Roles & Permissions',
         ]);
 
-        $test_request_permission = [
-            'view test request module',
-            'view test request',
-            'add test request',
-            'edit test request',
-            'delete test request',
+        $roles_and_permissions = [
+            'view roles and permission module',
+            'view roles module',
+            'view assign role module',
         ];
 
-        foreach ($test_request_permission as $permission) {
+        foreach ($roles_and_permissions as $permission) {
             DB::table('permissions')->insert([
                 'name'       => $permission,
                 'guard_name' => 'web',
-                'module_id'  => $test_request->id,
+                'module_id'  => $roles_permissions->id,
                 'created_at' => now(),
                 'updated_at' => now(),
             ]);
