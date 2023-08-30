@@ -7,30 +7,29 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class TestingResultPermissionsSeeder extends Seeder
+class LabServiceCategoryPermissionsSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        $test_result = Module::create([
-            'name' => 'Test Result',
+        $lab_service_category = Module::create([
+            'name' => 'Lab Service Category',
         ]);
 
-        $test_result_permissions = [
-            'view test result module',
-            'view test result',
-            'add test result',
-            'edit test result',
-            'delete test result',
+        $lab_service_category_permissions = [
+            'view lab service category module',
+            'add service category',
+            'edit service category',
+            'delete service category',
         ];
 
-        foreach ($test_result_permissions as $permission) {
+        foreach ($lab_service_category_permissions as $permission) {
             DB::table('permissions')->insert([
                 'name'       => $permission,
                 'guard_name' => 'web',
-                'module_id'  => $test_result->id,
+                'module_id'  => $lab_service_category->id,
                 'created_at' => now(),
                 'updated_at' => now(),
             ]);

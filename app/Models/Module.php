@@ -13,6 +13,7 @@ class Module extends Model
     use HasFactory, SoftDeletes;
 
     protected $fillable = ['name'];
+    protected $with = ['permissions'];
 
     public function permissions(): HasMany
     {

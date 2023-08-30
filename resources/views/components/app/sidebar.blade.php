@@ -373,7 +373,7 @@
                             <div class="lg:hidden lg:sidebar-expanded:block 2xl:block">
                                 <ul class="pl-9 mt-1 @if (!in_array(Request::segment(1), ['roles-permissions'])) {{ 'hidden' }} @endif"
                                     :class="open ? '!block' : 'hidden'">
-                                    {{-- <li class="mb-1 last:mb-0">
+                                    <li class="mb-1 last:mb-0">
                                         <a class="block text-slate-400 hover:text-slate-200 transition duration-150 truncate @if (Route::is('permissions.index')) {{ '!text-indigo-500' }} @endif"
                                             href="{{ route('permissions.index') }}">
                                             <span
@@ -381,7 +381,7 @@
                                                 Permissions
                                             </span>
                                         </a>
-                                    </li> --}}
+                                    </li>
 
                                     <li class="mb-1 last:mb-0">
                                         <a class="block text-slate-400 hover:text-slate-200 transition duration-150 truncate @if (Route::is('roles.index')) {{ '!text-indigo-500' }} @endif"

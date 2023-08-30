@@ -7,21 +7,21 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class SettingPermissionsSeeder extends Seeder
+class TestOrderPermissionsSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        $settings = Module::create([
-            'name' => 'Settings',
+        $test_order = Module::create([
+            'name' => 'Test Order',
         ]);
 
         DB::table('permissions')->insert([
-            'name'       => 'View settings module',
+            'name'       => 'receive order',
             'guard_name' => 'web',
-            'module_id'  => $settings->id,
+            'module_id'  => $test_order->id,
             'created_at' => now(),
             'updated_at' => now(),
         ]);

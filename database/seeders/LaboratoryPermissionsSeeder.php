@@ -7,30 +7,28 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class ExpectedResultPermissionsSeeder extends Seeder
+class LaboratoryPermissionsSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        $outcome = Module::create([
-            'name' => 'Outcome',
+        $laboratory = Module::create([
+            'name' => 'Laboratory',
         ]);
 
-        $outcome_permissions = [
-            'view outcome module',
-            'view outcome',
-            'add outcome',
-            'edit outcome',
-            'delete outcome',
+        $laboratory_permissions = [
+            'view laboratory module',
+            'view test order',
+            'view test result',
         ];
 
-        foreach ($outcome_permissions as $permission) {
+        foreach ($laboratory_permissions as $permission) {
             DB::table('permissions')->insert([
                 'name'       => $permission,
                 'guard_name' => 'web',
-                'module_id'  => $outcome->id,
+                'module_id'  => $laboratory->id,
                 'created_at' => now(),
                 'updated_at' => now(),
             ]);
