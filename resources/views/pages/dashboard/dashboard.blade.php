@@ -2,12 +2,66 @@
     <div class="w-full px-4 py-8 mx-auto sm:px-6 lg:px-8 max-w-9xl">
 
         <!-- Welcome banner -->
-        {{-- <x-dashboard.welcome-banner /> --}}
+        <div class="relative p-4 mb-8 overflow-hidden bg-indigo-200 rounded-sm dark:bg-indigo-500 sm:p-6">
+
+            <!-- Background illustration -->
+            <div class="absolute top-0 right-0 hidden mr-16 -mt-4 pointer-events-none xl:block" aria-hidden="true">
+                <svg width="319" height="198" xmlns:xlink="http://www.w3.org/1999/xlink">
+                    <defs>
+                        <path id="welcome-a" d="M64 0l64 128-64-20-64 20z" />
+                        <path id="welcome-e" d="M40 0l40 80-40-12.5L0 80z" />
+                        <path id="welcome-g" d="M40 0l40 80-40-12.5L0 80z" />
+                        <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="welcome-b">
+                            <stop stop-color="#A5B4FC" offset="0%" />
+                            <stop stop-color="#818CF8" offset="100%" />
+                        </linearGradient>
+                        <linearGradient x1="50%" y1="24.537%" x2="50%" y2="100%" id="welcome-c">
+                            <stop stop-color="#4338CA" offset="0%" />
+                            <stop stop-color="#6366F1" stop-opacity="0" offset="100%" />
+                        </linearGradient>
+                    </defs>
+                    <g fill="none" fill-rule="evenodd">
+                        <g transform="rotate(64 36.592 105.604)">
+                            <mask id="welcome-d" fill="#fff">
+                                <use xlink:href="#welcome-a" />
+                            </mask>
+                            <use fill="url(#welcome-b)" xlink:href="#welcome-a" />
+                            <path fill="url(#welcome-c)" mask="url(#welcome-d)" d="M64-24h80v152H64z" />
+                        </g>
+                        <g transform="rotate(-51 91.324 -105.372)">
+                            <mask id="welcome-f" fill="#fff">
+                                <use xlink:href="#welcome-e" />
+                            </mask>
+                            <use fill="url(#welcome-b)" xlink:href="#welcome-e" />
+                            <path fill="url(#welcome-c)" mask="url(#welcome-f)" d="M40.333-15.147h50v95h-50z" />
+                        </g>
+                        <g transform="rotate(44 61.546 392.623)">
+                            <mask id="welcome-h" fill="#fff">
+                                <use xlink:href="#welcome-g" />
+                            </mask>
+                            <use fill="url(#welcome-b)" xlink:href="#welcome-g" />
+                            <path fill="url(#welcome-c)" mask="url(#welcome-h)" d="M40.333-15.147h50v95h-50z" />
+                        </g>
+                    </g>
+                </svg>
+            </div>
+
+            <!-- Content -->
+            <div class="relative">
+                <h1 class="mb-1 text-2xl font-bold md:text-3xl text-slate-800 dark:text-slate-100">{{ $greetings }},
+                    {{ Auth::user()->name }} 👋</h1>
+                <p class="dark:text-indigo-200">Here is what's happening with your laboratory today:</p>
+            </div>
+
+        </div>
+
+
         <!-- Cards -->
         <div class="grid gap-6 mb-8 md:grid-cols-2 xl:grid-cols-4">
             <!-- Card -->
             <div class="flex items-center p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
-                <div class="p-3 mr-4 text-orange-500 bg-orange-100 rounded-full dark:text-orange-100 dark:bg-orange-500">
+                <div
+                    class="p-3 mr-4 text-orange-500 bg-orange-100 rounded-full dark:text-orange-100 dark:bg-orange-500">
                     <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                         <path
                             d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z">
@@ -84,7 +138,7 @@
 
         <!-- Dashboard actions -->
         {{-- <div class="mb-8 sm:flex sm:justify-between sm:items-center"> --}}
-        <div class="justify-center md:flex min-w-max">
+        <div class="justify-center mt-16 md:flex min-w-max">
             <div class="grid gap-6 mb-8 md:grid-cols-2">
                 <!-- Lines chart -->
                 <div class="min-w-0 p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
