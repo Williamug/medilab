@@ -27,6 +27,10 @@ class ResultOptionComponent extends Component
     public $symbol;
     public $result_option_id;
 
+    public $selectedResultOptions = [];
+    public $selectAll             = false;
+    public $bulkDisabled          = true;
+
     // validation
     protected $rules = [
         'option' => 'required|string|unique:result_options',
@@ -159,6 +163,27 @@ class ResultOptionComponent extends Component
         ResultOption::find($this->result_option_id)->delete();
         $this->closeDelete();
         Toastr::success('Result option has been deleted.');
+    }
+
+    // delete bulk
+    public function deleteSelected(): void
+    {
+        ResultOption::query()
+            ->whereIn('id', $this->selectedResultOptions)
+            ->delete();
+        $this->selectedResultOptions = [];
+        $this->selectAll = false;
+    }
+
+    public function updatedSelectAll($value): void
+    {
+        if ($value) {
+            $this->selectedResultOptions = ResultOption::pluck('id');
+            $this->bulkDisabled = false;
+        } else {
+            $this->selectedResultOptions = [];
+            $this->bulkDisabled = true;
+        }
     }
 
     public function render()
