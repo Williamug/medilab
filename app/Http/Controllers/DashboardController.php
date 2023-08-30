@@ -22,11 +22,6 @@ class DashboardController extends Controller
     public function index()
     {
         // $this->authorize('view  dashboard module');
-        $patients     = Patient::count();
-        $lab_services = LabService::count();
-        $test_results = TestResult::whereNotNull('result_option_id')->count();
-        $total_income = TestResult::where('payment_status', 'paid')->get();
-
         $patient_chart_options = [
             'chart_title'     => 'Patient by months',
             'report_type'     => 'group_by_date',
@@ -52,6 +47,36 @@ class DashboardController extends Controller
         $patients_chart     = new LaravelChart($patient_chart_options);
         $total_income_chart = new LaravelChart($total_income_chart_options);
 
-        return view('pages/dashboard/dashboard', compact('patients', 'lab_services', 'test_results', 'test_results', 'total_income', 'patients_chart', 'total_income_chart'));
+        $patients     = Patient::count();
+        $lab_services = LabService::count();
+        $test_results = TestResult::whereNotNull('result_option_id')->count();
+        $total_income = TestResult::where('payment_status', 'paid')->get();
+
+        $greetings = $this->greetings();
+
+        return view('pages/dashboard/dashboard', compact('patients', 'lab_services', 'test_results', 'test_results', 'total_income', 'patients_chart', 'total_income_chart', 'greetings'));
+    }
+
+    private function greetings(): string
+    {
+        $greetings = "";
+
+        // This sets the $time variable to the current hour in the 24 hour clock format 
+        $time = date("H");
+
+        // Set the $timezone variable to become the current timezone 
+        $timezone = date("e");
+
+        // If the time is less than 1200 hours, show good morning 
+        if ($time < "12") {
+            $greetings = "Good morning";
+        } else if ($time >= "12" && $time < "17") {
+            $greetings = "Good afternoon";
+        } elseif ($time >= "17" && $time < "19") {
+            $greetings = "Good evening";
+        } else if ($time >= "19") {
+            $greetings = "Good night";
+        }
+        return $greetings;
     }
 }
