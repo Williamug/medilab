@@ -13,7 +13,7 @@
                 </div>
                 <div class="flex">
                     <div>
-                        <a href="#"
+                        <button href="#" id="print"
                             class="flex items-center justify-center w-1/2 px-5 py-2 text-sm tracking-wide text-white transition-colors duration-200 bg-blue-500 rounded-lg shrink-0 sm:w-auto gap-x-2 hover:bg-blue-600 dark:hover:bg-blue-500 dark:bg-blue-600">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="w-6 h-6 bi bi-printer"
                                 viewBox="0 0 16 16">
@@ -23,7 +23,7 @@
                             </svg>
 
                             <span>Print Results</span>
-                        </a>
+                        </button>
                     </div>
                     <div>
                         <x-app.back href="{{ route('test-results.index') }}" />
@@ -31,32 +31,37 @@
                 </div>
             </div>
         </x-slot>
-        <div class="bg-white rounded">
-            <div class="mt-6 ml-6">
+        <div id="container" class="bg-white rounded">
+            <div class="mt-6">
                 <div class="p-3 bg-white rounded-sm shadow-sm">
-                    <div class="text-gray-700 mt-14">
-                        <div class="grid text-sm md:grid-cols-2">
+                    <div>
+                        <div class="mt-6 text-2xl font-bold text-center uppercase">
+                            {{ config('app.name') }}
+                        </div>
+                        <div class="mt-6 text-lg font-bold text-center underline uppercase">
+                            {{ $test_result->lab_service->lab_service_category->category_name }} Laboratory Report
+                        </div>
+                    </div>
+                    <div class="mt-4 text-gray-700 md:flex">
+                        <div>
                             <div class="grid grid-cols-2">
-                                <div class="px-4 py-2 font-semibold">Patient ID</div>
-                                <div class="px-4 py-2">{{ $test_result->patient->patient_number }}</div>
+                                <div class="px-2 py-2 font-mono font-semibold">Date:</div>
+                                <div class="px-1 py-2 font-mono">{{ now()->format('d/m/Y H:s:i') }}</div>
                             </div>
+
                             <div class="grid grid-cols-2">
-                                <div class="px-4 py-2 font-semibold">Case/Order #</div>
-                                <div class="px-4 py-2">{{ $test_result->order_number }}</div>
+                                <div class="px-2 py-2 font-mono font-semibold">Patient ID</div>
+                                <div class="px-2 py-2 font-mono">{{ $test_result->patient->patient_number }}</div>
                             </div>
+
                             <div class="grid grid-cols-2">
-                                <div class="px-4 py-2 font-semibold">Patient Name</div>
-                                <div class="px-4 py-2">{{ $test_result->patient->full_name }}</div>
+                                <div class="px-2 py-2 font-mono font-semibold">Patient Name</div>
+                                <div class="px-2 py-2 font-mono">{{ $test_result->patient->full_name }}</div>
                             </div>
+
                             <div class="grid grid-cols-2">
-                                <div class="px-4 py-2 font-semibold">Test ID</div>
-                                <div class="px-4 py-2 font-semibold underline decoration-dotted">
-                                    {{ $test_result->test_identity }}
-                                </div>
-                            </div>
-                            <div class="grid grid-cols-2">
-                                <div class="px-4 py-2 font-semibold">Age</div>
-                                <div class="px-4 py-2">
+                                <div class="px-2 py-2 font-mono font-semibold">Age</div>
+                                <div class="px-2 py-2 font-mono">
                                     @if (!is_null($test_result->patient->date_of_birth))
                                         {{ $test_result->patient->ageFromDob() }}
                                         years
@@ -76,34 +81,48 @@
                                     @endif
                                 </div>
                             </div>
+
                             <div class="grid grid-cols-2">
-                                <div class="px-4 py-2 font-semibold">Sample collected on</div>
-                                <div class="px-4 py-2">
-                                    {{ $test_result->sample_collection_date->format('D, d/M/Y H:s') }}</div>
-                            </div>
-                            <div class="grid grid-cols-2">
-                                <div class="px-4 py-2 font-semibold">Sex</div>
-                                <div class="px-4 py-2">
-                                    <div class="px-4 py-2">{{ $test_result->patient->gender }}</div>
-                                </div>
-                            </div>
-                            <div class="grid grid-cols-2">
-                                <div class="px-4 py-2 font-semibold">Sample received on</div>
-                                <div class="px-4 py-2">{{ $test_result->sample_received_date->format('D, d/M/Y H:s') }}
-                                </div>
-                            </div>
-                            <div class="grid grid-cols-2">
-                                <div class="px-4 py-2 font-semibold">Date:</div>
-                                <div class="px-4 py-2">{{ now()->format('D, d/m/Y') }}</div>
-                            </div>
-                            <div class="grid grid-cols-2">
-                                <div class="px-4 py-2 font-semibold">Test done on:</div>
-                                <div class="px-4 py-2">{{ $test_result->sample_test_date->format('D, d/M/Y H:s') }}
-                                </div>
+                                <div class="px-2 py-2 font-mono font-semibold">Sex</div>
+                                <div class="px-2 py-2 font-mono">{{ $test_result->patient->gender }}</div>
                             </div>
                         </div>
 
-                        <div class="my-16">
+                        <div>
+                            <div class="grid grid-cols-2">
+                                <div class="px-2 py-2 font-mono font-semibold">Case/Order #</div>
+                                <div class="px-2 py-2 font-mono">{{ $test_result->order_number }}</div>
+                            </div>
+                            <div class="grid grid-cols-2">
+                                <div class="px-2 py-2 font-mono font-semibold">Test ID</div>
+                                <div class="px-2 py-2 font-mono font-semibold underline decoration-dotted">
+                                    {{ $test_result->test_identity }}
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-2">
+                                <div class="px-2 py-2 font-mono font-semibold">Sample collected on</div>
+                                <div class="px-2 py-2 font-mono">
+                                    {{ $test_result->sample_collection_date->format('D, d/M/Y H:s') }}</div>
+                            </div>
+
+                            <div class="grid grid-cols-2">
+                                <div class="px-2 py-2 font-mono font-semibold">Sample received on</div>
+                                <div class="px-2 py-2 font-mono">
+                                    {{ $test_result->sample_received_date->format('D, d/M/Y H:s') }}
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-2">
+                                <div class="px-2 py-2 font-mono font-semibold">Test done on:</div>
+                                <div class="px-2 py-2 font-mono">
+                                    {{ $test_result->sample_test_date->format('D, d/M/Y H:s') }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {{-- <div class="my-16">
                             <div class="overflow-hidden border border-gray-200 dark:border-gray-700">
                                 <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
                                     <thead class=" dark:bg-gray-800">
@@ -149,60 +168,96 @@
                                     </tbody>
                                 </table>
                             </div>
+                        </div> --}}
+
+                    <div class="my-8">
+                        <div class="overflow-hidden border-gray-200 dark:border-gray-700">
+                            <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+                                <thead class=" dark:bg-gray-800">
+                                    <tr>
+                                        <th scope="col"
+                                            class="py-3.5 px-4 text-sm font-bold text-left rtl:text-right text-gray-500 dark:text-gray-400 font-mono">
+                                            Test Name
+                                        </th>
+
+                                        <th scope="col"
+                                            class="py-3.5 px-4 text-sm font-bold text-left rtl:text-right text-gray-500 dark:text-gray-400 font-mono">
+                                            Results
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody class="bg-white divide-y divide-gray-200 dark:divide-gray-700 dark:bg-gray-900">
+                                    <tr>
+                                        <td class="px-4 py-4 text-sm font-medium whitespace-nowrap">
+                                            <div class="font-mono">
+                                                {{ $test_result->lab_service->service_name }}
+                                            </div>
+                                        </td>
+                                        <td class="px-4 py-4 text-sm font-medium whitespace-nowrap">
+                                            <div class="font-mono">
+                                                {{ $test_result->result_option->option }}
+                                                ({{ $test_result->result_option->code }})
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
+                    </div>
 
-                        <div class="mt-12">
-                            <div class="pl-4">
-                                <div class="grid text-sm md:grid-cols-2">
-                                    <div class="font-semibold">Test Name</div>
-                                    <div class="font-semibold">Results</div>
-                                </div>
-                            </div>
-                            <div class="p-4 border">
-                                <div class="grid text-sm md:grid-cols-2">
-                                    <div class="font-mono">{{ $test_result->lab_service->service_name }}</div>
-                                    <div class="font-mono"> {{ $test_result->result_option->option }}
-                                        ({{ $test_result->result_option->code }}) </div>
-                                </div>
-                            </div>
+                    <div class="text-sm md:flex">
+                        <div class="font-mono font-semibold">
+                            Specimen(s)/ Sample used:
                         </div>
-
-                        <div class="grid mt-6 text-sm md:grid-cols-2">
-                            <div class="grid text-sm md:grid-cols-2">
-                                <div class="font-semibold">Specimen(s)/ Sample used:</div>
-                                <div>
-                                    <ul>
-                                        @foreach ($test_result->spacemens as $spacemen)
-                                            <li class="list-decimal">
-                                                {{ $spacemen->spacemen }}
-                                            </li>
-                                        @endforeach
-                                    </ul>
-                                </div>
-                            </div>
+                        <div class="ml-4">
+                            <ul>
+                                @foreach ($test_result->spacemens as $spacemen)
+                                    <li class="font-mono list-decimal">
+                                        {{ $spacemen->spacemen }}
+                                    </li>
+                                @endforeach
+                            </ul>
                         </div>
+                    </div>
 
-                        <div class="my-16">
-                            <div class="font-semibold">
-                                Interpretation
-                            </div>
-                            <div class="font-mono underline">
-                                {{ $test_result->comment }}
-                            </div>
+                    <div class="my-4">
+                        <div class="font-mono font-semibold">
+                            Interpretation/ comment
                         </div>
+                        <div class="font-mono underline">
+                            {{ $test_result->comment }}
+                        </div>
+                    </div>
 
 
-                        <div class="my-16">
-                            <div class="font-semibold">
-                                Test conducted by:
-                            </div>
-                            <div class="font-mono">
-                                {{ $test_result->staff->name }} ({{ $test_result->staff->email }})
-                            </div>
+                    <div class="my-4">
+                        <div class="font-mono font-semibold">
+                            Test conducted by:
+                        </div>
+                        <div class="font-mono ">
+                            {{ $test_result->staff->name }} ({{ $test_result->staff->email }})
+                        </div>
+                        <div class="mt-4 font-mono">
+                            Sign:..........................................
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </x-app.card>
+    @push('scripts')
+        <script>
+            $('#print').on("click", function() {
+                $('#container').printThis({
+                    importCSS: true,
+                    printDelay: 1,
+                    header: null,
+                    footer: null,
+                    removeScripts: false,
+                    copyTagClasses: false
+
+                });
+            });
+        </script>
+    @endpush
 </x-app-layout>
