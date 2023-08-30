@@ -95,5 +95,7 @@
     @livewireScripts
 </body>
 @stack('scripts')
+<script type="text/javascript" src="{{ asset('printThis.js') }}"></script>
+<script src="print.js"></script>
 
 </html>
