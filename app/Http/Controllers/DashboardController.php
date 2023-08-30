@@ -67,16 +67,13 @@ class DashboardController extends Controller
         // Set the $timezone variable to become the current timezone 
         $timezone = date("e");
 
-        // If the time is less than 1200 hours, show good morning 
-        if ($time < "12") {
-            $greetings = "Good morning";
-        } else if ($time >= "12" && $time < "17") {
-            $greetings = "Good afternoon";
-        } elseif ($time >= "17" && $time < "19") {
-            $greetings = "Good evening";
-        } else if ($time >= "19") {
-            $greetings = "Good night";
-        }
-        return $greetings;
+        return match (true) {
+            $time < "12"  => 'Good morning',
+            $time >= "12" &&
+                $time < "17" => "Good afternoon",
+            $time >= "17" &&
+                $time < "19"  => "Good evening",
+            $time >= "19" => "Good night"
+        };
     }
 }
