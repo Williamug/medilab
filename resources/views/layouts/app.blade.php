@@ -25,6 +25,7 @@
             document.querySelector('html').style.colorScheme = 'dark';
         }
     </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 
 <body class="antialiased font-inter bg-slate-100 dark:bg-slate-900 text-slate-600 dark:text-slate-400"
@@ -93,5 +94,8 @@
 
     @livewireScripts
 </body>
+@stack('scripts')
+<script type="text/javascript" src="{{ asset('printThis.js') }}"></script>
+<script src="print.js"></script>
 
 </html>

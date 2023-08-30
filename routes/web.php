@@ -21,7 +21,8 @@ use App\Http\Controllers\SampleResultsCotroller;
 use App\Http\Controllers\ServiceCategoriesController;
 use App\Http\Controllers\SpacemensController;
 use App\Http\Controllers\SubmitTestRequestsController;
-use App\Http\Controllers\TestResultscontroller;
+// use App\Http\Controllers\TestResultscontroller;
+use App\Http\Controllers\TestResultsController;
 use App\Http\Controllers\WaitingListsController;
 
 Route::redirect('/', 'login');
@@ -49,32 +50,32 @@ Route::middleware('auth')->group(function () {
     // roles & permissions
     // give permissions
     Route::controller(GivePermissionsToRoleController::class)->group(function () {
-        Route::get('/roles/give-permissions', 'create')->name('roles.give-permissions');
-        Route::post('/roles/give-permissions', 'store')->name('roles.store-permissions');
-        Route::get('/roles/{role}/edit', 'edit')->name('roles.edit');
-        Route::put('/roles/{role}', 'update')->name('roles.update-permissions');
+        Route::get('/roles-permissions/roles/give-permissions', 'create')->name('roles.give-permissions');
+        Route::post('/roles-permissions/roles/give-permissions', 'store')->name('roles.store-permissions');
+        Route::get('/roles-permissions/roles/{role}/edit', 'edit')->name('roles.edit');
+        Route::put('/roles-permissions/roles/{role}', 'update')->name('roles.update-permissions');
     });
 
     // roles
     Route::controller(RolesController::class)->group(function () {
-        Route::get('/roles',  'index')->name('roles.index');
-        Route::get('/roles/create',  'create')->name('roles.create');
-        Route::post('/roles',  'store')->name('roles.store');
-        Route::get('/roles/{role}',  'show')->name('roles.show');
+        Route::get('/roles-permissions/roles',  'index')->name('roles.index');
+        Route::get('/roles-permissions/roles/create',  'create')->name('roles.create');
+        Route::post('/roles-permissions/roles',  'store')->name('roles.store');
+        Route::get('/roles-permissions/roles/{role}',  'show')->name('roles.show');
     });
 
     // permissions
-    Route::get('/permissions', [PermissionsController::class, 'index'])
+    Route::get('/roles-permissions/permissions', [PermissionsController::class, 'index'])
         ->name('permissions.index');
 
     // assign role to user
     Route::controller(AssignRolesController::class)->group(function () {
-        Route::get('/assign-roles', 'index')->name('assign-roles.index');
-        Route::get('/assign-roles/create', 'create')->name('assign-roles.create');
-        Route::post('/assign-roles', 'store')->name('assign-roles.store');
-        Route::get('/assign-roles/{user}', 'show')->name('assing-roles.show');
-        Route::get('/assign-roles/{user}/edit', 'edit')->name('assing-roles.edit');
-        Route::put('/assign-roles/{user}', 'update')->name('assign-roles.update');
+        Route::get('/roles-permissions/assign-roles', 'index')->name('assign-roles.index');
+        Route::get('/roles-permissions/assign-roles/create', 'create')->name('assign-roles.create');
+        Route::post('/roles-permissions/assign-roles', 'store')->name('assign-roles.store');
+        Route::get('/roles-permissions/assign-roles/{user}', 'show')->name('assing-roles.show');
+        Route::get('/roles-permissions/assign-roles/{user}/edit', 'edit')->name('assing-roles.edit');
+        Route::put('/roles-permissions/assign-roles/{user}', 'update')->name('assign-roles.update');
     });
 
     // restore routes

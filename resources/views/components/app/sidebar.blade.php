@@ -343,9 +343,9 @@
 
                     <!-- Settings -->
                     @can('View settings module')
-                        <li class="px-3 py-2 rounded-sm mb-0.5 last:mb-0 @if (in_array(Request::segment(1), ['settings'])) {{ 'bg-slate-900' }} @endif"
-                            x-data="{ open: {{ in_array(Request::segment(1), ['settings']) ? 1 : 0 }} }">
-                            <a class="block text-slate-200 hover:text-white truncate transition duration-150 @if (in_array(Request::segment(1), ['settings'])) {{ 'hover:text-slate-200' }} @endif"
+                        <li class="px-3 py-2 rounded-sm mb-0.5 last:mb-0 @if (in_array(Request::segment(1), ['roles-permissions'])) {{ 'bg-slate-900' }} @endif"
+                            x-data="{ open: {{ in_array(Request::segment(1), ['roles-permissions']) ? 1 : 0 }} }">
+                            <a class="block text-slate-200 hover:text-white truncate transition duration-150 @if (in_array(Request::segment(1), ['roles-permissions'])) {{ '!text-indigo-500' }} @endif"
                                 href="#0" @click.prevent="sidebarExpanded ? open = !open : sidebarExpanded = true">
                                 <div class="flex items-center justify-between">
                                     <div class="flex items-center">
@@ -353,7 +353,7 @@
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor"
                                             class="w-7 h-7 bi bi-person-lock shrink-0" viewBox="0 0 16 16">
                                             <path
-                                                class="fill-current @if (in_array(Request::segment(1), ['settings'])) {{ 'text-indigo-500' }}@else{{ 'text-slate-600' }} @endif"
+                                                class="fill-current @if (in_array(Request::segment(1), ['roles-permissions'])) {{ 'text-indigo-500' }}@else{{ 'text-slate-600' }} @endif"
                                                 d="M11 5a3 3 0 1 1-6 0 3 3 0 0 1 6 0ZM8 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4Zm0 5.996V14H3s-1 0-1-1 1-4 6-4c.564 0 1.077.038 1.544.107a4.524 4.524 0 0 0-.803.918A10.46 10.46 0 0 0 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h5ZM9 13a1 1 0 0 1 1-1v-1a2 2 0 1 1 4 0v1a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1v-2Zm3-3a1 1 0 0 0-1 1v1h2v-1a1 1 0 0 0-1-1Z" />
                                         </svg>
                                         <span
@@ -363,7 +363,7 @@
                                     <!-- Icon -->
                                     <div
                                         class="flex ml-2 duration-200 shrink-0 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100">
-                                        <svg class="w-3 h-3 shrink-0 ml-1 fill-current text-slate-400 @if (in_array(Request::segment(1), ['settings'])) {{ 'rotate-180' }} @endif"
+                                        <svg class="w-3 h-3 shrink-0 ml-1 fill-current text-slate-400 @if (in_array(Request::segment(1), ['roles-permissions'])) {{ 'rotate-180' }} @endif"
                                             :class="open ? 'rotate-180' : 'rotate-0'" viewBox="0 0 12 12">
                                             <path d="M5.9 11.4L.5 6l1.4-1.4 4 4 4-4L11.3 6z" />
                                         </svg>
@@ -371,7 +371,7 @@
                                 </div>
                             </a>
                             <div class="lg:hidden lg:sidebar-expanded:block 2xl:block">
-                                <ul class="pl-9 mt-1 @if (!in_array(Request::segment(1), ['settings'])) {{ 'hidden' }} @endif"
+                                <ul class="pl-9 mt-1 @if (!in_array(Request::segment(1), ['roles-permissions'])) {{ 'hidden' }} @endif"
                                     :class="open ? '!block' : 'hidden'">
                                     {{-- <li class="mb-1 last:mb-0">
                                         <a class="block text-slate-400 hover:text-slate-200 transition duration-150 truncate @if (Route::is('permissions.index')) {{ '!text-indigo-500' }} @endif"
