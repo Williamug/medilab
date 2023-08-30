@@ -41,7 +41,7 @@
             <div>
 
 
-                <button wire:click="openCreateModal"
+                {{-- <button wire:click="openCreateModal"
                     class="flex items-center justify-center w-1/2 px-5 py-2 text-sm tracking-wide text-white transition-colors duration-200 bg-red-500 rounded-lg shrink-0 sm:w-auto gap-x-2 hover:bg-red-600 dark:hover:bg-red-500 dark:bg-red-600">
                     <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                         stroke="currentColor">
@@ -50,7 +50,7 @@
                     </svg>
 
                     <span>Delete</span>
-                </button>
+                </button> --}}
             </div>
 
             <div class="md:flex">
@@ -86,11 +86,11 @@
                         <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
                             <thead class="bg-gray-50 dark:bg-gray-800">
                                 <tr>
-                                    <th scope="col"
+                                    {{-- <th scope="col"
                                         class="py-3.5 px-4 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
                                         <input id="link-checkbox" type="checkbox" value=""
                                             class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                    </th>
+                                    </th> --}}
 
                                     <th scope="col"
                                         class="py-3.5 px-4 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
@@ -127,10 +127,10 @@
                             <tbody class="bg-white divide-y divide-gray-200 dark:divide-gray-700 dark:bg-gray-900">
                                 @foreach ($result_options as $result_option)
                                     <tr>
-                                        <td class="px-4 py-4 text-sm font-medium whitespace-nowrap">
+                                        {{-- <td class="px-4 py-4 text-sm font-medium whitespace-nowrap">
                                             <input id="link-checkbox" type="checkbox" value=""
                                                 class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                        </td>
+                                        </td> --}}
                                         <td class="px-4 py-4 text-sm font-medium whitespace-nowrap">
                                             <div>
                                                 {{ $result_option->option }}
@@ -212,8 +212,8 @@
                     <div class="grid max-w-lg mx-auto text-center fi-ta-empty-state-content justify-items-center">
                         <div class="p-3 mb-4 bg-gray-100 rounded-full fi-ta-empty-state-icon-ctn dark:bg-gray-500/20">
                             <svg class="w-6 h-6 text-gray-500 fi-ta-empty-state-icon dark:text-gray-400"
-                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                stroke="currentColor" aria-hidden="true">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path>
                             </svg>
                         </div>
