@@ -67,15 +67,15 @@
                                         years
                                     @else
                                         @foreach ($test_result->patient->patient_visits as $patient_visit)
-                                            @if (!is_null($test_result->patient_visit->patient_days))
-                                                {{ $test_result->patient_visit->patient_days }}
+                                            @if (!is_null($patient_visit->patient_days))
+                                                {{ $patient_visit->patient_days }}
                                                 day(s)
-                                            @elseif(!is_null($test_result->patient_visit->patient_weeks))
-                                                {{ $test_result->patient_visit->patient_weeks }}week(s)
-                                            @elseif(!is_null($test_result->patient_visit->patient_months))
-                                                {{ $test_result->patient_visit->patient_months }}month(s)
-                                            @elseif(!is_null($test_result->patient_visit->patient_years))
-                                                {{ $test_result->patient_visit->patient_years }}year(s)
+                                            @elseif(!is_null($patient_visit->patient_weeks))
+                                                {{ $patient_visit->patient_weeks }}week(s)
+                                            @elseif(!is_null($patient_visit->patient_months))
+                                                {{ $patient_visit->patient_months }}month(s)
+                                            @elseif(!is_null($patient_visit->patient_years))
+                                                {{ $patient_visit->patient_years }}year(s)
                                             @endif
                                         @endforeach
                                     @endif
