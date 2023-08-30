@@ -2,7 +2,7 @@
     <div class="w-full px-4 py-8 mx-auto sm:px-6 lg:px-8 max-w-9xl">
 
         <!-- Welcome banner -->
-        <div class="relative p-4 mb-8 overflow-hidden bg-indigo-200 rounded-sm dark:bg-indigo-500 sm:p-6">
+        <div class="relative p-4 mb-4 overflow-hidden bg-indigo-200 rounded-sm dark:bg-indigo-500 sm:p-6">
 
             <!-- Background illustration -->
             <div class="absolute top-0 right-0 hidden mr-16 -mt-4 pointer-events-none xl:block" aria-hidden="true">
@@ -50,14 +50,17 @@
             <div class="relative">
                 <h1 class="mb-1 text-2xl font-bold md:text-3xl text-slate-800 dark:text-slate-100">{{ $greetings }},
                     {{ Auth::user()->name }} 👋</h1>
-                <p class="dark:text-indigo-200">Here is what's happening with your laboratory today:</p>
+                <p class="dark:text-indigo-200">
+                    Here is what's happening with your laboratory today: <span
+                        class="font-bold">{{ now()->format('D, d/M/Y') }}</span>
+                </p>
             </div>
 
         </div>
 
 
         <!-- Cards -->
-        <div class="grid gap-6 mb-8 md:grid-cols-2 xl:grid-cols-4">
+        <div class="grid gap-6 mb-4 md:grid-cols-2 xl:grid-cols-4">
             <!-- Card -->
             <div class="flex items-center p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
                 <div
@@ -137,8 +140,7 @@
         </div>
 
         <!-- Dashboard actions -->
-        {{-- <div class="mb-8 sm:flex sm:justify-between sm:items-center"> --}}
-        <div class="justify-center mt-16 md:flex min-w-max">
+        <div class="justify-center mt-8 md:flex min-w-max">
             <div class="grid gap-6 mb-8 md:grid-cols-2">
                 <!-- Lines chart -->
                 <div class="min-w-0 p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
@@ -161,7 +163,6 @@
                 </div>
             </div>
         </div>
-        {{-- </div> --}}
     </div>
     @push('scripts')
         {!! $patients_chart->renderChartJsLibrary() !!}
