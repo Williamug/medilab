@@ -1,55 +1,56 @@
 <section>
     @if ($result_options->isNotEmpty())
-        <div class="sm:flex sm:items-center sm:justify-between">
-            {{-- <div>
-            <div class="flex items-center gap-x-3">
-                <h2 class="text-lg font-medium text-gray-800 dark:text-white">Customers</h2>
+        {{-- <div class="sm:flex sm:items-center sm:justify-between">
+            <div>
+                <div class="flex items-center gap-x-3">
+                    <h2 class="text-lg font-medium text-gray-800 dark:text-white">Customers</h2>
 
-                <span
-                    class="px-3 py-1 text-xs text-blue-600 bg-blue-100 rounded-full dark:bg-gray-800 dark:text-blue-400">240
-                    vendors</span>
+                    <span
+                        class="px-3 py-1 text-xs text-blue-600 bg-blue-100 rounded-full dark:bg-gray-800 dark:text-blue-400">240
+                        vendors</span>
+                </div>
+
+                <p class="mt-1 text-sm text-gray-500 dark:text-gray-300">These companies have purchased in the last 12
+                    months.</p>
             </div>
-
-            <p class="mt-1 text-sm text-gray-500 dark:text-gray-300">These companies have purchased in the last 12
-                months.</p>
-        </div> --}}
 
             <div class="flex items-center mt-4 gap-x-3">
-                {{-- <button
-                class="flex items-center justify-center w-1/2 px-5 py-2 text-sm text-gray-700 transition-colors duration-200 bg-white border rounded-lg gap-x-2 sm:w-auto dark:hover:bg-gray-800 dark:bg-gray-900 hover:bg-gray-100 dark:text-gray-200 dark:border-gray-700">
-                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <g clip-path="url(#clip0_3098_154395)">
-                        <path
-                            d="M13.3333 13.3332L9.99997 9.9999M9.99997 9.9999L6.66663 13.3332M9.99997 9.9999V17.4999M16.9916 15.3249C17.8044 14.8818 18.4465 14.1806 18.8165 13.3321C19.1866 12.4835 19.2635 11.5359 19.0351 10.6388C18.8068 9.7417 18.2862 8.94616 17.5555 8.37778C16.8248 7.80939 15.9257 7.50052 15 7.4999H13.95C13.6977 6.52427 13.2276 5.61852 12.5749 4.85073C11.9222 4.08295 11.104 3.47311 10.1817 3.06708C9.25943 2.66104 8.25709 2.46937 7.25006 2.50647C6.24304 2.54358 5.25752 2.80849 4.36761 3.28129C3.47771 3.7541 2.70656 4.42249 2.11215 5.23622C1.51774 6.04996 1.11554 6.98785 0.935783 7.9794C0.756025 8.97095 0.803388 9.99035 1.07431 10.961C1.34523 11.9316 1.83267 12.8281 2.49997 13.5832"
-                            stroke="currentColor" stroke-width="1.67" stroke-linecap="round" stroke-linejoin="round" />
-                    </g>
-                    <defs>
-                        <clipPath id="clip0_3098_154395">
-                            <rect width="20" height="20" fill="white" />
-                        </clipPath>
-                    </defs>
-                </svg>
+                <button
+                    class="flex items-center justify-center w-1/2 px-5 py-2 text-sm text-gray-700 transition-colors duration-200 bg-white border rounded-lg gap-x-2 sm:w-auto dark:hover:bg-gray-800 dark:bg-gray-900 hover:bg-gray-100 dark:text-gray-200 dark:border-gray-700">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <g clip-path="url(#clip0_3098_154395)">
+                            <path
+                                d="M13.3333 13.3332L9.99997 9.9999M9.99997 9.9999L6.66663 13.3332M9.99997 9.9999V17.4999M16.9916 15.3249C17.8044 14.8818 18.4465 14.1806 18.8165 13.3321C19.1866 12.4835 19.2635 11.5359 19.0351 10.6388C18.8068 9.7417 18.2862 8.94616 17.5555 8.37778C16.8248 7.80939 15.9257 7.50052 15 7.4999H13.95C13.6977 6.52427 13.2276 5.61852 12.5749 4.85073C11.9222 4.08295 11.104 3.47311 10.1817 3.06708C9.25943 2.66104 8.25709 2.46937 7.25006 2.50647C6.24304 2.54358 5.25752 2.80849 4.36761 3.28129C3.47771 3.7541 2.70656 4.42249 2.11215 5.23622C1.51774 6.04996 1.11554 6.98785 0.935783 7.9794C0.756025 8.97095 0.803388 9.99035 1.07431 10.961C1.34523 11.9316 1.83267 12.8281 2.49997 13.5832"
+                                stroke="currentColor" stroke-width="1.67" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </g>
+                        <defs>
+                            <clipPath id="clip0_3098_154395">
+                                <rect width="20" height="20" fill="white" />
+                            </clipPath>
+                        </defs>
+                    </svg>
 
-                <span>Import</span>
-            </button> --}}
+                    <span>Import</span>
+                </button>
 
 
             </div>
-        </div>
+        </div> --}}
 
         <div class="mt-6 md:flex md:items-center md:justify-between">
             <div>
-
-
-                {{-- <button wire:click="openCreateModal"
-                    class="flex items-center justify-center w-1/2 px-5 py-2 text-sm tracking-wide text-white transition-colors duration-200 bg-red-500 rounded-lg shrink-0 sm:w-auto gap-x-2 hover:bg-red-600 dark:hover:bg-red-500 dark:bg-red-600">
+                {{-- <button wire:click.prevent="deleteSelected"
+                    onclick="confirm('Are you sure you want to continue?') || event.stopImmediatePropagation()"
+                    class="@if ($bulkDisabled) opacity-0 @endif flex items-center justify-center w-1/2 px-5 py-2 text-sm tracking-wide text-white transition-colors duration-200 bg-red-500 rounded-lg shrink-0 sm:w-auto gap-x-2 hover:bg-red-600 dark:hover:bg-red-500 dark:bg-red-600">
                     <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                         stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
                     </svg>
 
-                    <span>Delete</span>
+                    <span>Delete Selected</span>
                 </button> --}}
             </div>
 
@@ -88,7 +89,7 @@
                                 <tr>
                                     {{-- <th scope="col"
                                         class="py-3.5 px-4 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                                        <input id="link-checkbox" type="checkbox" value=""
+                                        <input id="link-checkbox" type="checkbox" value="" wire:model="selectAll"
                                             class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
                                     </th> --}}
 
@@ -128,7 +129,8 @@
                                 @foreach ($result_options as $result_option)
                                     <tr>
                                         {{-- <td class="px-4 py-4 text-sm font-medium whitespace-nowrap">
-                                            <input id="link-checkbox" type="checkbox" value=""
+                                            <input id="link-checkbox" type="checkbox" value="{{ $result_option->id }}"
+                                                wire:model="selectedResultOptions"
                                                 class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
                                         </td> --}}
                                         <td class="px-4 py-4 text-sm font-medium whitespace-nowrap">
@@ -150,18 +152,18 @@
                                         <td class="px-6 py-3 text-center">
                                             <div class="flex justify-center item-center">
                                                 <!-- view-->
-                                                {{-- <a href="#"
-                                                class="flex px-2 mr-2 text-sm text-white bg-green-500 rounded hover:bg-green-700 focus:outline-none focus:shadow-outline">
-                                                <svg class="w-4" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                                    viewBox="0 0 24 24" stroke="currentColor">
-                                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                                        stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                                        stroke-width="2"
-                                                        d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-                                                </svg>
-                                                <span class="pt-1 ml-1 text-xs">View</span>
-                                            </a> --}}
+                                                <a href="#"
+                                                    class="flex px-2 mr-2 text-sm text-white bg-green-500 rounded hover:bg-green-700 focus:outline-none focus:shadow-outline">
+                                                    <svg class="w-4" xmlns="http://www.w3.org/2000/svg"
+                                                        fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                                            stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                                            stroke-width="2"
+                                                            d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                                                    </svg>
+                                                    <span class="pt-1 ml-1 text-xs">View</span>
+                                                </a>
 
                                                 <!-- edit -->
                                                 <a wire:click.prevent="openEditModal({{ $result_option->id }})"
@@ -212,8 +214,8 @@
                     <div class="grid max-w-lg mx-auto text-center fi-ta-empty-state-content justify-items-center">
                         <div class="p-3 mb-4 bg-gray-100 rounded-full fi-ta-empty-state-icon-ctn dark:bg-gray-500/20">
                             <svg class="w-6 h-6 text-gray-500 fi-ta-empty-state-icon dark:text-gray-400"
-                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                                stroke="currentColor" aria-hidden="true">
+                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                stroke-width="1.5" stroke="currentColor" aria-hidden="true">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path>
                             </svg>
                         </div>
