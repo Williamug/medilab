@@ -31,6 +31,12 @@ class DatabaseSeeder extends Seeder
             RoleAndPermissionsSeeder::class,
             RolesSeeder::class,
             UserRolePermissionSeeder::class,
+
+            ResultOptionDataSeeder::class,
+            LabServiceCategoryDataSeeder::class,
+            LabServiceDataSeeder::class,
+            LabServiceResultOptionDataSeeder::class,
+            SpecimenDataSeeder::class,
         ]);
     }
 }
