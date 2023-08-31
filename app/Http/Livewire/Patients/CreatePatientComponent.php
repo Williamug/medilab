@@ -121,10 +121,10 @@ class CreatePatientComponent extends Component
             'residence'         => 'string|max:255',
 
             // patient visit
-            'patient_days'     => 'sometimes|nullable|numeric',
-            'patient_weeks'    => 'sometimes|nullable|numeric',
-            'patient_months'   => 'sometimes|nullable|numeric',
-            'patient_years'    => 'sometimes|nullable|numeric',
+            'patient_days'     => 'sometimes|nullable|numeric|max:6',
+            'patient_weeks'    => 'sometimes|nullable|numeric|max:3',
+            'patient_months'   => 'sometimes|nullable|numeric|max:11',
+            'patient_years'    => 'sometimes|nullable|numeric|max:140',
             'temperature'      => 'sometimes|nullable|numeric',
             'weight'           => 'sometimes|nullable|numeric',
             'height'           => 'sometimes|nullable|numeric',
@@ -132,7 +132,12 @@ class CreatePatientComponent extends Component
             'kin_gender'       => 'sometimes|nullable|min:3|string',
             'kin_phone_number' => 'sometimes|nullable|numeric|min:10',
             'kin_residence'    => 'sometimes|nullable|string|max:255',
-        ], ['selectedBirthDate.required' => 'This field can not be empty. Select date of birth or age']);
+        ], [
+            'selectedBirthDate.required' => 'This field can not be empty. Select date of birth or age',
+            'patient_days.max'           => 'The days must not be greater than 6. Change and enter weeks instead',
+            'patient_weeks.max'          => 'The weeks must not be greater than 3. Change and enter months instead',
+            'patient_months.max'         => 'The months must not be greater than 11. Change and enter years instead',
+        ]);
 
         DB::transaction(function () {
             // create new patient
