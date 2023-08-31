@@ -86,7 +86,7 @@
                     @endcan
 
                     <!-- results -->
-                    @can('view outcome module')
+                    @can('view result option module')
                         <li
                             class="px-3 py-2 rounded-sm mb-0.5 last:mb-0 @if (in_array(Request::segment(1), ['result-options'])) {{ 'bg-slate-900' }} @endif">
                             <a class="block text-slate-200 hover:text-white truncate transition duration-150 @if (in_array(Request::segment(1), ['result-options'])) {{ '!text-indigo-500' }} @endif"
@@ -115,7 +115,7 @@
                     @endcan
 
                     <!-- Categories -->
-                    @can('view category module')
+                    @can('view lab service category module')
                         <li
                             class="px-3 py-2 rounded-sm mb-0.5 last:mb-0 @if (in_array(Request::segment(1), ['service-categories'])) {{ 'bg-slate-900' }} @endif">
                             <a class="block text-slate-200 hover:text-white truncate transition duration-150 @if (in_array(Request::segment(1), ['service-categories'])) {{ '!text-indigo-500' }} @endif"
@@ -136,7 +136,7 @@
                     @endcan
 
                     <!-- teb services -->
-                    @can('view test service module')
+                    @can('view lab service module')
                         <li
                             class="px-3 py-2 rounded-sm mb-0.5 last:mb-0 @if (in_array(Request::segment(1), ['lab-services'])) {{ 'bg-slate-900' }} @endif">
                             <a class="block text-slate-200 hover:text-white truncate transition duration-150 @if (in_array(Request::segment(1), ['lab-services'])) {{ '!text-indigo-500' }} @endif"
@@ -158,7 +158,7 @@
                     @endcan
 
                     <!-- spacemen -->
-                    @can('view spacemen module')
+                    @can('view specimen module')
                         <li
                             class="px-3 py-2 rounded-sm mb-0.5 last:mb-0 @if (in_array(Request::segment(1), ['spacemens'])) {{ 'bg-slate-900' }} @endif">
                             <a class="block text-slate-200 hover:text-white truncate transition duration-150 @if (in_array(Request::segment(1), ['spacemens'])) {{ '!text-indigo-500' }} @endif""
@@ -201,33 +201,8 @@
                         </li>
                     @endcan
 
-                    <!-- Test request -->
-                    {{-- @can('view test request module')
-                        <li
-                            class="px-3 py-2 rounded-sm mb-0.5 last:mb-0 @if (in_array(Request::segment(1), ['requests'])) {{ 'bg-slate-900' }} @endif">
-                            <a class="block text-slate-200 hover:text-white truncate transition duration-150 @if (in_array(Request::segment(1), ['requests'])) {{ 'hover:text-slate-200' }} @endif"
-                                href="{{ route('requests.index') }}">
-                                <div class="flex items-center">
-                                    <svg class="w-6 h-6 shrink-0" fill="none" stroke="currentColor"
-                                        stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"
-                                        aria-hidden="true">
-                                        <path
-                                            class="fill-current @if (in_array(Request::segment(1), ['requests'])) {{ 'text-indigo-500' }}@else{{ 'text-slate-600' }} @endif"
-                                            stroke-linecap="round" stroke-linejoin="round"
-                                            d="M15 11.25l1.5 1.5.75-.75V8.758l2.276-.61a3 3 0 10-3.675-3.675l-.61 2.277H12l-.75.75 1.5 1.5M15 11.25l-8.47 8.47c-.34.34-.8.53-1.28.53s-.94.19-1.28.53l-.97.97-.75-.75.97-.97c.34-.34.53-.8.53-1.28s.19-.94.53-1.28L12.75 9M15 11.25L12.75 9">
-                                        </path>
-                                    </svg>
-                                    <span
-                                        class="ml-3 text-sm font-medium duration-200 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100">
-                                        Request a Test
-                                    </span>
-                                </div>
-                            </a>
-                        </li>
-                    @endcan --}}
-
                     <!-- laboratory -->
-                    @can('view test result module')
+                    @can('view laboratory module')
                         <li class="px-3 py-2 rounded-sm mb-0.5 last:mb-0 @if (in_array(Request::segment(1), ['laboratory'])) {{ 'bg-slate-900' }} @endif"
                             x-data="{ open: {{ in_array(Request::segment(1), ['laboratory']) ? 1 : 0 }} }">
                             <a class="block text-slate-200 hover:text-white truncate transition duration-150 @if (in_array(Request::segment(1), ['laboratory'])) {{ '!text-indigo-500' }} @endif"
@@ -260,26 +235,29 @@
                             <div class="lg:hidden lg:sidebar-expanded:block 2xl:block">
                                 <ul class="pl-9 mt-1 @if (!in_array(Request::segment(1), ['laboratory'])) {{ 'hidden' }} @endif"
                                     :class="open ? '!block' : 'hidden'">
+                                    @can('view test order')
+                                        <li class="mb-1 last:mb-0">
+                                            <a class="block text-slate-400 hover:text-slate-200 transition duration-150 truncate @if (Route::is('test-orders.index')) {{ '!text-indigo-500' }} @endif"
+                                                href="{{ route('test-orders.index') }}">
+                                                <span
+                                                    class="text-sm font-medium duration-200 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100">
+                                                    Test Orders
+                                                </span>
+                                            </a>
+                                        </li>
+                                    @endcan
 
-                                    <li class="mb-1 last:mb-0">
-                                        <a class="block text-slate-400 hover:text-slate-200 transition duration-150 truncate @if (Route::is('test-orders.index')) {{ '!text-indigo-500' }} @endif"
-                                            href="{{ route('test-orders.index') }}">
-                                            <span
-                                                class="text-sm font-medium duration-200 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100">
-                                                Test Orders
-                                            </span>
-                                        </a>
-                                    </li>
-
-                                    <li class="mb-1 last:mb-0">
-                                        <a class="block text-slate-400 hover:text-slate-200 transition duration-150 truncate @if (Route::is('test-results.index')) {{ '!text-indigo-500' }} @endif"
-                                            href="{{ route('test-results.index') }}">
-                                            <span
-                                                class="text-sm font-medium duration-200 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100">
-                                                Test Result
-                                            </span>
-                                        </a>
-                                    </li>
+                                    @can('view test result')
+                                        <li class="mb-1 last:mb-0">
+                                            <a class="block text-slate-400 hover:text-slate-200 transition duration-150 truncate @if (Route::is('test-results.index')) {{ '!text-indigo-500' }} @endif"
+                                                href="{{ route('test-results.index') }}">
+                                                <span
+                                                    class="text-sm font-medium duration-200 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100">
+                                                    Test Result
+                                                </span>
+                                            </a>
+                                        </li>
+                                    @endcan
                                 </ul>
                             </div>
                         </li>
@@ -326,23 +304,24 @@
                             <div class="lg:hidden lg:sidebar-expanded:block 2xl:block">
                                 <ul class="pl-9 mt-1 @if (!in_array(Request::segment(1), ['accountings'])) {{ 'hidden' }} @endif"
                                     :class="open ? '!block' : 'hidden'">
-
-                                    <li class="mb-1 last:mb-0">
-                                        <a class="block text-slate-400 hover:text-slate-200 transition duration-150 truncate @if (Route::is('accountings.index')) {{ '!text-indigo-500' }} @endif"
-                                            href="{{ route('accountings.index') }}">
-                                            <span
-                                                class="text-sm font-medium duration-200 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100">
-                                                Payments
-                                            </span>
-                                        </a>
-                                    </li>
+                                    @can('view payments module')
+                                        <li class="mb-1 last:mb-0">
+                                            <a class="block text-slate-400 hover:text-slate-200 transition duration-150 truncate @if (Route::is('accountings.index')) {{ '!text-indigo-500' }} @endif"
+                                                href="{{ route('accountings.index') }}">
+                                                <span
+                                                    class="text-sm font-medium duration-200 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100">
+                                                    Payments
+                                                </span>
+                                            </a>
+                                        </li>
+                                    @endcan
                                 </ul>
                             </div>
                         </li>
                     @endcan
 
-                    <!-- Settings -->
-                    @can('View settings module')
+                    <!-- roles and permissions -->
+                    @can('view roles and permissions module')
                         <li class="px-3 py-2 rounded-sm mb-0.5 last:mb-0 @if (in_array(Request::segment(1), ['roles-permissions'])) {{ 'bg-slate-900' }} @endif"
                             x-data="{ open: {{ in_array(Request::segment(1), ['roles-permissions']) ? 1 : 0 }} }">
                             <a class="block text-slate-200 hover:text-white truncate transition duration-150 @if (in_array(Request::segment(1), ['roles-permissions'])) {{ '!text-indigo-500' }} @endif"
@@ -373,35 +352,41 @@
                             <div class="lg:hidden lg:sidebar-expanded:block 2xl:block">
                                 <ul class="pl-9 mt-1 @if (!in_array(Request::segment(1), ['roles-permissions'])) {{ 'hidden' }} @endif"
                                     :class="open ? '!block' : 'hidden'">
-                                    <li class="mb-1 last:mb-0">
-                                        <a class="block text-slate-400 hover:text-slate-200 transition duration-150 truncate @if (Route::is('permissions.index')) {{ '!text-indigo-500' }} @endif"
-                                            href="{{ route('permissions.index') }}">
-                                            <span
-                                                class="text-sm font-medium duration-200 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100">
-                                                Permissions
-                                            </span>
-                                        </a>
-                                    </li>
+                                    @can('view roles module')
+                                        <li class="mb-1 last:mb-0">
+                                            <a class="block text-slate-400 hover:text-slate-200 transition duration-150 truncate @if (Route::is('permissions.index')) {{ '!text-indigo-500' }} @endif"
+                                                href="{{ route('permissions.index') }}">
+                                                <span
+                                                    class="text-sm font-medium duration-200 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100">
+                                                    Permissions
+                                                </span>
+                                            </a>
+                                        </li>
+                                    @endcan
 
-                                    <li class="mb-1 last:mb-0">
-                                        <a class="block text-slate-400 hover:text-slate-200 transition duration-150 truncate @if (Route::is('roles.index')) {{ '!text-indigo-500' }} @endif"
-                                            href="{{ route('roles.index') }}">
-                                            <span
-                                                class="text-sm font-medium duration-200 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100">
-                                                Roles
-                                            </span>
-                                        </a>
-                                    </li>
+                                    @can('view roles module')
+                                        <li class="mb-1 last:mb-0">
+                                            <a class="block text-slate-400 hover:text-slate-200 transition duration-150 truncate @if (Route::is('roles.index')) {{ '!text-indigo-500' }} @endif"
+                                                href="{{ route('roles.index') }}">
+                                                <span
+                                                    class="text-sm font-medium duration-200 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100">
+                                                    Roles
+                                                </span>
+                                            </a>
+                                        </li>
+                                    @endcan
 
-                                    <li class="mb-1 last:mb-0">
-                                        <a class="block text-slate-400 hover:text-slate-200 transition duration-150 truncate @if (Route::is('assign-roles.index')) {{ '!text-indigo-500' }} @endif"
-                                            href="{{ route('assign-roles.index') }}">
-                                            <span
-                                                class="text-sm font-medium duration-200 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100">
-                                                Assign Role
-                                            </span>
-                                        </a>
-                                    </li>
+                                    @can('view assign role module')
+                                        <li class="mb-1 last:mb-0">
+                                            <a class="block text-slate-400 hover:text-slate-200 transition duration-150 truncate @if (Route::is('assign-roles.index')) {{ '!text-indigo-500' }} @endif"
+                                                href="{{ route('assign-roles.index') }}">
+                                                <span
+                                                    class="text-sm font-medium duration-200 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100">
+                                                    Assign Role
+                                                </span>
+                                            </a>
+                                        </li>
+                                    @endcan
                                 </ul>
                             </div>
                         </li>
