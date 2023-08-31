@@ -152,7 +152,7 @@
                                         <td class="px-6 py-3 text-center">
                                             <div class="flex justify-center item-center">
                                                 <!-- view-->
-                                                <a href="#"
+                                                {{-- <a href="#"
                                                     class="flex px-2 mr-2 text-sm text-white bg-green-500 rounded hover:bg-green-700 focus:outline-none focus:shadow-outline">
                                                     <svg class="w-4" xmlns="http://www.w3.org/2000/svg"
                                                         fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -163,7 +163,7 @@
                                                             d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
                                                     </svg>
                                                     <span class="pt-1 ml-1 text-xs">View</span>
-                                                </a>
+                                                </a> --}}
 
                                                 <!-- edit -->
                                                 <a wire:click.prevent="openEditModal({{ $result_option->id }})"
@@ -214,8 +214,8 @@
                     <div class="grid max-w-lg mx-auto text-center fi-ta-empty-state-content justify-items-center">
                         <div class="p-3 mb-4 bg-gray-100 rounded-full fi-ta-empty-state-icon-ctn dark:bg-gray-500/20">
                             <svg class="w-6 h-6 text-gray-500 fi-ta-empty-state-icon dark:text-gray-400"
-                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                stroke="currentColor" aria-hidden="true">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path>
                             </svg>
                         </div>
