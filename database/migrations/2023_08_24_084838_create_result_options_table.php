@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->nullable();
             $table->string('option');
-            $table->string('code');
-            $table->string('symbol');
+            $table->string('code')->nullable();
+            $table->string('symbol')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
