@@ -19,7 +19,7 @@ class SpacemenPermissionsSeeder extends Seeder
         ]);
 
         $spacemen_permissions = [
-            'view spacemen module',
+            'view specimen module',
             'add specimen',
             'edit specimen',
             'delete specimen',
