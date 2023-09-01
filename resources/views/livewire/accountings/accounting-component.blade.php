@@ -13,9 +13,9 @@
                 </div>
             </div>
 
-            {{-- <div>
+            <div class="flex">
                 <button wire:click="openCreateNewVisitModal"
-                    class="flex items-center justify-center w-1/2 px-5 py-2 text-sm tracking-wide text-white transition-colors duration-200 bg-blue-500 rounded-lg shrink-0 sm:w-auto gap-x-2 hover:bg-blue-600 dark:hover:bg-blue-500 dark:bg-blue-600">
+                    class="flex items-center justify-center w-1/2 px-5 py-2 ml-3 text-sm tracking-wide text-white transition-colors duration-200 bg-blue-500 rounded-lg shrink-0 sm:w-auto gap-x-2 hover:bg-blue-600 dark:hover:bg-blue-500 dark:bg-blue-600">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="w-4 h-4 bi bi-arrow-right-circle"
                         viewBox="0 0 16 16">
                         <path fill-rule="evenodd"
@@ -24,7 +24,7 @@
 
                     <span>Payment Details</span>
                 </button>
-            </div> --}}
+            </div>
         </div>
 
         <div class="flex flex-col mt-2">
@@ -141,8 +141,39 @@
                                     <td class="px-4 py-4 text-sm font-medium whitespace-nowrap"></td>
                                     <td class="px-4 py-4 text-sm font-bold uppercase whitespace-nowrap">
                                         Total</td>
-                                    <td class="px-4 py-4 text-sm font-medium uppercase whitespace-nowrap">
-                                        @money($patient->test_results->sum('lab_service_price'))
+                                    <td class="py-4 text-sm font-medium uppercase whitespace-nowrap">
+                                        <span class="text-xl">
+                                            UGX.
+                                        </span>
+                                        <span class="text-2xl underline decoration-double">
+                                            @money($patient->test_results->sum('lab_service_price'))
+                                        </span>
+                                    </td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                        <table class="min-w-full divide-y">
+                            <thead></thead>
+                            <tbody>
+                                <tr>
+                                    <td class="px-12 py-4 text-sm font-medium whitespace-nowrap"></td>
+                                    <td class="px-12 py-4 text-sm font-medium whitespace-nowrap"></td>
+                                    <td class="px-12 py-4 text-sm font-medium whitespace-nowrap"></td>
+                                    <td class="py-2 text-sm font-medium uppercase whitespace-nowrap">
+                                        <button wire:click="openCreateNewVisitModal"
+                                            class="flex items-center justify-center w-1/2 px-5 py-2 text-sm tracking-wide text-white transition-colors duration-200 bg-green-500 rounded-lg shrink-0 sm:w-auto gap-x-2 hover:bg-green-600 dark:hover:bg-green-500 dark:bg-green-600">
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+                                                class="w-4 h-4 bi bi-cash-stack" viewBox="0 0 16 16">
+                                                <path
+                                                    d="M1 3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1H1zm7 8a2 2 0 1 0 0-4 2 2 0 0 0 0 4z" />
+                                                <path
+                                                    d="M0 5a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1V5zm3 0a2 2 0 0 1-2 2v4a2 2 0 0 1 2 2h10a2 2 0 0 1 2-2V7a2 2 0 0 1-2-2H3z" />
+                                            </svg>
+
+                                            <span>Pay Bill</span>
+                                        </button>
+                                    </td>
                                     </td>
                                 </tr>
                             </tbody>
