@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('payments', function (Blueprint $table) {
             $table->id();
             $table->foreignId('patient_id');
-            $table->integer('amount_to_pay');
-            $table->integer('balance')->nullable();
+            $table->integer('payment_amount');
+            $table->integer('payment_balance')->nullable();
             $table->string('payment_status')->nullable();
             $table->timestamps();
             $table->softDeletes();
