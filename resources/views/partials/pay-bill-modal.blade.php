@@ -15,7 +15,7 @@
                             Total Amount Due:
                         </span>
                         <span class="text-2xl font-bold">
-                            UGX. @money($amount_due)
+                            UGX. @money($total_amount_due)
                         </span>
                     </div>
                     <!-- payment_method -->
@@ -73,7 +73,7 @@
 
             <x-slot name="footer">
                 <x-jet-button class="mr-4" wire:click="storePayments" wire:loading.attr="disabled">
-                    <span wire:loading.remove>{{ __('Pay Bill') }}</span>
+                    <span>{{ __('Pay Bill') }}</span>
                 </x-jet-button>
 
                 <x-jet-secondary-button wire:click="closePayBillModal" wire:loading.attr="disabled">
