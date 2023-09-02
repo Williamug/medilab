@@ -16,6 +16,7 @@ return new class extends Migration
             $table->foreignId('test_result_id');
             $table->foreignId('payment_id');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
