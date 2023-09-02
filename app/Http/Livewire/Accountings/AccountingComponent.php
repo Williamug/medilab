@@ -19,6 +19,7 @@ class AccountingComponent extends Component
     public Collection $patients;
     public Collection $payment_methods;
     public $payment_service_providers;
+    public $test_result;
 
     public $selectedPaymentMethod       = NULL;
     public $payment_service_provider_id = '';
@@ -27,7 +28,7 @@ class AccountingComponent extends Component
 
     public $patient;
     public $patient_id;
-    public $amount_due;
+    public $total_amount_due;
 
     public bool $isOpenPayBill = FALSE;
 
@@ -75,7 +76,7 @@ class AccountingComponent extends Component
         $patient = Patient::where('id', $id)->first();
 
         $this->patient_id   = $id;
-        $this->amount_due = $patient->test_results->sum('lab_service_price');
+        $this->total_amount_due = $patient->test_results->sum('lab_service_price');
 
         $this->isOpenPayBill = TRUE;
     }
@@ -93,17 +94,27 @@ class AccountingComponent extends Component
         $this->validate();
         // patient_id
         // payment_method_id
+        // total_amount_due
         // payment_amount
         // payment_balance
         // payment_status
+        $payment_balance = $this->total_amount_due - $this->paymentAmount;
         Payment::create([
             'patient_id'        => $this->patient_id,
             'payment_method_id' => $this->selectedPaymentMethod,
-            'payment_amount'    => $this->payment_amount,
-            // 'payment_balance' => 
+            'total_amount_due'  => $this->total_amount_due,
+            'payment_amount'    => $this->paymentAmount,
+            'payment_balance'   => $payment_balance
         ]);
 
-        // table: payment_test_result     
+        $patient = Patient::where('id', $this->patient_id)->first();
+        $patient->test_results()->update([
+            'payment_status' => 'paid',
+        ]);
+        toastr()->success("{$patient->full_name} has paid {$this->paymentAmount}.");
+
+        $this->reset('payment_method_id', 'payment_amount');
+        $this->closePayBillModal();
     }
 
     public function render()
