@@ -68,9 +68,9 @@ class TestResultComponent extends Component
     // constructor
     public function mount(): void
     {
-        $this->patients     = Patient::with('test_results')->latest()->get();
-        $this->specimens    = Spacemen::all();
-        $this->lab_services = LabService::all();
+        $this->patients       = Patient::with('test_results')->latest()->get();
+        $this->specimens      = Spacemen::all();
+        $this->lab_services   = LabService::all();
         $this->result_options = collect();
     }
 
