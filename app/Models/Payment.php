@@ -24,4 +24,9 @@ class Payment extends Model
     {
         return $this->belongsToMany(TestResult::class);
     }
+
+    public function payment_methods(): BelongsTo
+    {
+        return $this->belongsTo(PaymentMethod::class);
+    }
 }
