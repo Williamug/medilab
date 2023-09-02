@@ -161,8 +161,8 @@
                                     <td class="px-12 py-4 text-sm font-medium whitespace-nowrap"></td>
                                     <td class="px-12 py-4 text-sm font-medium whitespace-nowrap"></td>
                                     <td class="py-2 text-sm font-medium uppercase whitespace-nowrap">
-                                        <button wire:click="openCreateNewVisitModal"
-                                            class="flex items-center justify-center w-1/2 px-5 py-2 text-sm tracking-wide text-white transition-colors duration-200 bg-green-500 rounded-lg shrink-0 sm:w-auto gap-x-2 hover:bg-green-600 dark:hover:bg-green-500 dark:bg-green-600">
+                                        <a href="#" wire:click.prevent="openPayBillModal({{ $patient->id }})"
+                                            class="flex items-center justify-center w-1/2 px-5 py-2 mr-4 text-sm tracking-wide text-white transition-colors duration-200 bg-green-500 rounded-lg shrink-0 sm:w-auto gap-x-2 hover:bg-green-600 dark:hover:bg-green-500 dark:bg-green-600">
                                             <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor"
                                                 class="w-4 h-4 bi bi-cash-stack" viewBox="0 0 16 16">
                                                 <path
@@ -172,7 +172,7 @@
                                             </svg>
 
                                             <span>Pay Bill</span>
-                                        </button>
+                                        </a>
                                     </td>
                                     </td>
                                 </tr>
@@ -184,4 +184,6 @@
         </div>
     @endforeach
     {{-- @endif --}}
+
+    @include('partials.pay-bill-modal');
 </div>
