@@ -12,7 +12,7 @@ class Payment extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $fillable = ['patient_id', 'payment_amount', 'payment_balance', 'payment_status'];
+    protected $fillable = ['patient_id', 'payment_amount', 'payment_balance', 'payment_status', 'payment_method_id', 'total_amount_due'];
 
     // fetch the patient that has this payment
     public function patient(): BelongsTo
