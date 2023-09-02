@@ -32,6 +32,9 @@ class DatabaseSeeder extends Seeder
             RolesSeeder::class,
             UserRolePermissionSeeder::class,
 
+            PaymentMethodSeeder::class,
+            PaymentServiceProviderSeeder::class,
+
             ResultOptionDataSeeder::class,
             LabServiceCategoryDataSeeder::class,
             LabServiceDataSeeder::class,
