@@ -38,13 +38,18 @@ Route::middleware('auth')->group(function () {
     Route::get('/lab-services', [LabServicesController::class, 'index'])->name('lab-services.index');
     Route::get('/spacemens', [SpacemensController::class, 'index'])->name('spacemens.index');
 
+    Route::controller(AccountsController::class)->group(function () {
+        Route::get('/accountings', 'index')->name('accountings.index');
+        Route::get('/accountings/{patient}', 'show')->name('accountings.show');
+    });
+
     // resource controller [index, create, store, show, edit, update, delete]
     Route::resources([
         'patients' => PatientsController::class,
         'requests' => SubmitTestRequestsController::class,
         'laboratory/test-orders' => TestOrdersController::class,
         'laboratory/test-results' => TestResultscontroller::class,
-        'accountings' => AccountsController::class,
+        // 'accountings' => AccountsController::class,
     ]);
 
     // roles & permissions
