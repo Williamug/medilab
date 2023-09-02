@@ -15,8 +15,10 @@ return new class extends Migration
             $table->id();
             $table->foreignId('patient_id');
             $table->foreignId('payment_method_id');
+            $table->integer('total_amount_due');
             $table->integer('payment_amount');
             $table->integer('payment_balance')->nullable();
+            $table->integer('discount')->nullable();
             $table->string('payment_status')->nullable();
             $table->timestamps();
             $table->softDeletes();
