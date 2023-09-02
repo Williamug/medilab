@@ -151,6 +151,7 @@ class SpacemenComponent extends Component
         $spacemens = Spacemen::search($this->search)
             ->orderBy($this->sortField, $this->sortAsc ? 'asc' : 'desc')
             ->paginate($this->perPage);
+
         return view('livewire.spacemen-component', compact('spacemens'));
     }
 }
