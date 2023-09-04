@@ -14,6 +14,8 @@ class Payment extends Model
 
     protected $fillable = ['patient_id', 'payment_amount', 'payment_balance', 'payment_status', 'payment_method_id', 'total_amount_due'];
 
+    protected $casts = ['created_at' => 'datetime'];
+
     // fetch the patient that has this payment
     public function patient(): BelongsTo
     {
