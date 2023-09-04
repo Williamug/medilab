@@ -41,6 +41,7 @@ Route::middleware('auth')->group(function () {
     Route::controller(AccountsController::class)->group(function () {
         Route::get('/accountings', 'index')->name('accountings.index');
         Route::get('/accountings/{patient}', 'show')->name('accountings.show');
+        Route::get('/accountings/{patient}/print-receipt', 'printReceipt')->name('accountings.print-receipt');
     });
 
     // resource controller [index, create, store, show, edit, update, delete]
