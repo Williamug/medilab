@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\Collection;
 use Livewire\Component;
 use Livewire\WithPagination;
 use Illuminate\Validation\ValidationException;
+use Livewire\Redirector;
 
 class AccountingComponent extends Component
 {
@@ -89,15 +90,9 @@ class AccountingComponent extends Component
     }
 
     // store payments
-    public function storePayments(): void
+    public function storePayments()
     {
         $this->validate();
-        // patient_id
-        // payment_method_id
-        // total_amount_due
-        // payment_amount
-        // payment_balance
-        // payment_status
         $payment_balance = $this->total_amount_due - $this->paymentAmount;
         Payment::create([
             'patient_id'        => $this->patient_id,
@@ -113,8 +108,10 @@ class AccountingComponent extends Component
         ]);
         toastr()->success("{$patient->full_name} has paid {$this->paymentAmount}.");
 
-        $this->reset('payment_method_id', 'payment_amount');
+        $this->reset('selectedPaymentMethod', 'paymentAmount');
         $this->closePayBillModal();
+
+        return redirect()->route('accountings.print-receipt', $this->patient_id);
     }
 
     public function render()
