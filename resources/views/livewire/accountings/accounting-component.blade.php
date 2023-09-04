@@ -31,7 +31,7 @@
                                         class="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
                                         {{-- <a wire:click.prevent="sortBy('created_at')" role="button" href="#"
                                             class="flex"> --}}
-                                        Order ID
+                                        Service
                                         {{-- @include('partials.sort_icons', ['field' => 'created_at'])
                                         </a> --}}
                                     </th>
@@ -70,7 +70,7 @@
                                                 <ul>
                                                     @foreach ($patient->test_results as $test_result)
                                                         <li class="list-disc border-b">
-                                                            {{ $test_result->order_number }}
+                                                            {{ $test_result->lab_service->service_name }}
                                                         </li>
                                                     @endforeach
                                                 </ul>
@@ -86,6 +86,31 @@
 
                                         <td class="px-6 py-3 text-center">
                                             <div class="flex justify-center item-center">
+                                                @if ($test_result->payment_status == 'unpaid')
+                                                    <a href="#" wire:click="openPayBillModal({{ $patient->id }})"
+                                                        class="flex items-center justify-center w-1/2 px-5 py-2 mr-2 text-sm tracking-wide text-white transition-colors duration-200 bg-green-500 rounded-lg shrink-0 sm:w-auto gap-x-2 hover:bg-green-600 dark:hover:bg-green-500 dark:bg-green-600">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+                                                            class="w-4 h-4 bi bi-cash-stack" viewBox="0 0 16 16">
+                                                            <path
+                                                                d="M1 3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1H1zm7 8a2 2 0 1 0 0-4 2 2 0 0 0 0 4z" />
+                                                            <path
+                                                                d="M0 5a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1V5zm3 0a2 2 0 0 1-2 2v4a2 2 0 0 1 2 2h10a2 2 0 0 1 2-2V7a2 2 0 0 1-2-2H3z" />
+                                                        </svg>
+                                                        <span>Pay Bills</span>
+                                                    </a>
+                                                @elseif($test_result->payment_status == 'paid')
+                                                    <a href="{{ route('accountings.print-receipt', $patient) }}"
+                                                        class="flex items-center justify-center w-1/2 px-5 py-2 mr-2 text-sm tracking-wide text-white transition-colors duration-200 bg-green-500 rounded-lg shrink-0 sm:w-auto gap-x-2 hover:bg-green-600 dark:hover:bg-green-500 dark:bg-green-600">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+                                                            class="w-4 h-4 bi bi-printer" viewBox="0 0 16 16">
+                                                            <path d="M2.5 8a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1z" />
+                                                            <path
+                                                                d="M5 1a2 2 0 0 0-2 2v2H2a2 2 0 0 0-2 2v3a2 2 0 0 0 2 2h1v1a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2v-1h1a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-1V3a2 2 0 0 0-2-2H5zM4 3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v2H4V3zm1 5a2 2 0 0 0-2 2v1H2a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-1v-1a2 2 0 0 0-2-2H5zm7 2v3a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1z" />
+                                                        </svg>
+                                                        <span>Print Receipt</span>
+                                                    </a>
+                                                @endif
+
                                                 <a href="{{ route('accountings.show', $patient) }}"
                                                     class="flex items-center justify-center w-1/2 px-5 py-2 mr-4 text-sm tracking-wide text-white transition-colors duration-200 bg-blue-500 rounded-lg shrink-0 sm:w-auto gap-x-2 hover:bg-blue-600 dark:hover:bg-blue-500 dark:bg-blue-600">
                                                     <svg class="w-4" xmlns="http://www.w3.org/2000/svg"
@@ -113,4 +138,5 @@
             {{ $patients->links() }}
         </div> --}}
     </div>
+    @include('partials.pay-bill-modal');
 </div>
