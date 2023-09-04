@@ -37,9 +37,7 @@
             <div class="mt-6">
                 <div class="p-3 bg-white rounded-sm shadow-sm">
                     <div>
-                        <div class="mt-6 text-2xl font-bold text-center uppercase">
-                            {{ config('app.name') }}
-                        </div>
+                        <x-app.print-header />
                         <div class="mt-6 text-lg font-bold text-center underline uppercase">
                             {{ $test_result->lab_service->lab_service_category->category_name }} Laboratory Report
                         </div>
@@ -48,7 +46,8 @@
                         <div>
                             <div class="grid grid-cols-2">
                                 <div class="px-2 py-2 font-mono font-semibold">Date:</div>
-                                <div class="px-1 py-2 font-mono">{{ now()->format('d/m/Y H:s:i') }}</div>
+                                <div class="px-1 py-2 font-mono">
+                                    {{ $test_result->sample_test_date->format('D, d/M/Y H:s') }}</div>
                             </div>
 
                             <div class="grid grid-cols-2">
@@ -172,7 +171,7 @@
                             </div>
                         </div> --}}
 
-                    <div class="my-8">
+                    <div class="my-6">
                         <div class="overflow-hidden border-gray-200 dark:border-gray-700">
                             <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
                                 <thead class=" dark:bg-gray-800">
@@ -222,7 +221,7 @@
                         </div>
                     </div>
 
-                    <div class="my-4">
+                    <div class="my-3">
                         <div class="font-mono font-semibold">
                             Interpretation/ comment
                         </div>
@@ -232,14 +231,14 @@
                     </div>
 
 
-                    <div class="my-4">
+                    <div class="my-3">
                         <div class="font-mono font-semibold">
                             Test conducted by:
                         </div>
                         <div class="font-mono ">
                             {{ $test_result->staff->name }} ({{ $test_result->staff->email }})
                         </div>
-                        <div class="mt-4 font-mono">
+                        <div class="mt-3 font-mono">
                             Sign:..........................................
                         </div>
                     </div>
