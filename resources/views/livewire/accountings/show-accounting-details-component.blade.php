@@ -77,6 +77,7 @@
                                         </td>
                                     </tr>
                                 @endforeach
+
                                 <tr>
                                     <td class="px-4 py-4 text-sm font-medium whitespace-nowrap"></td>
                                     <td class="px-4 py-4 text-sm font-medium whitespace-nowrap"></td>
