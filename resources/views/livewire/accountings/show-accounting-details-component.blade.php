@@ -99,29 +99,7 @@
                     </div>
                     <div class="flex mt-2">
                         <div class="flex-1"></div>
-                        @if ($test_result->payment_status == 'unpaid')
-                            <a href="#" wire:click="openPayBillModal({{ $patient->id }})"
-                                class="flex items-center justify-center w-1/2 px-5 py-2 mr-32 text-sm tracking-wide text-white transition-colors duration-200 bg-green-500 rounded-lg shrink-0 sm:w-auto gap-x-2 hover:bg-green-600 dark:hover:bg-green-500 dark:bg-green-600">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor"
-                                    class="w-4 h-4 bi bi-cash-stack" viewBox="0 0 16 16">
-                                    <path d="M1 3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1H1zm7 8a2 2 0 1 0 0-4 2 2 0 0 0 0 4z" />
-                                    <path
-                                        d="M0 5a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1V5zm3 0a2 2 0 0 1-2 2v4a2 2 0 0 1 2 2h10a2 2 0 0 1 2-2V7a2 2 0 0 1-2-2H3z" />
-                                </svg>
-                                <span>Pay Bills</span>
-                            </a>
-                        @elseif($test_result->payment_status == 'paid')
-                            <a href="#" wire:click="openPayBillModal({{ $patient->id }})"
-                                class="flex items-center justify-center w-1/2 px-5 py-2 mr-32 text-sm tracking-wide text-white transition-colors duration-200 bg-green-500 rounded-lg shrink-0 sm:w-auto gap-x-2 hover:bg-green-600 dark:hover:bg-green-500 dark:bg-green-600">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor"
-                                    class="w-4 h-4 bi bi-printer" viewBox="0 0 16 16">
-                                    <path d="M2.5 8a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1z" />
-                                    <path
-                                        d="M5 1a2 2 0 0 0-2 2v2H2a2 2 0 0 0-2 2v3a2 2 0 0 0 2 2h1v1a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2v-1h1a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-1V3a2 2 0 0 0-2-2H5zM4 3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v2H4V3zm1 5a2 2 0 0 0-2 2v1H2a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-1v-1a2 2 0 0 0-2-2H5zm7 2v3a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1z" />
-                                </svg>
-                                <span>Print Receipt</span>
-                            </a>
-                        @endif
+                        
                     </div>
                 </div>
             </div>
