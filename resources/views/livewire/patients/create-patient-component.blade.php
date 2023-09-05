@@ -336,8 +336,9 @@
                                 <x-jet-label for="lab_service_id" value="{{ __('Lab Service') }}" />
                                 <div class="flex">
                                     <select
-                                        class="w-full border-gray-300 rounded-md shadow-sm dark:border-gray-900 dark:text-gray-400 dark:bg-gray-700 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 form-select"
-                                        wire:model.lazy="lab_service_id.0">
+                                        class="border-gray-300 rounded-md shadow-sm dark:border-gray-900 dark:text-gray-400 dark:bg-gray-700 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 form-select"
+                                        wire:model.lazy="lab_service_id.0" data-te-select-init
+                                        data-te-select-filter="true">
                                         <option value="">-- select service --</option>
                                         @foreach ($lab_services as $lab_service)
                                             <option value="{{ $lab_service->id }}"
@@ -365,8 +366,9 @@
                                 <div>
                                     <div class="flex">
                                         <select
-                                            class="w-full border-gray-300 rounded-md shadow-sm dark:border-gray-900 dark:text-gray-400 dark:bg-gray-700 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 form-select"
-                                            wire:model.lazy="lab_service_id.{{ $value }}">
+                                            class="border-gray-300 rounded-md shadow-sm dark:border-gray-900 dark:text-gray-400 dark:bg-gray-700 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 form-select"
+                                            wire:model.lazy="lab_service_id.{{ $value }}" data-te-select-init
+                                            data-te-select-filter="true">
                                             <option value="">-- select service --</option>
                                             @foreach ($lab_services as $lab_service)
                                                 <option value="{{ $lab_service->id }}"
