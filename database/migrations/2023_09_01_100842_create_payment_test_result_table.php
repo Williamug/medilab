@@ -11,12 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('payments', function (Blueprint $table) {
+        Schema::create('payment_test_result', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('patient_id');
-            $table->integer('amount_to_pay');
-            $table->integer('balance')->nullable();
-            $table->string('payment_status')->nullable();
+            $table->foreignId('test_result_id');
+            $table->foreignId('payment_id');
             $table->timestamps();
             $table->softDeletes();
         });
@@ -27,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('payments');
+        Schema::dropIfExists('payment_test_result');
     }
 };

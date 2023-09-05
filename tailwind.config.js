@@ -7,6 +7,7 @@ module.exports = {
         './storage/framework/views/*.php',
         './resources/views/**/*.blade.php',
         './resources/js/**/*.js',
+        "./node_modules/tw-elements/dist/js/**/*.js"
     ],
     darkMode: 'class',
     theme: {
@@ -61,6 +62,7 @@ module.exports = {
     plugins: [
         require('@tailwindcss/forms'),
         require('@tailwindcss/typography'),
+        require("tw-elements/dist/plugin.cjs"),
         // add custom variant for expanding sidebar
         plugin(({ addVariant, e }) => {
             addVariant('sidebar-expanded', ({ modifySelectors, separator }) => {

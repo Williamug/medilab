@@ -6,17 +6,12 @@ use App\Models\Patient;
 use App\Models\Payment;
 use App\Models\PaymentMethod;
 use App\Models\PaymentServiceProvider;
-use App\Models\TestOrder;
 use Illuminate\Database\Eloquent\Collection;
 use Livewire\Component;
-use Livewire\WithPagination;
-use Illuminate\Validation\ValidationException;
-use Livewire\Redirector;
 
-class AccountingComponent extends Component
+class ShowAccountingDetailsComponent extends Component
 {
-    use WithPagination;
-
+    public $patient;
     public Collection $patients;
     public Collection $payment_methods;
     public $payment_service_providers;
@@ -27,7 +22,6 @@ class AccountingComponent extends Component
     public $paymentAmount;
     // public $new_balance;
 
-    public $patient;
     public $patient_id;
     public $total_amount_due;
 
@@ -57,20 +51,6 @@ class AccountingComponent extends Component
         $this->emitSelf('updatedSelectedPaymentMethod');
     }
 
-    // public function updatedPaymentAmount($propertyName): void
-    // {
-    //     if ($this->paymentAmount != '' && $this->paymentAmount > $this->amount_due) {
-    //         $this->amount_due -= (int)$this->paymentAmount;
-    //         throw ValidationException::withMessages([
-    //             'paymentAmount' => 'This amount can not be greater than the total amount due. Check and enter collect amount.'
-    //         ]);
-    //     } else {
-    //         $patient = Patient::where('id', $this->patient_id)->first();
-    //         $this->amount_due = $patient->test_results->sum('lab_service_price');
-    //     }
-    //     $this->reset('paymentAmount');
-    // }
-
     // open modal for paying lab bills
     public function openPayBillModal($id): void
     {
@@ -90,7 +70,7 @@ class AccountingComponent extends Component
     }
 
     // store payments
-    public function storePayments()
+    public function storePayments(): void
     {
         $this->validate();
         $payment_balance = $this->total_amount_due - $this->paymentAmount;
@@ -108,14 +88,12 @@ class AccountingComponent extends Component
         ]);
         toastr()->success("{$patient->full_name} has paid {$this->paymentAmount}.");
 
-        $this->reset('selectedPaymentMethod', 'paymentAmount');
+        $this->reset('payment_method_id', 'payment_amount');
         $this->closePayBillModal();
-
-        return redirect()->route('accountings.print-receipt', $this->patient_id);
     }
 
     public function render()
     {
-        return view('livewire.accountings.accounting-component');
+        return view('livewire.accountings.show-accounting-details-component');
     }
 }

@@ -28,7 +28,7 @@ class TestResultsPermissionsSeeder extends Seeder
             'print results',
         ];
 
-        foreach ($test_result_permissions as $permission)
+        foreach ($test_result_permissions as $permission) {
             DB::table('permissions')->insert([
                 'name'       => $permission,
                 'guard_name' => 'web',
@@ -36,5 +36,6 @@ class TestResultsPermissionsSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
             ]);
+        }
     }
 }

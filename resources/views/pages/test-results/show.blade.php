@@ -13,17 +13,19 @@
                 </div>
                 <div class="flex">
                     <div>
-                        <button href="#" id="print"
-                            class="flex items-center justify-center w-1/2 px-5 py-2 text-sm tracking-wide text-white transition-colors duration-200 bg-blue-500 rounded-lg shrink-0 sm:w-auto gap-x-2 hover:bg-blue-600 dark:hover:bg-blue-500 dark:bg-blue-600">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="w-6 h-6 bi bi-printer"
-                                viewBox="0 0 16 16">
-                                <path d="M2.5 8a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1z" />
-                                <path
-                                    d="M5 1a2 2 0 0 0-2 2v2H2a2 2 0 0 0-2 2v3a2 2 0 0 0 2 2h1v1a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2v-1h1a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-1V3a2 2 0 0 0-2-2H5zM4 3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v2H4V3zm1 5a2 2 0 0 0-2 2v1H2a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-1v-1a2 2 0 0 0-2-2H5zm7 2v3a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1z" />
-                            </svg>
+                        @can('print results')
+                            <button href="#" id="print"
+                                class="flex items-center justify-center w-1/2 px-5 py-2 text-sm tracking-wide text-white transition-colors duration-200 bg-blue-500 rounded-lg shrink-0 sm:w-auto gap-x-2 hover:bg-blue-600 dark:hover:bg-blue-500 dark:bg-blue-600">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="w-6 h-6 bi bi-printer"
+                                    viewBox="0 0 16 16">
+                                    <path d="M2.5 8a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1z" />
+                                    <path
+                                        d="M5 1a2 2 0 0 0-2 2v2H2a2 2 0 0 0-2 2v3a2 2 0 0 0 2 2h1v1a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2v-1h1a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-1V3a2 2 0 0 0-2-2H5zM4 3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v2H4V3zm1 5a2 2 0 0 0-2 2v1H2a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-1v-1a2 2 0 0 0-2-2H5zm7 2v3a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1z" />
+                                </svg>
 
-                            <span>Print Results</span>
-                        </button>
+                                <span>Print Results</span>
+                            </button>
+                        @endcan
                     </div>
                     <div>
                         <x-app.back href="{{ route('test-results.index') }}" />
@@ -35,9 +37,7 @@
             <div class="mt-6">
                 <div class="p-3 bg-white rounded-sm shadow-sm">
                     <div>
-                        <div class="mt-6 text-2xl font-bold text-center uppercase">
-                            {{ config('app.name') }}
-                        </div>
+                        <x-app.print-header />
                         <div class="mt-6 text-lg font-bold text-center underline uppercase">
                             {{ $test_result->lab_service->lab_service_category->category_name }} Laboratory Report
                         </div>
@@ -46,7 +46,8 @@
                         <div>
                             <div class="grid grid-cols-2">
                                 <div class="px-2 py-2 font-mono font-semibold">Date:</div>
-                                <div class="px-1 py-2 font-mono">{{ now()->format('d/m/Y H:s:i') }}</div>
+                                <div class="px-1 py-2 font-mono">
+                                    {{ $test_result->sample_test_date->format('D, d/M/Y H:s') }}</div>
                             </div>
 
                             <div class="grid grid-cols-2">
@@ -170,7 +171,7 @@
                             </div>
                         </div> --}}
 
-                    <div class="my-8">
+                    <div class="my-6">
                         <div class="overflow-hidden border-gray-200 dark:border-gray-700">
                             <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
                                 <thead class=" dark:bg-gray-800">
@@ -220,7 +221,7 @@
                         </div>
                     </div>
 
-                    <div class="my-4">
+                    <div class="my-3">
                         <div class="font-mono font-semibold">
                             Interpretation/ comment
                         </div>
@@ -230,14 +231,14 @@
                     </div>
 
 
-                    <div class="my-4">
+                    <div class="my-3">
                         <div class="font-mono font-semibold">
                             Test conducted by:
                         </div>
                         <div class="font-mono ">
                             {{ $test_result->staff->name }} ({{ $test_result->staff->email }})
                         </div>
-                        <div class="mt-4 font-mono">
+                        <div class="mt-3 font-mono">
                             Sign:..........................................
                         </div>
                     </div>

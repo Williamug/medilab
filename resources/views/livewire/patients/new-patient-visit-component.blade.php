@@ -9,29 +9,33 @@
             </div>
 
             <div>
-                <button wire:click="openCreateNewVisitModal"
-                    class="flex items-center justify-center w-1/2 px-5 py-2 text-sm tracking-wide text-white transition-colors duration-200 bg-blue-500 rounded-lg shrink-0 sm:w-auto gap-x-2 hover:bg-blue-600 dark:hover:bg-blue-500 dark:bg-blue-600">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                        stroke="currentColor" class="w-5 h-5">
-                        <path stroke-linecap="round" stroke-linejoin="round"
-                            d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
+                @can('add new visit')
+                    <button wire:click="openCreateNewVisitModal"
+                        class="flex items-center justify-center w-1/2 px-5 py-2 text-sm tracking-wide text-white transition-colors duration-200 bg-blue-500 rounded-lg shrink-0 sm:w-auto gap-x-2 hover:bg-blue-600 dark:hover:bg-blue-500 dark:bg-blue-600">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                            stroke="currentColor" class="w-5 h-5">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
 
-                    <span>New Visit</span>
-                </button>
+                        <span>New Visit</span>
+                    </button>
+                @endcan
             </div>
 
             <div>
-                <button wire:click="openCreateTestOrderModal"
-                    class="flex items-center justify-center w-1/2 px-5 py-2 text-sm tracking-wide text-white transition-colors duration-200 bg-blue-500 rounded-lg shrink-0 sm:w-auto gap-x-2 hover:bg-blue-600 dark:hover:bg-blue-500 dark:bg-blue-600">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                        stroke="currentColor" class="w-5 h-5">
-                        <path stroke-linecap="round" stroke-linejoin="round"
-                            d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
+                @can('add test order')
+                    <button wire:click="openCreateTestOrderModal"
+                        class="flex items-center justify-center w-1/2 px-5 py-2 text-sm tracking-wide text-white transition-colors duration-200 bg-blue-500 rounded-lg shrink-0 sm:w-auto gap-x-2 hover:bg-blue-600 dark:hover:bg-blue-500 dark:bg-blue-600">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                            stroke="currentColor" class="w-5 h-5">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
 
-                    <span>New test order</span>
-                </button>
+                        <span>New test order</span>
+                    </button>
+                @endcan
             </div>
         </header>
 
@@ -135,21 +139,24 @@
                                         <td class="px-6 py-3 text-center">
                                             <div class="flex justify-center item-center">
                                                 <!-- edit -->
-                                                <a wire:click.prevent="openEditModal({{ $test_result->id }})"
-                                                    href="#"
-                                                    class="flex px-2 mr-2 text-sm text-white bg-blue-500 rounded hover:bg-blue-700 focus:outline-none focus:shadow-outline">
-                                                    <svg class="w-4" xmlns="http://www.w3.org/2000/svg"
-                                                        fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                        <path stroke-linecap="round" stroke-linejoin="round"
-                                                            stroke-width="2"
-                                                            d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
-                                                    </svg>
-                                                    <span class="pt-1 ml-1 text-xs">Edit</span>
-                                                </a>
+                                                @can('edit test order')
+                                                    <a wire:click.prevent="openEditModal({{ $test_result->id }})"
+                                                        href="#"
+                                                        class="flex px-2 mr-2 text-sm text-white bg-blue-500 rounded hover:bg-blue-700 focus:outline-none focus:shadow-outline">
+                                                        <svg class="w-4" xmlns="http://www.w3.org/2000/svg"
+                                                            fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                                stroke-width="2"
+                                                                d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+                                                        </svg>
+                                                        <span class="pt-1 ml-1 text-xs">Edit</span>
+                                                    </a>
+                                                @endcan
 
 
                                                 <!-- delete -->
-                                                {{-- <button wire:click.prevent="openDeleteModal({{ $test_result->id }})"
+                                                @can('delete test order')
+                                                    {{-- <button wire:click.prevent="openDeleteModal({{ $test_result->id }})"
                                                     type="button"
                                                     class="flex px-2 text-sm text-white bg-red-500 rounded hover:bg-red-700 focus:outline-none focus:shadow-outline">
                                                     <svg class="w-4 pt-1" xmlns="http://www.w3.org/2000/svg"
@@ -160,6 +167,7 @@
                                                     </svg>
                                                     <span class="pt-1 ml-1 text-xs">Delete</span>
                                                 </button> --}}
+                                                @endcan
                                             </div>
                                         </td>
                                     </tr>

@@ -75,24 +75,33 @@
                                                                 <span class="text-base">{{ $spacemen->spacemen }}</span>
 
                                                                 {{-- <span class="ml-2">
+                                                                @can('edit test specimen')
                                                                     <a href="#"
                                                                         class="text-xs text-blue-500 underline hover:no-underline">Edit</a>
+                                                                    @endcan
+                                                                    
+                                                                    @can('delete test specimen')
                                                                     <a href="#"
                                                                         class="text-xs text-blue-500 underline hover:no-underline">Delete</a>
+                                                                        @endcan
                                                                 </span> --}}
                                                             </li>
                                                         @endforeach
-                                                        <a href="#"
-                                                            wire:click="openAddSpacemenModal({{ $test_result->id }})"
-                                                            class="ml-8 text-xs text-blue-500 underline hover:no-underline">Add
-                                                            specimen</a>
+                                                        @can('add test specimen')
+                                                            <a href="#"
+                                                                wire:click="openAddSpacemenModal({{ $test_result->id }})"
+                                                                class="ml-8 text-xs text-blue-500 underline hover:no-underline">Add
+                                                                specimen</a>
+                                                        @endcan
                                                     </ul>
                                                 @else
-                                                    <a href="#"
-                                                        wire:click="openAddSpacemenModal({{ $test_result->id }})"
-                                                        class="text-lg text-blue-600 underline hover:no-underline">
-                                                        Add Specimen
-                                                    </a>
+                                                    @can('add test specimen')
+                                                        <a href="#"
+                                                            wire:click="openAddSpacemenModal({{ $test_result->id }})"
+                                                            class="text-lg text-blue-600 underline hover:no-underline">
+                                                            Add Specimen
+                                                        </a>
+                                                    @endcan
                                                 @endif
                                             </div>
                                         </td>
@@ -117,18 +126,20 @@
                                                     @if (is_null($test_result->result_option_id))
                                                         <div class="my-1">
                                                             <!-- add results -->
-                                                            <button
-                                                                wire:click.prevent="openAddResultModal({{ $test_result->id }})"
-                                                                type="button"
-                                                                class="flex px-2 py-1 text-sm text-white bg-blue-500 rounded hover:bg-blue-700 focus:outline-none focus:shadow-outline">
-                                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none"
-                                                                    viewBox="0 0 24 24" stroke-width="1.5"
-                                                                    stroke="currentColor" class="w-5 h-5">
-                                                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                                                        d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                                                </svg>
-                                                                <span class="pt-1 ml-1 text-xs">Add Results</span>
-                                                            </button>
+                                                            @can('add results')
+                                                                <button
+                                                                    wire:click.prevent="openAddResultModal({{ $test_result->id }})"
+                                                                    type="button"
+                                                                    class="flex px-2 py-1 text-sm text-white bg-blue-500 rounded hover:bg-blue-700 focus:outline-none focus:shadow-outline">
+                                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                                        viewBox="0 0 24 24" stroke-width="1.5"
+                                                                        stroke="currentColor" class="w-5 h-5">
+                                                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                                                            d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                                                    </svg>
+                                                                    <span class="pt-1 ml-1 text-xs">Add Results</span>
+                                                                </button>
+                                                            @endcan
                                                         </div>
                                                     @endif
 
@@ -136,6 +147,7 @@
                                                     @if (!is_null($test_result->result_option_id))
                                                         {{-- <div class="my-1">
                                                             <!-- Edit  -->
+                                                            @can('edit results')
                                                             <a href="#  "
                                                                 wire:click.prevent="openEditTestResult({{ $test_result->id }})"
                                                                 type="button"
@@ -149,23 +161,26 @@
                                                                 </svg>
                                                                 <span class="pt-1 ml-1 text-xs">Edit Results</span>
                                                             </a>
+                                                            @endcan
                                                         </div> --}}
 
                                                         <div class="my-1">
-                                                            <a href="{{ route('test-results.show', $test_result) }}"
-                                                                class="flex px-2 py-1 text-sm text-white bg-green-500 rounded hover:bg-green-700 focus:outline-none focus:shadow-outline">
-                                                                <svg class="w-4" xmlns="http://www.w3.org/2000/svg"
-                                                                    fill="none" viewBox="0 0 24 24"
-                                                                    stroke="currentColor">
-                                                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                                                        stroke-width="2"
-                                                                        d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                                                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                                                        stroke-width="2"
-                                                                        d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-                                                                </svg>
-                                                                <span class="pt-1 ml-1 text-xs">View Results</span>
-                                                            </a>
+                                                            @can('view results')
+                                                                <a href="{{ route('test-results.show', $test_result) }}"
+                                                                    class="flex px-2 py-1 text-sm text-white bg-green-500 rounded hover:bg-green-700 focus:outline-none focus:shadow-outline">
+                                                                    <svg class="w-4" xmlns="http://www.w3.org/2000/svg"
+                                                                        fill="none" viewBox="0 0 24 24"
+                                                                        stroke="currentColor">
+                                                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                                                            stroke-width="2"
+                                                                            d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                                                            stroke-width="2"
+                                                                            d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                                                                    </svg>
+                                                                    <span class="pt-1 ml-1 text-xs">View Results</span>
+                                                                </a>
+                                                            @endcan
                                                         </div>
                                                     @endif
                                                 </div>

@@ -11,6 +11,10 @@ import flatpickr from 'flatpickr';
 // Import TailwindCSS variables
 import { tailwindConfig } from './utils';
 
+// Initialization for ES Users
+import { Select, initTE } from "tw-elements";
+initTE({ Select });
+
 // import component from './components/component';
 import dashboardCard01 from './components/dashboard-card-01';
 import dashboardCard02 from './components/dashboard-card-02';

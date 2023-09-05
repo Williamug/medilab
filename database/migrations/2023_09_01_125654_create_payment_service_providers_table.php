@@ -11,12 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('result_options', function (Blueprint $table) {
+        Schema::create('payment_service_providers', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->nullable();
-            $table->string('option');
-            $table->string('code')->nullable();
-            $table->string('symbol')->nullable();
+            $table->foreignId('payment_method_id')->nullable();
+            $table->string('provider_name')->nullable();
+            $table->text('api')->nullable();
+            $table->text('token')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
@@ -27,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('result_options');
+        Schema::dropIfExists('payment_service_providers');
     }
 };
